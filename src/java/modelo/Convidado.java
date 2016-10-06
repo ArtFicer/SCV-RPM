@@ -1,7 +1,15 @@
 package modelo;
 
+import dao.ClassNotFoundExeception;
+import dao.ConvidadoDAO;
+import java.util.List;
+
 
 public class Convidado {
+
+    public static List<Convidado> obterConvidado() throws ClassNotFoundExeception, ClassNotFoundException {
+        return ConvidadoDAO.obterConvidado();
+    }
     private int matriculaSIAPE;
     int codConidado;
 

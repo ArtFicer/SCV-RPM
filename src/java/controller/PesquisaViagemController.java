@@ -5,13 +5,16 @@
  */
 package controller;
 
+import dao.ClassNotFoundExeception;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Viagem;
 
 /**
  *
@@ -30,19 +33,13 @@ public class PesquisaViagemController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PesquisaViagemController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PesquisaViagemController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+               throws ServletException, IOException, ClassNotFoundExeception{
+        try {
+           request.setAttribute("viagens", Viagem.obterViagem());
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisaViagem.jsp");
+           view.forward(request, response);
+        }catch(ClassNotFoundException ex){
+            
         }
     }
 
