@@ -8,6 +8,8 @@ package controller;
 import dao.ClassNotFoundExeception;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +55,11 @@ public class PesquisaCadastroRapidoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundExeception ex) {
+            Logger.getLogger(PesquisaCadastroRapidoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -67,7 +73,11 @@ public class PesquisaCadastroRapidoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundExeception ex) {
+            Logger.getLogger(PesquisaCadastroRapidoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

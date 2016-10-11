@@ -57,48 +57,48 @@
                     <a href="calendario.jsp">CalendárioN</a>
                 </td>
                 <td>
-                    <a href="historico.jsp">HistóricoN</a>
+                    <a href="PesquisaHistoricoController">HistóricoN</a>
                 </td>
                 <td>
-                    <a href="pesquisarTrimestre.jsp">TrimestreN</a>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <a href="pesquisarSolicitacao.jsp">SolicitaçãoN</a>
-                </td>
-                <td>
-                    <a href="pesquisarRelatorioViagem.jsp">RelatorioViagemN</a>
-                </td>
-                <td>
-                    <a href="pesquisarPolo.jsp">PoloN</a>
+                    <a href="PesquisarTrimestreController">TrimestreN</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="pesquisarOferta.jsp">OfertaN</a>
+                    <a href="PesquisarSolicitacaoController">SolicitaçãoN</a>
                 </td>
                 <td>
-                    <a href="pesquisarEditarServidor.jsp">EditarServidorN</a>
+                    <a href="PesquisarRelatorioViagemController">RelatorioViagemN</a>
                 </td>
                 <td>
-                    <a href="pesquisarDisciplina.jsp">DisciplinaN</a>
+                    <a href="PesquisarPoloController">PoloN</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="pesquisaViagem.jsp">ViagemN</a>
+                    <a href="PesquisarOfertaController">OfertaN</a>
+                </td>
+                <td>
+                    <a href="PesquisarEditarController">EditarServidorN</a>
+                </td>
+                <td>
+                    <a href="PesquisarDisciplinaController">DisciplinaN</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="PesquisaViagemController">ViagemN</a>
                 </td>
                 
                 <td>
-                    <a href="pesquisarProposto.jsp">proposto</a>
+                    <a href="PesquisarPropostoController">proposto</a>
                 </td>
                 
                 <td>
-                    <a href="pesquisaServidor.jsp">ServidorN</a>
+                    <a href="PesquisaServidorController">ServidorN</a>
                 </td>
             </tr>
 
@@ -108,10 +108,10 @@
                 </td>
 
                 <td>
-                    <a href="perfil.jsp">PerfilN</a>
+                    <a href="PesquisaPesfilController">PerfilN</a>
                 </td>
                 <td> 
-                    <a href="pesquisarCadastroRapido.jsp">CadastroRapido</a>
+                    <a href="PesquisarCadastroRapidoController>CadastroRapido</a>
                 </td>
             </tr>
         </table>
