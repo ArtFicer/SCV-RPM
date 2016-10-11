@@ -14,19 +14,27 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <h1>Pesquisa de Cursos</h1>
+        <h1>Pesquisa de Viagens</h1>
         <table border=1>
             <tr>
                 <th>Codigo:</th>
-                <th>Nome:</th>
+                <th>Destino:</th>
+                <th>Confirmação:</th>
+                <th>Conclusão:</th>
+                <th>Código do Transporte:</th>
+                <th>Horário Saída:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${cursos}" var="curso">
+            <c:forEach items="${viagens}" var="curso">
                 <tr>
-                    <td><c:out value="${curso.codCurso}" /></td>
-                    <td><c:out value="${curso.nome}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${curso.codCurso}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${curso.codCurso}"/>">Excluir</a> </td>
+                    <td><c:out value="${viagens.codViagem}" /></td>
+                    <td><c:out value="${viagens.destino}"/></td>
+                    <td><c:out value="${viagens.statusConfirmacao}"/></td>
+                    <td><c:out value="${viagens.statusConclusao}"/></td>
+                    <td><c:out value="${viagens.codTransport}"/></td>
+                    <td><c:out value="${viagens.horarioSaida}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${viagens.codViagem}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${viagens.codViagem}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

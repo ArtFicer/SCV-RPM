@@ -14,19 +14,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <h1>Pesquisa de Cursos</h1>
+       <h1>Pesquisa de Ofertas</h1>
         <table border=1>
             <tr>
                 <th>Codigo:</th>
-                <th>Nome:</th>
+                <th>Ano:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${cursos}" var="curso">
+            <c:forEach items="${ofertas}" var="curso">
                 <tr>
-                    <td><c:out value="${curso.codCurso}" /></td>
-                    <td><c:out value="${curso.nome}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${curso.codCurso}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${curso.codCurso}"/>">Excluir</a> </td>
+                    <td><c:out value="${ofertas.codOferta}" /></td>
+                    <td><c:out value="${ofertas.ano}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${ofertas.codOferta}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${ofertas.codOferta}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

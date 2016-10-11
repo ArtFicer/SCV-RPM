@@ -6,37 +6,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Polo;
+import modelo.RelatorioViagem;
 
-public class PoloDAO {
+public class RelatorioViagemDAO {
 
-    public static List<Polo> obterPolo() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<RelatorioViagem> obterEscreverRelatorio() throws ClassNotFoundExeception, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Polo> polos = new ArrayList<Polo>();
+        List<RelatorioViagem> escreverRelatorios = new ArrayList<RelatorioViagem>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from curso");
             while (rs.next()) {
-                Polo polo = new Polo(
-                        rs.getString("cidade"),
-                        rs.getString("logradouro"),
-                        rs.getString("bairro"),
-                        rs.getString("telefone"),
-                        rs.getString("email"),
-                        rs.getInt("numero"),
-                        rs.getInt("modelo"),
-                        rs.getInt("codPolo")
+                RelatorioViagem escreverRelatorio = new RelatorioViagem(
+                        rs.getString("relatorio"), rs.getInt("codEscreverRelatorio")
                 );
-                polos.add(polo);
+                escreverRelatorios.add(escreverRelatorio);
             }
         } catch (SQLException e) {
             //e.printStckTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return polos;
+        return escreverRelatorios;
     }
 
     public static void fecharConexao(Connection conexao, Statement comando) {

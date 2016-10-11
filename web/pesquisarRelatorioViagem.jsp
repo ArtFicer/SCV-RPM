@@ -14,19 +14,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Pesquisa de Cursos</h1>
+        <h1>Pesquisa de Relatorio</h1>
         <table border=1>
             <tr>
                 <th>Codigo:</th>
-                <th>Nome:</th>
+                <th>Relatório:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${cursos}" var="curso">
+            <c:forEach items="${relatorios}" var="curso">
                 <tr>
-                    <td><c:out value="${curso.codCurso}" /></td>
-                    <td><c:out value="${curso.nome}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${curso.codCurso}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${curso.codCurso}"/>">Excluir</a> </td>
+                    <td><c:out value="${relatorios.codEscreverRelatorio}" /></td>
+                    <td><c:out value="${relatorios.relatorio}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${relatorios.codEscreverRelatorio}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${relatorios.codEscreverRelatorio}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

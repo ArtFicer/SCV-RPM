@@ -1,9 +1,9 @@
 package modelo;
-public class EscreverRelatorio {
+public class RelatorioViagem {
     private String relatorio;
     private int codEscreverRelatorio;
 
-    public EscreverRelatorio(String relatorio, int codEscreverRelatorio) {
+    public RelatorioViagem(String relatorio, int codEscreverRelatorio) {
         this.relatorio = relatorio;
         this.codEscreverRelatorio = codEscreverRelatorio;
     }

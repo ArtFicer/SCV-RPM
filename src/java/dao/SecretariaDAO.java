@@ -9,41 +9,43 @@ import java.util.List;
 import modelo.Secretaria;
 
 public class SecretariaDAO {
+
     public static List<Secretaria> obterSecretaria() throws ClassNotFoundExeception, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Secretaria> secretaria = new ArrayList<Secretaria>();
-        try{
+        List<Secretaria> secretarias = new ArrayList<Secretaria>();
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from curso");
-            while (rs.next()){
-                Secretaria secretarias = new Secretaria(rs.getString("nome"),
-                    rs.getString("email"),
-                    rs.getInt("cpf"),rs.getInt("senha"),rs.getInt("codSecretaria")
+            while (rs.next()) {
+                Secretaria secretaria = new Secretaria(
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getInt("cpf"),
+                        rs.getInt("senha"),
+                        rs.getInt("codSecretaria")
                 );
+                secretarias.add(secretaria);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             //e.printStckTrace();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-return null;
+        return secretarias;
     }
-    
-    public static void fecharConexao(Connection conexao, Statement comando){
-        try{
-            if(comando != null){
+
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
                 comando.close();
             }
-            if(conexao != null){
+            if (conexao != null) {
                 conexao.close();
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
         }
     }
-    
-    
-    
-    
+
 }

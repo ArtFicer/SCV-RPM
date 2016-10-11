@@ -9,42 +9,40 @@ import java.util.List;
 import modelo.Servidor;
 
 public class ServidorDAO {
+
     public static List<Servidor> obterServidor() throws ClassNotFoundExeception, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Servidor> servidor = new ArrayList<Servidor>();
-        try{
+        List<Servidor> servidores = new ArrayList<Servidor>();
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from curso");
-            while (rs.next()){
-                Servidor servidores = new Servidor(rs.getInt("matriculaSIAPE"),
-                    rs.getString("lotadoOrgao"),
-                    rs.getInt("codServidor")
+            while (rs.next()) {
+                Servidor servidor = new Servidor(rs.getInt("matriculaSIAPE"),
+                        rs.getString("lotadoOrgao"),
+                        rs.getInt("codServidor")
                 );
+                servidores.add(servidor);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             //e.printStckTrace();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-return null;
+        return servidores;
     }
-    
-    public static void fecharConexao(Connection conexao, Statement comando){
-        try{
-            if(comando != null){
+
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
                 comando.close();
             }
-            if(conexao != null){
+            if (conexao != null) {
                 conexao.close();
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
         }
     }
-    
-    
-    
-    
-    
+
 }

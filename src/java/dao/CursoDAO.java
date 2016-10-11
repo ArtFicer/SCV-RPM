@@ -1,5 +1,5 @@
-
 package dao;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,38 +9,40 @@ import java.util.List;
 import modelo.Curso;
 
 public class CursoDAO {
+
     public static List<Curso> obterCurso() throws ClassNotFoundExeception, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Curso> cursos = new ArrayList<Curso>();
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from curso");
-            while (rs.next()){
-                Curso curso = new Curso(rs.getInt("codCurso"), 
+            while (rs.next()) {
+                Curso curso = new Curso(
+                        rs.getInt("codCurso"),
                         rs.getString("nome")
                 );
                 cursos.add(curso);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             //e.printStckTrace();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
         return cursos;
     }
-    
-    public static void fecharConexao(Connection conexao, Statement comando){
-        try{
-            if(comando != null){
+
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
                 comando.close();
             }
-            if(conexao != null){
+            if (conexao != null) {
                 conexao.close();
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
         }
     }
-    
+
 }

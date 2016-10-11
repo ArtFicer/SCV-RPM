@@ -9,42 +9,40 @@ import java.util.List;
 import modelo.Oferta;
 
 public class OfertaDAO {
+
     public static List<Oferta> obterOferta() throws ClassNotFoundExeception, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Oferta> oferta = new ArrayList<Oferta>();
-        try{
+        List<Oferta> ofertas = new ArrayList<Oferta>();
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from curso");
-            while (rs.next()){
-                Oferta ofertas = new Oferta(rs.getInt("codOferta"),
-                    rs.getInt("ano")
+            while (rs.next()) {
+                Oferta oferta = new Oferta(
+                        rs.getInt("codOferta"),
+                        rs.getInt("ano")
                 );
+                ofertas.add(oferta);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             //e.printStckTrace();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-        return null;
+        return ofertas;
     }
-    
-    public static void fecharConexao(Connection conexao, Statement comando){
-        try{
-            if(comando != null){
+
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
                 comando.close();
             }
-            if(conexao != null){
+            if (conexao != null) {
                 conexao.close();
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
         }
     }
-    
-    
-    
-    
-    
-    
+
 }

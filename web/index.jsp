@@ -60,55 +60,55 @@
                     <a href="PesquisaHistoricoController">HistóricoN</a>
                 </td>
                 <td>
-                    <a href="PesquisarTrimestreController">TrimestreN</a>
+                    <a href="PesquisarTrimestreController">Trimestre-Erro</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="PesquisarSolicitacaoController">SolicitaçãoN</a>
+                    <a href="PesquisarSolicitacaoController">Solicitação-Erro</a>
                 </td>
                 <td>
-                    <a href="PesquisarRelatorioViagemController">RelatorioViagemN</a>
+                    <a href="PesquisarRelatorioViagemController">RelatorioViagem-Erro</a>
                 </td>
                 <td>
-                    <a href="PesquisarPoloController">PoloN</a>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <a href="PesquisarOfertaController">OfertaN</a>
-                </td>
-                <td>
-                    <a href="PesquisarEditarController">EditarServidorN</a>
-                </td>
-                <td>
-                    <a href="PesquisarDisciplinaController">DisciplinaN</a>
+                    <a href="PesquisarPoloController">Polo-Erro</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="PesquisaViagemController">ViagemN</a>
+                    <a href="PesquisarOfertaController">Oferta-Erro</a>
+                </td>
+                <td>
+                    <a href="PesquisarEditarController">EditarServidor-Erro</a>
+                </td>
+                <td>
+                    <a href="PesquisarDisciplinaController">Disciplina-Erro</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="PesquisaViagemController">Viagem-Erro</a>
                 </td>
                 
                 <td>
-                    <a href="PesquisarPropostoController">proposto</a>
+                    <a href="PesquisarPropostoController">Proposto-Erro</a>
                 </td>
                 
                 <td>
-                    <a href="PesquisaServidorController">ServidorN</a>
+                    <a href="PesquisaServidorController">Servidor-Erro</a>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <a href="PesquisaCursoController">Curso</a>
+                    <a href="PesquisaCursoController">Curso-Erro</a>
                 </td>
 
                 <td>
-                    <a href="PesquisaPesfilController">PerfilN</a>
+                    <a href="PesquisaPesfilController">Perfil</a>
                 </td>
                 <td> 
                     <a href="PesquisarCadastroRapidoController>CadastroRapido</a>

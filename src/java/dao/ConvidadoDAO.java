@@ -1,4 +1,3 @@
-
 package dao;
 
 import java.sql.Connection;
@@ -9,38 +8,40 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Convidado;
 
-
 public class ConvidadoDAO {
+
     public static List<Convidado> obterConvidado() throws ClassNotFoundExeception, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Convidado> convidado = new ArrayList<Convidado>();
-        try{
+        List<Convidado> convidados = new ArrayList<Convidado>();
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from curso");
-            while (rs.next()){
-                Convidado convidados = new Convidado(rs.getInt("codConvidado"),
-                rs.getInt("matriculaSIAPE")
+            while (rs.next()) {
+                Convidado convidado = new Convidado(
+                        rs.getInt("codConvidado"),
+                        rs.getInt("matriculaSIAPE")
                 );
+                convidados.add(convidado);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             //e.printStckTrace();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-        return null;
+        return convidados;
     }
-    
-    public static void fecharConexao(Connection conexao, Statement comando){
-        try{
-            if(comando != null){
+
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
                 comando.close();
             }
-            if(conexao != null){
+            if (conexao != null) {
                 conexao.close();
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
         }
     }
 }
