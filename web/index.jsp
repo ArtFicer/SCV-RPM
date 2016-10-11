@@ -104,7 +104,9 @@
 
             <tr>
                 <td>
-                    <a href="PesquisaCursoController">Curso</a>
+                    Curso
+                    <a href="PesquisaCursoController">Pesquisar</a>
+                    <a href="ManterCursoController"> Manter</a>
                 </td>
 
                 <td>

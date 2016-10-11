@@ -10,7 +10,7 @@ import modelo.Curso;
 
 public class CursoDAO {
 
-    public static List<Curso> obterCurso() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Curso> obterCurso() throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Curso> cursos = new ArrayList<Curso>();

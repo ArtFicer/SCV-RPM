@@ -15,7 +15,7 @@ public class Curso {
         this.codCurso = codCurso;
     }
 
-    public static List<Curso> obterCurso() throws ClassNotFoundException, dao.ClassNotFoundExeception{
+    public static List<Curso> obterCurso() throws ClassNotFoundException{
         return CursoDAO.obterCurso();
         
     }
