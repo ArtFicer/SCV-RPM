@@ -25,7 +25,7 @@ and open the template in the editor.
                         <a href="sobre.html">Sobre</a>
                     </td>
                 </tr>
-                <p>Digite seu CPF para recuperação de senha: 
+                <p>Digite seu CPF para recupera��o de senha: 
                 <p> CPF: <input type="text" name="complemento" size="11">
                 <p>Será enviado para o e-mail cadastrado o link para recuperação de senha.
             </table>

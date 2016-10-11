@@ -38,7 +38,7 @@ public class PesquisaTrimestreController extends HttpServlet {
                 throws ServletException, IOException, ClassNotFoundExeception{
         try {
            request.setAttribute("trimestres", Trimestre.obterTrimestre());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisaTrimestre.jsp");
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisarTrimestre.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
             

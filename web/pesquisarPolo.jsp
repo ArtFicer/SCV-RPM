@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Polos</title>
     </head>
     <body>
         <h1>Pesquisa de Polos</h1>
@@ -27,18 +27,18 @@
                 <th>Modelo:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${polos}" var="curso">
+            <c:forEach items="${polos}" var="polo">
                 <tr>
-                    <td><c:out value="${polos.codPolo}" /></td>
-                    <td><c:out value="${polos.cidade}" /></td>
-                    <td><c:out value="${polos.logradouro}" /></td>
-                    <td><c:out value="${polos.bairro}" /></td>
-                    <td><c:out value="${polos.telefone}" /></td>
-                    <td><c:out value="${polos.email}" /></td>
-                    <td><c:out value="${polos.numero}" /></td>
-                    <td><c:out value="${polos.modelo}" /></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${polos.codPolo}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${polos.codPolo}"/>">Excluir</a> </td>
+                    <td><c:out value="${polo.codPolo}" /></td>
+                    <td><c:out value="${polo.cidade}" /></td>
+                    <td><c:out value="${polo.logradouro}" /></td>
+                    <td><c:out value="${polo.bairro}" /></td>
+                    <td><c:out value="${polo.telefone}" /></td>
+                    <td><c:out value="${polo.email}" /></td>
+                    <td><c:out value="${polo.numero}" /></td>
+                    <td><c:out value="${polo.modelo}" /></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${polo.codPolo}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${polo.codPolo}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

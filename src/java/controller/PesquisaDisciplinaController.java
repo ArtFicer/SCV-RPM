@@ -22,7 +22,6 @@ import modelo.Disciplina;
  *
  * @author pe-ri
  */
-@WebServlet(name = "PesquisaDisciplinaController", urlPatterns = {"/PesquisaDisciplinaController"})
 public class PesquisaDisciplinaController extends HttpServlet {
 
     /**
@@ -38,7 +37,7 @@ public class PesquisaDisciplinaController extends HttpServlet {
                 throws ServletException, IOException, ClassNotFoundExeception{
         try {
            request.setAttribute("disciplinas", Disciplina.obterDisciplina());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisaDisciplina.jsp");
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisarDisciplina.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
             

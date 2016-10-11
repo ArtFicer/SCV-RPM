@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Propostos</title>
     </head>
     <body>
         <h1>Pesquisa de Propostos</h1>
@@ -42,32 +42,32 @@
             </tr>
             <c:forEach items="${propostos}" var="curso">
                 <tr>
-                    <td><c:out value="${propostos.codProposto}" /></td>
-                    <td><c:out value="${propostos.nome}"/></td>
-                    <td><c:out value="${propostos.cpf}"/></td>
-                    <td><c:out value="${propostos.nascimento}"/></td>
-                    <td><c:out value="${propostos.email}"/></td>
-                    <td><c:out value="${propostos.telefone}"/></td>
-                    <td><c:out value="${propostos.celular}"/></td>
-                    <td><c:out value="${propostos.numero}"/></td>
-                    <td><c:out value="${propostos.agencia}"/></td>
-                    <td><c:out value="${propostos.conta}"/></td>
-                    <td><c:out value="${propostos.senha}"/></td>
-                    <td><c:out value="${propostos.setor}"/></td>
-                    <td><c:out value="${propostos.logradouro}"/></td>
-                    <td><c:out value="${propostos.complemento}"/></td>
-                    <td><c:out value="${propostos.bairro}"/></td>
-                    <td><c:out value="${propostos.cidade}"/></td>
-                    <td><c:out value="${propostos.uf}"/></td>
-                    <td><c:out value="${propostos.cep}"/></td>
-                    <td><c:out value="${propostos.rg}"/></td>
-                    <td><c:out value="${propostos.titulacaoMaxima}"/></td>
-                    <td><c:out value="${propostos.banco}"/></td>
-                    <td><c:out value="${propostos.cargo}"/></td>
-                    <td><c:out value="${propostos.tipoProposto}"/></td>
+                    <td><c:out value="${proposto.codProposto}" /></td>
+                    <td><c:out value="${proposto.nome}"/></td>
+                    <td><c:out value="${proposto.cpf}"/></td>
+                    <td><c:out value="${proposto.nascimento}"/></td>
+                    <td><c:out value="${proposto.email}"/></td>
+                    <td><c:out value="${proposto.telefone}"/></td>
+                    <td><c:out value="${proposto.celular}"/></td>
+                    <td><c:out value="${proposto.numero}"/></td>
+                    <td><c:out value="${proposto.agencia}"/></td>
+                    <td><c:out value="${proposto.conta}"/></td>
+                    <td><c:out value="${proposto.senha}"/></td>
+                    <td><c:out value="${proposto.setor}"/></td>
+                    <td><c:out value="${proposto.logradouro}"/></td>
+                    <td><c:out value="${proposto.complemento}"/></td>
+                    <td><c:out value="${proposto.bairro}"/></td>
+                    <td><c:out value="${proposto.cidade}"/></td>
+                    <td><c:out value="${proposto.uf}"/></td>
+                    <td><c:out value="${proposto.cep}"/></td>
+                    <td><c:out value="${proposto.rg}"/></td>
+                    <td><c:out value="${proposto.titulacaoMaxima}"/></td>
+                    <td><c:out value="${proposto.banco}"/></td>
+                    <td><c:out value="${proposto.cargo}"/></td>
+                    <td><c:out value="${proposto.tipoProposto}"/></td>
 
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${propostos.codProposto}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${propostos.codProposto}"/>">Excluir</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${proposto.codProposto}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${proposto.codProposto}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Viagens</title>
     </head>
     <body>
         <h1>Pesquisa de Viagens</h1>
@@ -27,14 +27,14 @@
             </tr>
             <c:forEach items="${viagens}" var="curso">
                 <tr>
-                    <td><c:out value="${viagens.codViagem}" /></td>
-                    <td><c:out value="${viagens.destino}"/></td>
-                    <td><c:out value="${viagens.statusConfirmacao}"/></td>
-                    <td><c:out value="${viagens.statusConclusao}"/></td>
-                    <td><c:out value="${viagens.codTransport}"/></td>
-                    <td><c:out value="${viagens.horarioSaida}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${viagens.codViagem}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${viagens.codViagem}"/>">Excluir</a> </td>
+                    <td><c:out value="${viagen.codViagem}" /></td>
+                    <td><c:out value="${viagen.destino}"/></td>
+                    <td><c:out value="${viagen.statusConfirmacao}"/></td>
+                    <td><c:out value="${viagen.statusConclusao}"/></td>
+                    <td><c:out value="${viagen.codTransport}"/></td>
+                    <td><c:out value="${viagen.horarioSaida}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${viagen.codViagem}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${viagen.codViagem}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

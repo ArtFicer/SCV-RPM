@@ -38,7 +38,7 @@ public class PesquisaOfertaController extends HttpServlet {
                 throws ServletException, IOException, ClassNotFoundExeception{
         try {
            request.setAttribute("ofertas", Oferta.obterOferta());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisaOferta.jsp");
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisarOferta.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
             

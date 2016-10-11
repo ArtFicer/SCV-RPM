@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Trimestre</title>
     </head>
     <body>
        <h1>Pesquisa de Trimestre</h1>
@@ -23,7 +23,7 @@
                 <th>Texto:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${solicitacao}" var="curso">
+            <c:forEach items="${solicitacoes}" var="curso">
                 <tr>
                     <td><c:out value="${solicitacao.codSolicitacao}" /></td>
                     <td><c:out value="${solicitacao.assunto}"/></td>

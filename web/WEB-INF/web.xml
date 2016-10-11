@@ -8,7 +8,18 @@
         <servlet-name>PesquisaCursoController</servlet-name>
         <url-pattern>/PesquisaCursoController</url-pattern>
     </servlet-mapping>
-    <session-config>
+ 
+    <servlet>
+        <servlet-name>PesquisaDisciplinaController</servlet-name>
+        <servlet-class>controller.PesquisaDisciplinaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PesquisaDisciplinaController</servlet-name>
+        <url-pattern>/PesquisaDisciplinaController</url-pattern>
+    </servlet-mapping>
+    
+    
+      <session-config>
         <session-timeout>
             30
         </session-timeout>

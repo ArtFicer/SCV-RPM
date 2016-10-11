@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Disciplinas</title>
     </head>
     <body>
         <h1>Pesquisa de Disciplinas</h1>
@@ -21,12 +21,12 @@
                 <th>Nome:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${disciplinas}" var="curso">
+            <c:forEach items="${disciplinas}" var="disciplina">
                 <tr>
-                    <td><c:out value="${disciplinas.codDisciplinas}" /></td>
-                    <td><c:out value="${disciplinas.nome}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${disciplinas.codDisciplinas}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${disciplinas.codDisciplinas}"/>">Excluir</a> </td>
+                    <td><c:out value="${disciplina.codDisciplinas}" /></td>
+                    <td><c:out value="${disciplina.nome}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${disciplina.codDisciplinas}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${disciplina.codDisciplinas}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

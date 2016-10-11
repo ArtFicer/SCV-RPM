@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Relatorio</title>
     </head>
     <body>
         <h1>Pesquisa de Relatorio</h1>
@@ -23,10 +23,10 @@
             </tr>
             <c:forEach items="${relatorios}" var="curso">
                 <tr>
-                    <td><c:out value="${relatorios.codEscreverRelatorio}" /></td>
-                    <td><c:out value="${relatorios.relatorio}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${relatorios.codEscreverRelatorio}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${relatorios.codEscreverRelatorio}"/>">Excluir</a> </td>
+                    <td><c:out value="${relatorio.codEscreverRelatorio}" /></td>
+                    <td><c:out value="${relatorio.relatorio}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${relatorio.codEscreverRelatorio}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${relatorio.codEscreverRelatorio}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

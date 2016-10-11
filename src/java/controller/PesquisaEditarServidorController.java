@@ -38,7 +38,7 @@ public class PesquisaEditarServidorController extends HttpServlet {
                 throws ServletException, IOException, ClassNotFoundExeception{
         try {
            request.setAttribute("servidores", Servidor.obterServidor());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisaServidor.jsp");
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisarServidor.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
             

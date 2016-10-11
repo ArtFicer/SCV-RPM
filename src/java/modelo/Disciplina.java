@@ -6,9 +6,6 @@ import java.util.List;
 
 public class Disciplina {
 
-    public static List<Disciplina> obterDisciplina() throws ClassNotFoundExeception, ClassNotFoundException {
-        return DisciplinaDAO.obterDisciplina();
-    }
     private String nome;
     private int codDisciplina;
 
@@ -16,8 +13,11 @@ public class Disciplina {
         this.nome = nome;
         this.codDisciplina = codDisciplina;
     }
-    
-    
+
+    public static List<Disciplina> obterDisciplina() throws ClassNotFoundExeception, ClassNotFoundException {
+        return DisciplinaDAO.obterDisciplina();
+    }
+
     public String getNome() {
         return nome;
     }

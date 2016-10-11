@@ -11,10 +11,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Servidores</title>
     </head>
     <body>
-       <h1>Pesquisa de Cursos</h1>
+       <h1>Pesquisa de Servidores</h1>
         <table border=1>
             <tr>
                 <th>Codigo:</th>
@@ -24,11 +24,11 @@
             </tr>
             <c:forEach items="${servidores}" var="curso">
                 <tr>
-                    <td><c:out value="${servidores.codServidor}" /></td>
-                    <td><c:out value="${servidores.matriculaSIAP}"/></td>
-                    <td><c:out value="${servidores.LotadoOrgao}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${servidores.codServidor}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${servidores.codServidor}"/>">Excluir</a> </td>
+                    <td><c:out value="${servidore.codServidor}" /></td>
+                    <td><c:out value="${servidore.matriculaSIAP}"/></td>
+                    <td><c:out value="${servidore.LotadoOrgao}"/></td>
+                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${servidore.codServidor}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${servidore.codServidor}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

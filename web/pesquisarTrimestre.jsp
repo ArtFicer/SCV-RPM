@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisa de Trimestre</title>
     </head>
     <body>
         <h1>Pesquisa de Trimestre</h1>
@@ -21,7 +21,7 @@
                 <th>Trimestre:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${trimestre}" var="curso">
+            <c:forEach items="${trimestres}" var="curso">
                 <tr>
                     <td><c:out value="${trimestre.codTrimestre}" /></td>
                     <td><c:out value="${trimestre.numeroTrimestre}"/></td>

@@ -57,61 +57,61 @@
                     <a href="calendario.jsp">CalendárioN</a>
                 </td>
                 <td>
-                    <a href="PesquisaHistoricoController">HistóricoN</a>
+                    <a href="historico.jsp">HistóricoN</a>
                 </td>
                 <td>
-                    <a href="PesquisarTrimestreController">Trimestre-Erro</a>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <a href="PesquisarSolicitacaoController">Solicitação-Erro</a>
-                </td>
-                <td>
-                    <a href="PesquisarRelatorioViagemController">RelatorioViagem-Erro</a>
-                </td>
-                <td>
-                    <a href="PesquisarPoloController">Polo-Erro</a>
+                    <a href="PesquisaTrimestreController">Trimestre</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="PesquisarOfertaController">Oferta-Erro</a>
+                    <a href="PesquisaSolicitacaoController">Solicitação</a>
                 </td>
                 <td>
-                    <a href="PesquisarEditarController">EditarServidor-Erro</a>
+                    <a href="PesquisaRelatorioViagemController">RelatorioViagem</a>
                 </td>
                 <td>
-                    <a href="PesquisarDisciplinaController">Disciplina-Erro</a>
+                    <a href="PesquisaPoloController">Polo</a>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    <a href="PesquisaViagemController">Viagem-Erro</a>
+                    <a href="PesquisaOfertaController">Oferta</a>
+                </td>
+                <td>
+                    <a href="pesquisarEditarServidor.jsp">EditarServidorN</a>
+                </td>
+                <td>
+                    <a href="PesquisaDisciplinaController">Disciplina</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="PesquisaViagemController">Viagem</a>
                 </td>
                 
                 <td>
-                    <a href="PesquisarPropostoController">Proposto-Erro</a>
+                    <a href="PesquisaPropostoController">Proposto</a>
                 </td>
                 
                 <td>
-                    <a href="PesquisaServidorController">Servidor-Erro</a>
+                    <a href="PesquisaServidorController">Servidor</a>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <a href="PesquisaCursoController">Curso-Erro</a>
+                    <a href="PesquisaCursoController">Curso</a>
                 </td>
 
                 <td>
-                    <a href="PesquisaPesfilController">Perfil</a>
+                    <a href="perfil.jsp">Perfil</a>
                 </td>
                 <td> 
-                    <a href="PesquisarCadastroRapidoController>CadastroRapido</a>
+                    <a href="pesquisarCadastroRapido.jsp">CadastroRapido</a>
                 </td>
             </tr>
         </table>
