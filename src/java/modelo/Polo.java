@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.PoloDAO;
 import java.util.List;
 
 public class Polo {
 
-    public static List<Polo> obterPolo() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Polo> obterPolo() throws ClassNotFoundException {
         return PoloDAO.obterPolo();
     }
     private String cidade, logradouro, bairro, telefone, email;

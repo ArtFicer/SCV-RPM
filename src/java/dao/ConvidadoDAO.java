@@ -10,7 +10,7 @@ import modelo.Convidado;
 
 public class ConvidadoDAO {
 
-    public static List<Convidado> obterConvidado() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Convidado> obterConvidado() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Convidado> convidados = new ArrayList<Convidado>();

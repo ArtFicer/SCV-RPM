@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.ViagemDAO;
 import java.util.List;
 
 public class Viagem {
 
-    public static List<Viagem> obterViagem() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Viagem> obterViagem() throws ClassNotFoundException {
         return ViagemDAO.obterViagem();
     }
     private String destino, statusConfirmacao, statusConclusao;

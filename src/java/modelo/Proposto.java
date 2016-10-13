@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.PropostoDAO;
 import java.util.List;
 
 public class Proposto {
 
-    public static List<Proposto> obterProposto() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Proposto> obterProposto() throws ClassNotFoundException {
         return PropostoDAO.obterProposto();
     }
     private int codProposto,cpf, dataNascimento, email, telefone, celular, numero, agencia, conta, senha;

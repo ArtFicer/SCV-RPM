@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.SolicitacaoDAO;
 import java.util.List;
 
 public class Solicitacao {
 
-    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException {
         return SolicitacaoDAO.obterSolicitacao();
     }
     private String assunto, texto;

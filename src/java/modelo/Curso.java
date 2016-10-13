@@ -1,6 +1,4 @@
 package modelo;
-
-import modelo.ClassNotFoundExeception;
 import dao.CursoDAO;
 import java.util.List;
 
@@ -15,7 +13,7 @@ public class Curso {
         this.codCurso = codCurso;
     }
 
-    public static List<Curso> obterCurso() throws ClassNotFoundException{
+    public static List<Curso> obterCurso() throws java.lang.ClassNotFoundException {
         return CursoDAO.obterCurso();
         
     }

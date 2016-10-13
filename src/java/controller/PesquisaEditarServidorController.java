@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.ClassNotFoundExeception;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -35,7 +34,7 @@ public class PesquisaEditarServidorController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException, ClassNotFoundExeception{
+                throws ServletException, IOException, ClassNotFoundException{
         try {
            request.setAttribute("servidores", Servidor.obterServidor());
            RequestDispatcher view = request.getRequestDispatcher("/pesquisarServidor.jsp");
@@ -59,7 +58,7 @@ public class PesquisaEditarServidorController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundExeception ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(PesquisaEditarServidorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -77,7 +76,7 @@ public class PesquisaEditarServidorController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundExeception ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(PesquisaEditarServidorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

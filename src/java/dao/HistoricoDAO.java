@@ -10,7 +10,7 @@ import modelo.Historico;
 
 public class HistoricoDAO {
 
-    public static List<Historico> obterHistorico() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Historico> obterHistorico() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Historico> historicos = new ArrayList<Historico>();

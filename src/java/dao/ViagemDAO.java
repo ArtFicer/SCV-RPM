@@ -10,7 +10,7 @@ import modelo.Viagem;
 
 public class ViagemDAO {
 
-    public static List<Viagem> obterViagem() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Viagem> obterViagem() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Viagem> viagens = new ArrayList<Viagem>();

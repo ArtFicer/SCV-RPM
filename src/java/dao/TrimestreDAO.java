@@ -10,7 +10,7 @@ import modelo.Trimestre;
 
 public class TrimestreDAO {
 
-    public static List<Trimestre> obterTrimestre() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Trimestre> obterTrimestre() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Trimestre> trimestres = new ArrayList<Trimestre>();

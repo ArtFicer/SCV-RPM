@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.OfertaDAO;
 import java.util.List;
 
 public class Oferta {
 
-    public static List<Oferta> obterOferta() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Oferta> obterOferta() throws ClassNotFoundException {
         return OfertaDAO.obterOferta();
     }
     private int ano, codOferta;

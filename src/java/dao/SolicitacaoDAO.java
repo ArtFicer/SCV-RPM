@@ -10,7 +10,7 @@ import modelo.Solicitacao;
 
 public class SolicitacaoDAO {
 
-    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();

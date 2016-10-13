@@ -10,7 +10,7 @@ import modelo.Servidor;
 
 public class ServidorDAO {
 
-    public static List<Servidor> obterServidor() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Servidor> obterServidor() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Servidor> servidores = new ArrayList<Servidor>();

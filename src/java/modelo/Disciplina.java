@@ -1,6 +1,5 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.DisciplinaDAO;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Disciplina {
         this.codDisciplina = codDisciplina;
     }
 
-    public static List<Disciplina> obterDisciplina() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Disciplina> obterDisciplina() throws ClassNotFoundException {
         return DisciplinaDAO.obterDisciplina();
     }
 

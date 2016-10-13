@@ -10,7 +10,7 @@ import modelo.Transporte;
 
 public class TransporteDAO {
 
-    public static List<Transporte> obterTransporte() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Transporte> obterTransporte() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Transporte> transportes = new ArrayList<Transporte>();

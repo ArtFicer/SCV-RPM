@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package controller;
 
 /**
  *
- * @author 041801-Nead
+ * @author user
  */
-class ClassNotFoundExeception extends Exception {
-
-    public ClassNotFoundExeception(String message) {
-        super(message);
-    }
+class CadastroRapidoController {
     
 }

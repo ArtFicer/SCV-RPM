@@ -10,7 +10,7 @@ import modelo.DeclaracaoNotaTecnica;
 
 public class DeclaracaoNotaTecnicaDAO {
 
-    public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<DeclaracaoNotaTecnica> declaracaoNotaTecnicas = new ArrayList<DeclaracaoNotaTecnica>();

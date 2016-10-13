@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.ServidorDAO;
 import java.util.List;
 
 public class Servidor {
 
-    public static List<Servidor> obterServidor() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Servidor> obterServidor() throws ClassNotFoundException {
         return ServidorDAO.obterServidor();
     }
     private int matriculaSIAPE;

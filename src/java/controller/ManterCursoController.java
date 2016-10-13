@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.ClassNotFoundExeception;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -35,7 +34,7 @@ public class ManterCursoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -66,7 +65,11 @@ public class ManterCursoController extends HttpServlet {
 @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterCursoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -80,7 +83,11 @@ public class ManterCursoController extends HttpServlet {
     @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterCursoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

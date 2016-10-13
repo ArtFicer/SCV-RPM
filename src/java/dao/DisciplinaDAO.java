@@ -10,7 +10,7 @@ import modelo.Disciplina;
 
 public class DisciplinaDAO {
 
-    public static List<Disciplina> obterDisciplina() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Disciplina> obterDisciplina() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Disciplina> disciplinas = new ArrayList<Disciplina>();

@@ -10,7 +10,7 @@ import modelo.Proposto;
 
 public class PropostoDAO {
 
-    public static List<Proposto> obterProposto() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Proposto> obterProposto() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Proposto> propostos = new ArrayList<Proposto>();

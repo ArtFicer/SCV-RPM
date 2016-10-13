@@ -10,7 +10,7 @@ import modelo.Oferta;
 
 public class OfertaDAO {
 
-    public static List<Oferta> obterOferta() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Oferta> obterOferta() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Oferta> ofertas = new ArrayList<Oferta>();

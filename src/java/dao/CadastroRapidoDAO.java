@@ -9,10 +9,6 @@ package dao;
  *
  * @author user
  */
-public class ClassNotFoundExeception extends Exception {
-
-    public ClassNotFoundExeception(String message) {
-        super(message);
-    }
+public class CadastroRapidoDAO {
     
 }

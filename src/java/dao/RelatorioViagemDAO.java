@@ -10,7 +10,7 @@ import modelo.RelatorioViagem;
 
 public class RelatorioViagemDAO {
 
-    public static List<RelatorioViagem> obterEscreverRelatorio() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<RelatorioViagem> obterEscreverRelatorio() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<RelatorioViagem> escreverRelatorios = new ArrayList<RelatorioViagem>();

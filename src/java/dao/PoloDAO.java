@@ -10,7 +10,7 @@ import modelo.Polo;
 
 public class PoloDAO {
 
-    public static List<Polo> obterPolo() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Polo> obterPolo() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Polo> polos = new ArrayList<Polo>();

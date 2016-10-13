@@ -10,7 +10,7 @@ import modelo.Secretaria;
 
 public class SecretariaDAO {
 
-    public static List<Secretaria> obterSecretaria() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Secretaria> obterSecretaria() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Secretaria> secretarias = new ArrayList<Secretaria>();

@@ -1,12 +1,11 @@
 package modelo;
 
-import dao.ClassNotFoundExeception;
 import dao.TrimestreDAO;
 import java.util.List;
 
 public class Trimestre {
 
-    public static List<Trimestre> obterTrimestre() throws ClassNotFoundExeception, ClassNotFoundException {
+    public static List<Trimestre> obterTrimestre() throws ClassNotFoundException {
         return TrimestreDAO.obterTrimestre();
     }
     private int numeroTrimestre, codTrimeste;
