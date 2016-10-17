@@ -66,12 +66,12 @@
                     <td><c:out value="${proposto.cargo}"/></td>
                     <td><c:out value="${proposto.tipoProposto}"/></td>
 
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${proposto.codProposto}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${proposto.codProposto}"/>">Excluir</a> </td>
+                    <td><a href="ManterPropostoContoller?acao=prepararEditar&codProposto=<c:out value="${proposto.codProposto}"/>">Editar</a> </td>
+                    <td><a href="ManterPropostoContoller?acao=prepararExcluir&codProposto=<c:out value="${proposto.codProposto}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterPropostoController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

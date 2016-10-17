@@ -25,7 +25,7 @@
                 <th>Horário Saída:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${viagens}" var="curso">
+            <c:forEach items="${viagens}" var="viagem">
                 <tr>
                     <td><c:out value="${viagen.codViagem}" /></td>
                     <td><c:out value="${viagen.destino}"/></td>
@@ -33,12 +33,12 @@
                     <td><c:out value="${viagen.statusConclusao}"/></td>
                     <td><c:out value="${viagen.codTransport}"/></td>
                     <td><c:out value="${viagen.horarioSaida}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${viagen.codViagem}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${viagen.codViagem}"/>">Excluir</a> </td>
+                    <td><a href="ManterViagemContoller?acao=prepararEditar&codViagem=<c:out value="${viagen.codViagem}"/>">Editar</a> </td>
+                    <td><a href="ManterViagemContoller?acao=prepararExcluir&codViagem=<c:out value="${viagen.codViagem}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterViagemController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

@@ -21,16 +21,16 @@
                 <th>Relatório:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${relatorios}" var="curso">
+            <c:forEach items="${relatorios}" var="relatorioViagem">
                 <tr>
                     <td><c:out value="${relatorio.codEscreverRelatorio}" /></td>
                     <td><c:out value="${relatorio.relatorio}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${relatorio.codEscreverRelatorio}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${relatorio.codEscreverRelatorio}"/>">Excluir</a> </td>
+                    <td><a href="ManterRelatorioViagemContoller?acao=prepararEditar&codRelatorioViagem=<c:out value="${relatorio.codEscreverRelatorio}"/>">Editar</a> </td>
+                    <td><a href="ManterRelatorioViagemContoller?acao=prepararExcluir&codRelatorioViagem=<c:out value="${relatorio.codEscreverRelatorio}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterRelatorioViagemController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

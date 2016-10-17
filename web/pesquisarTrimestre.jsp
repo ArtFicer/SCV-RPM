@@ -21,16 +21,16 @@
                 <th>Trimestre:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${trimestres}" var="curso">
+            <c:forEach items="${trimestres}" var="trismestre">
                 <tr>
                     <td><c:out value="${trimestre.codTrimestre}" /></td>
                     <td><c:out value="${trimestre.numeroTrimestre}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${trimestre.codTrimestre}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${trimestre.codTrimestre}"/>">Excluir</a> </td>
+                    <td><a href="ManterTrismestreContoller?acao=prepararEditar&codTrismestre=<c:out value="${trimestre.codTrimestre}"/>">Editar</a> </td>
+                    <td><a href="ManterTrismestreContoller?acao=prepararExcluir&codTrismestre=<c:out value="${trimestre.codTrimestre}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterTrimestreController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

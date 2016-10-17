@@ -23,14 +23,14 @@
             </tr>
             <c:forEach items="${disciplinas}" var="disciplina">
                 <tr>
-                    <td><c:out value="${disciplina.codDisciplinas}" /></td>
+                    <td><c:out value="${disciplina.codDisciplina}" /></td>
                     <td><c:out value="${disciplina.nome}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${disciplina.codDisciplinas}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${disciplina.codDisciplinas}"/>">Excluir</a> </td>
+                    <td><a href="ManterDisciplinaContoller?acao=prepararEditar&codDisciplina=<c:out value="${disciplina.codDisciplina}"/>">Editar</a> </td>
+                    <td><a href="ManterDisciplinaContoller?acao=prepararExcluir&codDisciplina=<c:out value="${disciplina.codDisciplina}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterDiscilpinaController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

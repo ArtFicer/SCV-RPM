@@ -37,12 +37,12 @@
                     <td><c:out value="${polo.email}" /></td>
                     <td><c:out value="${polo.numero}" /></td>
                     <td><c:out value="${polo.modelo}" /></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${polo.codPolo}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${polo.codPolo}"/>">Excluir</a> </td>
+                    <td><a href="ManterPoloContoller?acao=prepararEditar&codPolo=<c:out value="${polo.codPolo}"/>">Editar</a> </td>
+                    <td><a href="ManterPoloContoller?acao=prepararExcluir&codPolo=<c:out value="${polo.codPolo}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterPoloController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

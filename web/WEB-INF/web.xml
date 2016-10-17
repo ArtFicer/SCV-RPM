@@ -18,6 +18,14 @@
         <url-pattern>/PesquisaDisciplinaController</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>PesquisaPoloController</servlet-name>
+        <servlet-class>controller.PesquisaPoloController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PesquisaPoloController</servlet-name>
+        <url-pattern>/PesquisaPoloController</url-pattern>
+    </servlet-mapping>
     
       <session-config>
         <session-timeout>

@@ -47,14 +47,14 @@
 
         </table>
         <table>
-            
+
             <tr>
-            <h1>Menu Temporário</h1>
+            <h1>Menu Temporário Pesquisar</h1>
             </tr>
-            
+
             <tr>
                 <td>
-                    <a href="calendario.jsp">CalendárioN</a>
+                    <a href="PesquisaCursoController">Curso</a>
                 </td>
                 <td>
                     <a href="historico.jsp">HistóricoN</a>
@@ -63,7 +63,7 @@
                     <a href="PesquisaTrimestreController">Trimestre</a>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     <a href="PesquisaSolicitacaoController">Solicitação</a>
@@ -75,28 +75,29 @@
                     <a href="PesquisaPoloController">Polo</a>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     <a href="PesquisaOfertaController">Oferta</a>
                 </td>
-                <td>
-                    <a href="pesquisarEditarServidor.jsp">EditarServidorN</a>
+                <td> 
+                    <a href="pesquisarCadastroRapido.jsp">CadastroRapido</a>
                 </td>
+
                 <td>
                     <a href="PesquisaDisciplinaController">Disciplina</a>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     <a href="PesquisaViagemController">Viagem</a>
                 </td>
-                
+
                 <td>
                     <a href="PesquisaPropostoController">Proposto</a>
                 </td>
-                
+
                 <td>
                     <a href="PesquisaServidorController">Servidor</a>
                 </td>
@@ -104,20 +105,13 @@
 
             <tr>
                 <td>
-                    Curso
                     <a href="PesquisaCursoController">Pesquisar</a>
-                    <a href="ManterCursoController"> Manter</a>
                 </td>
-
                 <td>
                     <a href="perfil.jsp">Perfil</a>
                 </td>
-                <td> 
-                    <a href="pesquisarCadastroRapido.jsp">CadastroRapido</a>
-                </td>
             </tr>
         </table>
-    </center>
 
-</body>
+    </body>
 </html>

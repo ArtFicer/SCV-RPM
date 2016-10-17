@@ -22,17 +22,17 @@
                 <th>Lotado no Orgão:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${servidores}" var="curso">
+            <c:forEach items="${servidores}" var="servidor">
                 <tr>
                     <td><c:out value="${servidore.codServidor}" /></td>
                     <td><c:out value="${servidore.matriculaSIAP}"/></td>
                     <td><c:out value="${servidore.LotadoOrgao}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${servidore.codServidor}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${servidore.codServidor}"/>">Excluir</a> </td>
+                    <td><a href="ManterServidorContoller?acao=prepararEditar&codServidor=<c:out value="${servidore.codServidor}"/>">Editar</a> </td>
+                    <td><a href="ManterServidorContoller?acao=prepararExcluir&codServidor=<c:out value="${servidore.codServidor}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterServidorController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

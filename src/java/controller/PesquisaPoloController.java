@@ -21,7 +21,6 @@ import modelo.Polo;
  *
  * @author pe-ri
  */
-@WebServlet(name = "PesquisaPoloConroller", urlPatterns = {"/PesquisaPoloConroller"})
 public class PesquisaPoloController extends HttpServlet {
 
     /**

@@ -37,8 +37,8 @@ public class PesquisaRecuperacaoSenhaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException, ClassNotFoundException{
         try {
-           request.setAttribute("cursos", Curso.obterCurso());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisaCurso.jsp");
+           request.setAttribute("recuperarSenhas", Curso.obterCurso());
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisaRecuperarSenha.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
             

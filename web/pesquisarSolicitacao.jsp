@@ -23,17 +23,17 @@
                 <th>Texto:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${solicitacoes}" var="curso">
+            <c:forEach items="${solicitacoes}" var="solicitacao">
                 <tr>
                     <td><c:out value="${solicitacao.codSolicitacao}" /></td>
                     <td><c:out value="${solicitacao.assunto}"/></td>
                     <td><c:out value="${solicitacao.texto}"/></td>
-                    <td><a href="ManterCursoContoller?acao=prepararEditar&codCurso=<c:out value="${solicitacao.codSolicitacao}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoContoller?acao=prepararExcluir&codCurso=<c:out value="${solicitacao.codSolicitacao}"/>">Excluir</a> </td>
+                    <td><a href="ManterSolicitacaoContoller?acao=prepararEditar&codSolicitacao=<c:out value="${solicitacao.codSolicitacao}"/>">Editar</a> </td>
+                    <td><a href="ManterSolicitacaoContoller?acao=prepararExcluir&codSolicitacao=<c:out value="${solicitacao.codSolicitacao}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterCursoController?acao=prepararIncluir" method="post">
+        <form action="ManterSolicitacaoController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

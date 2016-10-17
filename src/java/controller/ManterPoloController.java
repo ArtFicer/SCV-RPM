@@ -7,22 +7,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Disciplina;
+import modelo.Oferta;
 
 /**
  *
  * @author pe-ri
  */
-@WebServlet(name = "PesquisaDisciplinaController", urlPatterns = {"/PesquisaDisciplinaController"})
-public class PesquisaDisciplinaController extends HttpServlet {
+@WebServlet(name = "ManterPoloController", urlPatterns = {"/ManterPoloController"})
+public class ManterPoloController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +31,24 @@ public class PesquisaDisciplinaController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException, ClassNotFoundException{
+        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String acao = request.getParameter("acao");
+        if (acao.equals("prepararIncluir")) {
+            prepararIncluir(request, response);
+        }
+        
+    }
+    
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
-           request.setAttribute("disciplinas", Disciplina.obterDisciplina());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisarDisciplina.jsp");
-           view.forward(request, response);
-        }catch(ClassNotFoundException ex){
-            
+            request.setAttribute("operacao", "Incluir");
+            request.setAttribute("polos", Oferta.obterOferta());
+            RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
         }
     }
 
@@ -56,11 +64,7 @@ public class PesquisaDisciplinaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesquisaDisciplinaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -74,11 +78,7 @@ public class PesquisaDisciplinaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesquisaDisciplinaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

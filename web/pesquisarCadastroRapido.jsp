@@ -23,7 +23,7 @@
                     <td>
                         <p>Nome:  <input type="text" name="nome" size="30">
                         <p>CPF <input type="text" name="cpf" size="11">
-                            <p><input type="submit" name="enviar">
+                        <p><input type="submit" name="enviar">
                     </td>
                 </tr>
             </table>
