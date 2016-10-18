@@ -1,22 +1,37 @@
 package modelo;
-import dao.CursoDAO;
-import java.util.List;
 
+import dao.CursoDAO;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Curso {
 
     private String nome;
     private int codCurso;
-    
-    public Curso (int codCurso, String nome) {
+    public Proposto proposto;
+
+    // Construtores
+    public Curso(int codCurso, String nome) {
         this.nome = nome;
         this.codCurso = codCurso;
     }
 
+    public Curso(int codCurso, String nome, Proposto proposto) {
+        this.nome = nome;
+        this.codCurso = codCurso;
+        this.proposto = proposto;
+    }
+
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        CursoDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
     public static List<Curso> obterCurso() throws java.lang.ClassNotFoundException {
         return CursoDAO.obterCurso();
-        
     }
+
     //Set e Gets
     public int getCodCurso() {
         return codCurso;
@@ -25,7 +40,7 @@ public class Curso {
     public void setCodCurso(int cod_Curso) {
         this.codCurso = cod_Curso;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -34,5 +49,16 @@ public class Curso {
         this.nome = nome;
     }
 
-    
+    public Proposto getProposto() {
+        return proposto;
+    }
+
+    public void setProposto(Proposto proposto) {
+        this.proposto = proposto;
+    }
+
+    public void setCodProposto(int codProposto) {
+        this.proposto.setCodProposto(codProposto);
+    }
+
 }
