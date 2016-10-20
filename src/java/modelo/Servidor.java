@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.ServidorDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Servidor {
@@ -43,5 +44,7 @@ public class Servidor {
     public void setLotadoOrgao(String lotadoOrgao) {
         this.lotadoOrgao = lotadoOrgao;
     }
-    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        ServidorDAO.gravar(this);
+    }
 }

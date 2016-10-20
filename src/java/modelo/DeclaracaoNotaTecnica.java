@@ -1,5 +1,8 @@
 package modelo;
 
+import dao.DeclaracaoNotaTecnicaDAO;
+import java.sql.SQLException;
+
 
 public class DeclaracaoNotaTecnica {
     private String redigir;
@@ -24,5 +27,9 @@ public class DeclaracaoNotaTecnica {
 
     public void setCodDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica) {
         this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
+    }
+    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        DeclaracaoNotaTecnicaDAO.gravar(this);
     }
 }

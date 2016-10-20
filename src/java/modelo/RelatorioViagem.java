@@ -1,4 +1,8 @@
 package modelo;
+
+import dao.RelatorioViagemDAO;
+import java.sql.SQLException;
+
 public class RelatorioViagem {
     private String relatorio;
     private int codEscreverRelatorio;
@@ -23,4 +27,9 @@ public class RelatorioViagem {
     public void setCodEscreverRelatorio(int codEscreverRelatorio) {
         this.codEscreverRelatorio = codEscreverRelatorio;
     }
+    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        RelatorioViagemDAO.gravar(this);
+    }
+
 }

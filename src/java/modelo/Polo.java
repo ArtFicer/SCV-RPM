@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.PoloDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Polo {
@@ -84,5 +85,9 @@ public class Polo {
 
     public void setModelo(int modelo) {
         this.modelo = modelo;
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        PoloDAO.gravar(this);
     }
 }

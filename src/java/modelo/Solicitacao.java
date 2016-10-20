@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.SolicitacaoDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Solicitacao {
@@ -40,5 +41,9 @@ public class Solicitacao {
 
     public void setCodSolicitacao(int codSolicitacao) {
         this.codSolicitacao = codSolicitacao;
+    }
+    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        SolicitacaoDAO.gravar(this);
     }
 }

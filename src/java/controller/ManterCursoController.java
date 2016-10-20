@@ -116,10 +116,7 @@ public class ManterCursoController extends HttpServlet {
             curso.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
             view.forward(request, response);
-        } catch (IOException ex) {
-        } catch (SQLException ex) {
-        } catch (ClassNotFoundException ex) {
-        } catch (ServletException ex) {
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
 

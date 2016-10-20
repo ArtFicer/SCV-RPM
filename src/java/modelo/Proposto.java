@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.PropostoDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Proposto {
@@ -8,8 +9,8 @@ public class Proposto {
     public static List<Proposto> obterProposto() throws ClassNotFoundException {
         return PropostoDAO.obterProposto();
     }
-    private int codProposto,cpf, dataNascimento, email, telefone, celular, numero, agencia, conta, senha;
-    private String setor, nome, logradouro, complemento, bairro, cidade, uf, cep, rg, titulacaoMaxima, banco, cargo, tipoProposto;  
+    private int codProposto, cpf, dataNascimento, email, telefone, celular, numero, agencia, conta, senha;
+    private String setor, nome, logradouro, complemento, bairro, cidade, uf, cep, rg, titulacaoMaxima, banco, cargo, tipoProposto;
 
     public Proposto(int codProposto, int cpf, int dataNascimento, int email, int telefone, int celular, int numero, int agencia, int conta, int senha, String setor, String nome, String logradouro, String complemento, String bairro, String cidade, String uf, String cep, String rg, String titulacaoMaxima, String banco, String cargo, String tipoProposto) {
         this.codProposto = codProposto;
@@ -221,4 +222,7 @@ public class Proposto {
         this.codProposto = codProposto;
     }
 
+    public void gravar() throws SQLException, ClassNotFoundException {
+        PropostoDAO.gravar(this);
+    }
 }
