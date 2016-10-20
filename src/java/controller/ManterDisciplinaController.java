@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Disciplina;
 
-
 /**
  *
  * @author pe-ri
@@ -43,7 +42,7 @@ public class ManterDisciplinaController extends HttpServlet {
         }
     }
 
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response){
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("disciplinas", Disciplina.obterDisciplina());
@@ -54,34 +53,31 @@ public class ManterDisciplinaController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
         }
     }
+
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            Proposto proposto = null;
             Disciplina disciplina = new Disciplina(codDisciplina, nome);
             disciplina.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
             view.forward(request, response);
-        } catch (IOException ex) {
-        } catch (SQLException ex) {
-        } catch (ClassNotFoundException ex) {
-        } catch (ServletException ex) {
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -99,7 +95,7 @@ public class ManterDisciplinaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -114,7 +110,7 @@ public class ManterDisciplinaController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

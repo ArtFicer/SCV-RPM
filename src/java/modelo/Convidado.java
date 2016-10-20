@@ -1,5 +1,6 @@
 package modelo;
 import dao.ConvidadoDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -9,19 +10,29 @@ public class Convidado {
         return ConvidadoDAO.obterConvidado();
     }
     private int matriculaSIAPE;
-    int codConidado;
+    int codConvidado;
+    Proposto codProposto;
 
+    public Proposto getCodProposto() {
+        return codProposto;
+    }
+
+    public void setCodProposto(Proposto codProposto) {
+        this.codProposto = codProposto;
+    }
+    
+    
     public Convidado(int matriculaSIAPE, int codConidado) {
         this.matriculaSIAPE = matriculaSIAPE;
-        this.codConidado = codConidado;
+        this.codConvidado = codConidado;
     }
 
-    public int getCodConidado() {
-        return codConidado;
+    public int getCodConvidado() {
+        return codConvidado;
     }
 
-    public void setCodConidado(int codConidado) {
-        this.codConidado = codConidado;
+    public void setCodConvidado(int codConvidado) {
+        this.codConvidado = codConvidado;
     }
     
     public int getMatriculaSIAPE() {
@@ -30,5 +41,9 @@ public class Convidado {
 
     public void setMatriculaSIAPE(int matriculaSIAPE) {
         this.matriculaSIAPE = matriculaSIAPE;
+    }
+
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        ConvidadoDAO.gravar(this);
     }
 }

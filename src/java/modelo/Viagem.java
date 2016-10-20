@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.ViagemDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Viagem {
@@ -69,5 +70,8 @@ public class Viagem {
     public void setHorarioSaida(int horarioSaida) {
         this.horarioSaida = horarioSaida;
     }
- 
+    
+ public void gravar()throws SQLException, ClassNotFoundException  {
+        ViagemDAO.gravar(this);
+    }
 }

@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Solicitacao;
 import modelo.Solicitacao;
 
 /**
@@ -50,6 +52,20 @@ public class ManterSolicitacaoController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+    
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
+        String assunto = request.getParameter("txtAssunto");
+        String texto =request.getParameter("txtTexto");
+         
+        try {
+            Solicitacao solicitacao = new Solicitacao(assunto, texto, codSolicitacao);
+            solicitacao.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
 

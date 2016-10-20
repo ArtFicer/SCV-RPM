@@ -1,6 +1,8 @@
 package modelo;
 
+import dao.CursoDAO;
 import dao.DisciplinaDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Disciplina {
@@ -38,7 +40,7 @@ public class Disciplina {
         this.codDisciplina = codDisciplina;
     }
 
-    public void gravar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        DisciplinaDAO.gravar(this);
     }
 }

@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Trimestre;
 import modelo.Trimestre;
 
 /**
@@ -53,6 +55,18 @@ public class ManterTrimestreController extends HttpServlet {
         } 
     }
 
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
+        int numeroTrimestre= Integer.parseInt(request.getParameter("txtnumeroTrimestre"));
+         
+        try {
+            Trimestre trimestre = new Trimestre(numeroTrimestre, codTrimestre);
+            trimestre.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTrimestreController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 /**
  * Handles the HTTP <code>GET</code> method.

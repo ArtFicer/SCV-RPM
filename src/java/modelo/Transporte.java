@@ -1,4 +1,8 @@
 package modelo;    
+
+import dao.TransporteDAO;
+import java.sql.SQLException;
+
 public class Transporte {
     private String empresa, veiculo;
     private int codTransporte;
@@ -32,5 +36,8 @@ public class Transporte {
 
     public void setCodTransporte(int codTransporte) {
         this.codTransporte = codTransporte;
+    }
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        TransporteDAO.gravar(this);
     }
 }

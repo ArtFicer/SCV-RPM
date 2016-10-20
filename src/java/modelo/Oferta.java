@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.OfertaDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Oferta {
@@ -29,5 +30,9 @@ public class Oferta {
 
     public void setCodOferta(int codOferta) {
         this.codOferta = codOferta;
+    }
+    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        OfertaDAO.gravar(this);
     }
 }

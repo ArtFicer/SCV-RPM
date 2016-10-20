@@ -6,6 +6,7 @@
 package modelo;
 
 import dao.ProfessorDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -52,6 +53,9 @@ public class Professor {
         this.coordenador = coordenador;
     }
     
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        ProfessorDAO.gravar(this);
+    }
     
     
 }

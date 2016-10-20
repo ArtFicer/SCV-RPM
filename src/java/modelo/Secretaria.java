@@ -1,4 +1,7 @@
 package modelo;
+
+import java.sql.SQLException;
+
 public class Secretaria {
    private String nome, email;
    private int cpf, senha, codSecretaria;
@@ -50,5 +53,9 @@ public class Secretaria {
 
     public void setCodSecretaria(int codSecretaria) {
         this.codSecretaria = codSecretaria;
+    }
+    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        SecretariaDAO.gravar(this);
     }
 }

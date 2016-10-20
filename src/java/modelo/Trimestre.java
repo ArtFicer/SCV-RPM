@@ -1,6 +1,7 @@
 package modelo;
 
 import dao.TrimestreDAO;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Trimestre {
@@ -30,5 +31,9 @@ public class Trimestre {
 
     public void setCodTrimeste(int codTrimeste) {
         this.codTrimeste = codTrimeste;
+    }
+    
+    public void gravar()throws SQLException, ClassNotFoundException  {
+        TrimestreDAO.gravar(this);
     }
 }
