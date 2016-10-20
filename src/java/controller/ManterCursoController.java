@@ -109,10 +109,10 @@ public class ManterCursoController extends HttpServlet {
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
         String nome = request.getParameter("txtNomeCurso");
-        int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
             Proposto proposto = null;
-            Curso curso = new Curso(codCurso, nome, proposto);
+            Curso curso = new Curso(codCurso, nome);
             curso.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
             view.forward(request, response);

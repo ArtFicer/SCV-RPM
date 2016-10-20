@@ -75,18 +75,16 @@ public class CursoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into curso (codCurso, nome, cargaHoraria, "
-                    +"tipoCurso, totalPeriodos, proposto)"
-                    +"values (?,?,?)";
+            String sql = "insert into curso (codCurso, nome) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, curso.getCodCurso());
             comando.setString(2, curso.getNome());
-            if(curso.getProposto()==null)
-            {
-                comando.setNull(3,Types.NULL);
-            }else{
-                comando.setInt(3,curso.getProposto().getCodProposto());
-            }
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
             comando.execute();
             comando.close();
             conexao.close();

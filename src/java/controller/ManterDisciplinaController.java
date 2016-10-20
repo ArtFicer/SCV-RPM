@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Disciplina;
+
 
 /**
  *
@@ -50,6 +52,22 @@ public class ManterDisciplinaController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
+        String nome = request.getParameter("txtNomeDisciplina");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            Proposto proposto = null;
+            Disciplina disciplina = new Disciplina(codDisciplina, nome);
+            disciplina.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
+            view.forward(request, response);
+        } catch (IOException ex) {
+        } catch (SQLException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (ServletException ex) {
         }
     }
 
