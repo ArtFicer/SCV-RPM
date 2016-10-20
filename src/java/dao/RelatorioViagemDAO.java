@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,5 +44,28 @@ public class RelatorioViagemDAO {
         } catch (SQLException e) {
         }
     }
+
+        public static void gravar(RelatorioViagem relatorioViagem) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into relatorioviagem (codRelatorioViagem, relatorio) values (?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
+            comando.setString(2, relatorioViagem.getRelatorio());
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+       }
+
 
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,5 +44,28 @@ public class TrimestreDAO {
         } catch (SQLException e) {
         }
     }
+
+        public static void gravar(Trimestre trimestre) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into trimestre (codTrimestre, numero_trimestre) values (?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, trimestre.getCodTrimestre());
+            comando.setInt(2, trimestre.getNumeroTrimestre());
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+       }
+
 
 }

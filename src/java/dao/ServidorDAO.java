@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,5 +45,29 @@ public class ServidorDAO {
         } catch (SQLException e) {
         }
     }
+
+        public static void gravar(Servidor servidor) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into servidor (codServidor, Matricula_SIAPE,lotado_Orgao) values (?,?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, servidor.getCodServidor());
+            comando.setInt(2, servidor.getMatriculaSIAPE());
+            comando.setString(2, servidor.getLotadoOrgao());
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+       }
+
 
 }

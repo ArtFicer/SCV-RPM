@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,5 +48,36 @@ public class ViagemDAO {
         } catch (SQLException e) {
         }
     }
+
+        public static void gravar(Viagem viagem) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into viagem (codViagem, DeclaracoaNotaTecnica_codDeclaracaoNotaTecnica,EscreverRelatorio_codEscreverRelatorio,Proposto_codProposto,Polo_codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, viagem.getCodViagem());
+            comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
+            comando.setInt(3, viagem.getCodEscreverRelatorio());
+            comando.setInt(4, viagem.getCodProposto());
+            comando.setInt(5, viagem.getCodPolo());
+            comando.setString(6, viagem.getDestino());
+            comando.setString(7, viagem.getDataViagem());
+            comando.setInt(8, viagem.getHorarioSaida());
+            comando.setString(9, viagem.getStatusConfirmacao());
+            comando.setString(10, viagem.getStatusConclusao());
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+       }
+
 
 }

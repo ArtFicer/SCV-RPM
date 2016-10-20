@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,5 +45,28 @@ public class DeclaracaoNotaTecnicaDAO {
         } catch (SQLException e) {
         }
     }
+
+        public static void gravar(DeclaracaoNotaTecnica declaracaoNotaTecnica) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
+            comando.setString(2, declaracaoNotaTecnica.getRedigir());
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+       }
+
 
 }

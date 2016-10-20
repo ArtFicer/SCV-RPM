@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -50,5 +51,34 @@ public class PoloDAO {
         } catch (SQLException e) {
         }
     }
+
+        public static void gravar(Polo polo) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into polo (codOferta,Transporte_codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, polo.getCodOferta());
+            comando.setInt(2, polo.getCodTransporte());
+            comando.setString(3, polo.getCidade());
+            comando.setString(4, polo.getLogradouro());
+            comando.setString(5, polo.getBairro());
+            comando.setInt(6, polo.getNumero());
+            comando.setInt(7, polo.getTelefone());
+            comando.setString(8, polo.getEmail());
+//            if(curso.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,curso.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+       }
+
 
 }
