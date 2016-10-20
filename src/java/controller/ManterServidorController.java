@@ -7,12 +7,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Servidor;
 import modelo.Oferta;
 
 /**
@@ -46,10 +48,23 @@ public class ManterServidorController extends HttpServlet {
             request.setAttribute("servidores", Oferta.obterOferta());
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
+    }
+    
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codMatriculaSiape = Integer.parseInt(request.getParameter("txtMatriculaSiape"));
+        int codModelo = Integer.parseInt(request.getParameter("txtCodModelo"));
+        String lotadoOrgao  = request.getParameter("txtLotadoOrgao");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            Servidor servidor = new Servidor(codMatriculaSiape, lotadoOrgao, codModelo);
+            servidor.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

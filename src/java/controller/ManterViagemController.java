@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Viagem;
 import modelo.Viagem;
 
 /**
@@ -52,6 +54,23 @@ public class ManterViagemController extends HttpServlet {
         }
     }
 
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codViagem = Integer.parseInt(request.getParameter("txtcodViagem"));
+        int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
+        int data = Integer.parseInt(request.getParameter("txtData"));
+        String statusConclusao  = request.getParameter("txtStatusConclusao");
+        String statusConfirmacao  = request.getParameter("txtStatusConfirmacao");
+        String destino  = request.getParameter("txtDestino");
+        
+        try {
+            Viagem viagem = new Viagem(destino,statusConfirmacao,statusConclusao,data,horarioSaida,codViagem);
+            viagem.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 /**
  * Handles the HTTP <code>GET</code> method.

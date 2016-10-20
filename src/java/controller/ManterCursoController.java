@@ -111,7 +111,7 @@ public class ManterCursoController extends HttpServlet {
         String nome = request.getParameter("txtNomeCurso");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            Proposto proposto = null;
+            //Proposto proposto = null;
             Curso curso = new Curso(codCurso, nome);
             curso.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
