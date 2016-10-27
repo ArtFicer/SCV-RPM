@@ -1,9 +1,13 @@
+<%-- 
+    Document   : SCV
+    Created on : 2/2016
+    Author     : RPM
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Sobre - SCV</title>
@@ -57,13 +61,13 @@ and open the template in the editor.
                 </tr>
 
                 <td>
-                    <p>Duração da viagem em dias:  <select nome="duracao_viagem"></select>
+                    <p>DuraÃ§Ã£o da viagem em dias:  <select nome="duracao_viagem"></select>
                     <p>Data Inicio:  <input type="date" name="data_inicio">
                         Data Retorno:  <input type="date" name="data_retorno">
                     <p>Transporte:  <select nome="transporte"></select>
                     <p>Transporte adaptado:  <select nome="transporte_adaptdado">
                             <option value="s">Sim</option>
-                            <option value="n">Não</option></select>
+                            <option value="n">NÃ£o</option></select>
                         <p><input type="submit" name="enviar">
                 </td>
 

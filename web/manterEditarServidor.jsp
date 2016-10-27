@@ -1,10 +1,12 @@
 <%-- 
-    Document   : manterEditarServidor
-    Created on : 15/09/2016, 06:36:40
-    Author     : 041801-Nead
+    Document   : SCV
+    Created on : 2/2016
+    Author     : RPM
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,9 +1,13 @@
+<%-- 
+    Document   : SCV
+    Created on : 2/2016
+    Author     : RPM
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,11 +19,11 @@ and open the template in the editor.
         <form action="ManterPropostoController?acao=confirmar${operacao}" method="post" name="frmManterProposto" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
-                    <td>CÛdigo do Proposto:</td> 
+                    <td>C√≥digo do Proposto:</td> 
                     <td><input type="text" name="txtCodProposto" value="${proposto.codProposto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Calend·rio Proposto:</td> 
+                    <td>Calend√°rio Proposto:</td> 
                     <td><input type="text" name="txtCodCalendarioProposto" value="${proposto.codCalendarioProposto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
@@ -91,7 +95,7 @@ and open the template in the editor.
                     <td><input type="text" name="txtDataNascimento" value="${proposto.dataNascimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>TitulaÁ„o M·xima:</td> 
+                    <td>Titula√ß√£o M√°xima:</td> 
                     <td><input type="text" name="txtTitulacaoMaxima" value="${proposto.titulacaoMaxima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
@@ -147,7 +151,7 @@ and open the template in the editor.
                 var mensagem;
                 mensagem = "";
                 if (form.txtCodServidor.value == ""){
-                    mensagem = mensagem + "Informe o CÛdigo do Servidor\n";
+                    mensagem = mensagem + "Informe o C√≥digo do Servidor\n";
                 }                             
                 if (form.txtMatriculaSiape.value == ""){
                     mensagem = mensagem + "Informe a Matricula SIAPE\n";
@@ -156,19 +160,19 @@ and open the template in the editor.
                     mensagem = mensagem + "Informe o Orgao\n";
                 } 
                 if (form.txtTotalPeriodos.value == ""){
-                    mensagem = mensagem + "Informe o Total de PerÌodos\n";
+                    mensagem = mensagem + "Informe o Total de Per√≠odos\n";
                 }                  
                 if (form.txtCargaHoraria.value == ""){
-                    mensagem = mensagem + "Informe a Carga Hor·ria\n";
+                    mensagem = mensagem + "Informe a Carga Hor√°ria\n";
                 }                  
                 if (!campoNumerico(form.txtCodCurso.value)){
-                    mensagem = mensagem + "CÛdigo do Curso deve ser numÈrico\n";
+                    mensagem = mensagem + "C√≥digo do Curso deve ser num√©rico\n";
                 }                  
                 if (!campoNumerico(form.txtTotalPeriodos.value)){
-                    mensagem = mensagem + "Total de PerÌodos deve ser numÈrico\n";
+                    mensagem = mensagem + "Total de Per√≠odos deve ser num√©rico\n";
                 }                  
                 if (!campoNumerico(form.txtCargaHoraria.value)){
-                    mensagem = mensagem + "Carga Hor·ria deve ser numÈrica\n";
+                    mensagem = mensagem + "Carga Hor√°ria deve ser num√©rica\n";
                 }                  
                 if (mensagem == ""){
                     return true;
