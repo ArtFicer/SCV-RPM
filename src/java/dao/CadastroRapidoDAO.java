@@ -8,55 +8,54 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.CadastroRapido;
+import modelo.Proposto;
+import dao.PropostoDAO;
 
 public class CadastroRapidoDAO {
 
-    public static List<CadastroRapido> obterCadastroRapido() throws  ClassNotFoundException {
+    public static List<Proposto> obterProposto() throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<CadastroRapido> cursos = new ArrayList<CadastroRapido>();
+        List<Proposto> propostos = new ArrayList<Proposto>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from proposto");
             while (rs.next()) {
-                CadastroRapido cadastroRapido = new CadastroRapido(
+                Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
                         rs.getString("nome")
                 );
-                cadastroRapido.add(cadastroRapido);
+                propostos.add(proposto);
             }
         } catch (SQLException e) {
             //e.printStckTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return cadastroRapido;
+        return propostos;
     }
     
-    public static CadastroRapido obterCadastroRapido(int codCadastroRapido) throws  ClassNotFoundException {
+    public static Proposto obterProposto(int codProposto) throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        CadastroRapido cadastroRapido = null;
+        Proposto Proposto = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from proposto where codProposto ="+codCadastroRapido);
+            ResultSet rs = comando.executeQuery("select * from proposto where codProposto ="+codProposto);
             rs.first();
             
-            cadastroRapido = new CadastroRapido(
+            Proposto = new Proposto(
                     rs.getInt("codProposto"),
-                    rs.getString("nome"),
-                    null
-            );
-            CadastroRapido.setCadastroRapido(rs.getInt("proposto"));
+                    rs.getString("nome"));
+            Proposto.setCodProposto(rs.getInt("proposto"));
         } catch (SQLException e) {
             //e.printStckTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return cadastroRapido;
+        return Proposto;
     }
 
     public static void fecharConexao(Connection conexao, Statement comando) {
@@ -71,14 +70,14 @@ public class CadastroRapidoDAO {
         }
     }
 
-    public static void gravar(CadastroRapido cadastroRapido) throws SQLException,ClassNotFoundException{
+    public static void gravar(Proposto proposto) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
             String sql = "insert into curso (codProposto, nome) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, cadastroRapido.getCodProposto());
-            comando.setString(2, CadastroRapido.getNome());
+            comando.setInt(1, proposto.getCodProposto());
+            comando.setString(2, proposto.getNome());
 //            if(curso.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);

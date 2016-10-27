@@ -13,8 +13,8 @@ public class Convidado {
     int codConvidado;
     Proposto codProposto;
 
-    public Proposto getCodProposto() {
-        return codProposto;
+    public int getCodProposto() {
+        return codProposto.getCodProposto();
     }
 
     public void setCodProposto(Proposto codProposto) {

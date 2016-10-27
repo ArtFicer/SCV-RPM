@@ -24,7 +24,7 @@ public class PropostoDAO {
                         rs.getInt("codProposto"),
                         rs.getInt("cpf"),
                         rs.getInt("dataNascimento"),
-                        rs.getInt("email"),
+                        rs.getString("email"),
                         rs.getInt("telefone"),
                         rs.getInt("celular"),
                         rs.getInt("numero"),
@@ -38,7 +38,7 @@ public class PropostoDAO {
                         rs.getString("bairro"),
                         rs.getString("cidade"),
                         rs.getString("uf"),
-                        rs.getString("cep"),
+                        rs.getInt("cep"),
                         rs.getString("rg"),
                         rs.getString("titulacaoMaxima"),
                         rs.getString("banco"),
@@ -96,7 +96,7 @@ public class PropostoDAO {
             comando.setInt(21, proposto.getAgencia());
             comando.setInt(22, proposto.getConta());
             comando.setString(23, proposto.getCargo());
-            comando.setString(24, proposto.getSenha());
+            comando.setInt(24, proposto.getSenha());
             comando.setString(25, proposto.getTipoProposto());
 //            if(curso.getProposto()==null)
 //            {

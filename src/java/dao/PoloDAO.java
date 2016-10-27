@@ -64,7 +64,7 @@ public class PoloDAO {
             comando.setString(4, polo.getLogradouro());
             comando.setString(5, polo.getBairro());
             comando.setInt(6, polo.getNumero());
-            comando.setInt(7, polo.getTelefone());
+            comando.setString(7, polo.getTelefone());
             comando.setString(8, polo.getEmail());
 //            if(curso.getProposto()==null)
 //            {

@@ -9,10 +9,10 @@ public class Proposto {
     public static List<Proposto> obterProposto() throws ClassNotFoundException {
         return PropostoDAO.obterProposto();
     }
-    private int codProposto, cpf, dataNascimento, email, telefone, celular, numero, agencia, conta, senha;
-    private String setor, nome, logradouro, complemento, bairro, cidade, uf, cep, rg, titulacaoMaxima, banco, cargo, tipoProposto;
+    private int codProposto, cpf, dataNascimento, telefone, celular, numero, agencia, conta, senha, cep;
+    private String email, setor, nome, logradouro, complemento, bairro, cidade, uf, rg, titulacaoMaxima, banco, cargo, tipoProposto;
 
-    public Proposto(int codProposto, int cpf, int dataNascimento, int email, int telefone, int celular, int numero, int agencia, int conta, int senha, String setor, String nome, String logradouro, String complemento, String bairro, String cidade, String uf, String cep, String rg, String titulacaoMaxima, String banco, String cargo, String tipoProposto) {
+    public Proposto(int codProposto, int cpf, int dataNascimento, String email, int telefone, int celular, int numero, int agencia, int conta, int senha, String setor, String nome, String logradouro, String complemento, String bairro, String cidade, String uf, int cep, String rg, String titulacaoMaxima, String banco, String cargo, String tipoProposto) {
         this.codProposto = codProposto;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -38,6 +38,13 @@ public class Proposto {
         this.tipoProposto = tipoProposto;
     }
 
+    public Proposto(int codProposto, String nome) {
+        this.codProposto = codProposto;
+        this.nome = nome;
+    }
+
+    
+
     public int getCpf() {
         return cpf;
     }
@@ -54,11 +61,11 @@ public class Proposto {
         this.dataNascimento = dataNascimento;
     }
 
-    public int getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(int email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -166,11 +173,11 @@ public class Proposto {
         this.uf = uf;
     }
 
-    public String getCep() {
+    public int getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(int cep) {
         this.cep = cep;
     }
 
@@ -224,5 +231,21 @@ public class Proposto {
 
     public void gravar() throws SQLException, ClassNotFoundException {
         PropostoDAO.gravar(this);
+    }
+
+    public int getCodCurso() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getCalendarioProposto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getCodServidor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getCodSecretaria() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,5 +1,6 @@
 package modelo;
 
+import dao.SecretariaDAO;
 import java.sql.SQLException;
 
 public class Secretaria {

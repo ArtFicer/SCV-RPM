@@ -90,4 +90,12 @@ public class Polo {
     public void gravar() throws SQLException, ClassNotFoundException {
         PoloDAO.gravar(this);
     }
+
+    public int getCodTransporte() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getCodOferta() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -47,4 +47,8 @@ public class Servidor {
     public void gravar()throws SQLException, ClassNotFoundException  {
         ServidorDAO.gravar(this);
     }
+
+    public int getCodServidor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -32,4 +32,8 @@ public class RelatorioViagem {
         RelatorioViagemDAO.gravar(this);
     }
 
+    public int getCodRelatorioViagem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

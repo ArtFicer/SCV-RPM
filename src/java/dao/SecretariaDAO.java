@@ -59,7 +59,7 @@ public class SecretariaDAO {
             comando.setString(2, secretaria.getNome());
             comando.setInt(3, secretaria.getCpf());
             comando.setString(4, secretaria.getEmail());
-            comando.setString(5, secretaria.getSenha());
+            comando.setInt(5, secretaria.getSenha());
 //            if(curso.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
