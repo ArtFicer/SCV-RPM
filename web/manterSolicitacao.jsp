@@ -9,83 +9,84 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>NEAD - SCV - Solicitações</title>
+        <title>Manter Solicitações</title>
     </head>
     <body>
-    <center>
-        <iframe src="Frame_Menu.jsp" frameborder="0" width="600"></iframe>
-    </center>
-    <center>
-        <form>
-            <table width="700px">
+        <h1>Manter Solicitações - ${operacao}</h1>
+
+        <form action="ManterSolicitacaoController?acao=confirmar${operacao}" method="post" name="frmManterSolicitacao" onsubmit="return validarFormulario(this)">
+            <table>
                 <tr>
-                    <td><center><h2>NEaD - SCV - Perfil</h2></center></td>
+                    <td>Código da Solicitaçao:</td> 
+                    <td><input type="text" name="txtCodSolicitacoes" value="${solicitacoes.codSolicitacoes}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>Cidade de partida:  <select name="cidade_partida" ></select>
-                            UF: <select name="uf">
-                                <option value="ac">AC</option>
-                                <option value="al">AL</option>
-                                <option value="ap">AP</option>
-                                <option value="am">AM</option>
-                                <option value="ba">BA</option>
-                                <option value="ce">CE</option>
-                                <option value="df">DF</option>
-                                <option value="es">ES</option>
-                                <option value="go">GO</option>
-                                <option value="ma">MA</option>
-                                <option value="mt">MT</option>
-                                <option value="ms">MS</option>
-                                <option value="mg">MG</option>
-                                <option value="pa">PA</option>
-                                <option value="pb">PB</option>
-                                <option value="pr">PR</option>
-                                <option value="pe">PI</option>
-                                <option value="rj">RJ</option>
-                                <option value="rn">RN</option>
-                                <option value="rs">RS</option>
-                                <option value="ro">RO</option>
-                                <option value="rr">RR</option>
-                                <option value="sc">SC</option>
-                                <option value="sp">SP</option>
-                                <option value="se">SE</option>
-                                <option value="to">TO</option>
-                            </select>
-                        <p>Cidade de destino:  <select  name="cidade_destino" > </select>
-                        UF: <select name="uf">
-                                <option value="ac">AC</option>
-                                <option value="al">AL</option>
-                                <option value="ap">AP</option>
-                                <option value="am">AM</option>
-                                <option value="ba">BA</option>
-                                <option value="ce">CE</option>
-                                <option value="df">DF</option>
-                                <option value="es">ES</option>
-                                <option value="go">GO</option>
-                                <option value="ma">MA</option>
-                                <option value="mt">MT</option>
-                                <option value="ms">MS</option>
-                                <option value="mg">MG</option>
-                                <option value="pa">PA</option>
-                                <option value="pb">PB</option>
-                                <option value="pr">PR</option>
-                                <option value="pe">PI</option>
-                                <option value="rj">RJ</option>
-                                <option value="rn">RN</option>
-                                <option value="rs">RS</option>
-                                <option value="ro">RO</option>
-                                <option value="rr">RR</option>
-                                <option value="sc">SC</option>
-                                <option value="sp">SP</option>
-                                <option value="se">SE</option>
-                                <option value="to">TO</option>
-                            </select>
-                        <p>Texto: <input type="text" name="texto" size="1000">
-                        <p><input type="submit" name="enviar">
-                    </td>
+                    <td>Assunto:</td> 
+                    <td><input type="text" name="txtAssunto" value="${solicitacoes.assunto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Texto:</td> 
+                    <td><input type="text" name="txtTexto" value="${solicitacoes.texto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
                 </tr>
             </table>
         </form>
+        <SCRIPT language="JavaScript">
+            <!--
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtCodSolicitacoes.value == ""){
+                    mensagem = mensagem + "Informe o Código da Solicitaçao\n";
+                }                             
+                if (form.txtAssunto.value == ""){
+                    mensagem = mensagem + "Informe o Assunto\n";
+                }
+                if (form.txtTexto.value == ""){
+                    mensagem = mensagem + "Informe o Texto\n";
+                } 
+                if (form.txtTotalPeriodos.value == ""){
+                    mensagem = mensagem + "Informe o Total de Períodos\n";
+                }                  
+                if (form.txtCargaHoraria.value == ""){
+                    mensagem = mensagem + "Informe a Carga Horária\n";
+                }                  
+                if (!campoNumerico(form.txtCodCurso.value)){
+                    mensagem = mensagem + "Código do Curso deve ser numérico\n";
+                }                  
+                if (!campoNumerico(form.txtTotalPeriodos.value)){
+                    mensagem = mensagem + "Total de Períodos deve ser numérico\n";
+                }                  
+                if (!campoNumerico(form.txtCargaHoraria.value)){
+                    mensagem = mensagem + "Carga Horária deve ser numérica\n";
+                }                  
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            //-->
+        </SCRIPT>        
     </body>
 </html>

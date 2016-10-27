@@ -7,11 +7,80 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+ <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Manter Oferta</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Manter Oferta - ${operacao}</h1>
+
+        <form action="ManterOfertaController?acao=confirmar${operacao}" method="post" name="frmManterOferta" onsubmit="return validarFormulario(this)">
+            <table>
+                <tr>
+                    <td>Código da Oferta:</td> 
+                    <td><input type="text" name="txtCodOferta" value="${oferta.codOferta}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Ano:</td> 
+                    <td><input type="text" name="txtAno" value="${oferta.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
+                </tr>
+            </table>
+        </form>
+        <SCRIPT language="JavaScript">
+            <!--
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtCodOferta.value == ""){
+                    mensagem = mensagem + "Informe o Código da Oferta\n";
+                }                             
+                if (form.txtAno.value == ""){
+                    mensagem = mensagem + "Informe o Ano\n";
+                }             
+                if (form.txtTotalPeriodos.value == ""){
+                    mensagem = mensagem + "Informe o Total de Períodos\n";
+                }                  
+                if (form.txtCargaHoraria.value == ""){
+                    mensagem = mensagem + "Informe a Carga Horária\n";
+                }                  
+                if (!campoNumerico(form.txtCodCurso.value)){
+                    mensagem = mensagem + "Código do Curso deve ser numérico\n";
+                }                  
+                if (!campoNumerico(form.txtTotalPeriodos.value)){
+                    mensagem = mensagem + "Total de Períodos deve ser numérico\n";
+                }                  
+                if (!campoNumerico(form.txtCargaHoraria.value)){
+                    mensagem = mensagem + "Carga Horária deve ser numérica\n";
+                }                  
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            //-->
+        </SCRIPT>        
     </body>
+</html>        
 </html>

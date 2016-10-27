@@ -12,17 +12,20 @@
         <title>Nead - SCV - Cadastro Rapido </title>
     </head>
     <body>
-        <form>
-            <table width="700px">
+        <h1>Manter Cadastro Rapido - ${operacao}</h1>
+
+        <form action="ManterCadastroRapidoController?acao=confirmar${operacao}" method="post" name="frmManterCadastroRapido" onsubmit="return validarFormulario(this)">
+            <table>
                 <tr>
-                    <td><center><h2>Cadastro Rápido</h2></center></td>
+                    <td>Código do curso:</td> 
+                    <td><input type="text" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>Nome:  <input type="text" name="nome" size="30">
-                        <p>CPF <input type="text" name="cpf" size="11">
-                            <p><input type="submit" name="enviar">
-                    </td>
+                    <td>Nome do curso:</td> 
+                    <td><input type="text" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
                 </tr>
             </table>
         </form>
