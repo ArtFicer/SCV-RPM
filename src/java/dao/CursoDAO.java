@@ -49,7 +49,7 @@ public class CursoDAO {
                     rs.getInt("codCurso"),
                     rs.getString("nome")
             );
-            curso.setCodProposto(rs.getInt("proposto"));
+            curso.setCodCurso(rs.getInt("codCurso"));
         } catch (SQLException e) {
             //e.printStckTrace();
         } finally {

@@ -64,13 +64,13 @@ public class ManterCursoController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("cursos", Curso.obterCurso());
+            //request.setAttribute("cursos", Curso.obterCurso());
             int codCurso = Integer.parseInt( request.getParameter("codCurso"));
             Curso curso = Curso.obterCurso(codCurso);
             request.setAttribute("curso",curso);
             RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
 

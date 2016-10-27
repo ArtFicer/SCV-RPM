@@ -1,15 +1,13 @@
 package modelo;
-
 import dao.CursoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Curso {
 
-    public static Curso obterCurso(int codCurso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static Curso obterCurso(int codCurso) throws ClassNotFoundException {
+   return CursoDAO.obterCurso(codCurso);
     }
-
     private String nome;
     private int codCurso;
     public Proposto proposto;
@@ -20,12 +18,9 @@ public class Curso {
         this.codCurso = codCurso;
     }
 
-    public Curso(int codCurso, String nome, Proposto proposto) {
-        this.nome = nome;
-        this.codCurso = codCurso;
-        this.proposto = proposto;
-    }
 
+    
+    
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         CursoDAO.gravar(this);
