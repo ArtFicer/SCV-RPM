@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Curso {
 
+    public static Curso obterCurso(int codCurso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private String nome;
     private int codCurso;
     public Proposto proposto;

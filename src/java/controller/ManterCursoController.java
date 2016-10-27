@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Curso;
-import modelo.Proposto;
 
 /**
  *
@@ -43,6 +43,10 @@ public class ManterCursoController extends HttpServlet {
         } else {
             if (acao.equals("confirmarIncluir")) {
                 confirmarIncliuir(request, response);
+            } else {
+                if (acao.equals("prepararEditar")) {
+                    prepararEditar(request, response);
+                }
             }
         }
     }
@@ -53,9 +57,20 @@ public class ManterCursoController extends HttpServlet {
             request.setAttribute("cursos", Curso.obterCurso());
             RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("cursos", Curso.obterCurso());
+            int codCurso = Integer.parseInt( request.getParameter("codCurso"));
+            Curso curso = Curso.obterCurso(codCurso);
+            request.setAttribute("curso",curso);
+            RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
 

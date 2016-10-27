@@ -43,7 +43,9 @@ public class PropostoDAO {
                         rs.getString("titulacaoMaxima"),
                         rs.getString("banco"),
                         rs.getString("cargo"),
-                        rs.getString("tipodeproposto")
+                        rs.getString("tipodeproposto"),
+                        rs.getInt("codServidor"),
+                        rs.getInt("codModelo")
                 );
                 propostos.add(proposto);
             }

@@ -47,8 +47,7 @@ public class CursoDAO {
             
             curso = new Curso(
                     rs.getInt("codCurso"),
-                    rs.getString("nome"),
-                    null
+                    rs.getString("nome")
             );
             curso.setCodProposto(rs.getInt("proposto"));
         } catch (SQLException e) {
@@ -94,4 +93,5 @@ public class CursoDAO {
        }
 
 
+    
 }

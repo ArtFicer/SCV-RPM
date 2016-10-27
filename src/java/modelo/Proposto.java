@@ -3,16 +3,25 @@ package modelo;
 import dao.PropostoDAO;
 import java.sql.SQLException;
 import java.util.List;
+import modelo.Servidor;
+import modelo.Secretaria;
+//import modelo.calendario;
 
 public class Proposto {
 
     public static List<Proposto> obterProposto() throws ClassNotFoundException {
         return PropostoDAO.obterProposto();
     }
+    private Servidor servidor;
+    private Secretaria secretaria;
     private int codProposto, cpf, dataNascimento, telefone, celular, numero, agencia, conta, senha, cep;
     private String email, setor, nome, logradouro, complemento, bairro, cidade, uf, rg, titulacaoMaxima, banco, cargo, tipoProposto;
 
-    public Proposto(int codProposto, int cpf, int dataNascimento, String email, int telefone, int celular, int numero, int agencia, int conta, int senha, String setor, String nome, String logradouro, String complemento, String bairro, String cidade, String uf, int cep, String rg, String titulacaoMaxima, String banco, String cargo, String tipoProposto) {
+    public Proposto(int codProposto, int cpf, int dataNascimento, String email, int telefone, 
+            int celular, int numero, int agencia, int conta, 
+            int senha, String setor, String nome, String logradouro, 
+            String complemento, String bairro, String cidade, String uf, int cep, String rg, 
+            String titulacaoMaxima, String banco, String cargo, String tipoProposto, int codSecretaria, int codModelo) {
         this.codProposto = codProposto;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -36,6 +45,8 @@ public class Proposto {
         this.banco = banco;
         this.cargo = cargo;
         this.tipoProposto = tipoProposto;
+        this.servidor.setCodModelo(codModelo);
+        this.secretaria.setCodSecretaria(codSecretaria);
     }
 
     public Proposto(int codProposto, String nome) {
@@ -43,7 +54,23 @@ public class Proposto {
         this.nome = nome;
     }
 
+    public void setCodSecretaria(int codSecretaria)
+    {
+       secretaria.setCodSecretaria(codSecretaria);
+    }
     
+    public int getCodSecretaria()
+    {
+        return secretaria.getCodSecretaria();
+    }
+    public void setCodServidor(int codModelo) {
+            servidor.setCodModelo(codModelo);
+    }
+    
+    public int getCodServidor ()
+    {
+        return servidor.getCodModelo();
+    }
 
     public int getCpf() {
         return cpf;
@@ -241,11 +268,5 @@ public class Proposto {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int getCodServidor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getCodSecretaria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 }
