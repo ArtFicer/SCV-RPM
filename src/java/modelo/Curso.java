@@ -5,9 +5,6 @@ import java.util.List;
 
 public class Curso {
 
-    public static Curso obterCurso(int codCurso) throws ClassNotFoundException {
-   return CursoDAO.obterCurso(codCurso);
-    }
     private String nome;
     private int codCurso;
     public Proposto proposto;
@@ -16,10 +13,7 @@ public class Curso {
     public Curso(int codCurso, String nome) {
         this.nome = nome;
         this.codCurso = codCurso;
-    }
-
-
-    
+    }    
     
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
@@ -31,7 +25,12 @@ public class Curso {
         return CursoDAO.obterCurso();
     }
     
+    //Obter Curso
+    public static Curso obterCurso(int codCurso) throws ClassNotFoundException {
+        return CursoDAO.obterCurso(codCurso);
+    }
     
+    //Alterar
     public void alterar () throws SQLException, ClassNotFoundException{
         CursoDAO.alterar(this);
     }

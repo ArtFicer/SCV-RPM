@@ -1,35 +1,62 @@
 package modelo;
-
 import dao.SecretariaDAO;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Secretaria {
-   private String nome, email;
-   private int cpf, senha, codSecretaria;
 
-    public Secretaria(String nome, String email, int cpf, int senha, int codSecretaria) {
+   private int codSecretaria;
+   private String nome;
+   private int cpf;
+   private String email;
+   private String senha;
+    // Construtores
+
+    public Secretaria(int codSecretaria, String nome, int cpf, String email, String senha) {
+        this.codSecretaria = codSecretaria;
         this.nome = nome;
-        this.email = email;
         this.cpf = cpf;
+        this.email = email;
         this.senha = senha;
+    }
+     
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        SecretariaDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
+    public static List<Secretaria> obterSecretaria() throws java.lang.ClassNotFoundException {
+        return SecretariaDAO.obterSecretaria();
+    }
+    
+    //Obter Secretaria
+    public static Secretaria obterSecretaria(int codSecretaria) throws ClassNotFoundException {
+        return SecretariaDAO.obterSecretaria(codSecretaria);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        SecretariaDAO.alterar(this);
+    }
+
+    //Set e Gets
+
+    public int getCodSecretaria() {
+        return codSecretaria;
+    }
+
+    public void setCodSecretaria(int codSecretaria) {
         this.codSecretaria = codSecretaria;
     }
 
-   
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getCpf() {
@@ -40,23 +67,20 @@ public class Secretaria {
         this.cpf = cpf;
     }
 
-    public int getSenha() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public int getCodSecretaria() {
-        return codSecretaria;
-    }
-
-    public void setCodSecretaria(int codSecretaria) {
-        this.codSecretaria = codSecretaria;
-    }
-    
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        SecretariaDAO.gravar(this);
-    }
+   
 }

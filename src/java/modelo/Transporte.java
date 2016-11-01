@@ -1,19 +1,51 @@
-package modelo;    
-
+package modelo;
 import dao.TransporteDAO;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Transporte {
-    private String empresa, veiculo;
-    private int codTransporte;
 
-    public Transporte(String empresa, String veiculo, int codTransporte) {
+    private int codTransporte;
+    private String empresa;
+    private String veiculo;
+    
+    // Construtores
+    public Transporte(int codTransporte, String empresa, String veiculo) {
+        this.codTransporte = codTransporte;
         this.empresa = empresa;
         this.veiculo = veiculo;
-        this.codTransporte = codTransporte;
     }
     
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        TransporteDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
+    public static List<Transporte> obterTransporte() throws java.lang.ClassNotFoundException {
+        return TransporteDAO.obterTransporte();
+    }
     
+    //Obter Transporte
+    public static Transporte obterTransporte(int codTransporte) throws ClassNotFoundException {
+        return TransporteDAO.obterTransporte(codTransporte);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        TransporteDAO.alterar(this);
+    }
+
+    //Set e Gets
+
+    public int getCodTransporte() {
+        return codTransporte;
+    }
+
+    public void setCodTransporte(int codTransporte) {
+        this.codTransporte = codTransporte;
+    }
+
     public String getEmpresa() {
         return empresa;
     }
@@ -30,14 +62,4 @@ public class Transporte {
         this.veiculo = veiculo;
     }
 
-    public int getCodTransporte() {
-        return codTransporte;
-    }
-
-    public void setCodTransporte(int codTransporte) {
-        this.codTransporte = codTransporte;
-    }
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        TransporteDAO.gravar(this);
-    }
 }

@@ -1,26 +1,47 @@
 package modelo;
-
-import dao.CursoDAO;
 import dao.DisciplinaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Disciplina {
 
-    private String nome;
     private int codDisciplina;
-
-    public Disciplina(String nome, int codDisciplina) {
-        this.nome = nome;
+    private String nome;
+    
+    // Construtores
+    public Disciplina(int codDisciplina, String nome) {
         this.codDisciplina = codDisciplina;
+        this.nome = nome;
+    }
+      
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        DisciplinaDAO.gravar(this);
     }
 
-    public static List<Disciplina> obterDisciplina() throws ClassNotFoundException {
+    //Lista Obter CUrso
+    public static List<Disciplina> obterDisciplina() throws java.lang.ClassNotFoundException {
         return DisciplinaDAO.obterDisciplina();
     }
+    
+    //Obter Disciplina
+    public static Disciplina obterDisciplina(int codDisciplina) throws ClassNotFoundException {
+        return DisciplinaDAO.obterDisciplina(codDisciplina);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        DisciplinaDAO.alterar(this);
+    }
 
-    public Disciplina(int codDisciplina, String nome) {
-        this.nome = nome;
+    //Set e Gets
+
+    public int getCodDisciplina() {
+        return codDisciplina;
+    }
+
+    public void setCodDisciplina(int codDisciplina) {
         this.codDisciplina = codDisciplina;
     }
 
@@ -31,16 +52,5 @@ public class Disciplina {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public int getCodDisciplina() {
-        return codDisciplina;
-    }
-
-    public void setCodDisciplina(int codDisciplina) {
-        this.codDisciplina = codDisciplina;
-    }
-
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        DisciplinaDAO.gravar(this);
-    }
+   
 }

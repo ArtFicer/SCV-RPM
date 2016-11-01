@@ -1,24 +1,52 @@
 package modelo;
-
 import dao.SolicitacaoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Solicitacao {
 
-    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException {
-        return SolicitacaoDAO.obterSolicitacao();
-    }
-    private String assunto, texto;
     private int codSolicitacao;
-
-    public Solicitacao(String assunto, String texto, int codSolicitacao) {
+    private String assunto;
+    private String texto;
+    
+    // Construtores
+    public Solicitacao(int codSolicitacao, String assunto, String texto) {
+        this.codSolicitacao = codSolicitacao;
         this.assunto = assunto;
         this.texto = texto;
+    }
+     
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        SolicitacaoDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
+    public static List<Solicitacao> obterSolicitacao() throws java.lang.ClassNotFoundException {
+        return SolicitacaoDAO.obterSolicitacao();
+    }
+    
+    //Obter Solicitacao
+    public static Solicitacao obterSolicitacao(int codSolicitacao) throws ClassNotFoundException {
+        return SolicitacaoDAO.obterSolicitacao(codSolicitacao);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        SolicitacaoDAO.alterar(this);
+    }
+
+    //Set e Gets
+
+    public int getCodSolicitacao() {
+        return codSolicitacao;
+    }
+
+    public void setCodSolicitacao(int codSolicitacao) {
         this.codSolicitacao = codSolicitacao;
     }
 
-    
     public String getAssunto() {
         return assunto;
     }
@@ -34,16 +62,5 @@ public class Solicitacao {
     public void setTexto(String texto) {
         this.texto = texto;
     }
-
-    public int getCodSolicitacao() {
-        return codSolicitacao;
-    }
-
-    public void setCodSolicitacao(int codSolicitacao) {
-        this.codSolicitacao = codSolicitacao;
-    }
-    
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        SolicitacaoDAO.gravar(this);
-    }
+   
 }

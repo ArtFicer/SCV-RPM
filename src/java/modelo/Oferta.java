@@ -1,28 +1,41 @@
 package modelo;
-
 import dao.OfertaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Oferta {
 
-    public static List<Oferta> obterOferta() throws ClassNotFoundException {
+    private int codOferta;
+    private int ano;
+    // Construtores
+
+    public Oferta(int codOferta, int ano) {
+        this.codOferta = codOferta;
+        this.ano = ano;
+    }
+      
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        OfertaDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
+    public static List<Oferta> obterOferta() throws java.lang.ClassNotFoundException {
         return OfertaDAO.obterOferta();
     }
-    private int ano, codOferta;
-
-    public Oferta(int ano, int codOferta) {
-        this.ano = ano;
-        this.codOferta = codOferta;
+    
+    //Obter Oferta
+    public static Oferta obterOferta(int codOferta) throws ClassNotFoundException {
+        return OfertaDAO.obterOferta(codOferta);
     }
     
-    public int getAno() {
-        return ano;
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        OfertaDAO.alterar(this);
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
+    //Set e Gets
 
     public int getCodOferta() {
         return codOferta;
@@ -31,8 +44,13 @@ public class Oferta {
     public void setCodOferta(int codOferta) {
         this.codOferta = codOferta;
     }
-    
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        OfertaDAO.gravar(this);
+
+    public int getAno() {
+        return ano;
     }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+    
 }

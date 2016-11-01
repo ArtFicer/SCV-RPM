@@ -1,17 +1,50 @@
 package modelo;
-
 import dao.RelatorioViagemDAO;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RelatorioViagem {
-    private String relatorio;
-    private int codEscreverRelatorio;
 
-    public RelatorioViagem(String relatorio, int codEscreverRelatorio) {
+   private int codRelatorioViagem;
+   private String relatorio;
+    
+    // Construtores
+    public RelatorioViagem(int codRelatorioViagem, String relatorio) {
+        this.codRelatorioViagem = codRelatorioViagem;
         this.relatorio = relatorio;
-        this.codEscreverRelatorio = codEscreverRelatorio;
+    }
+     
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        RelatorioViagemDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
+    public static List<RelatorioViagem> obterRelatorioViagem() throws java.lang.ClassNotFoundException {
+        return RelatorioViagemDAO.obterRelatorioViagem();
     }
     
+    //Obter RelatorioViagem
+    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws ClassNotFoundException {
+        return RelatorioViagemDAO.obterRelatorioViagem(codRelatorioViagem);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        RelatorioViagemDAO.alterar(this);
+    }
+
+    //Set e Gets
+
+    public int getCodRelatorioViagem() {
+        return codRelatorioViagem;
+    }
+
+    public void setCodRelatorioViagem(int codRelatorioViagem) {
+        this.codRelatorioViagem = codRelatorioViagem;
+    }
+
     public String getRelatorio() {
         return relatorio;
     }
@@ -19,21 +52,5 @@ public class RelatorioViagem {
     public void setRelatorio(String relatorio) {
         this.relatorio = relatorio;
     }
-
-    public int getCodEscreverRelatorio() {
-        return codEscreverRelatorio;
-    }
-
-    public void setCodEscreverRelatorio(int codEscreverRelatorio) {
-        this.codEscreverRelatorio = codEscreverRelatorio;
-    }
-    
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        RelatorioViagemDAO.gravar(this);
-    }
-
-    public int getCodRelatorioViagem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
 }

@@ -1,34 +1,52 @@
 package modelo;
-
 import dao.ServidorDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Servidor {
 
-    public static List<Servidor> obterServidor() throws ClassNotFoundException {
-        return ServidorDAO.obterServidor();
-    }
+    private int codServidor;
     private int matriculaSIAPE;
     private String lotadoOrgao;
-    private int codModelo;
-
-    public Servidor(int matriculaSIAPE, String lotadoOrgao, int codModelo) {
+    
+    // Construtores
+    public Servidor(int codServidor, int matriculaSIAPE, String lotadoOrgao) {
+        this.codServidor = codServidor;
         this.matriculaSIAPE = matriculaSIAPE;
         this.lotadoOrgao = lotadoOrgao;
-        this.codModelo = codModelo;
+    }
+      
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        ServidorDAO.gravar(this);
     }
 
+    //Lista Obter CUrso
+    public static List<Servidor> obterServidor() throws java.lang.ClassNotFoundException {
+        return ServidorDAO.obterServidor();
+    }
     
-    public int getCodModelo() {
-        return codModelo;
+    //Obter Servidor
+    public static Servidor obterServidor(int codServidor) throws ClassNotFoundException {
+        return ServidorDAO.obterServidor(codServidor);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        ServidorDAO.alterar(this);
     }
 
-    public void setCodModelo(int codModelo) {
-        this.codModelo = codModelo;
+    //Set e Gets
+
+    public int getCodServidor() {
+        return codServidor;
     }
-    
-    
+
+    public void setCodServidor(int codServidor) {
+        this.codServidor = codServidor;
+    }
+
     public int getMatriculaSIAPE() {
         return matriculaSIAPE;
     }
@@ -44,11 +62,5 @@ public class Servidor {
     public void setLotadoOrgao(String lotadoOrgao) {
         this.lotadoOrgao = lotadoOrgao;
     }
-    public void gravar()throws SQLException, ClassNotFoundException  {
-        ServidorDAO.gravar(this);
-    }
-
-    public int getCodServidor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

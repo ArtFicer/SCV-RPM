@@ -1,27 +1,53 @@
 package modelo;
-
 import dao.PoloDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Polo {
 
-    public static List<Polo> obterPolo() throws ClassNotFoundException {
-        return PoloDAO.obterPolo();
-    }
-    private String cidade, logradouro, bairro, telefone, email;
-    private int numero, modelo, codPolo;
+    private int codPolo;
+    private Transporte transporte;
+    private String cidade;
+    private String logradouro;
+    private String bairro;
+    private int numero;
+    private int telefone;
+    private String email;
+    // Construtores
 
-    public Polo(String cidade, String logradouro, String bairro, String telefone, String email, int numero, int modelo, int codPolo) {
+    public Polo(int codPolo, Transporte transporte, String cidade, String logradouro, String bairro, int numero, int telefone, String email) {
+        this.codPolo = codPolo;
+        this.transporte = transporte;
         this.cidade = cidade;
         this.logradouro = logradouro;
         this.bairro = bairro;
+        this.numero = numero;
         this.telefone = telefone;
         this.email = email;
-        this.numero = numero;
-        this.modelo = modelo;
-        this.codPolo = codPolo;
     }
+      
+    
+    //Gravar No banco
+    public void gravar() throws SQLException, ClassNotFoundException {
+        PoloDAO.gravar(this);
+    }
+
+    //Lista Obter CUrso
+    public static List<Polo> obterPolo() throws java.lang.ClassNotFoundException {
+        return PoloDAO.obterPolo();
+    }
+    
+    //Obter Polo
+    public static Polo obterPolo(int codPolo) throws ClassNotFoundException {
+        return PoloDAO.obterPolo(codPolo);
+    }
+    
+    //Alterar
+    public void alterar () throws SQLException, ClassNotFoundException{
+        PoloDAO.alterar(this);
+    }
+
+    //Set e Gets
 
     public int getCodPolo() {
         return codPolo;
@@ -29,6 +55,14 @@ public class Polo {
 
     public void setCodPolo(int codPolo) {
         this.codPolo = codPolo;
+    }
+
+    public Transporte getTransporte() {
+        return transporte;
+    }
+
+    public void setTransporte(Transporte transporte) {
+        this.transporte = transporte;
     }
 
     public String getCidade() {
@@ -55,11 +89,19 @@ public class Polo {
         this.bairro = bairro;
     }
 
-    public String getTelefone() {
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
 
@@ -70,32 +112,5 @@ public class Polo {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public int getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(int modelo) {
-        this.modelo = modelo;
-    }
-
-    public void gravar() throws SQLException, ClassNotFoundException {
-        PoloDAO.gravar(this);
-    }
-
-    public int getCodTransporte() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getCodOferta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
