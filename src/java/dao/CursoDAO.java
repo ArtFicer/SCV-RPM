@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletException;
 import modelo.Curso;
 
 public class CursoDAO {
@@ -91,6 +93,23 @@ public class CursoDAO {
             throw e;
         }
        }
+
+    public static void alterar(Curso curso) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update curso set nome = ? where codCurso = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, curso.getNome());
+            comando.setInt(2,curso.getCodCurso());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+        
+        
+    }
 
 
     

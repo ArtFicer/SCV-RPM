@@ -30,6 +30,11 @@ public class Curso {
     public static List<Curso> obterCurso() throws java.lang.ClassNotFoundException {
         return CursoDAO.obterCurso();
     }
+    
+    
+    public void alterar () throws SQLException, ClassNotFoundException{
+        CursoDAO.alterar(this);
+    }
 
     //Set e Gets
     public int getCodCurso() {
