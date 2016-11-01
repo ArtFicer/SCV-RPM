@@ -73,29 +73,18 @@ public class SecretariaDAO {
             throw e;
         }
        }
-    public static void alterar(Secretaria secretaria) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update secretaria set nome = ? where codSecretaria = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, secretaria.getNome());
-            comando.setInt(2,secretaria.getCodSecretaria());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-        }
-    }
     
         public static void alterar(Secretaria secretaria) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update secretaria set nome = ? where codSecretaria = ?";
+            String sql = "update ssecretaria (codSecretaria, nome,cpf,email,senha) values (?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, secretaria.getNome());
-            comando.setInt(2,secretaria.getCodSecretaria());
+            comando.setInt(1, secretaria.getCodSecretaria());
+            comando.setString(2, secretaria.getNome());
+            comando.setInt(3, secretaria.getCpf());
+            comando.setString(4, secretaria.getEmail());
+            comando.setInt(5, secretaria.getSenha());
             comando.execute();
             comando.close();
             conexao.close();

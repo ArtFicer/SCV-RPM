@@ -54,7 +54,7 @@ public class ServidorDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, servidor.getCodServidor());
             comando.setInt(2, servidor.getMatriculaSIAPE());
-            comando.setString(2, servidor.getLotadoOrgao());
+            comando.setString(3, servidor.getLotadoOrgao());
 //            if(servidor.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
@@ -73,10 +73,11 @@ public class ServidorDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update servidor set nome = ? where codServidor = ?";
+            String sql = "update servidor (codServidor, Matricula_SIAPE,lotado_Orgao) values (?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, servidor.getNome());
-            comando.setInt(2,servidor.getCodServidor());
+            comando.setInt(1, servidor.getCodServidor());
+            comando.setInt(2, servidor.getMatriculaSIAPE());
+            comando.setString(3, servidor.getLotadoOrgao());
             comando.execute();
             comando.close();
             conexao.close();

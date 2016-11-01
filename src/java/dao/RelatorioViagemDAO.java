@@ -71,10 +71,10 @@ public class RelatorioViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update relatorioViagem set nome = ? where codRelatorioViagem = ?";
+            String sql = "update relatorioviagem (codRelatorioViagem, relatorio) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, relatorioViagem.getNome());
-            comando.setInt(2,relatorioViagem.getCodRelatorioViagem());
+            comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
+            comando.setString(2, relatorioViagem.getRelatorio());
             comando.execute();
             comando.close();
             conexao.close();

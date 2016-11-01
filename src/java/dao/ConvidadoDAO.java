@@ -49,7 +49,7 @@ public class ConvidadoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into convidado (codConvidado, Proposto_codProposto, matricula_SIAPE) values (?,?,?)";
+            String sql = "insert into convidado (codConvidado, proposto_codProposto, matricula_SIAPE) values (?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, convidado.getCodConvidado());
             comando.setInt(2, convidado.getCodProposto());
@@ -71,10 +71,11 @@ public class ConvidadoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update convidado set nome = ? where codConvidado = ?";
+            String sql = "update convidado set codConvidado = ?, matricula_SIAPE = ? where codConvidado = ? ";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, convidado.getNome());
-            comando.setInt(2,convidado.getCodConvidado());
+            comando.setInt(1, convidado.getCodProposto());
+            comando.setInt(2, convidado.getMatriculaSIAPE());
+            comando.setInt(3, convidado.getCodConvidado());
             comando.execute();
             comando.close();
             conexao.close();

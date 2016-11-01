@@ -72,10 +72,10 @@ public class DeclaracaoNotaTecnicaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update declaracaoNotaTecnica set nome = ? where codDeclaracaoNotaTecnica = ?";
+            String sql = "update declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, declaracaoNotaTecnica.getNome());
-            comando.setInt(2,declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
+            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
+            comando.setString(2, declaracaoNotaTecnica.getRedigir());
             comando.execute();
             comando.close();
             conexao.close();

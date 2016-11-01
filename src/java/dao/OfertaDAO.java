@@ -73,10 +73,10 @@ public class OfertaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update oferta set nome = ? where codOferta = ?";
+            String sql = "update oferta oferta (codOferta, ano) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, oferta.getNome());
-            comando.setInt(2,oferta.getCodOferta());
+            comando.setInt(1, oferta.getCodOferta());
+            comando.setInt(2, oferta.getAno());
             comando.execute();
             comando.close();
             conexao.close();

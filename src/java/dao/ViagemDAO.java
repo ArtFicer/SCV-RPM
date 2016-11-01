@@ -83,10 +83,18 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update viagem set nome = ? where codViagem = ?";
+            String sql = "update viagem (codViagem, DeclaracoaNotaTecnica_codDeclaracaoNotaTecnica,EscreverRelatorio_codEscreverRelatorio,Proposto_codProposto,Polo_codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, viagem.getNome());
-            comando.setInt(2,viagem.getCodViagem());
+            comando.setInt(1, viagem.getCodViagem());
+            comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
+            comando.setInt(3, viagem.getCodEscreverRelatorio());
+            comando.setInt(4, viagem.getCodProposto());
+            comando.setInt(5, viagem.getCodPolo());
+            comando.setString(6, viagem.getDestino());
+            comando.setString(7, viagem.getDataViagem());
+            comando.setInt(8, viagem.getHorarioSaida());
+            comando.setString(9, viagem.getStatusConfirmacao());
+            comando.setString(10, viagem.getStatusConclusao());
             comando.execute();
             comando.close();
             conexao.close();

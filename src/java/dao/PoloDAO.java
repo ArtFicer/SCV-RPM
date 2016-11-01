@@ -84,10 +84,16 @@ public class PoloDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update polo set nome = ? where codPolo = ?";
+            String sql = "update polo (codOferta,Transporte_codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, polo.getNome());
-            comando.setInt(2,polo.getCodPolo());
+            comando.setInt(1, polo.getCodOferta());
+            comando.setInt(2, polo.getCodTransporte());
+            comando.setString(3, polo.getCidade());
+            comando.setString(4, polo.getLogradouro());
+            comando.setString(5, polo.getBairro());
+            comando.setInt(6, polo.getNumero());
+            comando.setString(7, polo.getTelefone());
+            comando.setString(8, polo.getEmail());
             comando.execute();
             comando.close();
             conexao.close();

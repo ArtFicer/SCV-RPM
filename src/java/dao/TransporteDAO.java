@@ -73,10 +73,11 @@ public class TransporteDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update transporte set nome = ? where codTransporte = ?";
+            String sql = "update transporte (codTransporte, empresa, veiculo) values (?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, transporte.getNome());
-            comando.setInt(2,transporte.getCodTransporte());
+            comando.setInt(1, transporte.getCodTransporte());
+            comando.setString(2, transporte.getEmpresa());
+            comando.setString(3, transporte.getVeiculo());
             comando.execute();
             comando.close();
             conexao.close();

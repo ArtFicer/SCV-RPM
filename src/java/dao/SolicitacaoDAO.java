@@ -72,10 +72,11 @@ public class SolicitacaoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update solicitacao set nome = ? where codSolicitacao = ?";
+            String sql = "update solicitacao (codSolicitacao, assunto,texto) values (?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, solicitacao.getNome());
-            comando.setInt(2,solicitacao.getCodSolicitacao());
+            comando.setInt(1, solicitacao.getCodSolicitacao());
+            comando.setString(2, solicitacao.getAssunto());
+            comando.setString(3, solicitacao.getTexto());
             comando.execute();
             comando.close();
             conexao.close();

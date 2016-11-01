@@ -67,14 +67,14 @@ public class DisciplinaDAO {
             throw e;
         }
        }
-    public static void alterar(Disciplina Disciplina) throws SQLException, ClassNotFoundException{
+    public static void alterar(Disciplina disciplina) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update Disciplina set nome = ? where codDisciplina = ?";
+            String sql = "update disciplina (codDisciplina, nome) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, Disciplina.getNome());
-            comando.setInt(2,Disciplina.getCodDisciplina());
+            comando.setInt(1, disciplina.getCodDisciplina());
+            comando.setString(2, disciplina.getNome());
             comando.execute();
             comando.close();
             conexao.close();

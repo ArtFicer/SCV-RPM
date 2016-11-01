@@ -18,7 +18,7 @@ public class HistoricoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from disciplina");
+            ResultSet rs = comando.executeQuery("select = from historico");
             while (rs.next()) {
                 Historico historico = new Historico(rs.getInt("codHistorico")
                 );
@@ -48,14 +48,14 @@ public class HistoricoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into historico (codHistorico, nome) values (?,?)";
+            String sql = "insert into historico (codHistorico) values (?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, historico.getCodHistorico());
-//            if(disciplina.getProposto()==null)
+//            if(historico.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,disciplina.getProposto().getCodProposto());
+//                comando.setInt(3,historico.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -66,14 +66,13 @@ public class HistoricoDAO {
        }
 
 
-            public static void alterar(Historico disciplina) throws SQLException, ClassNotFoundException{
+            public static void alterar(Historico historico) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update disciplina set nome = ? where codHistorico = ?";
+            String sql = "update historico (codHistorico) values (?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, disciplina.getNome());
-            comando.setInt(2,disciplina.getCodHistorico());
+            comando.setInt(1, historico.getCodHistorico());
             comando.execute();
             comando.close();
             conexao.close();
