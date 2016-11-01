@@ -18,7 +18,7 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from viagem");
             while (rs.next()) {
                 Viagem viagem = new Viagem(rs.getString("destino"),
                         rs.getString("statusConfirmacao"),
@@ -65,11 +65,11 @@ public class ViagemDAO {
             comando.setInt(8, viagem.getHorarioSaida());
             comando.setString(9, viagem.getStatusConfirmacao());
             comando.setString(10, viagem.getStatusConclusao());
-//            if(curso.getProposto()==null)
+//            if(viagem.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,viagem.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -79,5 +79,18 @@ public class ViagemDAO {
         }
        }
 
-
+    public static void alterar(Viagem viagem) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update viagem set nome = ? where codViagem = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, viagem.getNome());
+            comando.setInt(2,viagem.getCodViagem());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

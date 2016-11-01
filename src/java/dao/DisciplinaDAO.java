@@ -18,7 +18,7 @@ public class DisciplinaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from Disciplina");
             while (rs.next()) {
                 Disciplina disciplina = new Disciplina(
                         rs.getString("nome"),
@@ -54,11 +54,11 @@ public class DisciplinaDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, disciplina.getCodDisciplina());
             comando.setString(2, disciplina.getNome());
-//            if(curso.getProposto()==null)
+//            if(Disciplina.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,Disciplina.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -67,6 +67,19 @@ public class DisciplinaDAO {
             throw e;
         }
        }
-
+    public static void alterar(Disciplina Disciplina) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update Disciplina set nome = ? where codDisciplina = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, Disciplina.getNome());
+            comando.setInt(2,Disciplina.getCodDisciplina());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 
 }

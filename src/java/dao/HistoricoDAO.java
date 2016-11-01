@@ -18,7 +18,7 @@ public class HistoricoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from disciplina");
             while (rs.next()) {
                 Historico historico = new Historico(rs.getInt("codHistorico")
                 );
@@ -51,11 +51,11 @@ public class HistoricoDAO {
             String sql = "insert into historico (codHistorico, nome) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, historico.getCodHistorico());
-//            if(curso.getProposto()==null)
+//            if(disciplina.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,disciplina.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -66,4 +66,18 @@ public class HistoricoDAO {
        }
 
 
+            public static void alterar(Historico disciplina) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update disciplina set nome = ? where codHistorico = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, disciplina.getNome());
+            comando.setInt(2,disciplina.getCodHistorico());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

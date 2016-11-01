@@ -18,7 +18,7 @@ public class SecretariaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from secretaria");
             while (rs.next()) {
                 Secretaria secretaria = new Secretaria(
                         rs.getString("nome"),
@@ -60,11 +60,11 @@ public class SecretariaDAO {
             comando.setInt(3, secretaria.getCpf());
             comando.setString(4, secretaria.getEmail());
             comando.setInt(5, secretaria.getSenha());
-//            if(curso.getProposto()==null)
+//            if(secretaria.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,secretaria.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -73,6 +73,34 @@ public class SecretariaDAO {
             throw e;
         }
        }
-
+    public static void alterar(Secretaria secretaria) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update secretaria set nome = ? where codSecretaria = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, secretaria.getNome());
+            comando.setInt(2,secretaria.getCodSecretaria());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
+    
+        public static void alterar(Secretaria secretaria) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update secretaria set nome = ? where codSecretaria = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, secretaria.getNome());
+            comando.setInt(2,secretaria.getCodSecretaria());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 
 }

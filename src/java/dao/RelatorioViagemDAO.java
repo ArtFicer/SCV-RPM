@@ -18,7 +18,7 @@ public class RelatorioViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from relatorioViagem");
             while (rs.next()) {
                 RelatorioViagem escreverRelatorio = new RelatorioViagem(
                         rs.getString("relatorio"), rs.getInt("codEscreverRelatorio")
@@ -53,11 +53,11 @@ public class RelatorioViagemDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
             comando.setString(2, relatorioViagem.getRelatorio());
-//            if(curso.getProposto()==null)
+//            if(relatorioViagem.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,relatorioViagem.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -67,5 +67,18 @@ public class RelatorioViagemDAO {
         }
        }
 
-
+    public static void alterar(RelatorioViagem relatorioViagem) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update relatorioViagem set nome = ? where codRelatorioViagem = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, relatorioViagem.getNome());
+            comando.setInt(2,relatorioViagem.getCodRelatorioViagem());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

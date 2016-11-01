@@ -18,7 +18,7 @@ public class PoloDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from polo");
             while (rs.next()) {
                 Polo polo = new Polo(
                         rs.getString("cidade"),
@@ -66,11 +66,11 @@ public class PoloDAO {
             comando.setInt(6, polo.getNumero());
             comando.setString(7, polo.getTelefone());
             comando.setString(8, polo.getEmail());
-//            if(curso.getProposto()==null)
+//            if(polo.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,polo.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -80,5 +80,18 @@ public class PoloDAO {
         }
        }
 
-
+    public static void alterar(Polo polo) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update polo set nome = ? where codPolo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, polo.getNome());
+            comando.setInt(2,polo.getCodPolo());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

@@ -18,7 +18,7 @@ public class ConvidadoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from convidado");
             while (rs.next()) {
                 Convidado convidado = new Convidado(
                         rs.getInt("codConvidado"),
@@ -54,11 +54,11 @@ public class ConvidadoDAO {
             comando.setInt(1, convidado.getCodConvidado());
             comando.setInt(2, convidado.getCodProposto());
             comando.setInt(3, convidado.getMatriculaSIAPE());
-//            if(curso.getProposto()==null)
+//            if(convidado.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,convidado.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -67,6 +67,20 @@ public class ConvidadoDAO {
             throw e;
         }
        }
+            public static void alterar(Convidado convidado) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update convidado set nome = ? where codConvidado = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, convidado.getNome());
+            comando.setInt(2,convidado.getCodConvidado());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 
 
 }

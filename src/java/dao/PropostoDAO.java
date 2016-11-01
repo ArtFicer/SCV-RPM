@@ -18,7 +18,7 @@ public class PropostoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from proposto");
             while (rs.next()) {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
@@ -75,7 +75,7 @@ public class PropostoDAO {
             conexao = BD.getConexao();
             String sql = "insert into proposto (codProposto, CalendarioProposto_codCalendarioProposto,Servidor_codServidor,Secretaria_codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, proposto.getCodCurso());
+            comando.setInt(1, proposto.getCodProposto());
             comando.setInt(2, proposto.getCalendarioProposto());
             comando.setInt(3, proposto.getCodServidor());
             comando.setInt(4, proposto.getCodSecretaria());
@@ -100,11 +100,11 @@ public class PropostoDAO {
             comando.setString(23, proposto.getCargo());
             comando.setInt(24, proposto.getSenha());
             comando.setString(25, proposto.getTipoProposto());
-//            if(curso.getProposto()==null)
+//            if(proposto.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,proposto.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -114,5 +114,18 @@ public class PropostoDAO {
         }
        }
 
-
+    public static void alterar(Proposto proposto) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update proposto set nome = ? where codProposto = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, proposto.getNome());
+            comando.setInt(2,proposto.getCodProposto());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

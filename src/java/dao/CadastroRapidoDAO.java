@@ -74,15 +74,15 @@ public class CadastroRapidoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into curso (codProposto, nome) values (?,?)";
+            String sql = "insert into proposto (codProposto, nome) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.setString(2, proposto.getNome());
-//            if(curso.getProposto()==null)
+//            if(proposto.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,proposto.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -92,5 +92,18 @@ public class CadastroRapidoDAO {
         }
        }
 
-
+    public static void alterar(Proposto proposto) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update proposto set nome = ? where codProposto = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, proposto.getNome());
+            comando.setInt(2,proposto.getCodProposto());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

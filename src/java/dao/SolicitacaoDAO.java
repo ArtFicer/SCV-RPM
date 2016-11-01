@@ -18,7 +18,7 @@ public class SolicitacaoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from solicitacao");
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao(rs.getString("assunto"),
                         rs.getString("texto"),
@@ -55,11 +55,11 @@ public class SolicitacaoDAO {
             comando.setInt(1, solicitacao.getCodSolicitacao());
             comando.setString(2, solicitacao.getAssunto());
             comando.setString(3, solicitacao.getTexto());
-//            if(curso.getProposto()==null)
+//            if(solicitacao.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,solicitacao.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -68,6 +68,19 @@ public class SolicitacaoDAO {
             throw e;
         }
        }
-
+    public static void alterar(Solicitacao solicitacao) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update solicitacao set nome = ? where codSolicitacao = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, solicitacao.getNome());
+            comando.setInt(2,solicitacao.getCodSolicitacao());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 
 }

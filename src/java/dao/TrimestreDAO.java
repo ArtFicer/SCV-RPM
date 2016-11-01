@@ -18,9 +18,9 @@ public class TrimestreDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from trimestre");
             while (rs.next()) {
-                Trimestre trimestre = new Trimestre(rs.getInt("numeroTrimeste"),
+                Trimestre trimestre = new Trimestre(rs.getInt("numeroTrimestre"),
                         rs.getInt("codTrimestre")
                 );
                 trimestres.add(trimestre);
@@ -53,11 +53,11 @@ public class TrimestreDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, trimestre.getCodTrimestre());
             comando.setInt(2, trimestre.getNumeroTrimestre());
-//            if(curso.getProposto()==null)
+//            if(trimestre.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,trimestre.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -68,4 +68,19 @@ public class TrimestreDAO {
        }
 
 
+            public static void alterar(Trimestre trimestre) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update trimestre set nome = ? where codTrimestre = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, trimestre.getNome());
+            comando.setInt(2,trimestre.getCodTrimestre());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
+        
 }

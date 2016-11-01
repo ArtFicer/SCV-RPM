@@ -18,7 +18,7 @@ public class ServidorDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from servidor");
             while (rs.next()) {
                 Servidor servidor = new Servidor(rs.getInt("matriculaSIAPE"),
                         rs.getString("lotadoOrgao"),
@@ -55,11 +55,11 @@ public class ServidorDAO {
             comando.setInt(1, servidor.getCodServidor());
             comando.setInt(2, servidor.getMatriculaSIAPE());
             comando.setString(2, servidor.getLotadoOrgao());
-//            if(curso.getProposto()==null)
+//            if(servidor.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,servidor.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -69,5 +69,18 @@ public class ServidorDAO {
         }
        }
 
-
+    public static void alterar(Servidor servidor) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update servidor set nome = ? where codServidor = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, servidor.getNome());
+            comando.setInt(2,servidor.getCodServidor());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }

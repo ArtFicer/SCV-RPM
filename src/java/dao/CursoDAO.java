@@ -107,8 +107,6 @@ public class CursoDAO {
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
         }
-        
-        
     }
 
 

@@ -18,7 +18,7 @@ public class OfertaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from curso");
+            ResultSet rs = comando.executeQuery("select = from oferta");
             while (rs.next()) {
                 Oferta oferta = new Oferta(
                         rs.getInt("codOferta"),
@@ -54,11 +54,11 @@ public class OfertaDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, oferta.getCodOferta());
             comando.setInt(2, oferta.getAno());
-//            if(curso.getProposto()==null)
+//            if(oferta.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
 //            }else{
-//                comando.setInt(3,curso.getProposto().getCodProposto());
+//                comando.setInt(3,oferta.getProposto().getCodProposto());
 //            }
             comando.execute();
             comando.close();
@@ -69,4 +69,18 @@ public class OfertaDAO {
        }
 
 
+            public static void alterar(Oferta oferta) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update oferta set nome = ? where codOferta = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, oferta.getNome());
+            comando.setInt(2,oferta.getCodOferta());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
 }
