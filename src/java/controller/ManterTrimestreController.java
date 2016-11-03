@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Trimestre;
 import modelo.Trimestre;
 
@@ -65,6 +66,19 @@ public class ManterTrimestreController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTrimestreController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("trimestre", Trimestre.obterTrimestre());
+            int codTrimestre = Integer.parseInt( request.getParameter("codTrimestre"));
+            Trimestre trimestre = Trimestre.obterTrimestre(codTrimestre);
+            request.setAttribute("trimestre",trimestre);
+            RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

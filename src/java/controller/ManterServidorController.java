@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Servidor;
 import modelo.Oferta;
 
@@ -49,6 +50,19 @@ public class ManterServidorController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("servidor", Servidor.obterServidor());
+            int codServidor = Integer.parseInt( request.getParameter("codServidor"));
+            Servidor servidor = Servidor.obterServidor(codServidor);
+            request.setAttribute("servidor",servidor);
+            RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
     

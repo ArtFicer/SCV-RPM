@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Disciplina;
 
 /**
@@ -54,6 +55,18 @@ public class ManterDisciplinaController extends HttpServlet {
         }
     }
 
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("disciplina", Disciplina.obterDisciplina());
+            int codDisciplina = Integer.parseInt( request.getParameter("codDisciplina"));
+            Disciplina disciplina = Disciplina.obterDisciplina(codDisciplina);
+            request.setAttribute("disciplina",disciplina);
+            RequestDispatcher view = request.getRequestDispatcher("/manterDisciplinao.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
+        }
+    }
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");

@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Solicitacao;
 import modelo.Solicitacao;
 
@@ -52,6 +53,19 @@ public class ManterSolicitacaoController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+    
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("solicitacao", Solicitacoes.obterSolicitacoes());
+            int codSolicitacoes = Integer.parseInt( request.getParameter("codSolicitacoes"));
+            Solicitacoes solicitacoes = Solicitacoes.obterSolicitacoes(codSolicitacoes);
+            request.setAttribute("solicitacao",solicitacoes);
+            RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacoes.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
     

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Oferta;
 
 /**
@@ -49,6 +50,19 @@ public class ManterPropostoController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+    
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("proposto", Proposto.obterProposto());
+            int codProposto = Integer.parseInt( request.getParameter("codProposto"));
+            Proposto proposto = Proposto.obterProposto(codProposto);
+            request.setAttribute("proposto",proposto);
+            RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
 
