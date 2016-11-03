@@ -13,8 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
-import modelo.Oferta;
+//importação de classes com senha
+import modelo.Proposto;
+import modelo.Secretaria;
 
 /**
  *

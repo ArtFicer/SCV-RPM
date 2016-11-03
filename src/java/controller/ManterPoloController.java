@@ -13,8 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
-import modelo.Oferta;
+import modelo.Polo;
+
 
 /**
  *
@@ -44,7 +44,7 @@ public class ManterPoloController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("polos", Oferta.obterOferta());
+            request.setAttribute("polos", Polo.obterPolo());
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {

@@ -59,17 +59,17 @@ public class ManterSolicitacaoController extends HttpServlet {
         public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("solicitacao", Solicitacoes.obterSolicitacoes());
+            request.setAttribute("solicitacao", Solicitacao.obterSolicitacao());
             int codSolicitacoes = Integer.parseInt( request.getParameter("codSolicitacoes"));
-            Solicitacoes solicitacoes = Solicitacoes.obterSolicitacoes(codSolicitacoes);
-            request.setAttribute("solicitacao",solicitacoes);
-            RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacoes.jsp");
+            Solicitacao solicitacao = Solicitacao.obterSolicitacao(codSolicitacoes);
+            request.setAttribute("solicitacao",solicitacao);
+            RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacao.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
     
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
         String assunto = request.getParameter("txtAssunto");
         String texto =request.getParameter("txtTexto");

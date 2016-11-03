@@ -16,7 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
 import modelo.Disciplina;
 
 /**
@@ -67,7 +66,7 @@ public class ManterDisciplinaController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));

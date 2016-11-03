@@ -71,7 +71,7 @@ public class ManterOfertaController extends HttpServlet {
     }
     
     
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
         int codAno = Integer.parseInt(request.getParameter("txtAno"));
         

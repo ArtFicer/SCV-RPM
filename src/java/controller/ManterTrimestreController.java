@@ -16,8 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
-import modelo.Trimestre;
 import modelo.Trimestre;
 
 /**
@@ -56,7 +54,7 @@ public class ManterTrimestreController extends HttpServlet {
         } 
     }
 
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
         int numeroTrimestre= Integer.parseInt(request.getParameter("txtnumeroTrimestre"));
          

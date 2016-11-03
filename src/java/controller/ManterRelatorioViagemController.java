@@ -13,8 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
-import modelo.Oferta;
+import modelo.RelatorioViagem;
 
 /**
  *
@@ -44,7 +43,7 @@ public class ManterRelatorioViagemController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("viagens", Oferta.obterOferta());
+            request.setAttribute("viagens", RelatorioViagem.obterRelatorioViagem());
             RequestDispatcher view = request.getRequestDispatcher("/manterRelatorioViagem.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {

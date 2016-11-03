@@ -16,8 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
-import modelo.Viagem;
 import modelo.Viagem;
 
 /**
@@ -68,7 +66,7 @@ public class ManterViagemController extends HttpServlet {
         }
     }
 
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codViagem = Integer.parseInt(request.getParameter("txtcodViagem"));
         int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
         int data = Integer.parseInt(request.getParameter("txtData"));

@@ -14,9 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
 import modelo.Servidor;
-import modelo.Oferta;
 
 /**
  *
@@ -46,7 +44,7 @@ public class ManterServidorController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("servidores", Oferta.obterOferta());
+            request.setAttribute("servidores", Servidor.obterServidor());
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
@@ -66,20 +64,20 @@ public class ManterServidorController extends HttpServlet {
         }
     }
     
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
-        int codMatriculaSiape = Integer.parseInt(request.getParameter("txtMatriculaSiape"));
-        int codModelo = Integer.parseInt(request.getParameter("txtCodModelo"));
-        String lotadoOrgao  = request.getParameter("txtLotadoOrgao");
+       private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+        int codServidor = Integer.parseInt(request.getParameter("txtcodServidor"));
+        int matriculaSIAPE = Integer.parseInt(request.getParameter("txtmatricculaSIAPE"));
+        String lotadoOrgao  = request.getParameter("txtlotadoOrgao");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            Servidor servidor = new Servidor(codMatriculaSiape, lotadoOrgao, codModelo);
+            Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
             servidor.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
-        
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
