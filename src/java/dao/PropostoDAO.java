@@ -22,30 +22,29 @@ public class PropostoDAO {
             while (rs.next()) {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
+                        rs.getInt("codCalendario"),
+                        rs.getInt("codServidor"),
+                        rs.getInt("codSecretaria"),
+                        rs.getString("nome"),
+                        rs.getString("setor"),
                         rs.getInt("cpf"),
                         rs.getInt("dataNascimento"),
                         rs.getString("email"),
                         rs.getInt("telefone"),
                         rs.getInt("celular"),
-                        rs.getInt("numero"),
-                        rs.getInt("agencia"),
-                        rs.getInt("conta"),
-                        rs.getInt("senha"),
-                        rs.getString("setor"),
-                        rs.getString("nome"),
                         rs.getString("logradouro"),
+                        rs.getInt("numero"),
                         rs.getString("complemento"),
                         rs.getString("bairro"),
                         rs.getString("cidade"),
                         rs.getString("uf"),
                         rs.getInt("cep"),
-                        rs.getString("rg"),
                         rs.getString("titulacaoMaxima"),
                         rs.getString("banco"),
-                        rs.getString("cargo"),
-                        rs.getString("tipodeproposto"),
-                        rs.getInt("codServidor"),
-                        rs.getInt("codModelo")
+                        rs.getInt("agencia"),
+                        rs.getInt("conta"),
+                        rs.getInt("senha"),
+                        rs.getString("tipodeproposto")
                 );
                 propostos.add(proposto);
             }
@@ -73,12 +72,12 @@ public class PropostoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into proposto (codProposto, CalendarioProposto_codCalendarioProposto,Servidor_codServidor,Secretaria_codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into proposto (codProposto, codCalendario,codServidor,codSecretaria,nome,setor,cpf,dataNascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacaomaxima,banco,agencia,conta,cargo,senha,tipoProposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
-            comando.setInt(2, proposto.getCalendarioProposto());
-            comando.setInt(3, proposto.getCodServidor());
-            comando.setInt(4, proposto.getCodSecretaria());
+            comando.setInt(2, proposto.getCodCalendario());
+            comando.setInt(3, proposto.getServidor());
+            comando.setInt(4, proposto.getSecretaria());
             comando.setString(5, proposto.getNome());
             comando.setString(6, proposto.getSetor());
             comando.setInt(7, proposto.getCpf());
@@ -93,12 +92,12 @@ public class PropostoDAO {
             comando.setString(16, proposto.getCidade());
             comando.setString(17, proposto.getUf());
             comando.setInt(18, proposto.getCep());
-            comando.setString(19, proposto.getTitulacaoMaxima());
+            comando.setString(19, proposto.getTitulacaomaxima());
             comando.setString(20, proposto.getBanco());
             comando.setInt(21, proposto.getAgencia());
             comando.setInt(22, proposto.getConta());
             comando.setString(23, proposto.getCargo());
-            comando.setInt(24, proposto.getSenha());
+            comando.setString(24, proposto.getSenha());
             comando.setString(25, proposto.getTipoProposto());
 //            if(proposto.getProposto()==null)
 //            {

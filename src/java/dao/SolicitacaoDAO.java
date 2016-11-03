@@ -20,9 +20,11 @@ public class SolicitacaoDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from solicitacao");
             while (rs.next()) {
-                Solicitacao solicitacao = new Solicitacao(rs.getString("assunto"),
-                        rs.getString("texto"),
-                        rs.getInt("codSolicitacao")
+                Solicitacao solicitacao = new Solicitacao(
+                        rs.getInt("codSolicitacao"),
+                        rs.getString("assunto"),
+                        rs.getString("texto")
+                        
                 );
                 solicitacoes.add(solicitacao);
             }

@@ -21,11 +21,12 @@ public class SecretariaDAO {
             ResultSet rs = comando.executeQuery("select = from secretaria");
             while (rs.next()) {
                 Secretaria secretaria = new Secretaria(
+                        rs.getInt("codSecretaria"),
                         rs.getString("nome"),
-                        rs.getString("email"),
                         rs.getInt("cpf"),
-                        rs.getInt("senha"),
-                        rs.getInt("codSecretaria")
+                        rs.getString("email"),
+                        rs.getString("senha")
+                        
                 );
                 secretarias.add(secretaria);
             }
@@ -59,7 +60,7 @@ public class SecretariaDAO {
             comando.setString(2, secretaria.getNome());
             comando.setInt(3, secretaria.getCpf());
             comando.setString(4, secretaria.getEmail());
-            comando.setInt(5, secretaria.getSenha());
+            comando.setString(5, secretaria.getSenha());
 //            if(secretaria.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
@@ -84,7 +85,7 @@ public class SecretariaDAO {
             comando.setString(2, secretaria.getNome());
             comando.setInt(3, secretaria.getCpf());
             comando.setString(4, secretaria.getEmail());
-            comando.setInt(5, secretaria.getSenha());
+            comando.setString(5, secretaria.getSenha());
             comando.execute();
             comando.close();
             conexao.close();

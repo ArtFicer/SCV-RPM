@@ -20,8 +20,10 @@ public class TrimestreDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from trimestre");
             while (rs.next()) {
-                Trimestre trimestre = new Trimestre(rs.getInt("numeroTrimestre"),
-                        rs.getInt("codTrimestre")
+                Trimestre trimestre = new Trimestre(
+                        rs.getInt("codTrimestre"),
+                        rs.getInt("numeroTrimestre")
+                        
                 );
                 trimestres.add(trimestre);
             }

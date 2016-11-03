@@ -21,14 +21,14 @@ public class PoloDAO {
             ResultSet rs = comando.executeQuery("select = from polo");
             while (rs.next()) {
                 Polo polo = new Polo(
+                        rs.getInt("codPolo"),
+                        rs.getString("transporte"),
                         rs.getString("cidade"),
                         rs.getString("logradouro"),
                         rs.getString("bairro"),
-                        rs.getString("telefone"),
-                        rs.getString("email"),
                         rs.getInt("numero"),
-                        rs.getInt("modelo"),
-                        rs.getInt("codPolo")
+                        rs.getInt("telefone"),
+                        rs.getString("email")
                 );
                 polos.add(polo);
             }
@@ -56,15 +56,15 @@ public class PoloDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into polo (codOferta,Transporte_codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
+            String sql = "insert into polo (codPolo,codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, polo.getCodOferta());
-            comando.setInt(2, polo.getCodTransporte());
+            comando.setInt(1, polo.getCodPolo());
+            comando.setTransporte(2, polo.getCodTransporte());
             comando.setString(3, polo.getCidade());
             comando.setString(4, polo.getLogradouro());
             comando.setString(5, polo.getBairro());
             comando.setInt(6, polo.getNumero());
-            comando.setString(7, polo.getTelefone());
+            comando.setInt(7, polo.getTelefone());
             comando.setString(8, polo.getEmail());
 //            if(polo.getProposto()==null)
 //            {
@@ -84,15 +84,15 @@ public class PoloDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update polo (codOferta,Transporte_codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
+            String sql = "update polo (codPolo,codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, polo.getCodOferta());
-            comando.setInt(2, polo.getCodTransporte());
+            comando.setInt(1, polo.getCodPolo());
+            comando.setTransporte(2, polo.getCodTransporte());
             comando.setString(3, polo.getCidade());
             comando.setString(4, polo.getLogradouro());
             comando.setString(5, polo.getBairro());
             comando.setInt(6, polo.getNumero());
-            comando.setString(7, polo.getTelefone());
+            comando.setInt(7, polo.getTelefone());
             comando.setString(8, polo.getEmail());
             comando.execute();
             comando.close();

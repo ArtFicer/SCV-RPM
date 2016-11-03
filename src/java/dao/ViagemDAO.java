@@ -20,12 +20,20 @@ public class ViagemDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from viagem");
             while (rs.next()) {
-                Viagem viagem = new Viagem(rs.getString("destino"),
+                Viagem viagem = new Viagem(
+                        rs.getInt("codViagem"),
+                        rs.getInt("codDeclaracaoNotaTecnica"),
+                        rs.getInt("codRelatorioViagem"),
+                        rs.getInt("codProposto"),
+                        rs.getInt("codPolo"),
+                        rs.getString("destino"),
+                        rs.getString("dataViagem"),
+                        rs.getInt("horarioSaida"),
                         rs.getString("statusConfirmacao"),
                         rs.getString("statusConclusao"),
                         rs.getInt("codTransporte"),
-                        rs.getInt("horarioSaida"),
-                        rs.getInt("codViagem")
+                        
+                        
                 );
                 viagens.add(viagem);
             }

@@ -20,9 +20,11 @@ public class ServidorDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from servidor");
             while (rs.next()) {
-                Servidor servidor = new Servidor(rs.getInt("matriculaSIAPE"),
-                        rs.getString("lotadoOrgao"),
-                        rs.getInt("codServidor")
+                Servidor servidor = new Servidor(
+                        rs.getInt("codServidor"),
+                        rs.getInt("matriculaSIAPE"),
+                        rs.getString("lotadoOrgao")
+                        
                 );
                 servidores.add(servidor);
             }

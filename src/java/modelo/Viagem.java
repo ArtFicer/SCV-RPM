@@ -14,7 +14,8 @@ public class Viagem {
     private String dataViagem;
     private int horarioSaida;
     private String statusConfirmacao;
-
+    private String statusConclusao;
+    
     public Viagem(int codViagem, DeclaracaoNotaTecnica codDeclaracaoNotaTecnica, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao) {
         this.codViagem = codViagem;
         this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
@@ -27,7 +28,7 @@ public class Viagem {
         this.statusConfirmacao = statusConfirmacao;
         this.statusConclusao = statusConclusao;
     }
-    private String statusConclusao;
+
     // Construtores
     
     //Gravar No banco

@@ -20,9 +20,11 @@ public class TransporteDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select = from transporte");
             while (rs.next()) {
-                Transporte transporte = new Transporte(rs.getString("empresa"),
-                        rs.getString("veiculo"),
-                        rs.getInt("codTransporte")
+                Transporte transporte = new Transporte(
+                        rs.getInt("codTransporte"),
+                        rs.getString("empresa"),
+                        rs.getString("veiculo")
+                        
                 );
                 transportes.add(transporte);
             }

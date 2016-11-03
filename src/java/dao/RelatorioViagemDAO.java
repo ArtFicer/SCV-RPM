@@ -21,7 +21,7 @@ public class RelatorioViagemDAO {
             ResultSet rs = comando.executeQuery("select = from relatorioViagem");
             while (rs.next()) {
                 RelatorioViagem escreverRelatorio = new RelatorioViagem(
-                        rs.getString("relatorio"), rs.getInt("codEscreverRelatorio")
+                        rs.getInt("codRelatorioViagem"), rs.getString("relatorio") 
                 );
                 escreverRelatorios.add(escreverRelatorio);
             }
