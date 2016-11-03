@@ -21,8 +21,8 @@ public class DisciplinaDAO {
             ResultSet rs = comando.executeQuery("select = from Disciplina");
             while (rs.next()) {
                 Disciplina disciplina = new Disciplina(
-                        rs.getString("nome"),
-                        rs.getInt("codDisciplina")
+                        rs.getInt("codDisciplina"),
+                        rs.getString("nome")
                 );
                 disciplinas.add(disciplina);
             }
@@ -81,5 +81,28 @@ public class DisciplinaDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+
+    // obtem codigo da disciplina para o .dao
+    public static Disciplina obterDisciplina(int codDisciplina)  throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Disciplina disciplina = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from disciplina where codDisciplina ="+codDisciplina);
+            rs.first();
+            
+            disciplina = new Disciplina(
+                    rs.getInt("codDisciplina"),
+                    rs.getString("nome")
+            );
+            disciplina.setCodDisciplina(rs.getInt("codDisciplina"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return disciplina;   }
 
 }

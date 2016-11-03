@@ -6,13 +6,13 @@ import java.util.List;
 public class Convidado {
 
     private int codConvidado;
-    private Proposto proposto;
+    private int codProposto;
     private int matricula_SIAPE;
 
     // Construtores
-    public Convidado(int codConvidado, Proposto proposto, int matricula_SIAPE) {
+    public Convidado(int codConvidado,int codProposto, int matricula_SIAPE) {
         this.codConvidado = codConvidado;
-        this.proposto = proposto;
+        this.codProposto = codProposto;
         this.matricula_SIAPE = matricula_SIAPE;
     }
      
@@ -47,12 +47,12 @@ public class Convidado {
         this.codConvidado = codConvidado;
     }
 
-    public Proposto getProposto() {
-        return proposto;
+    public int getCodProposto() {
+        return codProposto;
     }
 
-    public void setProposto(Proposto proposto) {
-        this.proposto = proposto;
+    public void setCodProposto(int codProposto) {
+        this.codProposto = codProposto;
     }
 
     public int getMatricula_SIAPE() {

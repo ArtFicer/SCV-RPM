@@ -21,9 +21,9 @@ public class DeclaracaoNotaTecnicaDAO {
             ResultSet rs = comando.executeQuery("select = from declaracaoNotaTecnica");
             while (rs.next()) {
                 DeclaracaoNotaTecnica declaracaoNotaTecnica = new DeclaracaoNotaTecnica(
-                        rs.getString("redigir"),
-                        rs.getInt("codDeclaracaoNotaTecnica")
-                );
+                        rs.getInt("codDeclaracaoNotaTecnica"),
+                        rs.getString("redigir")
+                        );
                 declaracaoNotaTecnicas.add(declaracaoNotaTecnica);
             }
         } catch (SQLException e) {
@@ -81,5 +81,30 @@ public class DeclaracaoNotaTecnicaDAO {
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
         }
+    }
+    
+    
+    
+    public static DeclaracaoNotaTecnica obterDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica)  throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        DeclaracaoNotaTecnica declaracaoNotaTecnica = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from declaracaoNotaTecnica where codDeclaracaoNotaTecnica ="+codDeclaracaoNotaTecnica);
+            rs.first();
+            
+            declaracaoNotaTecnica = new DeclaracaoNotaTecnica(
+                    rs.getInt("codDeclaracaoNotaTecnica"),
+                    rs.getString("redigir")
+            );
+            declaracaoNotaTecnica.setCodDeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return declaracaoNotaTecnica;
     }
 }

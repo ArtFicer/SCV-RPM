@@ -79,4 +79,25 @@ public class HistoricoDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+
+    public static Historico obterHistorico(int codHistorico)  throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Historico historico = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from historico where codHistorico ="+codHistorico);
+            rs.first();
+            
+            historico = new Historico(
+                    rs.getInt("codHistorico")
+            );
+            historico.setCodHistorico(rs.getInt("codHistorico"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return historico; }
 }

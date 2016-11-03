@@ -59,6 +59,15 @@ public class Proposto {
         this.senha = senha;
         this.tipoProposto = tipoProposto;
     }   
+
+    
+    //Construtor do Cadastro Rapido 
+    public Proposto(int codProposto, String nome) {
+        this.codProposto = codProposto;
+        this.nome = nome;
+    }
+
+    
     
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
