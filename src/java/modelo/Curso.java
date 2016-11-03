@@ -64,4 +64,7 @@ public class Curso {
         this.proposto.setCodProposto(codProposto);
     }
 
+    public void Excluir () throws SQLException, ClassNotFoundException{
+        CursoDAO.excluir(this);
+    }
 }

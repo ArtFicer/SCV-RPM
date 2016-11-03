@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ import modelo.Curso;
  *
  * @author pe-ri
  */
+
 @WebServlet(name = "ManterCursoController", urlPatterns = {"/ManterCursoController"})
 public class ManterCursoController extends HttpServlet {
 
@@ -35,6 +37,10 @@ public class ManterCursoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+    
+    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
@@ -46,15 +52,27 @@ public class ManterCursoController extends HttpServlet {
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
-                } else{
-                    if (acao.equals("confirmarEditar")){
-                        confirmarEditar(request,response);
+                } else {
+                    if (acao.equals("confirmarEditar")) {
+                        confirmarEditar(request, response);
+                    } else {
+                        if (acao.equals("prepararExcluir")) {
+                            prepararExcluir(request, response);
+                        } else {
+                            if (acao.equals("confirmarExcluir")) {
+                                confirmarExcluir(request, response);
+                            }
+                        }
                     }
                 }
             }
         }
     }
 
+    
+    
+    // Inclusão
+    // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
@@ -65,19 +83,85 @@ public class ManterCursoController extends HttpServlet {
         }
     }
     
+    // Realiza e confirma a Inclusão no banco de dados
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
+        String nome = request.getParameter("txtNomeCurso");
+        try {
+            //Proposto proposto = null;
+            Curso curso = new Curso(codCurso, nome);
+            curso.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+
+    
+    
+    //Edição
+    //Preparar a edição
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("cursos", Curso.obterCurso());
-            int codCurso = Integer.parseInt( request.getParameter("codCurso"));
+            int codCurso = Integer.parseInt(request.getParameter("codCurso"));
             Curso curso = Curso.obterCurso(codCurso);
-            request.setAttribute("curso",curso);
+            request.setAttribute("curso", curso);
             RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex)  {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    
+    //Confrimar a edição
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
+        String nome = request.getParameter("txtNomeCurso");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Curso curso = new Curso(codCurso, nome);
+            curso.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
 
+    
+    //Exclusão
+    //Preparar Exclução
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int codCurso = Integer.parseInt(request.getParameter("codCurso"));
+            Curso curso = Curso.obterCurso(codCurso);
+            request.setAttribute("curso", curso);
+            RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    //Confirma a Exclusão
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+        int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
+        String nome = request.getParameter("txtNomeCurso");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Curso curso = new Curso(codCurso, nome);
+            curso.Excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
+    
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -124,33 +208,4 @@ public class ManterCursoController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
-        int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
-        String nome = request.getParameter("txtNomeCurso");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
-        try {
-            //Proposto proposto = null;
-            Curso curso = new Curso(codCurso, nome);
-            curso.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
-        }
-    }
-
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
-        int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
-        String nome = request.getParameter("txtNomeCurso");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
-        try {
-            //Proposto proposto = null;
-            Curso curso = new Curso(codCurso, nome);
-            curso.alterar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
-        }
-    }
-
 }

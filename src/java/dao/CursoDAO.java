@@ -108,7 +108,18 @@ public class CursoDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
-
-
+public static void excluir(Curso curso) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from curso where codCurso = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, curso.getCodCurso());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
     
 }
