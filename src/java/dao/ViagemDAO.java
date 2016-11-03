@@ -31,9 +31,7 @@ public class ViagemDAO {
                         rs.getInt("horarioSaida"),
                         rs.getString("statusConfirmacao"),
                         rs.getString("statusConclusao"),
-                        rs.getInt("codTransporte"),
-                        
-                        
+                        rs.getInt("codTransporte")
                 );
                 viagens.add(viagem);
             }
@@ -61,11 +59,11 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into viagem (codViagem, DeclaracoaNotaTecnica_codDeclaracaoNotaTecnica,EscreverRelatorio_codEscreverRelatorio,Proposto_codProposto,Polo_codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao) values (?,?,?,?,?,?,?,?)";
+            String sql = "insert into viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,transporte) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
             comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
-            comando.setInt(3, viagem.getCodEscreverRelatorio());
+            comando.setInt(3, viagem.getCodRelatorioViagem());
             comando.setInt(4, viagem.getCodProposto());
             comando.setInt(5, viagem.getCodPolo());
             comando.setString(6, viagem.getDestino());
@@ -73,6 +71,7 @@ public class ViagemDAO {
             comando.setInt(8, viagem.getHorarioSaida());
             comando.setString(9, viagem.getStatusConfirmacao());
             comando.setString(10, viagem.getStatusConclusao());
+            comando.setString(11, viagem.getTransporte());
 //            if(viagem.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
@@ -91,11 +90,11 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update viagem (codViagem, DeclaracoaNotaTecnica_codDeclaracaoNotaTecnica,EscreverRelatorio_codEscreverRelatorio,Proposto_codProposto,Polo_codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao) values (?,?,?,?,?,?,?,?)";
+            String sql = "update viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,transporte) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
             comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
-            comando.setInt(3, viagem.getCodEscreverRelatorio());
+            comando.setInt(3, viagem.getCodRelatorioViagem());
             comando.setInt(4, viagem.getCodProposto());
             comando.setInt(5, viagem.getCodPolo());
             comando.setString(6, viagem.getDestino());
@@ -103,6 +102,7 @@ public class ViagemDAO {
             comando.setInt(8, viagem.getHorarioSaida());
             comando.setString(9, viagem.getStatusConfirmacao());
             comando.setString(10, viagem.getStatusConclusao());
+            comando.setString(11, viagem.getTransporte());
             comando.execute();
             comando.close();
             conexao.close();

@@ -15,8 +15,9 @@ public class Viagem {
     private int horarioSaida;
     private String statusConfirmacao;
     private String statusConclusao;
+    private String transporte;
     
-    public Viagem(int codViagem, DeclaracaoNotaTecnica codDeclaracaoNotaTecnica, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao) {
+    public Viagem(int codViagem, DeclaracaoNotaTecnica codDeclaracaoNotaTecnica, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao, String transporte) {
         this.codViagem = codViagem;
         this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
         this.codRelatorioViagem = codRelatorioViagem;
@@ -27,6 +28,7 @@ public class Viagem {
         this.horarioSaida = horarioSaida;
         this.statusConfirmacao = statusConfirmacao;
         this.statusConclusao = statusConclusao;
+        this.transporte = transporte;
     }
 
     // Construtores
@@ -132,5 +134,12 @@ public class Viagem {
     public void setStatusConclusao(String statusConclusao) {
         this.statusConclusao = statusConclusao;
     }
-  
+ 
+    public String getTransporte() {
+        return transporte;
+    }
+
+    public void setTransporte(String transporte) {
+        this.transporte = transporte;
+    }
 }
