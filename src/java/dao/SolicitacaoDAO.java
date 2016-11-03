@@ -11,6 +11,8 @@ import modelo.Solicitacao;
 
 public class SolicitacaoDAO {
 
+    //obter
+    //obter listas
     public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -35,7 +37,33 @@ public class SolicitacaoDAO {
         }
         return solicitacoes;
     }
+    
+    //Obter normal
+    public static Solicitacao obterSolicitacao(int codSolicitacao) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Solicitacao solicitacao = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from solicitacao where codSolicitacao ="+codSolicitacao);
+            rs.first();
+            
+            solicitacao = new Solicitacao(
+                    rs.getInt("codSolicitacao"),
+                        rs.getString("assunto"),
+                        rs.getString("texto")
+            );
+            solicitacao.setCodSolicitacao(rs.getInt("codSolicitacao"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return solicitacao;
+    }
 
+    //fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -48,7 +76,8 @@ public class SolicitacaoDAO {
         }
     }
 
-        public static void gravar(Solicitacao solicitacao) throws SQLException,ClassNotFoundException{
+    //gravar    
+    public static void gravar(Solicitacao solicitacao) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -70,6 +99,8 @@ public class SolicitacaoDAO {
             throw e;
         }
        }
+    
+    //alterar
     public static void alterar(Solicitacao solicitacao) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -85,5 +116,7 @@ public class SolicitacaoDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //excluir
 
 }

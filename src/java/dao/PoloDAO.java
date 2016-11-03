@@ -11,6 +11,8 @@ import modelo.Polo;
 
 public class PoloDAO {
 
+    //Obter
+    //obter Listas
     public static List<Polo> obterPolo() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -39,7 +41,37 @@ public class PoloDAO {
         }
         return polos;
     }
+    //Obter normal
+    public static Polo obterPolo(int codPolo) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Polo polo = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from polo where codPolo ="+codPolo);
+            rs.first();
+            
+            polo = new Polo(
+                    rs.getInt("codPolo"),
+                    rs.getString("transporte"),
+                    rs.getString("cidade"),
+                    rs.getString("logradouro"),
+                    rs.getString("bairro"),
+                    rs.getInt("numero"),
+                    rs.getInt("telefone"),
+                    rs.getString("email")
+            );
+            polo.setCodPolo(rs.getInt("codPolo"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return polo;
+    }
 
+    //Fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -52,14 +84,15 @@ public class PoloDAO {
         }
     }
 
-        public static void gravar(Polo polo) throws SQLException,ClassNotFoundException{
+    //Gravar    
+    public static void gravar(Polo polo) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
             String sql = "insert into polo (codPolo,codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, polo.getCodPolo());
-            comando.setTransporte(2, polo.getCodTransporte());
+            comando.setInt(2, polo.getCodTransporte());
             comando.setString(3, polo.getCidade());
             comando.setString(4, polo.getLogradouro());
             comando.setString(5, polo.getBairro());
@@ -80,6 +113,7 @@ public class PoloDAO {
         }
        }
 
+    //Alterar
     public static void alterar(Polo polo) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -87,7 +121,7 @@ public class PoloDAO {
             String sql = "update polo (codPolo,codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, polo.getCodPolo());
-            comando.setTransporte(2, polo.getCodTransporte());
+            comando.setInt(2, polo.getCodTransporte());
             comando.setString(3, polo.getCidade());
             comando.setString(4, polo.getLogradouro());
             comando.setString(5, polo.getBairro());
@@ -100,4 +134,5 @@ public class PoloDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    //Excluir
 }

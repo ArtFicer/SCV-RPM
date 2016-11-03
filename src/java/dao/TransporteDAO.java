@@ -11,6 +11,8 @@ import modelo.Transporte;
 
 public class TransporteDAO {
 
+    //obter
+    //obter listas
     public static List<Transporte> obterTransporte() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -35,7 +37,33 @@ public class TransporteDAO {
         }
         return transportes;
     }
+    
+    //Obter normal
+    public static Transporte obterTransporte(int codTransporte) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Transporte trasporte = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from trasporte where codTransporte ="+codTransporte);
+            rs.first();
+            
+            trasporte = new Transporte(
+                    rs.getInt("codTransporte"),
+                        rs.getString("empresa"),
+                        rs.getString("veiculo")
+            );
+            trasporte.setCodTransporte(rs.getInt("codTransporte"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return trasporte;
+    }
 
+    //fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -48,7 +76,8 @@ public class TransporteDAO {
         }
     }
 
-        public static void gravar(Transporte transporte) throws SQLException,ClassNotFoundException{
+    //Gravar    
+    public static void gravar(Transporte transporte) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -71,6 +100,7 @@ public class TransporteDAO {
         }
        }
 
+    //alterar
     public static void alterar(Transporte transporte) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -86,4 +116,6 @@ public class TransporteDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //Excluir
 }

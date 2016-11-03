@@ -11,6 +11,8 @@ import modelo.Proposto;
 
 public class PropostoDAO {
 
+    //obter
+    //obter listas
     public static List<Proposto> obterProposto() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -55,7 +57,53 @@ public class PropostoDAO {
         }
         return propostos;
     }
+    //Obter normal
+    public static Proposto obterProposto(int codProposto) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Proposto proposto = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from proposto where codProposto ="+codProposto);
+            rs.first();
+            
+            Proposto proposto = new Proposto(
+                    rs.getInt("codProposto"),
+                        rs.getInt("codCalendario"),
+                        rs.getInt("codServidor"),
+                        rs.getInt("codSecretaria"),
+                        rs.getString("nome"),
+                        rs.getString("setor"),
+                        rs.getInt("cpf"),
+                        rs.getInt("dataNascimento"),
+                        rs.getString("email"),
+                        rs.getInt("telefone"),
+                        rs.getInt("celular"),
+                        rs.getString("logradouro"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getString("bairro"),
+                        rs.getString("cidade"),
+                        rs.getString("uf"),
+                        rs.getInt("cep"),
+                        rs.getString("titulacaoMaxima"),
+                        rs.getString("banco"),
+                        rs.getInt("agencia"),
+                        rs.getInt("conta"),
+                        rs.getInt("senha"),
+                        rs.getString("tipodeproposto")
+            );
+            proposto.setCodProposto(rs.getInt("codProposto"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return proposto;
+    }
 
+    //Fechar Conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -68,7 +116,8 @@ public class PropostoDAO {
         }
     }
 
-        public static void gravar(Proposto proposto) throws SQLException,ClassNotFoundException{
+    //Gravar    
+    public static void gravar(Proposto proposto) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -113,6 +162,7 @@ public class PropostoDAO {
         }
        }
 
+    //Alterar
     public static void alterar(Proposto proposto) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -150,4 +200,6 @@ public class PropostoDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //Excluir
 }

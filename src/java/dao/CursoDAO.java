@@ -14,6 +14,8 @@ import modelo.Curso;
 
 public class CursoDAO {
 
+    //Obter
+    //Obter Lista
     public static List<Curso> obterCurso() throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -36,7 +38,7 @@ public class CursoDAO {
         }
         return cursos;
     }
-    
+    //Obter normal
     public static Curso obterCurso(int codCurso) throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -60,6 +62,7 @@ public class CursoDAO {
         return curso;
     }
 
+    //Fechar Conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -72,6 +75,7 @@ public class CursoDAO {
         }
     }
 
+    //gravar
     public static void gravar(Curso curso) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -94,6 +98,7 @@ public class CursoDAO {
         }
        }
 
+    //Alterar
     public static void alterar(Curso curso) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -108,7 +113,9 @@ public class CursoDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
-public static void excluir(Curso curso) throws SQLException, ClassNotFoundException {
+
+    //excluir
+    public static void excluir(Curso curso) throws SQLException, ClassNotFoundException {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();

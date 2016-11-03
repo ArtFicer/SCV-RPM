@@ -11,6 +11,8 @@ import modelo.Trimestre;
 
 public class TrimestreDAO {
 
+    //obter
+    //obter listas
     public static List<Trimestre> obterTrimestre() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -34,7 +36,33 @@ public class TrimestreDAO {
         }
         return trimestres;
     }
+    
+    //Obter normal
+    public static Trimestre obterTrimestre(int codTrimestre) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Trimestre trimestre = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from trimestre where codTrimestre ="+codTrimestre);
+            rs.first();
+            
+            trimestre = new Trimestre(
+                    rs.getInt("codTrimestre"),
+                        rs.getInt("numeroTrimestre")
+                        
+            );
+            trimestre.setCodTrimestre(rs.getInt("codTrimestre"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return trimestre;
+    }
 
+    //fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -47,7 +75,8 @@ public class TrimestreDAO {
         }
     }
 
-        public static void gravar(Trimestre trimestre) throws SQLException,ClassNotFoundException{
+    //Gravar    
+    public static void gravar(Trimestre trimestre) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -70,7 +99,8 @@ public class TrimestreDAO {
        }
 
 
-            public static void alterar(Trimestre trimestre) throws SQLException, ClassNotFoundException{
+    //Alterar        
+    public static void alterar(Trimestre trimestre) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -85,4 +115,5 @@ public class TrimestreDAO {
         }
     }
         
+    //Excluir
 }

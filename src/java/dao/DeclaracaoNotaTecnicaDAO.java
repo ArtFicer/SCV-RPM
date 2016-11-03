@@ -11,6 +11,8 @@ import modelo.DeclaracaoNotaTecnica;
 
 public class DeclaracaoNotaTecnicaDAO {
 
+    //obter
+    //obter listas
     public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -33,58 +35,8 @@ public class DeclaracaoNotaTecnicaDAO {
         }
         return declaracaoNotaTecnicas;
     }
-
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
-        } catch (SQLException e) {
-        }
-    }
-
-        public static void gravar(DeclaracaoNotaTecnica declaracaoNotaTecnica) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
-            comando.setString(2, declaracaoNotaTecnica.getRedigir());
-//            if(declaracaoNotaTecnica.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,declaracaoNotaTecnica.getProposto().getCodProposto());
-//            }
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
-
-            public static void alterar(DeclaracaoNotaTecnica declaracaoNotaTecnica) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
-            comando.setString(2, declaracaoNotaTecnica.getRedigir());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-        }
-    }
     
-    
-    
+    //obter normal
     public static DeclaracaoNotaTecnica obterDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica)  throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -107,4 +59,58 @@ public class DeclaracaoNotaTecnicaDAO {
         }
         return declaracaoNotaTecnica;
     }
+
+    //Fechar conexão
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
+                comando.close();
+            }
+            if (conexao != null) {
+                conexao.close();
+            }
+        } catch (SQLException e) {
+        }
+    }
+
+    //Gravar
+    public static void gravar(DeclaracaoNotaTecnica declaracaoNotaTecnica) throws SQLException,ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "insert into declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
+            comando.setString(2, declaracaoNotaTecnica.getRedigir());
+//            if(declaracaoNotaTecnica.getProposto()==null)
+//            {
+//                comando.setNull(3,Types.NULL);
+//            }else{
+//                comando.setInt(3,declaracaoNotaTecnica.getProposto().getCodProposto());
+//            }
+            comando.execute();
+            comando.close();
+            conexao.close();
+        }catch (SQLException e){
+            throw e;
+        }
+    }
+
+    //Alterar
+    public static void alterar(DeclaracaoNotaTecnica declaracaoNotaTecnica) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        try{
+            conexao = BD.getConexao();
+            String sql = "update declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
+            comando.setString(2, declaracaoNotaTecnica.getRedigir());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+    }
+    
+    //Excluir
 }

@@ -11,6 +11,8 @@ import modelo.Oferta;
 
 public class OfertaDAO {
 
+    //obter
+    //obter listas
     public static List<Oferta> obterOferta() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -33,7 +35,31 @@ public class OfertaDAO {
         }
         return ofertas;
     }
-
+    //Obter normal
+    public static Oferta obterOferta(int codOferta) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Oferta oferta = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from oferta where codOferta ="+codOferta);
+            rs.first();
+            
+            oferta = new Oferta(
+                    rs.getInt("codOferta"),
+                    rs.getInt("ano")
+            );
+            oferta.setCodOferta(rs.getInt("codOferta"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return oferta;
+    }
+    
+    //Fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -46,7 +72,8 @@ public class OfertaDAO {
         }
     }
 
-        public static void gravar(Oferta oferta) throws SQLException,ClassNotFoundException{
+    //gravar
+    public static void gravar(Oferta oferta) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -69,7 +96,8 @@ public class OfertaDAO {
        }
 
 
-            public static void alterar(Oferta oferta) throws SQLException, ClassNotFoundException{
+    //Alterar
+    public static void alterar(Oferta oferta) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -83,4 +111,6 @@ public class OfertaDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //Excluir
 }

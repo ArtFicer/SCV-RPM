@@ -11,6 +11,8 @@ import modelo.RelatorioViagem;
 
 public class RelatorioViagemDAO {
 
+    //obter
+    //obter listas
     public static List<RelatorioViagem> obterEscreverRelatorio() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -32,7 +34,31 @@ public class RelatorioViagemDAO {
         }
         return escreverRelatorios;
     }
+    
+    //Obter normal
+    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        RelatorioViagem relatorioViagem = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from relatorioViagem where codRelatorioViagem ="+codRelatorioViagem);
+            rs.first();
+            
+            relatorioViagem = new RelatorioViagem(
+                 rs.getInt("codRelatorioViagem"), rs.getString("relatorio")
+            );
+            relatorioViagem.setCodRelatorioViagem(rs.getInt("codRelatorioViagem"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return relatorioViagem;
+    }
 
+    //Fechar Conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -45,7 +71,8 @@ public class RelatorioViagemDAO {
         }
     }
 
-        public static void gravar(RelatorioViagem relatorioViagem) throws SQLException,ClassNotFoundException{
+    //Gravar    
+    public static void gravar(RelatorioViagem relatorioViagem) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -67,6 +94,7 @@ public class RelatorioViagemDAO {
         }
        }
 
+    //Alterar
     public static void alterar(RelatorioViagem relatorioViagem) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -81,4 +109,6 @@ public class RelatorioViagemDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //Excluir
 }

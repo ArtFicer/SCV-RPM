@@ -11,6 +11,8 @@ import modelo.Servidor;
 
 public class ServidorDAO {
 
+    //obter
+    //obter listas
     public static List<Servidor> obterServidor() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -35,7 +37,33 @@ public class ServidorDAO {
         }
         return servidores;
     }
+    
+    //Obter normal
+    public static Servidor obterServidor(int codServidor) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Servidor servidor = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from servidor where codServidor ="+codServidor);
+            rs.first();
+            
+            servidor = new Servidor(
+                    rs.getInt("codServidor"),
+                        rs.getInt("matriculaSIAPE"),
+                        rs.getString("lotadoOrgao")
+            );
+            servidor.setCodServidor(rs.getInt("codServidor"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return servidor;
+    }
 
+    //fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -48,7 +76,8 @@ public class ServidorDAO {
         }
     }
 
-        public static void gravar(Servidor servidor) throws SQLException,ClassNotFoundException{
+    //gravar    
+    public static void gravar(Servidor servidor) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -71,6 +100,7 @@ public class ServidorDAO {
         }
        }
 
+    //alterar
     public static void alterar(Servidor servidor) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -86,4 +116,6 @@ public class ServidorDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //exlcuir
 }

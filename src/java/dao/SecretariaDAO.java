@@ -11,6 +11,8 @@ import modelo.Secretaria;
 
 public class SecretariaDAO {
 
+    //obter
+    //obter listas
     public static List<Secretaria> obterSecretaria() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -37,7 +39,35 @@ public class SecretariaDAO {
         }
         return secretarias;
     }
+    
+    //Obter normal
+    public static Secretaria obterSecretaria(int codSecretaria) throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Secretaria secretaria = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from secretaria where codSecretaria ="+codSecretaria);
+            rs.first();
+            
+            secretaria = new Secretaria(
+                   rs.getInt("codSecretaria"),
+                        rs.getString("nome"),
+                        rs.getInt("cpf"),
+                        rs.getString("email"),
+                        rs.getString("senha")
+            );
+            secretaria.setCodSecretaria(rs.getInt("codSecretaria"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return secretaria;
+    }
 
+    //fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -50,7 +80,8 @@ public class SecretariaDAO {
         }
     }
 
-        public static void gravar(Secretaria secretaria) throws SQLException,ClassNotFoundException{
+    //gravar    
+    public static void gravar(Secretaria secretaria) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -75,7 +106,8 @@ public class SecretariaDAO {
         }
        }
     
-        public static void alterar(Secretaria secretaria) throws SQLException, ClassNotFoundException{
+    //alterar    
+    public static void alterar(Secretaria secretaria) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
@@ -92,5 +124,7 @@ public class SecretariaDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
+    
+    //excluir
 
 }

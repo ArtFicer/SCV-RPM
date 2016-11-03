@@ -11,6 +11,8 @@ import modelo.Disciplina;
 
 public class DisciplinaDAO {
 
+    //obter
+    //obter listas
     public static List<Disciplina> obterDisciplina() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -33,7 +35,32 @@ public class DisciplinaDAO {
         }
         return disciplinas;
     }
+    
+     // obtem codigo da disciplina para o .dao
+    public static Disciplina obterDisciplina(int codDisciplina)  throws  ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Disciplina disciplina = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from disciplina where codDisciplina ="+codDisciplina);
+            rs.first();
+            
+            disciplina = new Disciplina(
+                    rs.getInt("codDisciplina"),
+                    rs.getString("nome")
+            );
+            disciplina.setCodDisciplina(rs.getInt("codDisciplina"));
+        } catch (SQLException e) {
+            //e.printStckTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return disciplina;   
+    }
 
+    //fechar conexão
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -46,6 +73,7 @@ public class DisciplinaDAO {
         }
     }
 
+    //gravar
         public static void gravar(Disciplina disciplina) throws SQLException,ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -67,6 +95,8 @@ public class DisciplinaDAO {
             throw e;
         }
        }
+        
+    //alterar
     public static void alterar(Disciplina disciplina) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         try{
@@ -81,28 +111,6 @@ public class DisciplinaDAO {
             }catch (SQLException | ClassNotFoundException ex) {
         }
     }
-
-    // obtem codigo da disciplina para o .dao
-    public static Disciplina obterDisciplina(int codDisciplina)  throws  ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
-        Disciplina disciplina = null;
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from disciplina where codDisciplina ="+codDisciplina);
-            rs.first();
-            
-            disciplina = new Disciplina(
-                    rs.getInt("codDisciplina"),
-                    rs.getString("nome")
-            );
-            disciplina.setCodDisciplina(rs.getInt("codDisciplina"));
-        } catch (SQLException e) {
-            //e.printStckTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return disciplina;   }
-
+    
+    //Excluir
 }
