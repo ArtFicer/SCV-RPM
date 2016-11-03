@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Oferta;
 import modelo.Disciplina;
 import modelo.Oferta;
@@ -53,6 +54,19 @@ public class ManterOfertaController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+    
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("oferta", Oferta.obterOferta());
+            int codOferta = Integer.parseInt( request.getParameter("codOferta"));
+            Oferta oferta = Oferta.obterOferta(codOferta);
+            request.setAttribute("oferta",oferta);
+            RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
     

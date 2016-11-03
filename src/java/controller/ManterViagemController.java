@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Curso;
 import modelo.Viagem;
 import modelo.Viagem;
 
@@ -51,6 +52,19 @@ public class ManterViagemController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
+        }
+    }
+    
+        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("viagem", Viagem.obterViagem());
+            int codViagem = Integer.parseInt( request.getParameter("codViagem"));
+            Viagem viagem = Viagem.obterViagem(codViagem);
+            request.setAttribute("viagem",viagem);
+            RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex)  {
         }
     }
 
