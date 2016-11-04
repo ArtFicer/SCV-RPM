@@ -1,4 +1,5 @@
 package modelo;
+
 import dao.CadastroRapidoDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,8 +14,8 @@ public class CadastroRapido {
     public CadastroRapido(int codCadastroRapido, String nome) {
         this.nome = nome;
         this.codCadastroRapido = codCadastroRapido;
-    }    
-    
+    }
+
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         CadastroRapidoDAO.gravar(this);
@@ -24,15 +25,20 @@ public class CadastroRapido {
     public static List<CadastroRapido> obterCadastroRapido() throws java.lang.ClassNotFoundException {
         return CadastroRapidoDAO.obterCadastroRapido();
     }
-    
+
     //Obter CadastroRapido
     public static CadastroRapido obterCadastroRapido(int codCadastroRapido) throws ClassNotFoundException {
         return CadastroRapidoDAO.obterCadastroRapido(codCadastroRapido);
     }
-    
+
     //Alterar
-    public void alterar () throws SQLException, ClassNotFoundException{
+    public void alterar() throws SQLException, ClassNotFoundException {
         CadastroRapidoDAO.alterar(this);
+    }
+
+    //Excluir
+    public void Excluir() throws SQLException, ClassNotFoundException {
+        CadastroRapidoDAO.excluir(this);
     }
 
     //Set e Gets

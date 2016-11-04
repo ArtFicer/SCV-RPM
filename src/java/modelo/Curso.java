@@ -35,6 +35,11 @@ public class Curso {
         CursoDAO.alterar(this);
     }
 
+    //Excluir
+    public void Excluir () throws SQLException, ClassNotFoundException{
+        CursoDAO.excluir(this);
+    }
+    
     //Set e Gets
     public int getCodCurso() {
         return codCurso;
@@ -64,7 +69,5 @@ public class Curso {
         this.proposto.setCodProposto(codProposto);
     }
 
-    public void Excluir () throws SQLException, ClassNotFoundException{
-        CursoDAO.excluir(this);
-    }
+    
 }
