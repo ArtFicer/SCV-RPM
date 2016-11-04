@@ -1,4 +1,5 @@
 package modelo;
+
 import dao.PropostoDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,7 +31,7 @@ public class Proposto {
     private String cargo;
     private String senha;
     private String tipoProposto;
-    
+
     // Construtores
     public Proposto(int codProposto, int codCalendario, Servidor servidor, Secretaria secretaria, String nome, String setor, int cpf, int dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaomaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
         this.codProposto = codProposto;
@@ -58,17 +59,14 @@ public class Proposto {
         this.cargo = cargo;
         this.senha = senha;
         this.tipoProposto = tipoProposto;
-    }   
+    }
 
-    
     //Construtor do Cadastro Rapido 
     public Proposto(int codProposto, String nome) {
         this.codProposto = codProposto;
         this.nome = nome;
     }
 
-    
-    
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         PropostoDAO.gravar(this);
@@ -78,19 +76,23 @@ public class Proposto {
     public static List<Proposto> obterProposto() throws java.lang.ClassNotFoundException {
         return PropostoDAO.obterProposto();
     }
-    
+
     //Obter Proposto
     public static Proposto obterProposto(int codProposto) throws ClassNotFoundException {
         return PropostoDAO.obterProposto(codProposto);
     }
-    
+
     //Alterar
-    public void alterar () throws SQLException, ClassNotFoundException{
+    public void alterar() throws SQLException, ClassNotFoundException {
         PropostoDAO.alterar(this);
     }
 
-    //Set e Gets
+    //Excluir
+    public void Excluir() throws SQLException, ClassNotFoundException {
+        PropostoDAO.excluir(this);
+    }
 
+    //Set e Gets
     public int getCodProposto() {
         return codProposto;
     }
@@ -290,5 +292,5 @@ public class Proposto {
     public void setTipoProposto(String tipoProposto) {
         this.tipoProposto = tipoProposto;
     }
-    
+
 }

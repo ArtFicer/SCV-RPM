@@ -1,4 +1,5 @@
 package modelo;
+
 import dao.ViagemDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Viagem {
     private String statusConfirmacao;
     private String statusConclusao;
     private String transporte;
-    
+
     public Viagem(int codViagem, DeclaracaoNotaTecnica codDeclaracaoNotaTecnica, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao, String transporte) {
         this.codViagem = codViagem;
         this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
@@ -32,7 +33,6 @@ public class Viagem {
     }
 
     // Construtores
-    
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         ViagemDAO.gravar(this);
@@ -42,19 +42,23 @@ public class Viagem {
     public static List<Viagem> obterViagem() throws java.lang.ClassNotFoundException {
         return ViagemDAO.obterViagem();
     }
-    
+
     //Obter Viagem
     public static Viagem obterViagem(int codViagem) throws ClassNotFoundException {
         return ViagemDAO.obterViagem(codViagem);
     }
-    
+
     //Alterar
-    public void alterar () throws SQLException, ClassNotFoundException{
+    public void alterar() throws SQLException, ClassNotFoundException {
         ViagemDAO.alterar(this);
     }
 
-    //Set e Gets
+    //Excluir
+    public void Excluir() throws SQLException, ClassNotFoundException {
+        ViagemDAO.excluir(this);
+    }
 
+    //Set e Gets
     public int getCodViagem() {
         return codViagem;
     }
@@ -134,7 +138,7 @@ public class Viagem {
     public void setStatusConclusao(String statusConclusao) {
         this.statusConclusao = statusConclusao;
     }
- 
+
     public String getTransporte() {
         return transporte;
     }

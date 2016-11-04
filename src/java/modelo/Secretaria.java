@@ -1,15 +1,16 @@
 package modelo;
+
 import dao.SecretariaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Secretaria {
 
-   private int codSecretaria;
-   private String nome;
-   private int cpf;
-   private String email;
-   private String senha;
+    private int codSecretaria;
+    private String nome;
+    private int cpf;
+    private String email;
+    private String senha;
     // Construtores
 
     public Secretaria(int codSecretaria, String nome, int cpf, String email, String senha) {
@@ -19,8 +20,7 @@ public class Secretaria {
         this.email = email;
         this.senha = senha;
     }
-     
-    
+
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         SecretariaDAO.gravar(this);
@@ -30,19 +30,23 @@ public class Secretaria {
     public static List<Secretaria> obterSecretaria() throws java.lang.ClassNotFoundException {
         return SecretariaDAO.obterSecretaria();
     }
-    
+
     //Obter Secretaria
     public static Secretaria obterSecretaria(int codSecretaria) throws ClassNotFoundException {
         return SecretariaDAO.obterSecretaria(codSecretaria);
     }
-    
+
     //Alterar
-    public void alterar () throws SQLException, ClassNotFoundException{
+    public void alterar() throws SQLException, ClassNotFoundException {
         SecretariaDAO.alterar(this);
     }
 
-    //Set e Gets
+    //Excluir
+    public void Excluir() throws SQLException, ClassNotFoundException {
+        SecretariaDAO.excluir(this);
+    }
 
+    //Set e Gets
     public int getCodSecretaria() {
         return codSecretaria;
     }
@@ -82,5 +86,5 @@ public class Secretaria {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-   
+
 }

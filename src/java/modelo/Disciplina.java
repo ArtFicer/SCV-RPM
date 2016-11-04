@@ -1,4 +1,5 @@
 package modelo;
+
 import dao.DisciplinaDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -7,14 +8,13 @@ public class Disciplina {
 
     private int codDisciplina;
     private String nome;
-    
+
     // Construtores
     public Disciplina(int codDisciplina, String nome) {
         this.codDisciplina = codDisciplina;
         this.nome = nome;
     }
-      
-    
+
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         DisciplinaDAO.gravar(this);
@@ -24,19 +24,23 @@ public class Disciplina {
     public static List<Disciplina> obterDisciplina() throws java.lang.ClassNotFoundException {
         return DisciplinaDAO.obterDisciplina();
     }
-    
+
     //Obter Disciplina
     public static Disciplina obterDisciplina(int codDisciplina) throws ClassNotFoundException {
         return DisciplinaDAO.obterDisciplina(codDisciplina);
     }
-    
+
     //Alterar
-    public void alterar () throws SQLException, ClassNotFoundException{
+    public void alterar() throws SQLException, ClassNotFoundException {
         DisciplinaDAO.alterar(this);
     }
 
-    //Set e Gets
+    //Excluir
+    public void Excluir() throws SQLException, ClassNotFoundException {
+        DisciplinaDAO.excluir(this);
+    }
 
+    //Set e Gets
     public int getCodDisciplina() {
         return codDisciplina;
     }
@@ -52,5 +56,5 @@ public class Disciplina {
     public void setNome(String nome) {
         this.nome = nome;
     }
-   
+
 }

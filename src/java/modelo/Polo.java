@@ -1,4 +1,5 @@
 package modelo;
+
 import dao.PoloDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,8 +26,7 @@ public class Polo {
         this.telefone = telefone;
         this.email = email;
     }
-      
-    
+
     //Gravar No banco
     public void gravar() throws SQLException, ClassNotFoundException {
         PoloDAO.gravar(this);
@@ -36,19 +36,23 @@ public class Polo {
     public static List<Polo> obterPolo() throws java.lang.ClassNotFoundException {
         return PoloDAO.obterPolo();
     }
-    
+
     //Obter Polo
     public static Polo obterPolo(int codPolo) throws ClassNotFoundException {
         return PoloDAO.obterPolo(codPolo);
     }
-    
+
     //Alterar
-    public void alterar () throws SQLException, ClassNotFoundException{
+    public void alterar() throws SQLException, ClassNotFoundException {
         PoloDAO.alterar(this);
     }
 
-    //Set e Gets
+    //Excluir
+    public void Excluir() throws SQLException, ClassNotFoundException {
+        PoloDAO.excluir(this);
+    }
 
+    //Set e Gets
     public int getCodPolo() {
         return codPolo;
     }
@@ -112,5 +116,5 @@ public class Polo {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 }
