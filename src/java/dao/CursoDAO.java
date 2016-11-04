@@ -38,7 +38,8 @@ public class CursoDAO {
         }
         return cursos;
     }
-    //Obter normal
+     
+   //Obter normal
     public static Curso obterCurso(int codCurso) throws  ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
