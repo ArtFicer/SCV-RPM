@@ -7,7 +7,7 @@ import java.util.List;
 public class Polo {
 
     private int codPolo;
-    private Transporte transporte;
+    private int codTransporte;
     private String cidade;
     private String logradouro;
     private String bairro;
@@ -16,9 +16,9 @@ public class Polo {
     private String email;
     // Construtores
 
-    public Polo(int codPolo, Transporte transporte, String cidade, String logradouro, String bairro, int numero, int telefone, String email) {
+    public Polo(int codPolo, int codTransporte, String cidade, String logradouro, String bairro, int numero, int telefone, String email) {
         this.codPolo = codPolo;
-        this.transporte = transporte;
+        this.codTransporte = codTransporte;
         this.cidade = cidade;
         this.logradouro = logradouro;
         this.bairro = bairro;
@@ -61,12 +61,12 @@ public class Polo {
         this.codPolo = codPolo;
     }
 
-    public Transporte getTransporte() {
-        return transporte;
+    public int getCodTransporte() {
+        return codTransporte;
     }
 
-    public void setTransporte(Transporte transporte) {
-        this.transporte = transporte;
+    public void setCodTransporte(int transporte) {
+        this.codTransporte = codTransporte;
     }
 
     public String getCidade() {
