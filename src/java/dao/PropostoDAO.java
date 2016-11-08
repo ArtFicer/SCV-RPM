@@ -24,7 +24,7 @@ public class PropostoDAO {
             while (rs.next()) {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
-                        rs.getInt("codCalendario"),
+                        rs.getInt("codCalendarioProposto"),
                         rs.getInt("codServidor"),
                         rs.getInt("codSecretaria"),
                         rs.getString("nome"),
@@ -91,7 +91,8 @@ public class PropostoDAO {
                         rs.getString("banco"),
                         rs.getInt("agencia"),
                         rs.getInt("conta"),
-                        rs.getInt("senha"),
+                        rs.getString("cargo"),
+                        rs.getString("senha"),
                         rs.getString("tipodeproposto")
             );
             proposto.setCodProposto(rs.getInt("codProposto"));
@@ -125,8 +126,8 @@ public class PropostoDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.setInt(2, proposto.getCodCalendario());
-            comando.setInt(3, proposto.getServidor());
-            comando.setInt(4, proposto.getSecretaria());
+            comando.setInt(3, proposto.getCodServidor());
+            comando.setInt(4, proposto.getCodSecretaria());
             comando.setString(5, proposto.getNome());
             comando.setString(6, proposto.getSetor());
             comando.setInt(7, proposto.getCpf());
@@ -141,7 +142,7 @@ public class PropostoDAO {
             comando.setString(16, proposto.getCidade());
             comando.setString(17, proposto.getUf());
             comando.setInt(18, proposto.getCep());
-            comando.setString(19, proposto.getTitulacaomaxima());
+            comando.setString(19, proposto.getTitulacaoMaxima());
             comando.setString(20, proposto.getBanco());
             comando.setInt(21, proposto.getAgencia());
             comando.setInt(22, proposto.getConta());
@@ -167,10 +168,10 @@ public class PropostoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update proposto  proposto (codProposto, CalendarioProposto_codCalendarioProposto,Servidor_codServidor,Secretaria_codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "update proposto  proposto (codProposto, codCalendarioProposto,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
-            comando.setInt(2, proposto.getCalendarioProposto());
+            comando.setInt(2, proposto.getCodCalendario());
             comando.setInt(3, proposto.getCodServidor());
             comando.setInt(4, proposto.getCodSecretaria());
             comando.setString(5, proposto.getNome());
@@ -192,7 +193,7 @@ public class PropostoDAO {
             comando.setInt(21, proposto.getAgencia());
             comando.setInt(22, proposto.getConta());
             comando.setString(23, proposto.getCargo());
-            comando.setInt(24, proposto.getSenha());
+            comando.setString(24, proposto.getSenha());
             comando.setString(25, proposto.getTipoProposto());
             comando.execute();
             comando.close();

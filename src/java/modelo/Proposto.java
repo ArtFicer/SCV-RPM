@@ -8,8 +8,8 @@ public class Proposto {
 
     private int codProposto;
     private int codCalendario;
-    private Servidor servidor;
-    private Secretaria secretaria;
+    private int codServidor;
+    private int codSecretaria;
     private String nome;
     private String setor;
     private int cpf;
@@ -24,7 +24,7 @@ public class Proposto {
     private String cidade;
     private String uf;
     private int cep;
-    private String titulacaomaxima;
+    private String titulacaoMaxima;
     private String banco;
     private int agencia;
     private int conta;
@@ -32,12 +32,14 @@ public class Proposto {
     private String senha;
     private String tipoProposto;
 
+    private int matriculaServidorProposto;
+    private int matriculaSecretariaProposto;
     // Construtores
-    public Proposto(int codProposto, int codCalendario, Servidor servidor, Secretaria secretaria, String nome, String setor, int cpf, int dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaomaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
+    public Proposto(int codProposto, int codCalendario, int codServidor, int codSecretaria, String nome, String setor, int cpf, int dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaoMaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
         this.codProposto = codProposto;
         this.codCalendario = codCalendario;
-        this.servidor = servidor;
-        this.secretaria = secretaria;
+        this.codServidor = codServidor;
+        this.codSecretaria = codSecretaria;
         this.nome = nome;
         this.setor = setor;
         this.cpf = cpf;
@@ -52,7 +54,7 @@ public class Proposto {
         this.cidade = cidade;
         this.uf = uf;
         this.cep = cep;
-        this.titulacaomaxima = titulacaomaxima;
+        this.titulacaoMaxima = titulacaoMaxima;
         this.banco = banco;
         this.agencia = agencia;
         this.conta = conta;
@@ -109,20 +111,20 @@ public class Proposto {
         this.codCalendario = codCalendario;
     }
 
-    public Servidor getServidor() {
-        return servidor;
+    public int getCodServidor() {
+        return codServidor;
     }
 
-    public void setServidor(Servidor servidor) {
-        this.servidor = servidor;
+    public void setCodServidor(int codServidor) {
+        this.codServidor = codServidor;
     }
 
-    public Secretaria getSecretaria() {
-        return secretaria;
+    public int getCodSecretaria() {
+        return codSecretaria;
     }
 
-    public void setSecretaria(Secretaria secretaria) {
-        this.secretaria = secretaria;
+    public void setCodSecretaria(int codSecretaria) {
+        this.codSecretaria = codSecretaria;
     }
 
     public String getNome() {
@@ -237,12 +239,12 @@ public class Proposto {
         this.cep = cep;
     }
 
-    public String getTitulacaomaxima() {
-        return titulacaomaxima;
+    public String getTitulacaoMaxima() {
+        return titulacaoMaxima;
     }
 
-    public void setTitulacaomaxima(String titulacaomaxima) {
-        this.titulacaomaxima = titulacaomaxima;
+    public void setTitulacaoMaxima(String titulacaoMaxima) {
+        this.titulacaoMaxima = titulacaoMaxima;
     }
 
     public String getBanco() {

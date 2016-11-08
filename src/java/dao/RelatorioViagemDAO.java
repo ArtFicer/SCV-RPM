@@ -13,7 +13,7 @@ public class RelatorioViagemDAO {
 
     //obter
     //obter listas
-    public static List<RelatorioViagem> obterEscreverRelatorio() throws ClassNotFoundException {
+    public static List<RelatorioViagem> obterRelatorioViagem() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<RelatorioViagem> escreverRelatorios = new ArrayList<RelatorioViagem>();
