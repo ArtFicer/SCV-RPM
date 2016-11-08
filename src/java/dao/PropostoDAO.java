@@ -24,7 +24,7 @@ public class PropostoDAO {
             while (rs.next()) {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
-                        rs.getInt("codCalendarioProposto"),
+                        rs.getInt("codCalendario"),
                         rs.getInt("codServidor"),
                         rs.getInt("codSecretaria"),
                         rs.getString("nome"),
@@ -45,7 +45,8 @@ public class PropostoDAO {
                         rs.getString("banco"),
                         rs.getInt("agencia"),
                         rs.getInt("conta"),
-                        rs.getInt("senha"),
+                        rs.getString("cargo"),
+                        rs.getString("senha"),
                         rs.getString("tipodeproposto")
                 );
                 propostos.add(proposto);
@@ -68,7 +69,7 @@ public class PropostoDAO {
             ResultSet rs = comando.executeQuery("select * from proposto where codProposto ="+codProposto);
             rs.first();
             
-            Proposto proposto = new Proposto(
+            proposto = new Proposto(
                     rs.getInt("codProposto"),
                         rs.getInt("codCalendario"),
                         rs.getInt("codServidor"),

@@ -116,7 +116,6 @@ public class TrimestreDAO {
     }
         
     //Excluir
-
     public static void excluir(Trimestre trimestre) throws SQLException, ClassNotFoundException {
        Connection conexao = null ;
         try{

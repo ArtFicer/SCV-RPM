@@ -37,7 +37,7 @@ public class Trimestre {
 
     //Excluir
     public void Excluir() throws SQLException, ClassNotFoundException {
-        TrimesteDAO.excluir(this);
+        TrimestreDAO.excluir(this);
     }
 
     //Set e Gets
