@@ -58,6 +58,11 @@ public class Curso {
     }
 
     public Proposto getProposto() {
+        /*if((this.proposto != 0)&&(this.proposto == null)){
+            try{
+                this.proposto = Proposto.obterProposto(this.codProposto);
+            }catch(ClassNotFountException ex){}
+        }*/
         return proposto;
     }
 
