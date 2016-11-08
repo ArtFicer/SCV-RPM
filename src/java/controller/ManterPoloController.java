@@ -85,10 +85,16 @@ public class ManterPoloController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        String nome = request.getParameter("txtNomePolo");
+        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        String cidade = request.getParameter("txtCidade");
+        String logradouro = request.getParameter("txtLogradouro");
+        String bairro = request.getParameter("txtBairro");
+        int numero = Integer.parseInt(request.getParameter("txtNumero"));
+        int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
+        String email = request.getParameter("txtEmail");
         try {
             //Proposto proposto = null;
-            Polo polo = new Polo(codPolo, nome);
+            Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
             polo.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
@@ -117,11 +123,17 @@ public class ManterPoloController extends HttpServlet {
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        String nome = request.getParameter("txtNomePolo");
+        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        String cidade = request.getParameter("txtCidade");
+        String logradouro = request.getParameter("txtLogradouro");
+        String bairro = request.getParameter("txtBairro");
+        int numero = Integer.parseInt(request.getParameter("txtNumero"));
+        int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
+        String email = request.getParameter("txtEmail");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
             //Proposto proposto = null;
-            Polo polo = new Polo(codPolo, nome);
+            Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
             polo.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
@@ -148,11 +160,17 @@ public class ManterPoloController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
 
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        String nome = request.getParameter("txtNomePolo");
+        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        String cidade = request.getParameter("txtCidade");
+        String logradouro = request.getParameter("txtLogradouro");
+        String bairro = request.getParameter("txtBairro");
+        int numero = Integer.parseInt(request.getParameter("txtNumero"));
+        int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
+        String email = request.getParameter("txtEmail");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
             //Proposto proposto = null;
-            Polo polo = new Polo(codPolo, nome);
+            Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
             polo.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);

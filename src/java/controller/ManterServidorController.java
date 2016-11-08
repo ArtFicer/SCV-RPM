@@ -24,7 +24,6 @@ import modelo.Servidor;
  *
  * @author pe-ri
  */
-
 @WebServlet(name = "ManterServidorController", urlPatterns = {"/ManterServidorController"})
 public class ManterServidorController extends HttpServlet {
 
@@ -37,9 +36,6 @@ public class ManterServidorController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
-    
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
@@ -69,7 +65,6 @@ public class ManterServidorController extends HttpServlet {
         }
     }
 
-    
     // Inclusão
     // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
@@ -81,14 +76,16 @@ public class ManterServidorController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-    
+
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        String nome = request.getParameter("txtNomeServidor");
+        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSIAPE")));
+        String lotadoOrgao = request.getParameter("txtLotadoOrgao");
+
         try {
             //Proposto proposto = null;
-            Servidor servidor = new Servidor(codServidor, nome);
+            Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
             servidor.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
             view.forward(request, response);
@@ -96,8 +93,6 @@ public class ManterServidorController extends HttpServlet {
         }
     }
 
-    
-    
     //Edição
     //Preparar a edição
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
@@ -112,16 +107,16 @@ public class ManterServidorController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-    
-    
+
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        String nome = request.getParameter("txtNomeServidor");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSIAPE")));
+        String lotadoOrgao = request.getParameter("txtLotadoOrgao");
+
         try {
             //Proposto proposto = null;
-            Servidor servidor = new Servidor(codServidor, nome);
+            Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
             servidor.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
             view.forward(request, response);
@@ -129,7 +124,6 @@ public class ManterServidorController extends HttpServlet {
         }
     }
 
-    
     //Exclusão
     //Preparar Exclução
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
@@ -148,19 +142,19 @@ public class ManterServidorController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
 
         int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        String nome = request.getParameter("txtNomeServidor");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSIAPE")));
+        String lotadoOrgao = request.getParameter("txtLotadoOrgao");
+
         try {
             //Proposto proposto = null;
-            Servidor servidor = new Servidor(codServidor, nome);
+            Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
             servidor.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
-    
-    
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

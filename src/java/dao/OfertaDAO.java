@@ -35,6 +35,7 @@ public class OfertaDAO {
         }
         return ofertas;
     }
+    
     //Obter normal
     public static Oferta obterOferta(int codOferta) throws  ClassNotFoundException {
         Connection conexao = null;

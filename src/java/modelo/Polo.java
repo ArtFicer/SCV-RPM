@@ -14,8 +14,10 @@ public class Polo {
     private int numero;
     private int telefone;
     private String email;
+    
+    //codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email
+       
     // Construtores
-
     public Polo(int codPolo, int codTransporte, String cidade, String logradouro, String bairro, int numero, int telefone, String email) {
         this.codPolo = codPolo;
         this.codTransporte = codTransporte;

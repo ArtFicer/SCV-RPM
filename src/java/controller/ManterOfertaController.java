@@ -85,10 +85,10 @@ public class ManterOfertaController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        String nome = request.getParameter("txtNomeOferta");
+        int ano = Integer.parseInt(request.getParameter("txtAnoOferta"));
         try {
             //Proposto proposto = null;
-            Oferta oferta = new Oferta(codOferta, nome);
+            Oferta oferta = new Oferta(codOferta, ano);
             oferta.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
             view.forward(request, response);
@@ -117,11 +117,11 @@ public class ManterOfertaController extends HttpServlet {
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        String nome = request.getParameter("txtNomeOferta");
+        int ano = Integer.parseInt(request.getParameter("txtNomeOferta"));
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
             //Proposto proposto = null;
-            Oferta oferta = new Oferta(codOferta, nome);
+            Oferta oferta = new Oferta(codOferta, ano);
             oferta.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
             view.forward(request, response);
@@ -148,11 +148,11 @@ public class ManterOfertaController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
 
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        String nome = request.getParameter("txtNomeOferta");
+        int ano = Integer.parseInt(request.getParameter("txtNomeOferta"));
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
             //Proposto proposto = null;
-            Oferta oferta = new Oferta(codOferta, nome);
+            Oferta oferta = new Oferta(codOferta, ano);
             oferta.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
             view.forward(request, response);

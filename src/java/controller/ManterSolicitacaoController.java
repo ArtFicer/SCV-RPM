@@ -24,7 +24,6 @@ import modelo.Solicitacao;
  *
  * @author pe-ri
  */
-
 @WebServlet(name = "ManterSolicitacaoController", urlPatterns = {"/ManterSolicitacaoController"})
 public class ManterSolicitacaoController extends HttpServlet {
 
@@ -37,9 +36,6 @@ public class ManterSolicitacaoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
-    
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
@@ -69,7 +65,6 @@ public class ManterSolicitacaoController extends HttpServlet {
         }
     }
 
-    
     // Inclusão
     // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
@@ -81,14 +76,15 @@ public class ManterSolicitacaoController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-    
+
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
-        String nome = request.getParameter("txtNomeSolicitacao");
+        String assunto = request.getParameter("txtAssunto");
+        String texto = request.getParameter("txtTexto");
         try {
             //Proposto proposto = null;
-            Solicitacao solicitacao = new Solicitacao(codSolicitacao, nome);
+            Solicitacao solicitacao = new Solicitacao(codSolicitacao, assunto, texto);
             solicitacao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
             view.forward(request, response);
@@ -96,8 +92,6 @@ public class ManterSolicitacaoController extends HttpServlet {
         }
     }
 
-    
-    
     //Edição
     //Preparar a edição
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
@@ -112,16 +106,15 @@ public class ManterSolicitacaoController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-    
-    
+
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
-        String nome = request.getParameter("txtNomeSolicitacao");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        String assunto = request.getParameter("txtAssunto");
+        String texto = request.getParameter("txtTexto");
         try {
             //Proposto proposto = null;
-            Solicitacao solicitacao = new Solicitacao(codSolicitacao, nome);
+            Solicitacao solicitacao = new Solicitacao(codSolicitacao, assunto, texto);
             solicitacao.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
             view.forward(request, response);
@@ -129,7 +122,6 @@ public class ManterSolicitacaoController extends HttpServlet {
         }
     }
 
-    
     //Exclusão
     //Preparar Exclução
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
@@ -146,21 +138,19 @@ public class ManterSolicitacaoController extends HttpServlet {
 
     //Confirma a Exclusão
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
-
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
-        String nome = request.getParameter("txtNomeSolicitacao");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        String assunto = request.getParameter("txtAssunto");
+        String texto = request.getParameter("txtTexto");
         try {
             //Proposto proposto = null;
-            Solicitacao solicitacao = new Solicitacao(codSolicitacao, nome);
+            Solicitacao solicitacao = new Solicitacao(codSolicitacao, assunto, texto);
             solicitacao.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
-    
-    
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

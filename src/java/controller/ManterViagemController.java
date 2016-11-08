@@ -24,7 +24,6 @@ import modelo.Viagem;
  *
  * @author pe-ri
  */
-
 @WebServlet(name = "ManterViagemController", urlPatterns = {"/ManterViagemController"})
 public class ManterViagemController extends HttpServlet {
 
@@ -37,9 +36,6 @@ public class ManterViagemController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
-    
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
@@ -69,7 +65,6 @@ public class ManterViagemController extends HttpServlet {
         }
     }
 
-    
     // Inclusão
     // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
@@ -81,14 +76,24 @@ public class ManterViagemController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-    
+
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        String nome = request.getParameter("txtNomeViagem");
+        int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
+        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
+        int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
+        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        String destino = request.getParameter("txtDestino");
+        String dataViagem = request.getParameter("txtDataViagem");
+        int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
+        String statusConfirmacao = request.getParameter("txtStatusConfirmacao");
+        String statusConclusao = request.getParameter("txtStatusConclusao");
+        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+
         try {
             //Proposto proposto = null;
-            Viagem viagem = new Viagem(codViagem, nome);
+            Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
             viagem.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);
@@ -96,8 +101,6 @@ public class ManterViagemController extends HttpServlet {
         }
     }
 
-    
-    
     //Edição
     //Preparar a edição
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
@@ -112,16 +115,24 @@ public class ManterViagemController extends HttpServlet {
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-    
-    
+
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        String nome = request.getParameter("txtNomeViagem");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
+        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
+        int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
+        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        String destino = request.getParameter("txtDestino");
+        String dataViagem = request.getParameter("txtDataViagem");
+        int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
+        String statusConfirmacao = request.getParameter("txtStatusConfirmacao");
+        String statusConclusao = request.getParameter("txtStatusConclusao");
+        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+
         try {
             //Proposto proposto = null;
-            Viagem viagem = new Viagem(codViagem, nome);
+            Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
             viagem.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);
@@ -129,7 +140,6 @@ public class ManterViagemController extends HttpServlet {
         }
     }
 
-    
     //Exclusão
     //Preparar Exclução
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
@@ -146,21 +156,28 @@ public class ManterViagemController extends HttpServlet {
 
     //Confirma a Exclusão
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
-
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        String nome = request.getParameter("txtNomeViagem");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
+        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
+        int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
+        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        String destino = request.getParameter("txtDestino");
+        String dataViagem = request.getParameter("txtDataViagem");
+        int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
+        String statusConfirmacao = request.getParameter("txtStatusConfirmacao");
+        String statusConclusao = request.getParameter("txtStatusConclusao");
+        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+
         try {
             //Proposto proposto = null;
-            Viagem viagem = new Viagem(codViagem, nome);
+            Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
             viagem.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
-    
-    
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
