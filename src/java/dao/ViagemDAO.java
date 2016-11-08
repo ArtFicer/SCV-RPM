@@ -96,7 +96,7 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,transporte) values (?,?,?,?,?,?,?,?)";
+            String sql = "insert into viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
             comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
@@ -108,7 +108,7 @@ public class ViagemDAO {
             comando.setInt(8, viagem.getHorarioSaida());
             comando.setString(9, viagem.getStatusConfirmacao());
             comando.setString(10, viagem.getStatusConclusao());
-            comando.setString(11, viagem.getTransporte());
+            comando.setInt(11, viagem.getCodTransporte());
 //            if(viagem.getProposto()==null)
 //            {
 //                comando.setNull(3,Types.NULL);
@@ -128,7 +128,7 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,transporte) values (?,?,?,?,?,?,?,?)";
+            String sql = "update viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
             comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
@@ -140,7 +140,7 @@ public class ViagemDAO {
             comando.setInt(8, viagem.getHorarioSaida());
             comando.setString(9, viagem.getStatusConfirmacao());
             comando.setString(10, viagem.getStatusConclusao());
-            comando.setString(11, viagem.getTransporte());
+            comando.setInt(11, viagem.getCodTransporte());
             comando.execute();
             comando.close();
             conexao.close();
@@ -149,4 +149,17 @@ public class ViagemDAO {
     }
     
     //excluir
+        public static void excluir(Viagem viagem) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from viagem where codViagem = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, viagem.getCodViagem());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
 }
