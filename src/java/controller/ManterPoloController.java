@@ -7,6 +7,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Polo;
 
-
 /**
  *
  * @author pe-ri
  */
+
 @WebServlet(name = "ManterPoloController", urlPatterns = {"/ManterPoloController"})
 public class ManterPoloController extends HttpServlet {
 
@@ -32,41 +37,131 @@ public class ManterPoloController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    
+    
+    
+    //Processamento de requisição
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+        } else {
+            if (acao.equals("confirmarIncluir")) {
+                confirmarIncliuir(request, response);
+            } else {
+                if (acao.equals("prepararEditar")) {
+                    prepararEditar(request, response);
+                } else {
+                    if (acao.equals("confirmarEditar")) {
+                        confirmarEditar(request, response);
+                    } else {
+                        if (acao.equals("prepararExcluir")) {
+                            prepararExcluir(request, response);
+                        } else {
+                            if (acao.equals("confirmarExcluir")) {
+                                confirmarExcluir(request, response);
+                            }
+                        }
+                    }
+                }
+            }
         }
-        
     }
+
     
+    // Inclusão
+    // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("polos", Polo.obterPolo());
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
     
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    // Realiza e confirma a Inclusão no banco de dados
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        String nome = request.getParameter("txtNomePolo");
         try {
-            request.setAttribute("operacao", "Editar");
-            request.setAttribute("polo", Polo.obterPolo());
-            int codPolo = Integer.parseInt( request.getParameter("codPolo"));
-            Polo polo = Polo.obterPolo(codPolo);
-            request.setAttribute("polo",polo);
-            RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
+            //Proposto proposto = null;
+            Polo polo = new Polo(codPolo, nome);
+            polo.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex)  {
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    
+    //Edição
+    //Preparar a edição
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //request.setAttribute("polos", Polo.obterPolo());
+            int codPolo = Integer.parseInt(request.getParameter("codPolo"));
+            Polo polo = Polo.obterPolo(codPolo);
+            request.setAttribute("polo", polo);
+            RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    
+    //Confrimar a edição
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        String nome = request.getParameter("txtNomePolo");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Polo polo = new Polo(codPolo, nome);
+            polo.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+
+    
+    //Exclusão
+    //Preparar Exclução
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int codPolo = Integer.parseInt(request.getParameter("codPolo"));
+            Polo polo = Polo.obterPolo(codPolo);
+            request.setAttribute("polo", polo);
+            RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    //Confirma a Exclusão
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        String nome = request.getParameter("txtNomePolo");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Polo polo = new Polo(codPolo, nome);
+            polo.Excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
+    
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -78,7 +173,11 @@ public class ManterPoloController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterPoloController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -92,7 +191,11 @@ public class ManterPoloController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterPoloController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -104,5 +207,4 @@ public class ManterPoloController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

@@ -70,7 +70,6 @@ public class ManterCursoController extends HttpServlet {
     }
 
     
-    
     // Inclusão
     // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {

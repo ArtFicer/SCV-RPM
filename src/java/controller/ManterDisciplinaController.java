@@ -34,43 +34,57 @@ public class ManterDisciplinaController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+        //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+        } else {
+            if (acao.equals("confirmarIncluir")) {
+                confirmarIncliuir(request, response);
+            } else {
+                if (acao.equals("prepararEditar")) {
+                    prepararEditar(request, response);
+                } else {
+                    if (acao.equals("confirmarEditar")) {
+                        confirmarEditar(request, response);
+                    } else {
+                        if (acao.equals("prepararExcluir")) {
+                            prepararExcluir(request, response);
+                        } else {
+                            if (acao.equals("confirmarExcluir")) {
+                                confirmarExcluir(request, response);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
+
+
+    // Inclusão
+    // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("disciplinas", Disciplina.obterDisciplina());
             RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
-
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            request.setAttribute("operacao", "Editar");
-            request.setAttribute("disciplina", Disciplina.obterDisciplina());
-            int codDisciplina = Integer.parseInt( request.getParameter("codDisciplina"));
-            Disciplina disciplina = Disciplina.obterDisciplina(codDisciplina);
-            request.setAttribute("disciplina",disciplina);
-            RequestDispatcher view = request.getRequestDispatcher("/manterDisciplinao.jsp");
-            view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex)  {
-        }
-    }
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    
+    // Realiza e confirma a Inclusão no banco de dados
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
+            //Proposto proposto = null;
             Disciplina disciplina = new Disciplina(codDisciplina, nome);
             disciplina.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
@@ -78,6 +92,71 @@ public class ManterDisciplinaController extends HttpServlet {
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
+
+    
+    
+    //Edição
+    //Preparar a edição
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //request.setAttribute("disciplinas", Disciplina.obterDisciplina());
+            int codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
+            Disciplina disciplina = Disciplina.obterDisciplina(codDisciplina);
+            request.setAttribute("disciplina", disciplina);
+            RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    
+    //Confrimar a edição
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
+        String nome = request.getParameter("txtNomeDisciplina");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Disciplina disciplina = new Disciplina(codDisciplina, nome);
+            disciplina.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+
+    
+    //Exclusão
+    //Preparar Exclução
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
+            Disciplina disciplina = Disciplina.obterDisciplina(codDisciplina);
+            request.setAttribute("disciplina", disciplina);
+            RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    //Confirma a Exclusão
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+        int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
+        String nome = request.getParameter("txtNomeDisciplina");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Disciplina disciplina = new Disciplina(codDisciplina, nome);
+            disciplina.Excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
