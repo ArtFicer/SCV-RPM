@@ -44,7 +44,7 @@ public class ManterSolicitacaoController extends HttpServlet {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -70,7 +70,7 @@ public class ManterSolicitacaoController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("solicitacaos", Solicitacao.obterSolicitacao());
+            request.setAttribute("solicitacoes", Solicitacao.obterSolicitacao());
             RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacao.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
@@ -78,7 +78,7 @@ public class ManterSolicitacaoController extends HttpServlet {
     }
 
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
         String assunto = request.getParameter("txtAssunto");
         String texto = request.getParameter("txtTexto");

@@ -20,15 +20,15 @@
             <table>
                 <tr>
                     <td>Código da Solicitaçao:</td> 
-                    <td><input type="text" name="txtCodSolicitacoes" value="${solicitacoes.codSolicitacoes}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtCodSolicitacoes" value="${solicitacao.codSolicitacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Assunto:</td> 
-                    <td><input type="text" name="txtAssunto" value="${solicitacoes.assunto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtAssunto" value="${solicitacao.assunto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Texto:</td> 
-                    <td><input type="text" name="txtTexto" value="${solicitacoes.texto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtTexto" value="${solicitacao.texto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
