@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,15 +18,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
-import modelo.Oferta;
-import modelo.Disciplina;
 import modelo.Oferta;
 
 /**
  *
  * @author pe-ri
  */
+
 @WebServlet(name = "ManterOfertaController", urlPatterns = {"/ManterOfertaController"})
 public class ManterOfertaController extends HttpServlet {
 
@@ -37,46 +37,58 @@ public class ManterOfertaController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+    
+    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+        } else {
+            if (acao.equals("confirmarIncluir")) {
+                confirmarIncliuir(request, response);
+            } else {
+                if (acao.equals("prepararEditar")) {
+                    prepararEditar(request, response);
+                } else {
+                    if (acao.equals("confirmarEditar")) {
+                        confirmarEditar(request, response);
+                    } else {
+                        if (acao.equals("prepararExcluir")) {
+                            prepararExcluir(request, response);
+                        } else {
+                            if (acao.equals("confirmarExcluir")) {
+                                confirmarExcluir(request, response);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
+    
+    // Inclusão
+    // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("ofertas", Oferta.obterOferta());
             RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
     
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            request.setAttribute("operacao", "Editar");
-            request.setAttribute("oferta", Oferta.obterOferta());
-            int codOferta = Integer.parseInt( request.getParameter("codOferta"));
-            Oferta oferta = Oferta.obterOferta(codOferta);
-            request.setAttribute("oferta",oferta);
-            RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
-            view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex)  {
-        }
-    }
-    
-    
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    // Realiza e confirma a Inclusão no banco de dados
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int codAno = Integer.parseInt(request.getParameter("txtAno"));
-        
+        String nome = request.getParameter("txtNomeOferta");
         try {
-            Oferta oferta = new Oferta(codAno, codOferta);
+            //Proposto proposto = null;
+            Oferta oferta = new Oferta(codOferta, nome);
             oferta.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
             view.forward(request, response);
@@ -84,17 +96,82 @@ public class ManterOfertaController extends HttpServlet {
         }
     }
 
+    
+    
+    //Edição
+    //Preparar a edição
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //request.setAttribute("ofertas", Oferta.obterOferta());
+            int codOferta = Integer.parseInt(request.getParameter("codOferta"));
+            Oferta oferta = Oferta.obterOferta(codOferta);
+            request.setAttribute("oferta", oferta);
+            RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    
+    //Confrimar a edição
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
+        String nome = request.getParameter("txtNomeOferta");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Oferta oferta = new Oferta(codOferta, nome);
+            oferta.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+
+    
+    //Exclusão
+    //Preparar Exclução
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int codOferta = Integer.parseInt(request.getParameter("codOferta"));
+            Oferta oferta = Oferta.obterOferta(codOferta);
+            request.setAttribute("oferta", oferta);
+            RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    //Confirma a Exclusão
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+        int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
+        String nome = request.getParameter("txtNomeOferta");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Oferta oferta = new Oferta(codOferta, nome);
+            oferta.Excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
+    
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -112,7 +189,7 @@ public class ManterOfertaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -127,8 +204,7 @@ public class ManterOfertaController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

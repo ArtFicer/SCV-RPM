@@ -7,7 +7,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +24,7 @@ import modelo.Servidor;
  *
  * @author pe-ri
  */
+
 @WebServlet(name = "ManterServidorController", urlPatterns = {"/ManterServidorController"})
 public class ManterServidorController extends HttpServlet {
 
@@ -32,45 +37,58 @@ public class ManterServidorController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+    
+    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+        } else {
+            if (acao.equals("confirmarIncluir")) {
+                confirmarIncliuir(request, response);
+            } else {
+                if (acao.equals("prepararEditar")) {
+                    prepararEditar(request, response);
+                } else {
+                    if (acao.equals("confirmarEditar")) {
+                        confirmarEditar(request, response);
+                    } else {
+                        if (acao.equals("prepararExcluir")) {
+                            prepararExcluir(request, response);
+                        } else {
+                            if (acao.equals("confirmarExcluir")) {
+                                confirmarExcluir(request, response);
+                            }
+                        }
+                    }
+                }
+            }
         }
-        
     }
+
     
+    // Inclusão
+    // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("servidores", Servidor.obterServidor());
+            request.setAttribute("servidors", Servidor.obterServidor());
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
     
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    // Realiza e confirma a Inclusão no banco de dados
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
+        String nome = request.getParameter("txtNomeServidor");
         try {
-            request.setAttribute("operacao", "Editar");
-            request.setAttribute("servidor", Servidor.obterServidor());
-            int codServidor = Integer.parseInt( request.getParameter("codServidor"));
-            Servidor servidor = Servidor.obterServidor(codServidor);
-            request.setAttribute("servidor",servidor);
-            RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
-            view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex)  {
-        }
-    }
-    
-       private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int codServidor = Integer.parseInt(request.getParameter("txtcodServidor"));
-        int matriculaSIAPE = Integer.parseInt(request.getParameter("txtmatricculaSIAPE"));
-        String lotadoOrgao  = request.getParameter("txtlotadoOrgao");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
-        try {
-            Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
+            //Proposto proposto = null;
+            Servidor servidor = new Servidor(codServidor, nome);
             servidor.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
             view.forward(request, response);
@@ -78,8 +96,72 @@ public class ManterServidorController extends HttpServlet {
         }
     }
 
+    
+    
+    //Edição
+    //Preparar a edição
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //request.setAttribute("servidors", Servidor.obterServidor());
+            int codServidor = Integer.parseInt(request.getParameter("codServidor"));
+            Servidor servidor = Servidor.obterServidor(codServidor);
+            request.setAttribute("servidor", servidor);
+            RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    
+    //Confrimar a edição
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
+        String nome = request.getParameter("txtNomeServidor");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Servidor servidor = new Servidor(codServidor, nome);
+            servidor.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    //Exclusão
+    //Preparar Exclução
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int codServidor = Integer.parseInt(request.getParameter("codServidor"));
+            Servidor servidor = Servidor.obterServidor(codServidor);
+            request.setAttribute("servidor", servidor);
+            RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    //Confirma a Exclusão
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+        int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
+        String nome = request.getParameter("txtNomeServidor");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Servidor servidor = new Servidor(codServidor, nome);
+            servidor.Excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
+    
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -91,7 +173,11 @@ public class ManterServidorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterServidorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -105,7 +191,11 @@ public class ManterServidorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterServidorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -117,5 +207,4 @@ public class ManterServidorController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

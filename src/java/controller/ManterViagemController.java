@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ import modelo.Viagem;
  *
  * @author pe-ri
  */
+
 @WebServlet(name = "ManterViagemController", urlPatterns = {"/ManterViagemController"})
 public class ManterViagemController extends HttpServlet {
 
@@ -34,66 +37,141 @@ public class ManterViagemController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+    
+    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+        } else {
+            if (acao.equals("confirmarIncluir")) {
+                confirmarIncliuir(request, response);
+            } else {
+                if (acao.equals("prepararEditar")) {
+                    prepararEditar(request, response);
+                } else {
+                    if (acao.equals("confirmarEditar")) {
+                        confirmarEditar(request, response);
+                    } else {
+                        if (acao.equals("prepararExcluir")) {
+                            prepararExcluir(request, response);
+                        } else {
+                            if (acao.equals("confirmarExcluir")) {
+                                confirmarExcluir(request, response);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response){
+    
+    // Inclusão
+    // Prepara a Inclusão no banco de dados
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            //request.setAttribute("viagens", Viagem.obterViagem());
-            RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
+            request.setAttribute("viagems", Viagem.obterViagem());
+            RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
     
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    // Realiza e confirma a Inclusão no banco de dados
+    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+        int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
+        String nome = request.getParameter("txtNomeViagem");
         try {
-            request.setAttribute("operacao", "Editar");
-            request.setAttribute("viagem", Viagem.obterViagem());
-            int codViagem = Integer.parseInt( request.getParameter("codViagem"));
-            Viagem viagem = Viagem.obterViagem(codViagem);
-            request.setAttribute("viagem",viagem);
-            RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
-            view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex)  {
-        }
-    }
-
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int codViagem = Integer.parseInt(request.getParameter("txtcodViagem"));
-        int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
-        int data = Integer.parseInt(request.getParameter("txtData"));
-        String statusConclusao  = request.getParameter("txtStatusConclusao");
-        String statusConfirmacao  = request.getParameter("txtStatusConfirmacao");
-        String destino  = request.getParameter("txtDestino");
-        
-        try {
-            Viagem viagem = new Viagem(destino,statusConfirmacao,statusConclusao,data,horarioSaida,codViagem);
+            //Proposto proposto = null;
+            Viagem viagem = new Viagem(codViagem, nome);
             viagem.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
         }
     }
+
+    
+    
+    //Edição
+    //Preparar a edição
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //request.setAttribute("viagems", Viagem.obterViagem());
+            int codViagem = Integer.parseInt(request.getParameter("codViagem"));
+            Viagem viagem = Viagem.obterViagem(codViagem);
+            request.setAttribute("viagem", viagem);
+            RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+    
+    
+    //Confrimar a edição
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
+        String nome = request.getParameter("txtNomeViagem");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Viagem viagem = new Viagem(codViagem, nome);
+            viagem.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+
+    
+    //Exclusão
+    //Preparar Exclução
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int codViagem = Integer.parseInt(request.getParameter("codViagem"));
+            Viagem viagem = Viagem.obterViagem(codViagem);
+            request.setAttribute("viagem", viagem);
+            RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    //Confirma a Exclusão
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+        int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
+        String nome = request.getParameter("txtNomeViagem");
+        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
+        try {
+            //Proposto proposto = null;
+            Viagem viagem = new Viagem(codViagem, nome);
+            viagem.Excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
+            view.forward(request, response);
+        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        }
+    }
+    
     
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -111,7 +189,7 @@ public class ManterViagemController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -126,8 +204,7 @@ public class ManterViagemController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
