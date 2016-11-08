@@ -109,4 +109,17 @@ public class HistoricoDAO {
     }
 
     //Excluir
+             public static void excluir(Historico historico) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from historico where codHistorico = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, historico.getCodHistorico());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
 }

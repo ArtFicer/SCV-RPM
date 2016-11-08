@@ -113,4 +113,17 @@ public class OfertaDAO {
     }
     
     //Excluir
+     public static void excluir(Oferta oferta) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from oferta where codOferta = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, oferta.getCodOferta());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
 }

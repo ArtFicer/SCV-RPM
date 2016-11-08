@@ -113,4 +113,17 @@ public class DisciplinaDAO {
     }
     
     //Excluir
+     public static void excluir(Disciplina disciplina) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from disciplina where codDisciplina = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, disciplina.getCodDisciplina());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
 }

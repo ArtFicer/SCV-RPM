@@ -113,4 +113,17 @@ public class DeclaracaoNotaTecnicaDAO {
     }
     
     //Excluir
+     public static void excluir(DeclaracaoNotaTecnica declaracaoNotaTecnica) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from declaracaoNotaTecnica where codDeclaracaoNotaTecnica = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
 }
