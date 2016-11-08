@@ -111,4 +111,19 @@ public class RelatorioViagemDAO {
     }
     
     //Excluir
+        public static void excluir(RelatorioViagem relatorioViagem) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from curso where codRelatorioViagem = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
 }
+    
+}
+

@@ -54,7 +54,7 @@ public class PoloDAO {
             
             polo = new Polo(
                     rs.getInt("codPolo"),
-                    rs.getInt("codTransporte"),
+                    rs.getString("transporte"),
                     rs.getString("cidade"),
                     rs.getString("logradouro"),
                     rs.getString("bairro"),
@@ -135,17 +135,4 @@ public class PoloDAO {
         }
     }
     //Excluir
-        public static void excluir(Polo polo) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from polo where codPolo = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, polo.getCodPolo());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-        }
-}
 }

@@ -126,5 +126,20 @@ public class SecretariaDAO {
     }
     
     //excluir
-
+        public static void excluir(Secretaria secretaria) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from curso where codSecretaria = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, secretaria.getCodSecretaria());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
 }
+    
+}
+
+

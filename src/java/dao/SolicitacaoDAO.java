@@ -119,4 +119,18 @@ public class SolicitacaoDAO {
     
     //excluir
 
+    public static void excluir(Solicitacao solicitacao) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from curso where codSolicitacoes = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, solicitacao.getCodSolicitacao());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
+    
 }

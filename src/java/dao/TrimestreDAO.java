@@ -116,4 +116,19 @@ public class TrimestreDAO {
     }
         
     //Excluir
+
+    public static void excluir(Trimestre trimestre) throws SQLException, ClassNotFoundException {
+       Connection conexao = null ;
+        try{
+            conexao = BD.getConexao();
+            String sql = "delete from curso where codTrimestre = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, trimestre.getCodTrimestre());
+            comando.execute();
+            comando.close();
+            conexao.close();
+            }catch (SQLException | ClassNotFoundException ex) {
+        }
+}
+    
 }
