@@ -49,7 +49,7 @@
         <table>
 
             <tr>
-            <h1>Menu Temporário Pesquisar</h1>
+            <h1 >Menu Temporário</h1>
             </tr>
 
             <tr>
