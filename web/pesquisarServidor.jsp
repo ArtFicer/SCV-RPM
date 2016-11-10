@@ -24,11 +24,11 @@
             </tr>
             <c:forEach items="${servidores}" var="servidor">
                 <tr>
-                    <td><c:out value="${servidore.codServidor}" /></td>
-                    <td><c:out value="${servidore.matriculaSIAP}"/></td>
-                    <td><c:out value="${servidore.LotadoOrgao}"/></td>
-                    <td><a href="ManterServidorContoller?acao=prepararEditar&codServidor=<c:out value="${servidore.codServidor}"/>">Editar</a> </td>
-                    <td><a href="ManterServidorContoller?acao=prepararExcluir&codServidor=<c:out value="${servidore.codServidor}"/>">Excluir</a> </td>
+                    <td><c:out value="${servidor.codServidor}" /></td>
+                    <td><c:out value="${servidor.matriculaSIAPE}"/></td>
+                    <td><c:out value="${servidor.lotadoOrgao}"/></td>
+                    <td><a href="ManterServidorContoller?acao=prepararEditar&codServidor=<c:out value="${servidor.codServidor}"/>">Editar</a> </td>
+                    <td><a href="ManterServidorContoller?acao=prepararExcluir&codServidor=<c:out value="${servidor.codServidor}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

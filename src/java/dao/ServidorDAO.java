@@ -13,19 +13,19 @@ public class ServidorDAO {
 
     //obter
     //obter listas
-    public static List<Servidor> obterServidor() throws ClassNotFoundException {
+    public static List<Servidor> obterServidores() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Servidor> servidores = new ArrayList<Servidor>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from servidor");
+            ResultSet rs = comando.executeQuery("select * from servidor");
             while (rs.next()) {
                 Servidor servidor = new Servidor(
                         rs.getInt("codServidor"),
-                        rs.getInt("matriculaSIAPE"),
-                        rs.getString("lotadoOrgao")
+                        rs.getInt("matricula_SIAPE"),
+                        rs.getString("lotado_Orgao")
                         
                 );
                 servidores.add(servidor);
@@ -81,7 +81,7 @@ public class ServidorDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into servidor (codServidor, Matricula_SIAPE,lotado_Orgao) values (?,?,?)";
+            String sql = "insert into servidor (codServidor, matricula_SIAPE,lotado_Orgao) values (?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, servidor.getCodServidor());
             comando.setInt(2, servidor.getMatriculaSIAPE());

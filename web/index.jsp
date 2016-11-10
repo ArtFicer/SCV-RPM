@@ -78,19 +78,6 @@
 
             <tr>
                 <td>
-                    <a href="PesquisaOfertaController">Oferta</a>
-                </td>
-                <td> 
-                    <a href="pesquisarCadastroRapido.jsp">CadastroRapido</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaDisciplinaController">Disciplina</a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
                     <a href="PesquisaViagemController">Viagem</a>
                 </td>
 
@@ -101,16 +88,17 @@
                 <td>
                     <a href="PesquisaServidorController">Servidor</a>
                 </td>
-            </tr>
-
             <tr>
                 <td>
-                    <a href="PesquisaCursoController">Pesquisar</a>
+                    <a href="PesquisaOfertaController">Oferta</a>
                 </td>
+
                 <td>
-                    <a href="perfil.jsp">Perfil</a>
+                    <a href="PesquisaDisciplinaController">Disciplina</a>
                 </td>
             </tr>
+
+           
         </table>
 
     </body>

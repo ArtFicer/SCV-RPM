@@ -38,13 +38,13 @@ public class ManterServidorController extends HttpServlet {
      */
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -70,7 +70,7 @@ public class ManterServidorController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("servidors", Servidor.obterServidor());
+            request.setAttribute("servidores", Servidor.obterServidores());
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
@@ -78,9 +78,9 @@ public class ManterServidorController extends HttpServlet {
     }
 
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSIAPE")));
+        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSiape")));
         String lotadoOrgao = request.getParameter("txtLotadoOrgao");
 
         try {
@@ -90,6 +90,7 @@ public class ManterServidorController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
@@ -171,6 +172,8 @@ public class ManterServidorController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterServidorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterServidorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -188,6 +191,8 @@ public class ManterServidorController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterServidorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterServidorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
