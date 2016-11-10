@@ -18,25 +18,25 @@
         <table border=1>
             <tr>
                 <th>Codigo:</th>
+                <th>Transporte:</th>
                 <th>Cidade:</th>
                 <th>Logradouro:</th>
                 <th>Bairo:</th>
-                <th>Telefone:</th>
-                <th>Email:</th>
                 <th>Numero:</th>
-                <th>Modelo:</th>
+                <th>Telefone:</th>
+                <th>Email:</th>         
                 <th colspan=2>Ação:</th>
             </tr>
             <c:forEach items="${polos}" var="polo">
                 <tr>
                     <td><c:out value="${polo.codPolo}" /></td>
+                    <td><c:out value="${polo.codTransporte}" /></td>
                     <td><c:out value="${polo.cidade}" /></td>
                     <td><c:out value="${polo.logradouro}" /></td>
                     <td><c:out value="${polo.bairro}" /></td>
+                    <td><c:out value="${polo.numero}" /></td>
                     <td><c:out value="${polo.telefone}" /></td>
                     <td><c:out value="${polo.email}" /></td>
-                    <td><c:out value="${polo.numero}" /></td>
-                    <td><c:out value="${polo.modelo}" /></td>
                     <td><a href="ManterPoloController?acao=prepararEditar&txtCodPolo=<c:out value="${polo.codPolo}"/>">Editar</a> </td>
                     <td><a href="ManterPoloController?acao=prepararExcluir&txtCodPolo=<c:out value="${polo.codPolo}"/>">Excluir</a> </td>
                 </tr>
