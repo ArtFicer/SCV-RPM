@@ -25,8 +25,8 @@
                 <tr>
                     <td><c:out value="${relatorio.codEscreverRelatorio}" /></td>
                     <td><c:out value="${relatorio.relatorio}"/></td>
-                    <td><a href="ManterRelatorioViagemContoller?acao=prepararEditar&codRelatorioViagem=<c:out value="${relatorio.codEscreverRelatorio}"/>">Editar</a> </td>
-                    <td><a href="ManterRelatorioViagemContoller?acao=prepararExcluir&codRelatorioViagem=<c:out value="${relatorio.codEscreverRelatorio}"/>">Excluir</a> </td>
+                    <td><a href="ManterRelatorioViagemController?acao=prepararEditar&txtCodRelatorioViagem=<c:out value="${relatorio.codEscreverRelatorio}"/>">Editar</a> </td>
+                    <td><a href="ManterRelatorioViagemController?acao=prepararExcluir&txtCodRelatorioViagem=<c:out value="${relatorio.codEscreverRelatorio}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

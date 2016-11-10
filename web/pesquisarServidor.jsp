@@ -27,8 +27,8 @@
                     <td><c:out value="${servidor.codServidor}" /></td>
                     <td><c:out value="${servidor.matriculaSIAPE}"/></td>
                     <td><c:out value="${servidor.lotadoOrgao}"/></td>
-                    <td><a href="ManterServidorContoller?acao=prepararEditar&codServidor=<c:out value="${servidor.codServidor}"/>">Editar</a> </td>
-                    <td><a href="ManterServidorContoller?acao=prepararExcluir&codServidor=<c:out value="${servidor.codServidor}"/>">Excluir</a> </td>
+                    <td><a href="ManterServidorController?acao=prepararEditar&txtCodServidor=<c:out value="${servidor.codServidor}"/>">Editar</a> </td>
+                    <td><a href="ManterServidorController?acao=prepararExcluir&txtCodServidor=<c:out value="${servidor.codServidor}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

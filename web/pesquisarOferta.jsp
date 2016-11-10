@@ -25,8 +25,8 @@
                 <tr>
                     <td><c:out value="${oferta.codOferta}" /></td>
                     <td><c:out value="${oferta.ano}"/></td>
-                    <td><a href="ManterOfertaContoller?acao=prepararEditar&codOferta=<c:out value="${oferta.codOferta}"/>">Editar</a> </td>
-                    <td><a href="ManterOfertaContoller?acao=prepararExcluir&codOferta=<c:out value="${oferta.codOferta}"/>">Excluir</a> </td>
+                    <td><a href="ManterOfertaController?acao=prepararEditar&txtCodOferta=<c:out value="${oferta.codOferta}"/>">Editar</a> </td>
+                    <td><a href="ManterOfertaController?acao=prepararExcluir&txtCodOferta=<c:out value="${oferta.codOferta}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

@@ -25,8 +25,8 @@
                 <tr>
                     <td><c:out value="${curso.codCurso}" /></td>
                     <td><c:out value="${curso.nome}"/></td>
-                    <td><a href="ManterCursoController?acao=prepararEditar&codCurso=<c:out value="${curso.codCurso}"/>">Editar</a> </td>
-                    <td><a href="ManterCursoController?acao=prepararExcluir&codCurso=<c:out value="${curso.codCurso}"/>">Excluir</a> </td>
+                    <td><a href="ManterCursoController?acao=prepararEditar&txtCodCurso=<c:out value="${curso.codCurso}"/>">Editar</a> </td>
+                    <td><a href="ManterCursoController?acao=prepararExcluir&txtCodCurso=<c:out value="${curso.codCurso}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
