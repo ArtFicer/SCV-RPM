@@ -20,7 +20,7 @@ public class DeclaracaoNotaTecnicaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from declaracaoNotaTecnica");
+            ResultSet rs = comando.executeQuery("select * from declaracaonotatecnica");
             while (rs.next()) {
                 DeclaracaoNotaTecnica declaracaoNotaTecnica = new DeclaracaoNotaTecnica(
                         rs.getInt("codDeclaracaoNotaTecnica"),
@@ -44,7 +44,7 @@ public class DeclaracaoNotaTecnicaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from declaracaoNotaTecnica where codDeclaracaoNotaTecnica ="+codDeclaracaoNotaTecnica);
+            ResultSet rs = comando.executeQuery("select * from declaracaonotatecnica where codDeclaracaoNotaTecnica ="+codDeclaracaoNotaTecnica);
             rs.first();
             
             declaracaoNotaTecnica = new DeclaracaoNotaTecnica(
@@ -78,7 +78,7 @@ public class DeclaracaoNotaTecnicaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
+            String sql = "insert into declaracaonotatecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
             comando.setString(2, declaracaoNotaTecnica.getRedigir());
@@ -101,7 +101,7 @@ public class DeclaracaoNotaTecnicaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update declaracaoNotaTecnica (codDeclaracaoNotaTecnica, redigir) values (?,?)";
+            String sql = "update declaracaonotatecnica set codDeclaracaoNotaTecnica=?, redigir=? where codDeclaracaoNotaTecnica = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
             comando.setString(2, declaracaoNotaTecnica.getRedigir());
@@ -117,7 +117,7 @@ public class DeclaracaoNotaTecnicaDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from declaracaoNotaTecnica where codDeclaracaoNotaTecnica = ?";
+            String sql = "delete from declaracaonotatecnica where codDeclaracaoNotaTecnica = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
             comando.execute();

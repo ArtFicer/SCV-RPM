@@ -20,12 +20,12 @@ public class ConvidadoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from convidado");
+            ResultSet rs = comando.executeQuery("select * from convidado");
             while (rs.next()) {
                 Convidado convidado = new Convidado(
                         rs.getInt("codConvidado"),
                         rs.getInt("codProposto"),
-                        rs.getInt("matriculaSIAPE")
+                        rs.getInt("matricula_SIAPE")
                 );
                 convidados.add(convidado);
             }
@@ -80,7 +80,7 @@ public class ConvidadoDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "insert into convidado (codConvidado, proposto_codProposto, matricula_SIAPE) values (?,?,?)";
+            String sql = "insert into convidado (codConvidado, codProposto, matricula_SIAPE) values (?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, convidado.getCodConvidado());
             comando.setInt(2, convidado.getCodProposto());

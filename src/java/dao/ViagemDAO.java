@@ -20,7 +20,7 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from viagem");
+            ResultSet rs = comando.executeQuery("select * from viagem");
             while (rs.next()) {
                 Viagem viagem = new Viagem(
                         rs.getInt("codViagem"),
@@ -128,7 +128,7 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?)";
+            String sql = "update viagem set codViagem = ?, codDeclaracaoNotaTecnica = ?,codRelatorioViagem = ?,codProposto = ?,codPolo = ?,destino = ?,data_viagem = ?,horario_saida = ?,status_confirmacao = ?,status_conclusao = ?,codTransporte = ? where codViagem = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
             comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());

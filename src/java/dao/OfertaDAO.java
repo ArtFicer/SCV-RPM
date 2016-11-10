@@ -20,7 +20,7 @@ public class OfertaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from oferta");
+            ResultSet rs = comando.executeQuery("select * from oferta");
             while (rs.next()) {
                 Oferta oferta = new Oferta(
                         rs.getInt("codOferta"),
@@ -102,7 +102,7 @@ public class OfertaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update oferta oferta (codOferta, ano) values (?,?)";
+            String sql = "update oferta set codOferta = ?, ano = ? where codOferta = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, oferta.getCodOferta());
             comando.setInt(2, oferta.getAno());

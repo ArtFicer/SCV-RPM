@@ -111,7 +111,7 @@ public class SecretariaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update ssecretaria (codSecretaria, nome,cpf,email,senha) values (?,?,?,?,?)";
+            String sql = "update ssecretaria set codSecretaria = ?, nome = ?,cpf = ?,email = ?,senha = ? where codSecretaria = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, secretaria.getCodSecretaria());
             comando.setString(2, secretaria.getNome());

@@ -20,7 +20,7 @@ public class PropostoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from proposto");
+            ResultSet rs = comando.executeQuery("select * from proposto");
             while (rs.next()) {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
@@ -169,7 +169,7 @@ public class PropostoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update proposto  proposto (codProposto, codCalendarioProposto,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "update proposto  set codProposto = ?, codCalendarioProposto = ?,codServidor = ?,codSecretaria = ?,nome = ?,setor = ?,cpf = ?,data_nascimento = ?,email = ?,telefone = ?,celular = ?,logradouro = ?,numero = ?,complemento = ?,bairro = ?,cidade = ?,uf = ?,cep = ?,titulacao_maxima = ?,banco = ?,agencia = ?,conta = ?,cargo = ?,senha = ?,tipo_proposto = ? where codProposto = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.setInt(2, proposto.getCodCalendario());

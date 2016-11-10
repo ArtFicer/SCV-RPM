@@ -20,7 +20,7 @@ public class HistoricoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from historico");
+            ResultSet rs = comando.executeQuery("select * from historico");
             while (rs.next()) {
                 Historico historico = new Historico(rs.getInt("codHistorico")
                 );
@@ -98,7 +98,7 @@ public class HistoricoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update historico (codHistorico) values (?)";
+            String sql = "update historico set codHistorico = ? where codDisciplina = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, historico.getCodHistorico());
             comando.execute();

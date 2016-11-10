@@ -20,7 +20,7 @@ public class PoloDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from polo");
+            ResultSet rs = comando.executeQuery("select * from polo");
             while (rs.next()) {
                 Polo polo = new Polo(
                         rs.getInt("codPolo"),
@@ -118,7 +118,7 @@ public class PoloDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update polo (codPolo,codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
+            String sql = "update polo set codPolo = ?,codTransporte = ?, cidade = ?,logradouro = ?,bairro = ?,numero = ?,telefone = ?,email = ? where codPolo = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, polo.getCodPolo());
             comando.setInt(2, polo.getCodTransporte());

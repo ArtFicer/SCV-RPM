@@ -20,7 +20,7 @@ public class TrimestreDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from trimestre");
+            ResultSet rs = comando.executeQuery("select * from trimestre");
             while (rs.next()) {
                 Trimestre trimestre = new Trimestre(
                         rs.getInt("codTrimestre"),
@@ -104,7 +104,7 @@ public class TrimestreDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update trimestre (codTrimestre, numero_trimestre) values (?,?)";
+            String sql = "update trimestre set codTrimestre = ?, numero_trimestre = ? where codTrimestre = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, trimestre.getCodTrimestre());
             comando.setInt(2, trimestre.getNumeroTrimestre());

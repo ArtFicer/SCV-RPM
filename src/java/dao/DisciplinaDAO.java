@@ -20,7 +20,7 @@ public class DisciplinaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from Disciplina");
+            ResultSet rs = comando.executeQuery("select * from Disciplina");
             while (rs.next()) {
                 Disciplina disciplina = new Disciplina(
                         rs.getInt("codDisciplina"),
@@ -101,7 +101,7 @@ public class DisciplinaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update disciplina (codDisciplina, nome) values (?,?)";
+            String sql = "update disciplina set codDisciplina=?, nome=? where codDisciplina = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, disciplina.getCodDisciplina());
             comando.setString(2, disciplina.getNome());

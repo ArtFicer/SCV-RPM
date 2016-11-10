@@ -105,7 +105,7 @@ public class ServidorDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update servidor (codServidor, Matricula_SIAPE,lotado_Orgao) values (?,?,?)";
+            String sql = "update servidor set codServidor = ?, matricula_SIAPE = ?,lotado_Orgao = ? where codServidor = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, servidor.getCodServidor());
             comando.setInt(2, servidor.getMatriculaSIAPE());

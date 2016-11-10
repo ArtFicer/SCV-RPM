@@ -20,7 +20,7 @@ public class TransporteDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from transporte");
+            ResultSet rs = comando.executeQuery("select * from transporte");
             while (rs.next()) {
                 Transporte transporte = new Transporte(
                         rs.getInt("codTransporte"),
@@ -105,7 +105,7 @@ public class TransporteDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update transporte (codTransporte, empresa, veiculo) values (?,?,?)";
+            String sql = "update transporte set codTransporte = ?, empresa = ?, veiculo = ? where codTransporte = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, transporte.getCodTransporte());
             comando.setString(2, transporte.getEmpresa());

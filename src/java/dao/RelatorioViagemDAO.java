@@ -20,7 +20,7 @@ public class RelatorioViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from relatorioViagem");
+            ResultSet rs = comando.executeQuery("select * from relatorioViagem");
             while (rs.next()) {
                 RelatorioViagem escreverRelatorio = new RelatorioViagem(
                         rs.getInt("codRelatorioViagem"), rs.getString("relatorio") 
@@ -99,7 +99,7 @@ public class RelatorioViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update relatorioviagem (codRelatorioViagem, relatorio) values (?,?)";
+            String sql = "update relatorioviagem set codRelatorioViagem = ?, relatorio = ? where codRelatorioViagem = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
             comando.setString(2, relatorioViagem.getRelatorio());
