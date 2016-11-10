@@ -48,7 +48,7 @@ public class ManterPropostoController extends HttpServlet {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -83,7 +83,7 @@ public class ManterPropostoController extends HttpServlet {
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         String nome = request.getParameter("txtNomeProposto");
         try {

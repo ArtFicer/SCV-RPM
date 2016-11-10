@@ -44,7 +44,7 @@ public class ManterViagemController extends HttpServlet {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -78,7 +78,7 @@ public class ManterViagemController extends HttpServlet {
     }
 
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
         int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
         int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));

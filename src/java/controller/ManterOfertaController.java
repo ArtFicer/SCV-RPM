@@ -48,7 +48,7 @@ public class ManterOfertaController extends HttpServlet {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -83,7 +83,7 @@ public class ManterOfertaController extends HttpServlet {
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
         int ano = Integer.parseInt(request.getParameter("txtAnoOferta"));
         try {

@@ -48,7 +48,7 @@ public class ManterPoloController extends HttpServlet {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -83,7 +83,7 @@ public class ManterPoloController extends HttpServlet {
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
         int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
         String cidade = request.getParameter("txtCidade");

@@ -44,7 +44,7 @@ public class ManterDisciplinaController extends HttpServlet {
             prepararIncluir(request, response);
         } else {
             if (acao.equals("confirmarIncluir")) {
-                confirmarIncliuir(request, response);
+                confirmarIncluir(request, response);
             } else {
                 if (acao.equals("prepararEditar")) {
                     prepararEditar(request, response);
@@ -80,7 +80,7 @@ public class ManterDisciplinaController extends HttpServlet {
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncliuir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
         try {
