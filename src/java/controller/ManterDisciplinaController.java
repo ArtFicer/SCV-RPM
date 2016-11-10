@@ -85,7 +85,6 @@ public class ManterDisciplinaController extends HttpServlet {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
         try {
-            //Proposto proposto = null;
             Disciplina disciplina = new Disciplina(codDisciplina, nome);
             disciplina.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
@@ -102,8 +101,7 @@ public class ManterDisciplinaController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("disciplinas", Disciplina.obterDisciplina());
-            int codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
+            int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
             Disciplina disciplina = Disciplina.obterDisciplina(codDisciplina);
             request.setAttribute("disciplina", disciplina);
             RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
@@ -117,9 +115,7 @@ public class ManterDisciplinaController extends HttpServlet {
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Disciplina disciplina = new Disciplina(codDisciplina, nome);
             disciplina.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
@@ -135,7 +131,7 @@ public class ManterDisciplinaController extends HttpServlet {
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
+            int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
             Disciplina disciplina = Disciplina.obterDisciplina(codDisciplina);
             request.setAttribute("disciplina", disciplina);
             RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
@@ -150,9 +146,7 @@ public class ManterDisciplinaController extends HttpServlet {
 
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Disciplina disciplina = new Disciplina(codDisciplina, nome);
             disciplina.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");

@@ -67,62 +67,63 @@ public class ManterTrimestreController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("trimestres", Trimestre.obterTrimestre());
             RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException, SQLException, SQLException, ClassNotFoundException, ServletException {
         int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
         int numeroTrimestre = Integer.parseInt(request.getParameter("txtNumeroTrimestre"));
         try {
-            //Proposto proposto = null;
             Trimestre trimestre = new Trimestre(codTrimestre, numeroTrimestre);
             trimestre.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTrimestreController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("trimestres", Trimestre.obterTrimestre());
             int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
             Trimestre trimestre = Trimestre.obterTrimestre(codTrimestre);
             request.setAttribute("trimestre", trimestre);
             RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
         int numeroTrimestre = Integer.parseInt(request.getParameter("txtNumeroTrimestre"));
         try {
-            //Proposto proposto = null;
             Trimestre trimestre = new Trimestre(codTrimestre, numeroTrimestre);
             trimestre.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTrimestreController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
@@ -131,21 +132,22 @@ public class ManterTrimestreController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
         int numeroTrimestre = Integer.parseInt(request.getParameter("txtNumeroTrimestre"));
         try {
-            //Proposto proposto = null;
             Trimestre trimestre = new Trimestre(codTrimestre, numeroTrimestre);
             trimestre.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTrimestreController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 

@@ -100,7 +100,6 @@ public class ManterServidorController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("servidors", Servidor.obterServidor());
             int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
             Servidor servidor = Servidor.obterServidor(codServidor);
             request.setAttribute("servidor", servidor);
@@ -118,7 +117,6 @@ public class ManterServidorController extends HttpServlet {
         String lotadoOrgao = request.getParameter("txtLotadoOrgao");
 
         try {
-            //Proposto proposto = null;
             Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
             servidor.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");
@@ -151,7 +149,6 @@ public class ManterServidorController extends HttpServlet {
         String lotadoOrgao = request.getParameter("txtLotadoOrgao");
 
         try {
-            //Proposto proposto = null;
             Servidor servidor = new Servidor(codServidor, matriculaSIAPE, lotadoOrgao);
             servidor.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaServidorController");

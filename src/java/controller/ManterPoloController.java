@@ -94,7 +94,6 @@ public class ManterPoloController extends HttpServlet {
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         String email = request.getParameter("txtEmail");
         try {
-            //Proposto proposto = null;
             Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
             polo.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
@@ -111,7 +110,6 @@ public class ManterPoloController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("polos", Polo.obterPolo());
             int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
             Polo polo = Polo.obterPolo(codPolo);
             request.setAttribute("polo", polo);
@@ -133,7 +131,6 @@ public class ManterPoloController extends HttpServlet {
         int numero = Integer.parseInt(request.getParameter("txtNumero"));
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         String email = request.getParameter("txtEmail");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
             //Proposto proposto = null;
             Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
@@ -151,7 +148,7 @@ public class ManterPoloController extends HttpServlet {
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codPolo = Integer.parseInt(request.getParameter("codPolo"));
+            int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
             Polo polo = Polo.obterPolo(codPolo);
             request.setAttribute("polo", polo);
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
@@ -172,9 +169,7 @@ public class ManterPoloController extends HttpServlet {
         int numero = Integer.parseInt(request.getParameter("txtNumero"));
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         String email = request.getParameter("txtEmail");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
             polo.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");

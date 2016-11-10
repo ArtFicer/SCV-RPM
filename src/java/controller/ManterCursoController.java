@@ -105,8 +105,7 @@ public class ManterCursoController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("cursos", Curso.obterCurso());
-            int codCurso = Integer.parseInt(request.getParameter("codCurso"));
+            int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
             Curso curso = Curso.obterCurso(codCurso);
             request.setAttribute("curso", curso);
             RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
@@ -121,9 +120,7 @@ public class ManterCursoController extends HttpServlet {
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
         String nome = request.getParameter("txtNomeCurso");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Curso curso = new Curso(codCurso, nome);
             curso.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
@@ -139,7 +136,7 @@ public class ManterCursoController extends HttpServlet {
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codCurso = Integer.parseInt(request.getParameter("codCurso"));
+            int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
             Curso curso = Curso.obterCurso(codCurso);
             request.setAttribute("curso", curso);
             RequestDispatcher view = request.getRequestDispatcher("/manterCurso.jsp");
@@ -154,9 +151,7 @@ public class ManterCursoController extends HttpServlet {
 
         int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
         String nome = request.getParameter("txtNomeCurso");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Curso curso = new Curso(codCurso, nome);
             curso.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");

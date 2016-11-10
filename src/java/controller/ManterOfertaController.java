@@ -88,7 +88,6 @@ public class ManterOfertaController extends HttpServlet {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
         int ano = Integer.parseInt(request.getParameter("txtAnoOferta"));
         try {
-            //Proposto proposto = null;
             Oferta oferta = new Oferta(codOferta, ano);
             oferta.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
@@ -105,7 +104,6 @@ public class ManterOfertaController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("ofertas", Oferta.obterOferta());
             int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
             Oferta oferta = Oferta.obterOferta(codOferta);
             request.setAttribute("oferta", oferta);
@@ -121,9 +119,7 @@ public class ManterOfertaController extends HttpServlet {
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
         int ano = Integer.parseInt(request.getParameter("txtNomeOferta"));
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Oferta oferta = new Oferta(codOferta, ano);
             oferta.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
@@ -139,7 +135,7 @@ public class ManterOfertaController extends HttpServlet {
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codOferta = Integer.parseInt(request.getParameter("codOferta"));
+            int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
             Oferta oferta = Oferta.obterOferta(codOferta);
             request.setAttribute("oferta", oferta);
             RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
@@ -154,9 +150,7 @@ public class ManterOfertaController extends HttpServlet {
 
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
         int ano = Integer.parseInt(request.getParameter("txtNomeOferta"));
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             Oferta oferta = new Oferta(codOferta, ano);
             oferta.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");

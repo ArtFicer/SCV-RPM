@@ -88,7 +88,6 @@ public class ManterRelatorioViagemController extends HttpServlet {
         int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
         String nome = request.getParameter("txtNomeRelatorioViagem");
         try {
-            //Proposto proposto = null;
             RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, nome);
             relatorioViagem.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
@@ -105,7 +104,6 @@ public class ManterRelatorioViagemController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("relatorioViagems", RelatorioViagem.obterRelatorioViagem());
             int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
             RelatorioViagem relatorioViagem = RelatorioViagem.obterRelatorioViagem(codRelatorioViagem);
             request.setAttribute("relatorioViagem", relatorioViagem);
@@ -121,9 +119,7 @@ public class ManterRelatorioViagemController extends HttpServlet {
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
         String nome = request.getParameter("txtNomeRelatorioViagem");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, nome);
             relatorioViagem.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
@@ -154,9 +150,7 @@ public class ManterRelatorioViagemController extends HttpServlet {
 
         int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
         String nome = request.getParameter("txtNomeRelatorioViagem");
-        //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
         try {
-            //Proposto proposto = null;
             RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, nome);
             relatorioViagem.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");

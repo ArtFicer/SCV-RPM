@@ -81,7 +81,6 @@ public class ManterSolicitacaoController extends HttpServlet {
         String assunto = request.getParameter("txtAssunto");
         String texto = request.getParameter("txtTexto");
         try {
-            //Proposto proposto = null;
             Solicitacao solicitacao = new Solicitacao(codSolicitacao, assunto, texto);
             solicitacao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
@@ -126,7 +125,7 @@ public class ManterSolicitacaoController extends HttpServlet {
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codSolicitacao = Integer.parseInt(request.getParameter("codSolicitacao"));
+            int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
             Solicitacao solicitacao = Solicitacao.obterSolicitacao(codSolicitacao);
             request.setAttribute("solicitacao", solicitacao);
             RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacao.jsp");
@@ -142,7 +141,6 @@ public class ManterSolicitacaoController extends HttpServlet {
         String assunto = request.getParameter("txtAssunto");
         String texto = request.getParameter("txtTexto");
         try {
-            //Proposto proposto = null;
             Solicitacao solicitacao = new Solicitacao(codSolicitacao, assunto, texto);
             solicitacao.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
