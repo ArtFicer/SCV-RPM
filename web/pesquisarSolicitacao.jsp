@@ -12,10 +12,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pesquisa de Trimestre</title>
+        <title>Pesquisa de Solicitações</title>
     </head>
     <body>
-       <h1>Pesquisa de Trimestre</h1>
+       <h1>Pesquisa de Solicitações</h1>
         <table border=1>
             <tr>
                 <th>Codigo:</th>

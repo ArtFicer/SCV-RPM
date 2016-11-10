@@ -25,8 +25,8 @@
                 <tr>
                     <td><c:out value="${disciplina.codDisciplina}" /></td>
                     <td><c:out value="${disciplina.nome}"/></td>
-                    <td><a href="ManterDisciplinaContoller?acao=prepararEditar&codDisciplina=<c:out value="${disciplina.codDisciplina}"/>">Editar</a> </td>
-                    <td><a href="ManterDisciplinaContoller?acao=prepararExcluir&codDisciplina=<c:out value="${disciplina.codDisciplina}"/>">Excluir</a> </td>
+                    <td><a href="ManterDisciplinaController?acao=prepararEditar&txtCodDisciplina=<c:out value="${disciplina.codDisciplina}"/>">Editar</a> </td>
+                    <td><a href="ManterDisciplinaController?acao=prepararExcluir&txtCodDisciplina=<c:out value="${disciplina.codDisciplina}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

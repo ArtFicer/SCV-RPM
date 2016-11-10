@@ -37,8 +37,8 @@
                     <td><c:out value="${polo.email}" /></td>
                     <td><c:out value="${polo.numero}" /></td>
                     <td><c:out value="${polo.modelo}" /></td>
-                    <td><a href="ManterPoloContoller?acao=prepararEditar&codPolo=<c:out value="${polo.codPolo}"/>">Editar</a> </td>
-                    <td><a href="ManterPoloContoller?acao=prepararExcluir&codPolo=<c:out value="${polo.codPolo}"/>">Excluir</a> </td>
+                    <td><a href="ManterPoloController?acao=prepararEditar&txtCodPolo=<c:out value="${polo.codPolo}"/>">Editar</a> </td>
+                    <td><a href="ManterPoloController?acao=prepararExcluir&txtCodPolo=<c:out value="${polo.codPolo}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

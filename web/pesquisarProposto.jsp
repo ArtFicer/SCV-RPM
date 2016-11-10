@@ -66,8 +66,8 @@
                     <td><c:out value="${proposto.cargo}"/></td>
                     <td><c:out value="${proposto.tipoProposto}"/></td>
 
-                    <td><a href="ManterPropostoContoller?acao=prepararEditar&codProposto=<c:out value="${proposto.codProposto}"/>">Editar</a> </td>
-                    <td><a href="ManterPropostoContoller?acao=prepararExcluir&codProposto=<c:out value="${proposto.codProposto}"/>">Excluir</a> </td>
+                    <td><a href="ManterPropostoController?acao=prepararEditar&txtCodProposto=<c:out value="${proposto.codProposto}"/>">Editar</a> </td>
+                    <td><a href="ManterPropostoController?acao=prepararExcluir&txtCodProposto=<c:out value="${proposto.codProposto}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>
