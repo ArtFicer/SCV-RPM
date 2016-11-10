@@ -54,31 +54,33 @@
 
             <tr>
                 <td>
+                    <a href="PesquisaConvidadoController">Convidado</a>
+                </td>
+                <td>
                     <a href="PesquisaCursoController">Curso</a>
                 </td>
                 <td>
-                    <a href="historico.jsp">HistóricoN</a>
-                </td>
-                <td>
-                    <a href="PesquisaTrimestreController">Trimestre</a>
+                    <a href="PesquisaDeclaracaoNotaTecnicaController">Declaracao Nota Tecnica</a>
+
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <a href="PesquisaSolicitacaoController">Solicitação</a>
+                    <a href="PesquisaDisciplinaController">Disciplina</a>
                 </td>
                 <td>
-                    <a href="PesquisaRelatorioViagemController">RelatorioViagem</a>
+                    <a href="historico.jsp">Histórico</a>
                 </td>
+                <td>
+                    <a href="PesquisaOfertaController">Oferta</a>
+
+                </td>
+            </tr>
+
+            <tr>
                 <td>
                     <a href="PesquisaPoloController">Polo</a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="PesquisaViagemController">Viagem</a>
                 </td>
 
                 <td>
@@ -86,19 +88,38 @@
                 </td>
 
                 <td>
-                    <a href="PesquisaServidorController">Servidor</a>
+                    <a href="PesquisaRelatorioViagemController">RelatorioViagem</a>
+
                 </td>
             <tr>
                 <td>
-                    <a href="PesquisaOfertaController">Oferta</a>
+                    <a href="PesquisaSecretariaController">Secretaria</a>
                 </td>
 
                 <td>
-                    <a href="PesquisaDisciplinaController">Disciplina</a>
+                    <a href="PesquisaServidorController">Servidor</a>
                 </td>
+
+                <td>
+                    <a href="PesquisaSolicitacaoController">Solicitação</a>
+                </td>               
             </tr>
 
-           
+            <tr>
+                <td>
+                    <a href="PesquisaTransporteController">Transporte</a>
+                </td>
+
+                <td>
+                    <a href="PesquisaTrimestreController">Trimestre</a>
+                </td>
+
+                <td>
+                    <a href="PesquisaViagemController">Viagem</a>
+                </td>               
+            </tr>
+
+
         </table>
 
     </body>
