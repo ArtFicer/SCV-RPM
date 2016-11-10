@@ -72,18 +72,19 @@ public class ManterPropostoController extends HttpServlet {
     
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("propostos", Proposto.obterProposto());
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         String nome = request.getParameter("txtNomeProposto");
         try {
@@ -93,6 +94,7 @@ public class ManterPropostoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
@@ -100,7 +102,7 @@ public class ManterPropostoController extends HttpServlet {
     
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("propostos", Proposto.obterProposto());
@@ -110,12 +112,13 @@ public class ManterPropostoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
     
     
     //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         String nome = request.getParameter("txtNomeProposto");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
@@ -126,13 +129,14 @@ public class ManterPropostoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
     
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codProposto = Integer.parseInt(request.getParameter("codProposto"));
@@ -141,11 +145,12 @@ public class ManterPropostoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         String nome = request.getParameter("txtNomeProposto");
@@ -157,6 +162,7 @@ public class ManterPropostoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
     

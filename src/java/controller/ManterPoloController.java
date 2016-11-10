@@ -72,18 +72,19 @@ public class ManterPoloController extends HttpServlet {
     
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("polos", Polo.obterPolo());
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
         int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
         String cidade = request.getParameter("txtCidade");
@@ -99,6 +100,7 @@ public class ManterPoloController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
@@ -106,7 +108,7 @@ public class ManterPoloController extends HttpServlet {
     
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("polos", Polo.obterPolo());
@@ -116,12 +118,13 @@ public class ManterPoloController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
     
     
     //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
         int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
         String cidade = request.getParameter("txtCidade");
@@ -138,13 +141,14 @@ public class ManterPoloController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
     
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codPolo = Integer.parseInt(request.getParameter("codPolo"));
@@ -153,11 +157,12 @@ public class ManterPoloController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
         int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
@@ -175,6 +180,7 @@ public class ManterPoloController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
     

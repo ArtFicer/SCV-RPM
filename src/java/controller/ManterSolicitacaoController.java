@@ -64,18 +64,19 @@ public class ManterSolicitacaoController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("solicitacoes", Solicitacao.obterSolicitacao());
             RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacao.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
         String assunto = request.getParameter("txtAssunto");
         String texto = request.getParameter("txtTexto");
@@ -86,6 +87,7 @@ public class ManterSolicitacaoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
@@ -121,7 +123,7 @@ public class ManterSolicitacaoController extends HttpServlet {
 
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codSolicitacao = Integer.parseInt(request.getParameter("codSolicitacao"));
@@ -130,11 +132,12 @@ public class ManterSolicitacaoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacao.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
         String assunto = request.getParameter("txtAssunto");
         String texto = request.getParameter("txtTexto");
@@ -145,6 +148,7 @@ public class ManterSolicitacaoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
