@@ -26,12 +26,12 @@ public class RelatorioViagem {
     }
 
     //Lista Obter CUrso
-    public static List<RelatorioViagem> obterRelatorioViagem() throws java.lang.ClassNotFoundException {
+    public static List<RelatorioViagem> obterRelatorioViagem() throws java.lang.ClassNotFoundException, SQLException {
         return RelatorioViagemDAO.obterRelatorioViagem();
     }
 
     //Obter RelatorioViagem
-    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws ClassNotFoundException {
+    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws ClassNotFoundException, SQLException {
         return RelatorioViagemDAO.obterRelatorioViagem(codRelatorioViagem);
     }
 

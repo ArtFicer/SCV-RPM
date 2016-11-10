@@ -67,7 +67,7 @@ public class ManterServidorController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("servidores", Servidor.obterServidores());
@@ -96,11 +96,11 @@ public class ManterServidorController extends HttpServlet {
 
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("servidors", Servidor.obterServidor());
-            int codServidor = Integer.parseInt(request.getParameter("codServidor"));
+            int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
             Servidor servidor = Servidor.obterServidor(codServidor);
             request.setAttribute("servidor", servidor);
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
@@ -127,10 +127,10 @@ public class ManterServidorController extends HttpServlet {
 
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codServidor = Integer.parseInt(request.getParameter("codServidor"));
+            int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
             Servidor servidor = Servidor.obterServidor(codServidor);
             request.setAttribute("servidor", servidor);
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");

@@ -16,7 +16,7 @@ public class CursoDAO {
 
     //Obter
     //Obter Lista
-    public static List<Curso> obterCurso() throws  ClassNotFoundException {
+    public static List<Curso> obterCurso() throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Curso> cursos = new ArrayList<Curso>();
@@ -32,7 +32,7 @@ public class CursoDAO {
                 cursos.add(curso);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -40,7 +40,7 @@ public class CursoDAO {
     }
      
    //Obter normal
-    public static Curso obterCurso(int codCurso) throws  ClassNotFoundException {
+    public static Curso obterCurso(int codCurso) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Curso curso = null;
@@ -56,7 +56,7 @@ public class CursoDAO {
             );
             curso.setCodCurso(rs.getInt("codCurso"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -64,7 +64,7 @@ public class CursoDAO {
     }
 
     //Fechar Conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -73,6 +73,7 @@ public class CursoDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -112,6 +113,7 @@ public class CursoDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
 
@@ -127,6 +129,7 @@ public class CursoDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

@@ -13,7 +13,7 @@ public class SecretariaDAO {
 
     //obter
     //obter listas
-    public static List<Secretaria> obterSecretaria() throws ClassNotFoundException {
+    public static List<Secretaria> obterSecretaria() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Secretaria> secretarias = new ArrayList<Secretaria>();
@@ -33,7 +33,7 @@ public class SecretariaDAO {
                 secretarias.add(secretaria);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -41,7 +41,7 @@ public class SecretariaDAO {
     }
     
     //Obter normal
-    public static Secretaria obterSecretaria(int codSecretaria) throws  ClassNotFoundException {
+    public static Secretaria obterSecretaria(int codSecretaria) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Secretaria secretaria = null;
@@ -60,7 +60,7 @@ public class SecretariaDAO {
             );
             secretaria.setCodSecretaria(rs.getInt("codSecretaria"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -68,7 +68,7 @@ public class SecretariaDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -77,6 +77,7 @@ public class SecretariaDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -92,12 +93,6 @@ public class SecretariaDAO {
             comando.setInt(3, secretaria.getCpf());
             comando.setString(4, secretaria.getEmail());
             comando.setString(5, secretaria.getSenha());
-//            if(secretaria.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,secretaria.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -111,17 +106,18 @@ public class SecretariaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update ssecretaria set codSecretaria = ?, nome = ?,cpf = ?,email = ?,senha = ? where codSecretaria = ?";
+            String sql = "update ssecretaria set nome = ?,cpf = ?,email = ?,senha = ? where codSecretaria = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, secretaria.getCodSecretaria());
-            comando.setString(2, secretaria.getNome());
-            comando.setInt(3, secretaria.getCpf());
-            comando.setString(4, secretaria.getEmail());
-            comando.setString(5, secretaria.getSenha());
+            comando.setString(1, secretaria.getNome());
+            comando.setInt(2, secretaria.getCpf());
+            comando.setString(3, secretaria.getEmail());
+            comando.setString(4, secretaria.getSenha());
+            comando.setInt(5, secretaria.getCodSecretaria());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -137,6 +133,7 @@ public class SecretariaDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

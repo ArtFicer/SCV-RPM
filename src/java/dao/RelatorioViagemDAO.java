@@ -13,7 +13,7 @@ public class RelatorioViagemDAO {
 
     //obter
     //obter listas
-    public static List<RelatorioViagem> obterRelatorioViagem() throws ClassNotFoundException {
+    public static List<RelatorioViagem> obterRelatorioViagem() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<RelatorioViagem> escreverRelatorios = new ArrayList<RelatorioViagem>();
@@ -28,7 +28,7 @@ public class RelatorioViagemDAO {
                 escreverRelatorios.add(escreverRelatorio);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -36,7 +36,7 @@ public class RelatorioViagemDAO {
     }
     
     //Obter normal
-    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws  ClassNotFoundException {
+    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         RelatorioViagem relatorioViagem = null;
@@ -51,7 +51,7 @@ public class RelatorioViagemDAO {
             );
             relatorioViagem.setCodRelatorioViagem(rs.getInt("codRelatorioViagem"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -59,7 +59,7 @@ public class RelatorioViagemDAO {
     }
 
     //Fechar Conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -68,6 +68,7 @@ public class RelatorioViagemDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -80,12 +81,6 @@ public class RelatorioViagemDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
             comando.setString(2, relatorioViagem.getRelatorio());
-//            if(relatorioViagem.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,relatorioViagem.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -99,14 +94,15 @@ public class RelatorioViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update relatorioviagem set codRelatorioViagem = ?, relatorio = ? where codRelatorioViagem = ?";
+            String sql = "update relatorioviagem set relatorio = ? where codRelatorioViagem = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
-            comando.setString(2, relatorioViagem.getRelatorio());
+            comando.setString(1, relatorioViagem.getRelatorio());
+            comando.setInt(2, relatorioViagem.getCodRelatorioViagem());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -122,6 +118,7 @@ public class RelatorioViagemDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

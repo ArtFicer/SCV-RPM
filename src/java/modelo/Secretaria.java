@@ -27,12 +27,12 @@ public class Secretaria {
     }
 
     //Lista Obter CUrso
-    public static List<Secretaria> obterSecretaria() throws java.lang.ClassNotFoundException {
+    public static List<Secretaria> obterSecretaria() throws java.lang.ClassNotFoundException, SQLException {
         return SecretariaDAO.obterSecretaria();
     }
 
     //Obter Secretaria
-    public static Secretaria obterSecretaria(int codSecretaria) throws ClassNotFoundException {
+    public static Secretaria obterSecretaria(int codSecretaria) throws ClassNotFoundException, SQLException {
         return SecretariaDAO.obterSecretaria(codSecretaria);
     }
 

@@ -13,7 +13,7 @@ public class PoloDAO {
 
     //Obter
     //obter Listas
-    public static List<Polo> obterPolo() throws ClassNotFoundException {
+    public static List<Polo> obterPolo() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Polo> polos = new ArrayList<Polo>();
@@ -35,14 +35,14 @@ public class PoloDAO {
                 polos.add(polo);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
         return polos;
     }
     //Obter normal
-    public static Polo obterPolo(int codPolo) throws  ClassNotFoundException {
+    public static Polo obterPolo(int codPolo) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Polo polo = null;
@@ -64,7 +64,7 @@ public class PoloDAO {
             );
             polo.setCodPolo(rs.getInt("codPolo"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -72,7 +72,7 @@ public class PoloDAO {
     }
 
     //Fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -81,6 +81,7 @@ public class PoloDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -99,12 +100,6 @@ public class PoloDAO {
             comando.setInt(6, polo.getNumero());
             comando.setInt(7, polo.getTelefone());
             comando.setString(8, polo.getEmail());
-//            if(polo.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,polo.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -118,20 +113,21 @@ public class PoloDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update polo set codPolo = ?,codTransporte = ?, cidade = ?,logradouro = ?,bairro = ?,numero = ?,telefone = ?,email = ? where codPolo = ?";
+            String sql = "update polo set codTransporte = ?, cidade = ?,logradouro = ?,bairro = ?,numero = ?,telefone = ?,email = ? where codPolo = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, polo.getCodPolo());
-            comando.setInt(2, polo.getCodTransporte());
-            comando.setString(3, polo.getCidade());
-            comando.setString(4, polo.getLogradouro());
-            comando.setString(5, polo.getBairro());
-            comando.setInt(6, polo.getNumero());
-            comando.setInt(7, polo.getTelefone());
-            comando.setString(8, polo.getEmail());
+            comando.setInt(1, polo.getCodTransporte());
+            comando.setString(2, polo.getCidade());
+            comando.setString(3, polo.getLogradouro());
+            comando.setString(4, polo.getBairro());
+            comando.setInt(5, polo.getNumero());
+            comando.setInt(6, polo.getTelefone());
+            comando.setString(7, polo.getEmail());
+            comando.setInt(8, polo.getCodPolo());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     //Excluir
@@ -146,6 +142,7 @@ public class PoloDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
 }

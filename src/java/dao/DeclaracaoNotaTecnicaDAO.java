@@ -13,7 +13,7 @@ public class DeclaracaoNotaTecnicaDAO {
 
     //obter
     //obter listas
-    public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws ClassNotFoundException {
+    public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<DeclaracaoNotaTecnica> declaracaoNotaTecnicas = new ArrayList<DeclaracaoNotaTecnica>();
@@ -29,7 +29,7 @@ public class DeclaracaoNotaTecnicaDAO {
                 declaracaoNotaTecnicas.add(declaracaoNotaTecnica);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -37,7 +37,7 @@ public class DeclaracaoNotaTecnicaDAO {
     }
     
     //obter normal
-    public static DeclaracaoNotaTecnica obterDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica)  throws  ClassNotFoundException {
+    public static DeclaracaoNotaTecnica obterDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica)  throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         DeclaracaoNotaTecnica declaracaoNotaTecnica = null;
@@ -53,7 +53,7 @@ public class DeclaracaoNotaTecnicaDAO {
             );
             declaracaoNotaTecnica.setCodDeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -61,7 +61,7 @@ public class DeclaracaoNotaTecnicaDAO {
     }
 
     //Fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -70,6 +70,7 @@ public class DeclaracaoNotaTecnicaDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -101,14 +102,15 @@ public class DeclaracaoNotaTecnicaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update declaracaonotatecnica set codDeclaracaoNotaTecnica=?, redigir=? where codDeclaracaoNotaTecnica = ?";
+            String sql = "update declaracaonotatecnica set redigir=? where codDeclaracaoNotaTecnica = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
-            comando.setString(2, declaracaoNotaTecnica.getRedigir());
+            comando.setString(1, declaracaoNotaTecnica.getRedigir());
+            comando.setInt(2, declaracaoNotaTecnica.getCodDeclaracaoNotaTecnica());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -124,6 +126,7 @@ public class DeclaracaoNotaTecnicaDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
 }

@@ -28,8 +28,8 @@
                     <td><c:out value="${solicitacao.codSolicitacao}" /></td>
                     <td><c:out value="${solicitacao.assunto}"/></td>
                     <td><c:out value="${solicitacao.texto}"/></td>
-                    <td><a href="ManterSolicitacaoContoller?acao=prepararEditar&codSolicitacao=<c:out value="${solicitacao.codSolicitacao}"/>">Editar</a> </td>
-                    <td><a href="ManterSolicitacaoContoller?acao=prepararExcluir&codSolicitacao=<c:out value="${solicitacao.codSolicitacao}"/>">Excluir</a> </td>
+                    <td><a href="ManterSolicitacaoController?acao=prepararEditar&txtCodSolicitacao=<c:out value="${solicitacao.codSolicitacao}"/>">Editar</a> </td>
+                    <td><a href="ManterSolicitacaoController?acao=prepararExcluir&txtCodSolicitacao=<c:out value="${solicitacao.codSolicitacao}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

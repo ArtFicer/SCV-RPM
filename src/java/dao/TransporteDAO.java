@@ -13,7 +13,7 @@ public class TransporteDAO {
 
     //obter
     //obter listas
-    public static List<Transporte> obterTransporte() throws ClassNotFoundException {
+    public static List<Transporte> obterTransporte() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Transporte> transportes = new ArrayList<Transporte>();
@@ -31,7 +31,7 @@ public class TransporteDAO {
                 transportes.add(transporte);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -39,7 +39,7 @@ public class TransporteDAO {
     }
     
     //Obter normal
-    public static Transporte obterTransporte(int codTransporte) throws  ClassNotFoundException {
+    public static Transporte obterTransporte(int codTransporte) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Transporte trasporte = null;
@@ -56,7 +56,7 @@ public class TransporteDAO {
             );
             trasporte.setCodTransporte(rs.getInt("codTransporte"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -64,7 +64,7 @@ public class TransporteDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -73,6 +73,7 @@ public class TransporteDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -86,12 +87,6 @@ public class TransporteDAO {
             comando.setInt(1, transporte.getCodTransporte());
             comando.setString(2, transporte.getEmpresa());
             comando.setString(3, transporte.getVeiculo());
-//            if(transporte.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,transporte.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -105,15 +100,16 @@ public class TransporteDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update transporte set codTransporte = ?, empresa = ?, veiculo = ? where codTransporte = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, transporte.getCodTransporte());
-            comando.setString(2, transporte.getEmpresa());
-            comando.setString(3, transporte.getVeiculo());
+            String sql = "update transporte set empresa = ?, veiculo = ? where codTransporte = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);            
+            comando.setString(1, transporte.getEmpresa());
+            comando.setString(2, transporte.getVeiculo());
+            comando.setInt(3, transporte.getCodTransporte());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -130,6 +126,7 @@ public class TransporteDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

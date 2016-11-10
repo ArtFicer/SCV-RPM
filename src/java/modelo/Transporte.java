@@ -23,12 +23,12 @@ public class Transporte {
     }
 
     //Lista Obter CUrso
-    public static List<Transporte> obterTransporte() throws java.lang.ClassNotFoundException {
+    public static List<Transporte> obterTransporte() throws java.lang.ClassNotFoundException, SQLException {
         return TransporteDAO.obterTransporte();
     }
 
     //Obter Transporte
-    public static Transporte obterTransporte(int codTransporte) throws ClassNotFoundException {
+    public static Transporte obterTransporte(int codTransporte) throws ClassNotFoundException, SQLException {
         return TransporteDAO.obterTransporte(codTransporte);
     }
 

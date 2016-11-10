@@ -19,12 +19,12 @@ public class Historico {
     }
 
     //Lista Obter CUrso
-    public static List<Historico> obterHistorico() throws java.lang.ClassNotFoundException {
+    public static List<Historico> obterHistorico() throws java.lang.ClassNotFoundException, SQLException {
         return HistoricoDAO.obterHistorico();
     }
 
     //Obter Historico
-    public static Historico obterHistorico(int codHistorico) throws ClassNotFoundException {
+    public static Historico obterHistorico(int codHistorico) throws ClassNotFoundException, SQLException {
         return HistoricoDAO.obterHistorico(codHistorico);
     }
 

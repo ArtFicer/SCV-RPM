@@ -38,7 +38,7 @@ public class ManterTrimestreController extends HttpServlet {
      */
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -67,7 +67,7 @@ public class ManterTrimestreController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("trimestres", Trimestre.obterTrimestre());
@@ -93,11 +93,11 @@ public class ManterTrimestreController extends HttpServlet {
 
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("trimestres", Trimestre.obterTrimestre());
-            int codTrimestre = Integer.parseInt(request.getParameter("codTrimestre"));
+            int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
             Trimestre trimestre = Trimestre.obterTrimestre(codTrimestre);
             request.setAttribute("trimestre", trimestre);
             RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
@@ -122,10 +122,10 @@ public class ManterTrimestreController extends HttpServlet {
 
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codTrimestre = Integer.parseInt(request.getParameter("codTrimestre"));
+            int codTrimestre = Integer.parseInt(request.getParameter("txtCodTrimestre"));
             Trimestre trimestre = Trimestre.obterTrimestre(codTrimestre);
             request.setAttribute("trimestre", trimestre);
             RequestDispatcher view = request.getRequestDispatcher("/manterTrimestre.jsp");
@@ -165,6 +165,8 @@ public class ManterTrimestreController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterTrimestreController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterTrimestreController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -182,6 +184,8 @@ public class ManterTrimestreController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterTrimestreController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterTrimestreController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

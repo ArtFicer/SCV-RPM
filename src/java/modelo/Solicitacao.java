@@ -23,12 +23,12 @@ public class Solicitacao {
     }
 
     //Lista Obter CUrso
-    public static List<Solicitacao> obterSolicitacao() throws java.lang.ClassNotFoundException {
+    public static List<Solicitacao> obterSolicitacao() throws java.lang.ClassNotFoundException, SQLException {
         return SolicitacaoDAO.obterSolicitacao();
     }
 
     //Obter Solicitacao
-    public static Solicitacao obterSolicitacao(int codSolicitacao) throws ClassNotFoundException {
+    public static Solicitacao obterSolicitacao(int codSolicitacao) throws ClassNotFoundException, SQLException {
         return SolicitacaoDAO.obterSolicitacao(codSolicitacao);
     }
 

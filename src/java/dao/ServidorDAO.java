@@ -13,7 +13,7 @@ public class ServidorDAO {
 
     //obter
     //obter listas
-    public static List<Servidor> obterServidores() throws ClassNotFoundException {
+    public static List<Servidor> obterServidores() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Servidor> servidores = new ArrayList<Servidor>();
@@ -31,7 +31,7 @@ public class ServidorDAO {
                 servidores.add(servidor);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -39,7 +39,7 @@ public class ServidorDAO {
     }
     
     //Obter normal
-    public static Servidor obterServidor(int codServidor) throws  ClassNotFoundException {
+    public static Servidor obterServidor(int codServidor) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Servidor servidor = null;
@@ -56,7 +56,7 @@ public class ServidorDAO {
             );
             servidor.setCodServidor(rs.getInt("codServidor"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -64,7 +64,7 @@ public class ServidorDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -73,6 +73,7 @@ public class ServidorDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -86,12 +87,6 @@ public class ServidorDAO {
             comando.setInt(1, servidor.getCodServidor());
             comando.setInt(2, servidor.getMatriculaSIAPE());
             comando.setString(3, servidor.getLotadoOrgao());
-//            if(servidor.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,servidor.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -105,15 +100,16 @@ public class ServidorDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update servidor set codServidor = ?, matricula_SIAPE = ?,lotado_Orgao = ? where codServidor = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, servidor.getCodServidor());
-            comando.setInt(2, servidor.getMatriculaSIAPE());
-            comando.setString(3, servidor.getLotadoOrgao());
+            String sql = "update servidor set matricula_SIAPE = ?,lotado_Orgao = ? where codServidor = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);            
+            comando.setInt(1, servidor.getMatriculaSIAPE());
+            comando.setString(2, servidor.getLotadoOrgao());
+            comando.setInt(3, servidor.getCodServidor());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -129,6 +125,7 @@ public class ServidorDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

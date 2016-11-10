@@ -13,7 +13,7 @@ public class HistoricoDAO {
 
     //obter
     //obter listas
-    public static List<Historico> obterHistorico() throws ClassNotFoundException {
+    public static List<Historico> obterHistorico() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Historico> historicos = new ArrayList<Historico>();
@@ -27,7 +27,7 @@ public class HistoricoDAO {
                 historicos.add(historico);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -35,7 +35,7 @@ public class HistoricoDAO {
     }
     
     //obter para dao
-    public static Historico obterHistorico(int codHistorico)  throws  ClassNotFoundException {
+    public static Historico obterHistorico(int codHistorico)  throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Historico historico = null;
@@ -50,7 +50,7 @@ public class HistoricoDAO {
             );
             historico.setCodHistorico(rs.getInt("codHistorico"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -58,7 +58,7 @@ public class HistoricoDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -67,6 +67,7 @@ public class HistoricoDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -78,12 +79,6 @@ public class HistoricoDAO {
             String sql = "insert into historico (codHistorico) values (?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, historico.getCodHistorico());
-//            if(historico.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,historico.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -105,6 +100,7 @@ public class HistoricoDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
 
@@ -120,6 +116,7 @@ public class HistoricoDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
 }

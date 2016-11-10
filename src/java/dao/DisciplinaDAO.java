@@ -13,7 +13,7 @@ public class DisciplinaDAO {
 
     //obter
     //obter listas
-    public static List<Disciplina> obterDisciplina() throws ClassNotFoundException {
+    public static List<Disciplina> obterDisciplina() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Disciplina> disciplinas = new ArrayList<Disciplina>();
@@ -29,7 +29,7 @@ public class DisciplinaDAO {
                 disciplinas.add(disciplina);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -37,7 +37,7 @@ public class DisciplinaDAO {
     }
     
      // obtem codigo da disciplina para o .dao
-    public static Disciplina obterDisciplina(int codDisciplina)  throws  ClassNotFoundException {
+    public static Disciplina obterDisciplina(int codDisciplina)  throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Disciplina disciplina = null;
@@ -53,7 +53,7 @@ public class DisciplinaDAO {
             );
             disciplina.setCodDisciplina(rs.getInt("codDisciplina"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -61,7 +61,7 @@ public class DisciplinaDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -70,6 +70,7 @@ public class DisciplinaDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -101,14 +102,15 @@ public class DisciplinaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update disciplina set codDisciplina=?, nome=? where codDisciplina = ?";
+            String sql = "update disciplina set nome=? where codDisciplina = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, disciplina.getCodDisciplina());
-            comando.setString(2, disciplina.getNome());
+            comando.setString(1, disciplina.getNome());
+            comando.setInt(2, disciplina.getCodDisciplina());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -124,6 +126,7 @@ public class DisciplinaDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
 }

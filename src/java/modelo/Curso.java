@@ -21,12 +21,12 @@ public class Curso {
     }
 
     //Lista Obter CUrso
-    public static List<Curso> obterCurso() throws java.lang.ClassNotFoundException {
+    public static List<Curso> obterCurso() throws java.lang.ClassNotFoundException, SQLException {
         return CursoDAO.obterCurso();
     }
     
     //Obter Curso
-    public static Curso obterCurso(int codCurso) throws ClassNotFoundException {
+    public static Curso obterCurso(int codCurso) throws ClassNotFoundException, SQLException {
         return CursoDAO.obterCurso(codCurso);
     }
     

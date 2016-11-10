@@ -13,7 +13,7 @@ public class SolicitacaoDAO {
 
     //obter
     //obter listas
-    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException {
+    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
@@ -31,7 +31,7 @@ public class SolicitacaoDAO {
                 solicitacoes.add(solicitacao);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -39,7 +39,7 @@ public class SolicitacaoDAO {
     }
     
     //Obter normal
-    public static Solicitacao obterSolicitacao(int codSolicitacao) throws  ClassNotFoundException {
+    public static Solicitacao obterSolicitacao(int codSolicitacao) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Solicitacao solicitacao = null;
@@ -56,7 +56,7 @@ public class SolicitacaoDAO {
             );
             solicitacao.setCodSolicitacao(rs.getInt("codSolicitacao"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -64,7 +64,7 @@ public class SolicitacaoDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -73,6 +73,7 @@ public class SolicitacaoDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -86,12 +87,6 @@ public class SolicitacaoDAO {
             comando.setInt(1, solicitacao.getCodSolicitacao());
             comando.setString(2, solicitacao.getAssunto());
             comando.setString(3, solicitacao.getTexto());
-//            if(solicitacao.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,solicitacao.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -105,15 +100,16 @@ public class SolicitacaoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update solicitacao set codSolicitacao = ?, assunto = ?,texto = ? where codSolicitacao = ?";
+            String sql = "update solicitacao set assunto = ?,texto = ? where codSolicitacao = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, solicitacao.getCodSolicitacao());
-            comando.setString(2, solicitacao.getAssunto());
-            comando.setString(3, solicitacao.getTexto());
+            comando.setString(1, solicitacao.getAssunto());
+            comando.setString(2, solicitacao.getTexto());
+            comando.setInt(3, solicitacao.getCodSolicitacao());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -130,6 +126,7 @@ public class SolicitacaoDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

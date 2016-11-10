@@ -38,7 +38,7 @@ public class ManterViagemController extends HttpServlet {
      */
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -67,7 +67,7 @@ public class ManterViagemController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("viagems", Viagem.obterViagem());
@@ -103,11 +103,11 @@ public class ManterViagemController extends HttpServlet {
 
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("viagems", Viagem.obterViagem());
-            int codViagem = Integer.parseInt(request.getParameter("codViagem"));
+            int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
             Viagem viagem = Viagem.obterViagem(codViagem);
             request.setAttribute("viagem", viagem);
             RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
@@ -142,10 +142,10 @@ public class ManterViagemController extends HttpServlet {
 
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int codViagem = Integer.parseInt(request.getParameter("codViagem"));
+            int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
             Viagem viagem = Viagem.obterViagem(codViagem);
             request.setAttribute("viagem", viagem);
             RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
@@ -194,6 +194,8 @@ public class ManterViagemController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterViagemController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -211,6 +213,8 @@ public class ManterViagemController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterViagemController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

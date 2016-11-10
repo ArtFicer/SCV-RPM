@@ -42,7 +42,7 @@ public class ManterPoloController extends HttpServlet {
     
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -72,7 +72,7 @@ public class ManterPoloController extends HttpServlet {
     
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("polos", Polo.obterPolo());
@@ -106,11 +106,11 @@ public class ManterPoloController extends HttpServlet {
     
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("polos", Polo.obterPolo());
-            int codPolo = Integer.parseInt(request.getParameter("codPolo"));
+            int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
             Polo polo = Polo.obterPolo(codPolo);
             request.setAttribute("polo", polo);
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
@@ -144,7 +144,7 @@ public class ManterPoloController extends HttpServlet {
     
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codPolo = Integer.parseInt(request.getParameter("codPolo"));
@@ -195,6 +195,8 @@ public class ManterPoloController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterPoloController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPoloController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -212,6 +214,8 @@ public class ManterPoloController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterPoloController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterPoloController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -6,9 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +35,7 @@ public class ManterSolicitacaoController extends HttpServlet {
      */
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -67,7 +64,7 @@ public class ManterSolicitacaoController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("solicitacoes", Solicitacao.obterSolicitacao());
@@ -94,37 +91,37 @@ public class ManterSolicitacaoController extends HttpServlet {
 
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("solicitacaos", Solicitacao.obterSolicitacao());
-            int codSolicitacao = Integer.parseInt(request.getParameter("codSolicitacao"));
+            int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
             Solicitacao solicitacao = Solicitacao.obterSolicitacao(codSolicitacao);
             request.setAttribute("solicitacao", solicitacao);
             RequestDispatcher view = request.getRequestDispatcher("/manterSolicitacao.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codSolicitacao = Integer.parseInt(request.getParameter("txtCodSolicitacao"));
         String assunto = request.getParameter("txtAssunto");
         String texto = request.getParameter("txtTexto");
         try {
-            //Proposto proposto = null;
             Solicitacao solicitacao = new Solicitacao(codSolicitacao, assunto, texto);
             solicitacao.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSolicitacaoController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codSolicitacao = Integer.parseInt(request.getParameter("codSolicitacao"));
@@ -167,6 +164,8 @@ public class ManterSolicitacaoController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterSolicitacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterSolicitacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -184,6 +183,8 @@ public class ManterSolicitacaoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterSolicitacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterSolicitacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -21,12 +21,12 @@ public class DeclaracaoNotaTecnica {
     }
 
     //Lista Obter CUrso
-    public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws java.lang.ClassNotFoundException {
+    public static List<DeclaracaoNotaTecnica> obterDeclaracaoNotaTecnica() throws java.lang.ClassNotFoundException, SQLException {
         return DeclaracaoNotaTecnicaDAO.obterDeclaracaoNotaTecnica();
     }
 
     //Obter DeclaracaoNotaTecnica
-    public static DeclaracaoNotaTecnica obterDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica) throws ClassNotFoundException {
+    public static DeclaracaoNotaTecnica obterDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica) throws ClassNotFoundException, SQLException {
         return DeclaracaoNotaTecnicaDAO.obterDeclaracaoNotaTecnica(codDeclaracaoNotaTecnica);
     }
 

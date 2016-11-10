@@ -39,12 +39,12 @@ public class Viagem {
     }
 
     //Lista Obter CUrso
-    public static List<Viagem> obterViagem() throws java.lang.ClassNotFoundException {
+    public static List<Viagem> obterViagem() throws java.lang.ClassNotFoundException, SQLException {
         return ViagemDAO.obterViagem();
     }
 
     //Obter Viagem
-    public static Viagem obterViagem(int codViagem) throws ClassNotFoundException {
+    public static Viagem obterViagem(int codViagem) throws ClassNotFoundException, SQLException {
         return ViagemDAO.obterViagem(codViagem);
     }
 

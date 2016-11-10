@@ -35,12 +35,12 @@ public class Polo {
     }
 
     //Lista Obter CUrso
-    public static List<Polo> obterPolo() throws java.lang.ClassNotFoundException {
+    public static List<Polo> obterPolo() throws java.lang.ClassNotFoundException, SQLException {
         return PoloDAO.obterPolo();
     }
 
     //Obter Polo
-    public static Polo obterPolo(int codPolo) throws ClassNotFoundException {
+    public static Polo obterPolo(int codPolo) throws ClassNotFoundException, SQLException {
         return PoloDAO.obterPolo(codPolo);
     }
 

@@ -42,7 +42,7 @@ public class ManterPropostoController extends HttpServlet {
     
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -72,7 +72,7 @@ public class ManterPropostoController extends HttpServlet {
     
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("propostos", Proposto.obterProposto());
@@ -100,11 +100,11 @@ public class ManterPropostoController extends HttpServlet {
     
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("propostos", Proposto.obterProposto());
-            int codProposto = Integer.parseInt(request.getParameter("codProposto"));
+            int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
             Proposto proposto = Proposto.obterProposto(codProposto);
             request.setAttribute("proposto", proposto);
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
@@ -132,7 +132,7 @@ public class ManterPropostoController extends HttpServlet {
     
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codProposto = Integer.parseInt(request.getParameter("codProposto"));
@@ -177,6 +177,8 @@ public class ManterPropostoController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterPropostoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPropostoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -194,6 +196,8 @@ public class ManterPropostoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterPropostoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterPropostoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

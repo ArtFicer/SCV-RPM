@@ -13,7 +13,7 @@ public class TrimestreDAO {
 
     //obter
     //obter listas
-    public static List<Trimestre> obterTrimestre() throws ClassNotFoundException {
+    public static List<Trimestre> obterTrimestre() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Trimestre> trimestres = new ArrayList<Trimestre>();
@@ -30,7 +30,7 @@ public class TrimestreDAO {
                 trimestres.add(trimestre);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -38,7 +38,7 @@ public class TrimestreDAO {
     }
     
     //Obter normal
-    public static Trimestre obterTrimestre(int codTrimestre) throws  ClassNotFoundException {
+    public static Trimestre obterTrimestre(int codTrimestre) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Trimestre trimestre = null;
@@ -55,7 +55,7 @@ public class TrimestreDAO {
             );
             trimestre.setCodTrimestre(rs.getInt("codTrimestre"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -63,7 +63,7 @@ public class TrimestreDAO {
     }
 
     //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -72,6 +72,7 @@ public class TrimestreDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -84,12 +85,6 @@ public class TrimestreDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, trimestre.getCodTrimestre());
             comando.setInt(2, trimestre.getNumeroTrimestre());
-//            if(trimestre.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,trimestre.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -104,14 +99,15 @@ public class TrimestreDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update trimestre set codTrimestre = ?, numero_trimestre = ? where codTrimestre = ?";
+            String sql = "update trimestre set numero_trimestre = ? where codTrimestre = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, trimestre.getCodTrimestre());
-            comando.setInt(2, trimestre.getNumeroTrimestre());
+            comando.setInt(1, trimestre.getNumeroTrimestre());
+            comando.setInt(2, trimestre.getCodTrimestre());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
         
@@ -127,6 +123,7 @@ public class TrimestreDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
     

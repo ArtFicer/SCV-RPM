@@ -20,7 +20,7 @@
             <table>
                 <tr>
                     <td>Código da Solicitaçao:</td> 
-                    <td><input type="text" name="txtCodSolicitacoes" value="${solicitacao.codSolicitacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtCodSolicitacao" value="${solicitacao.codSolicitacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Assunto:</td> 

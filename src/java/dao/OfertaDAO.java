@@ -13,7 +13,7 @@ public class OfertaDAO {
 
     //obter
     //obter listas
-    public static List<Oferta> obterOferta() throws ClassNotFoundException {
+    public static List<Oferta> obterOferta() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Oferta> ofertas = new ArrayList<Oferta>();
@@ -29,7 +29,7 @@ public class OfertaDAO {
                 ofertas.add(oferta);
             }
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -37,7 +37,7 @@ public class OfertaDAO {
     }
     
     //Obter normal
-    public static Oferta obterOferta(int codOferta) throws  ClassNotFoundException {
+    public static Oferta obterOferta(int codOferta) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Oferta oferta = null;
@@ -53,7 +53,7 @@ public class OfertaDAO {
             );
             oferta.setCodOferta(rs.getInt("codOferta"));
         } catch (SQLException e) {
-            //e.printStckTrace();
+            throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -61,7 +61,7 @@ public class OfertaDAO {
     }
     
     //Fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
         try {
             if (comando != null) {
                 comando.close();
@@ -70,6 +70,7 @@ public class OfertaDAO {
                 conexao.close();
             }
         } catch (SQLException e) {
+            throw e;
         }
     }
 
@@ -82,12 +83,6 @@ public class OfertaDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, oferta.getCodOferta());
             comando.setInt(2, oferta.getAno());
-//            if(oferta.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,oferta.getProposto().getCodProposto());
-//            }
             comando.execute();
             comando.close();
             conexao.close();
@@ -102,14 +97,15 @@ public class OfertaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update oferta set codOferta = ?, ano = ? where codOferta = ?";
+            String sql = "update oferta set ano = ? where codOferta = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, oferta.getCodOferta());
-            comando.setInt(2, oferta.getAno());
+            comando.setInt(1, oferta.getAno());
+            comando.setInt(2, oferta.getCodOferta());
             comando.execute();
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
     }
     
@@ -125,6 +121,7 @@ public class OfertaDAO {
             comando.close();
             conexao.close();
             }catch (SQLException | ClassNotFoundException ex) {
+                throw ex;
         }
 }
 }

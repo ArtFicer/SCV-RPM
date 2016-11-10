@@ -21,12 +21,12 @@ public class Trimestre {
     }
 
     //Lista Obter CUrso
-    public static List<Trimestre> obterTrimestre() throws java.lang.ClassNotFoundException {
+    public static List<Trimestre> obterTrimestre() throws java.lang.ClassNotFoundException, SQLException {
         return TrimestreDAO.obterTrimestre();
     }
 
     //Obter Trimestre
-    public static Trimestre obterTrimestre(int codTrimestre) throws ClassNotFoundException {
+    public static Trimestre obterTrimestre(int codTrimestre) throws ClassNotFoundException, SQLException {
         return TrimestreDAO.obterTrimestre(codTrimestre);
     }
 

@@ -38,7 +38,7 @@ public class ManterDisciplinaController extends HttpServlet {
     
         //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -69,18 +69,19 @@ public class ManterDisciplinaController extends HttpServlet {
 
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("disciplinas", Disciplina.obterDisciplina());
             RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
     
     // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
         try {
@@ -90,6 +91,7 @@ public class ManterDisciplinaController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
@@ -97,7 +99,7 @@ public class ManterDisciplinaController extends HttpServlet {
     
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("disciplinas", Disciplina.obterDisciplina());
@@ -112,7 +114,7 @@ public class ManterDisciplinaController extends HttpServlet {
     
     
     //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
         //int coordenador = Integer.parseInt(request.getParameter("optProposto"));
@@ -123,13 +125,14 @@ public class ManterDisciplinaController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
 
     
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
@@ -138,11 +141,12 @@ public class ManterDisciplinaController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/manterDisciplina.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
     //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codDisciplina = Integer.parseInt(request.getParameter("txtCodDisciplina"));
         String nome = request.getParameter("txtNomeDisciplina");
@@ -154,6 +158,7 @@ public class ManterDisciplinaController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDisciplinaController");
             view.forward(request, response);
         } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+            throw ex;
         }
     }
     
@@ -174,6 +179,8 @@ public class ManterDisciplinaController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterDisciplinaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterDisciplinaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -191,6 +198,8 @@ public class ManterDisciplinaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterDisciplinaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterDisciplinaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -23,12 +23,12 @@ public class Servidor {
     }
 
     //Lista Obter CUrso
-    public static List<Servidor> obterServidores() throws java.lang.ClassNotFoundException {
+    public static List<Servidor> obterServidores() throws java.lang.ClassNotFoundException, SQLException {
         return ServidorDAO.obterServidores();
     }
 
     //Obter Servidor
-    public static Servidor obterServidor(int codServidor) throws ClassNotFoundException {
+    public static Servidor obterServidor(int codServidor) throws ClassNotFoundException, SQLException {
         return ServidorDAO.obterServidor(codServidor);
     }
 

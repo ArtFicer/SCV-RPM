@@ -42,7 +42,7 @@ public class ManterOfertaController extends HttpServlet {
     
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -72,7 +72,7 @@ public class ManterOfertaController extends HttpServlet {
     
     // Inclusão
     // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("ofertas", Oferta.obterOferta());
@@ -100,11 +100,11 @@ public class ManterOfertaController extends HttpServlet {
     
     //Edição
     //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("ofertas", Oferta.obterOferta());
-            int codOferta = Integer.parseInt(request.getParameter("codOferta"));
+            int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
             Oferta oferta = Oferta.obterOferta(codOferta);
             request.setAttribute("oferta", oferta);
             RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
@@ -132,7 +132,7 @@ public class ManterOfertaController extends HttpServlet {
     
     //Exclusão
     //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
             int codOferta = Integer.parseInt(request.getParameter("codOferta"));
@@ -177,6 +177,8 @@ public class ManterOfertaController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterOfertaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterOfertaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -194,6 +196,8 @@ public class ManterOfertaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterOfertaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManterOfertaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -75,12 +75,12 @@ public class Proposto {
     }
 
     //Lista Obter CUrso
-    public static List<Proposto> obterProposto() throws java.lang.ClassNotFoundException {
+    public static List<Proposto> obterProposto() throws java.lang.ClassNotFoundException, SQLException {
         return PropostoDAO.obterProposto();
     }
 
     //Obter Proposto
-    public static Proposto obterProposto(int codProposto) throws ClassNotFoundException {
+    public static Proposto obterProposto(int codProposto) throws ClassNotFoundException, SQLException {
         return PropostoDAO.obterProposto(codProposto);
     }
 

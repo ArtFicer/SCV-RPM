@@ -21,12 +21,12 @@ public class Oferta {
     }
 
     //Lista Obter CUrso
-    public static List<Oferta> obterOferta() throws java.lang.ClassNotFoundException {
+    public static List<Oferta> obterOferta() throws java.lang.ClassNotFoundException, SQLException {
         return OfertaDAO.obterOferta();
     }
 
     //Obter Oferta
-    public static Oferta obterOferta(int codOferta) throws ClassNotFoundException {
+    public static Oferta obterOferta(int codOferta) throws ClassNotFoundException, SQLException {
         return OfertaDAO.obterOferta(codOferta);
     }
 

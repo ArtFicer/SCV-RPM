@@ -21,12 +21,12 @@ public class Disciplina {
     }
 
     //Lista Obter CUrso
-    public static List<Disciplina> obterDisciplina() throws java.lang.ClassNotFoundException {
+    public static List<Disciplina> obterDisciplina() throws java.lang.ClassNotFoundException, SQLException {
         return DisciplinaDAO.obterDisciplina();
     }
 
     //Obter Disciplina
-    public static Disciplina obterDisciplina(int codDisciplina) throws ClassNotFoundException {
+    public static Disciplina obterDisciplina(int codDisciplina) throws ClassNotFoundException, SQLException {
         return DisciplinaDAO.obterDisciplina(codDisciplina);
     }
 
