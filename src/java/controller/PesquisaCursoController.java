@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -33,13 +34,13 @@ public class PesquisaCursoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException{
+            throws ServletException, IOException, ClassNotFoundException, SQLException{
         try {
            request.setAttribute("cursos", Curso.obterCurso());
            RequestDispatcher view = request.getRequestDispatcher("/pesquisarCurso.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
-            
+            throw ex;
         }
     }
 
@@ -59,6 +60,8 @@ public class PesquisaCursoController extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PesquisaCursoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PesquisaCursoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -76,6 +79,8 @@ public class PesquisaCursoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PesquisaCursoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(PesquisaCursoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
