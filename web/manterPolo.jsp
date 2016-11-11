@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>Código do Transporte:</td> 
-                    <td><input type="text" name="txtCodTransporte" value="${polo.Transporte_CodTransporte}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtCodTransporte" value="${polo.codTransporte}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Cidade:</td> 
