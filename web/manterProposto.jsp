@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>Calendário Proposto:</td> 
-                    <td><input type="text" name="txtCodCalendarioProposto" value="${proposto.codCalendarioProposto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtCodCalendarioProposto" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Servidor:</td> 
@@ -89,10 +89,6 @@
                 <tr>
                     <td>CEP:</td> 
                     <td><input type="text" name="txtCEP" value="${proposto.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Data de Nascimento:</td> 
-                    <td><input type="text" name="txtDataNascimento" value="${proposto.dataNascimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Titulação Máxima:</td> 

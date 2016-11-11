@@ -16,58 +16,61 @@
         <table border=1>
             <tr>
                 <th>Codigo:</th>
+                <th>Calendario:</th>
+                <th>Servidor:</th>
+                <th>Secretaria:</th>
                 <th>Nome:</th>
-                <th>CPF</th>
+                <th>Setor:</th>
+                <th>CPF::</th>
                 <th>Nascimento:</th>
                 <th>Email:</th>
                 <th>Telefone:</th>
                 <th>Celular:</th>
-                <th>Numero:</th>
-                <th>Agencia:</th>
-                <th>Conta:</th>
-                <th>Senha:</th>
-                <th>Setor:</th>
                 <th>Logradouro:</th>
+                <th>Numero:</th>
                 <th>Complemento:</th>
                 <th>Bairro:</th>
                 <th>Cidade:</th>
                 <th>UF:</th>
-                <th>Cep:</th>
-                <th>RG:</th>
+                <th>CEP:</th>
                 <th>Titulação Máxima:</th>
                 <th>Banco:</th>
+                <th>Agência:</th>
+                <th>Conta:</th>
                 <th>Cargo:</th>
+                <th>Senha:</th>
                 <th>Tipo do Proposto:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${propostos}" var="curso">
+            <c:forEach items="${propostos}" var="proposto">
                 <tr>
                     <td><c:out value="${proposto.codProposto}" /></td>
+                    <td><c:out value="${proposto.codCalendario}" /></td>
+                    <td><c:out value="${proposto.codServidor}" /></td>
+                    <td><c:out value="${proposto.codSecretaria}" /></td>
                     <td><c:out value="${proposto.nome}"/></td>
+                    <td><c:out value="${proposto.setor}"/></td>
                     <td><c:out value="${proposto.cpf}"/></td>
-                    <td><c:out value="${proposto.nascimento}"/></td>
+                    <td><c:out value="${proposto.dataNascimento}"/></td>
                     <td><c:out value="${proposto.email}"/></td>
                     <td><c:out value="${proposto.telefone}"/></td>
                     <td><c:out value="${proposto.celular}"/></td>
-                    <td><c:out value="${proposto.numero}"/></td>
-                    <td><c:out value="${proposto.agencia}"/></td>
-                    <td><c:out value="${proposto.conta}"/></td>
-                    <td><c:out value="${proposto.senha}"/></td>
-                    <td><c:out value="${proposto.setor}"/></td>
                     <td><c:out value="${proposto.logradouro}"/></td>
+                    <td><c:out value="${proposto.numero}"/></td>
                     <td><c:out value="${proposto.complemento}"/></td>
                     <td><c:out value="${proposto.bairro}"/></td>
                     <td><c:out value="${proposto.cidade}"/></td>
                     <td><c:out value="${proposto.uf}"/></td>
                     <td><c:out value="${proposto.cep}"/></td>
-                    <td><c:out value="${proposto.rg}"/></td>
                     <td><c:out value="${proposto.titulacaoMaxima}"/></td>
                     <td><c:out value="${proposto.banco}"/></td>
+                    <td><c:out value="${proposto.agencia}"/></td>
+                    <td><c:out value="${proposto.conta}"/></td>
                     <td><c:out value="${proposto.cargo}"/></td>
+                    <td><c:out value="${proposto.senha}"/></td>
                     <td><c:out value="${proposto.tipoProposto}"/></td>
-
-                    <td><a href="ManterPropostoController?acao=prepararEditar&txtCodProposto=<c:out value="${proposto.codProposto}"/>">Editar</a> </td>
-                    <td><a href="ManterPropostoController?acao=prepararExcluir&txtCodProposto=<c:out value="${proposto.codProposto}"/>">Excluir</a> </td>
+                    <td><a href="ManterPropostoController?acao=prepararEditar&txtCodProposto=<c:out value="${solicitacao.codProposto}"/>">Editar</a> </td>
+                    <td><a href="ManterPropostoController?acao=prepararExcluir&txtCodProposto=<c:out value="${solicitacao.codProposto}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

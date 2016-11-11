@@ -24,11 +24,11 @@
                 </tr>
                 <tr>
                     <td>Matricula SIAPE:</td> 
-                    <td><input type="text" name="txtMatriculaSiape" value="${servidor.matricula_SIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtMatriculaSiape" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Orgao Lotado:</td> 
-                    <td><input type="text" name="txtLotadoOrgao" value="${servidor.lotado_Orgao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtLotadoOrgao" value="${servidor.lotadoOrgao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>

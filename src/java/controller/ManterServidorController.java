@@ -70,7 +70,7 @@ public class ManterServidorController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("servidores", Servidor.obterServidores());
+            request.setAttribute("servidores", Servidor.obterServidor());
             RequestDispatcher view = request.getRequestDispatcher("/manterServidor.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {

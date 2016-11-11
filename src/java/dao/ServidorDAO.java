@@ -13,7 +13,7 @@ public class ServidorDAO {
 
     //obter
     //obter listas
-    public static List<Servidor> obterServidores() throws ClassNotFoundException, SQLException {
+    public static List<Servidor> obterServidor() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Servidor> servidores = new ArrayList<Servidor>();
@@ -51,8 +51,8 @@ public class ServidorDAO {
             
             servidor = new Servidor(
                     rs.getInt("codServidor"),
-                        rs.getInt("matriculaSIAPE"),
-                        rs.getString("lotadoOrgao")
+                        rs.getInt("matricula_SIAPE"),
+                        rs.getString("lotado_Orgao")
             );
             servidor.setCodServidor(rs.getInt("codServidor"));
         } catch (SQLException e) {
