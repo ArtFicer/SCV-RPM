@@ -204,7 +204,7 @@ public class PropostoDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from curso where codProposto = ?";
+            String sql = "delete from proposto where codProposto = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.execute();

@@ -17,22 +17,33 @@
         <h1>Pesquisa de Viagens</h1>
         <table border=1>
             <tr>
-                <th>Codigo:</th>
+                <th>Codigo Viagem:</th>
+                <th>Codigo Declaração Nota Técnica:</th>
+                <th>Codigo Relatorio Viagem:</th>
+                <th>Codigo Proposto:</th>
+                <th>Codigo Polo:</th>
                 <th>Destino:</th>
+                <th>Data da Viagem:</th>
+                <th>Horario de Saída:</th>
                 <th>Confirmação:</th>
                 <th>Conclusão:</th>
-                <th>Código do Transporte:</th>
-                <th>Horário Saída:</th>
+                <th>Codigo Transporte:</th>
                 <th colspan=2>Ação:</th>
             </tr>
             <c:forEach items="${viagens}" var="viagem">
                 <tr>
                     <td><c:out value="${viagem.codViagem}" /></td>
+                    <td><c:out value="${viagem.codDeclaracaoNotaTecnica}" /></td>
+                    <td><c:out value="${viagem.codRelatorioViagem}" /></td>
+                    <td><c:out value="${viagem.codProposto}" /></td>
+                    <td><c:out value="${viagem.codPolo}" /></td>
                     <td><c:out value="${viagem.destino}"/></td>
+                    <td><c:out value="${viagem.dataViagem}" /></td>
+                    <td><c:out value="${viagem.horarioSaida}"/></td>
                     <td><c:out value="${viagem.statusConfirmacao}"/></td>
                     <td><c:out value="${viagem.statusConclusao}"/></td>
-                    <td><c:out value="${viagem.codTransport}"/></td>
-                    <td><c:out value="${viagem.horarioSaida}"/></td>
+                    <td><c:out value="${viagem.codTransporte}"/></td>
+                    
                     <td><a href="ManterViagemController?acao=prepararEditar&txtCodViagem=<c:out value="${viagen.codViagem}"/>">Editar</a> </td>
                     <td><a href="ManterViagemController?acao=prepararExcluir&txtCodViagem=<c:out value="${viagen.codViagem}"/>">Excluir</a> </td>
                 </tr>

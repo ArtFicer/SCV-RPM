@@ -126,7 +126,7 @@ public class SecretariaDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from curso where codSecretaria = ?";
+            String sql = "delete from secretaria where codSecretaria = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, secretaria.getCodSecretaria());
             comando.execute();

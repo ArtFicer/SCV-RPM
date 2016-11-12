@@ -118,7 +118,7 @@ public class ServidorDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from curso where codServidor = ?";
+            String sql = "delete from servidor where codServidor = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, servidor.getCodServidor());
             comando.execute();

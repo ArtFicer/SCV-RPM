@@ -24,7 +24,18 @@
 
                 <tr>
                     <td>
-                        <p>Servidor:  <select nome="servidor"></select>
+                        <p>Polos:  
+                            <select nome="CodPolo">
+                                <?php
+                                    $sql = "select codPolo from viagem";
+                                    $resultado = mysql_query($sql,$conexao);
+                                    while($dados = mysql_fetch_array($resultado)){
+                                        $codPolo = $dados['codPolo'];
+                                        echo "<option value='codPolo'>$codPolo</option>";
+                                    }
+                                ?>
+                            </select>
+
                         <p>Local de viagem:  <select nome="local_viagem"></select>
 
                         <p>UF: <select name="uf">

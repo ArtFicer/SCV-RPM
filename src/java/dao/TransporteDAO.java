@@ -119,7 +119,7 @@ public class TransporteDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from curso where codTransporte = ?";
+            String sql = "delete from transporte where codTransporte = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, transporte.getCodTransporte());
             comando.execute();

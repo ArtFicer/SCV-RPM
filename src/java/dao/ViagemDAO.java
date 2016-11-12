@@ -10,7 +10,7 @@ import java.util.List;
 import modelo.Viagem;
 
 public class ViagemDAO {
-
+    
     //obter
     //obter listas
     public static List<Viagem> obterViagem() throws ClassNotFoundException, SQLException {
@@ -29,10 +29,10 @@ public class ViagemDAO {
                         rs.getInt("codProposto"),
                         rs.getInt("codPolo"),
                         rs.getString("destino"),
-                        rs.getString("dataViagem"),
-                        rs.getInt("horarioSaida"),
-                        rs.getString("statusConfirmacao"),
-                        rs.getString("statusConclusao"),
+                        rs.getString("data_viagem"),
+                        rs.getInt("horario_saida"),
+                        rs.getString("status_confirmacao"),
+                        rs.getString("status_conclusao"),
                         rs.getInt("codTransporte")
                 );
                 viagens.add(viagem);
@@ -63,10 +63,10 @@ public class ViagemDAO {
                         rs.getInt("codProposto"),
                         rs.getInt("codPolo"),
                         rs.getString("destino"),
-                        rs.getString("dataViagem"),
-                        rs.getInt("horarioSaida"),
-                        rs.getString("statusConfirmacao"),
-                        rs.getString("statusConclusao"),
+                        rs.getString("data_viagem"),
+                        rs.getInt("horario_saida"),
+                        rs.getString("status_confirmacao"),
+                        rs.getString("status_conclusao"),
                         rs.getInt("codTransporte")
             );
             viagem.setCodViagem(rs.getInt("codViagem"));

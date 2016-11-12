@@ -111,7 +111,7 @@ public class RelatorioViagemDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from curso where codRelatorioViagem = ?";
+            String sql = "delete from relatorioviagem where codRelatorioViagem = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
             comando.execute();

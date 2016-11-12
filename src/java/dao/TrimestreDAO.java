@@ -116,7 +116,7 @@ public class TrimestreDAO {
        Connection conexao = null ;
         try{
             conexao = BD.getConexao();
-            String sql = "delete from curso where codTrimestre = ?";
+            String sql = "delete from trimestre where codTrimestre = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, trimestre.getCodTrimestre());
             comando.execute();
