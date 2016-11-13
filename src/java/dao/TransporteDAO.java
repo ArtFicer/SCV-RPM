@@ -42,25 +42,25 @@ public class TransporteDAO {
     public static Transporte obterTransporte(int codTransporte) throws  ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        Transporte trasporte = null;
+        Transporte transporte = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from trasporte where codTransporte ="+codTransporte);
+            ResultSet rs = comando.executeQuery("select * from transporte where codTransporte ="+codTransporte);
             rs.first();
             
-            trasporte = new Transporte(
+            transporte = new Transporte(
                     rs.getInt("codTransporte"),
                         rs.getString("empresa"),
                         rs.getString("veiculo")
             );
-            trasporte.setCodTransporte(rs.getInt("codTransporte"));
+            transporte.setCodTransporte(rs.getInt("codTransporte"));
         } catch (SQLException e) {
             throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
-        return trasporte;
+        return transporte;
     }
 
     //fechar conexão
