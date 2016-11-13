@@ -86,7 +86,7 @@ public class ManterOfertaController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int ano = Integer.parseInt(request.getParameter("txtAnoOferta"));
+        int ano = Integer.parseInt(request.getParameter("txtAno"));
         try {
             Oferta oferta = new Oferta(codOferta, ano);
             oferta.gravar();
@@ -118,7 +118,7 @@ public class ManterOfertaController extends HttpServlet {
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int ano = Integer.parseInt(request.getParameter("txtNomeOferta"));
+        int ano = Integer.parseInt(request.getParameter("txtAno"));
         try {
             Oferta oferta = new Oferta(codOferta, ano);
             oferta.alterar();
@@ -149,7 +149,7 @@ public class ManterOfertaController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int ano = Integer.parseInt(request.getParameter("txtNomeOferta"));
+        int ano = Integer.parseInt(request.getParameter("txtAno"));
         try {
             Oferta oferta = new Oferta(codOferta, ano);
             oferta.Excluir();

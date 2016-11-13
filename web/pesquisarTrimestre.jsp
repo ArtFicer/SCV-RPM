@@ -21,12 +21,12 @@
                 <th>Trimestre:</th>
                 <th colspan=2>Ação:</th>
             </tr>
-            <c:forEach items="${trimestres}" var="trismestre">
+            <c:forEach items="${trimestres}" var="trimestre">
                 <tr>
                     <td><c:out value="${trimestre.codTrimestre}" /></td>
                     <td><c:out value="${trimestre.numeroTrimestre}"/></td>
-                    <td><a href="ManterTrimestreController?acao=prepararEditar&txtCodTrismestre=<c:out value="${trimestre.codTrimestre}"/>">Editar</a> </td>
-                    <td><a href="ManterTrimestreController?acao=prepararExcluir&txtCodTrismestre=<c:out value="${trimestre.codTrimestre}"/>">Excluir</a> </td>
+                    <td><a href="ManterTrimestreController?acao=prepararEditar&txtCodTrimestre=<c:out value="${trimestre.codTrimestre}"/>">Editar</a> </td>
+                    <td><a href="ManterTrimestreController?acao=prepararExcluir&txtCodTrimestre=<c:out value="${trimestre.codTrimestre}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

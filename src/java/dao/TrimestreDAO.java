@@ -24,7 +24,7 @@ public class TrimestreDAO {
             while (rs.next()) {
                 Trimestre trimestre = new Trimestre(
                         rs.getInt("codTrimestre"),
-                        rs.getInt("numeroTrimestre")
+                        rs.getInt("numero_trimestre")
                         
                 );
                 trimestres.add(trimestre);
@@ -50,7 +50,7 @@ public class TrimestreDAO {
             
             trimestre = new Trimestre(
                     rs.getInt("codTrimestre"),
-                        rs.getInt("numeroTrimestre")
+                        rs.getInt("numero_trimestre")
                         
             );
             trimestre.setCodTrimestre(rs.getInt("codTrimestre"));

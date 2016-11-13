@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>Ano:</td> 
-                    <td><input type="text" name="txtAno" value="${oferta.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtAno" value="${oferta.ano}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>

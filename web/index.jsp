@@ -60,7 +60,7 @@
                     <a href="PesquisaCursoController">Curso</a>
                 </td>
                 <td>
-                    <a href="PesquisaDeclaracaoNotaTecnicaController">Declaracao Nota Tecnica</a>
+                    <a href="#">(Não Existe)Declaracao Nota Tecnica</a>
 
                 </td>
             </tr>
