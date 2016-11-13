@@ -195,13 +195,13 @@ public class ManterPropostoController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codCalendario = Integer.parseInt(request.getParameter("txtcCodCalendario"));
+        int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
         int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        int codSecrataria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
+        int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        String dataNascimento = request.getParameter("txtDataNascimento");
+        int dataNascimento = Integer.parseInt(request.getParameter("txtDataNascimento"));
         String email = request.getParameter("txtEmail");
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         int celular = Integer.parseInt(request.getParameter("txtCelular"));
@@ -220,7 +220,7 @@ public class ManterPropostoController extends HttpServlet {
         String senha = request.getParameter("txtSenha");
         String tipoProposto = request.getParameter("txtTipoProposto");
         try {
-            Proposto proposto = new Proposto(codProposto, nome);
+            Proposto proposto = new Proposto(codProposto, codCalendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
             proposto.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
