@@ -24,13 +24,13 @@ public class PropostoDAO {
             while (rs.next()) {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
-                        rs.getInt("codCalendario"),
+                        rs.getInt("codCalendarioProposto"),
                         rs.getInt("codServidor"),
                         rs.getInt("codSecretaria"),
                         rs.getString("nome"),
                         rs.getString("setor"),
                         rs.getInt("cpf"),
-                        rs.getInt("dataNascimento"),
+                        rs.getInt("data_nascimento"),
                         rs.getString("email"),
                         rs.getInt("telefone"),
                         rs.getInt("celular"),
@@ -41,13 +41,13 @@ public class PropostoDAO {
                         rs.getString("cidade"),
                         rs.getString("uf"),
                         rs.getInt("cep"),
-                        rs.getString("titulacaoMaxima"),
+                        rs.getString("titulacao_maxima"),
                         rs.getString("banco"),
                         rs.getInt("agencia"),
                         rs.getInt("conta"),
                         rs.getString("cargo"),
                         rs.getString("senha"),
-                        rs.getString("tipodeproposto")
+                        rs.getString("tipo_proposto")
                 );
                 propostos.add(proposto);
             }
@@ -71,13 +71,13 @@ public class PropostoDAO {
             
             proposto = new Proposto(
                     rs.getInt("codProposto"),
-                        rs.getInt("codCalendario"),
+                        rs.getInt("codCalendarioProposto"),
                         rs.getInt("codServidor"),
                         rs.getInt("codSecretaria"),
                         rs.getString("nome"),
                         rs.getString("setor"),
                         rs.getInt("cpf"),
-                        rs.getInt("dataNascimento"),
+                        rs.getInt("data_nascimento"),
                         rs.getString("email"),
                         rs.getInt("telefone"),
                         rs.getInt("celular"),
@@ -88,13 +88,13 @@ public class PropostoDAO {
                         rs.getString("cidade"),
                         rs.getString("uf"),
                         rs.getInt("cep"),
-                        rs.getString("titulacaoMaxima"),
+                        rs.getString("titulacao_maxima"),
                         rs.getString("banco"),
                         rs.getInt("agencia"),
                         rs.getInt("conta"),
                         rs.getString("cargo"),
                         rs.getString("senha"),
-                        rs.getString("tipodeproposto")
+                        rs.getString("tipo_proposto")
             );
             proposto.setCodProposto(rs.getInt("codProposto"));
         } catch (SQLException e) {
@@ -124,7 +124,7 @@ public class PropostoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into proposto (codProposto, codCalendario,codServidor,codSecretaria,nome,setor,cpf,dataNascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacaomaxima,banco,agencia,conta,cargo,senha,tipoProposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into proposto (codProposto, codCalendario,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.setInt(2, proposto.getCodCalendario());

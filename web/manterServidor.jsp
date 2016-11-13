@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>Matricula SIAPE:</td> 
-                    <td><input type="text" name="txtMatriculaSiape" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtMatriculaSIAPE" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Orgao Lotado:</td> 
