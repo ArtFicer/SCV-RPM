@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>Bairro:</td> 
-                    <td><input type="text" name="txtCodBairro" value="${polo.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtBairro" value="${polo.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Numero:</td> 
