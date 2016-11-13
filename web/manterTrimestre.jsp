@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>Numero do Trimestre:</td> 
-                    <td><input type="text" name="txtNumeroDoTrimestre" value="${trimestre.numero_trimestre}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtNumeroTrimestre" value="${trimestre.numeroTrimestre}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>

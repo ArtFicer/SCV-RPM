@@ -83,7 +83,8 @@ public class SolicitacaoDAO {
         try{
             conexao = BD.getConexao();
             String sql = "insert into solicitacao (codSolicitacao, assunto,texto) values (?,?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
+            PreparedStatement comando;
+            comando = conexao.prepareStatement(sql);
             comando.setInt(1, solicitacao.getCodSolicitacao());
             comando.setString(2, solicitacao.getAssunto());
             comando.setString(3, solicitacao.getTexto());

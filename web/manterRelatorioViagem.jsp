@@ -20,11 +20,11 @@
             <table>
                 <tr>
                     <td>Código do Relatorio da Viagem:</td> 
-                    <td><input type="text" name="txtCodRelatorioViagem" value="${relatorioviagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtCodRelatorioViagem" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Relatorio:</td> 
-                    <td><input type="text" name="txtRelatorio" value="${relatorioviagem.relatorio}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtRelatorio" value="${relatorioViagem.relatorio}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>

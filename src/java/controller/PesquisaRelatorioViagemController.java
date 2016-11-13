@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Viagem;
+import modelo.RelatorioViagem;
 
 /**
  *
@@ -37,8 +37,8 @@ public class PesquisaRelatorioViagemController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                throws ServletException, IOException, ClassNotFoundException, SQLException{
         try {
-           request.setAttribute("viagens", Viagem.obterViagem());
-           RequestDispatcher view = request.getRequestDispatcher("/pesquisarViagem.jsp");
+           request.setAttribute("relatorioViagens", RelatorioViagem.obterRelatorioViagem());
+           RequestDispatcher view = request.getRequestDispatcher("/pesquisarRelatorioViagem.jsp");
            view.forward(request, response);
         }catch(ClassNotFoundException ex){
            throw ex;            

@@ -44,8 +44,8 @@
                     <td><c:out value="${viagem.statusConclusao}"/></td>
                     <td><c:out value="${viagem.codTransporte}"/></td>
                     
-                    <td><a href="ManterViagemController?acao=prepararEditar&txtCodViagem=<c:out value="${viagen.codViagem}"/>">Editar</a> </td>
-                    <td><a href="ManterViagemController?acao=prepararExcluir&txtCodViagem=<c:out value="${viagen.codViagem}"/>">Excluir</a> </td>
+                    <td><a href="ManterViagemController?acao=prepararEditar&txtCodViagem=<c:out value="${viagem.codViagem}"/>">Editar</a> </td>
+                    <td><a href="ManterViagemController?acao=prepararExcluir&txtCodViagem=<c:out value="${viagem.codViagem}"/>">Excluir</a> </td>
                 </tr>
             </c:forEach>
         </table>

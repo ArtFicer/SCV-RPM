@@ -11,34 +11,64 @@
 <html>
     <head>
         <title>Sobre - SCV</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-    <center>
-        <form>
-            <table width="700px">
+        <h1>Manter Viagem - ${operacao}</h1>
+
+        <form action="ManterViagemController?acao=confirmar${operacao}" method="post" name="frmManterViagem" onsubmit="return validarFormulario(this)">
+            <table>
                 <tr>
                     <td><center><h2>NEaD - SCV - Viagem</h2></center></td>
                 </tr>
-
+                <tr>
+                    <td>Código da Viagem:</td> 
+                    <td><input type="text" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Código da Declaração de Nota Técnica:</td> 
+                    <td><input type="text" name="txtCodDeclaracaoNotaTecnica" value="${viagem.codDeclaracaoNotaTecnica}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Código do Relatório da Viagem:</td> 
+                    <td><input type="text" name="txtCodRelatorioViagem" value="${viagem.codRelatorioViagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Código do Proposto:</td> 
+                    <td><input type="text" name="txtCodProposto" value="${viagem.codProposto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Código do Polo:</td> 
+                    <td><input type="text" name="txtCodPolo" value="${viagem.codPolo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Destino:</td> 
+                    <td><input type="text" name="txtDestino" value="${viagem.destino}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Data da Viagem:</td> 
+                    <td><input type="text" name="txtDataViagem" value="${viagem.dataViagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Horário de Saída:</td> 
+                    <td><input type="text" name="txtHorarioSaida" value="${viagem.horarioSaida}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Status Confirmação:</td> 
+                    <td><input type="text" name="txtStatusConfirmacao" value="${viagem.statusConfirmacao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Status Conclusão:</td> 
+                    <td><input type="text" name="txtStatusConclusao" value="${viagem.statusConclusao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <tr>
+                    <td>Código do Transporte:</td> 
+                    <td><input type="text" name="txtCodTransporte" value="${viagem.codTransporte}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                </tr>
+                <!--    Comentário
                 <tr>
                     <td>
-                        <p>Polos:  
-                            <select nome="CodPolo">
-                                <?php
-                                    $sql = "select codPolo from viagem";
-                                    $resultado = mysql_query($sql,$conexao);
-                                    while($dados = mysql_fetch_array($resultado)){
-                                        $codPolo = $dados['codPolo'];
-                                        echo "<option value='codPolo'>$codPolo</option>";
-                                    }
-                                ?>
-                            </select>
-
-                        <p>Local de viagem:  <select nome="local_viagem"></select>
-
-                        <p>UF: <select name="uf">
+                    <p>UF: <select name="uf">
                                 <option value="ac">AC</option>
                                 <option value="al">AL</option>
                                 <option value="ap">AP</option>
@@ -66,25 +96,15 @@
                                 <option value="se">SE</option>
                                 <option value="to">TO</option>
                             </select>
-                        <p>Cidade: <input type="text" name="cidade" size="24">
-                        <p>Hotel: <input type="text" name="hotel" size="14">
                     </td>
                 </tr>
-
-                <td>
-                    <p>Duração da viagem em dias:  <select nome="duracao_viagem"></select>
-                    <p>Data Inicio:  <input type="date" name="data_inicio">
-                        Data Retorno:  <input type="date" name="data_retorno">
-                    <p>Transporte:  <select nome="transporte"></select>
-                    <p>Transporte adaptado:  <select nome="transporte_adaptdado">
-                            <option value="s">Sim</option>
-                            <option value="n">Não</option></select>
-                        <p><input type="submit" name="enviar">
-                </td>
-
-               
+                -->
+                <tr>
+                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
+                </tr>
             </table>
         </form>
-    </center>
+        
+                
 </body>
 </html>

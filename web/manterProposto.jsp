@@ -23,16 +23,16 @@
                     <td><input type="text" name="txtCodProposto" value="${proposto.codProposto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Calendário Proposto:</td> 
-                    <td><input type="text" name="txtCodCalendarioProposto" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Código Calendário:</td> 
+                    <td><input type="text" name="txtCodCalendario" value="${proposto.codCalendario}" <c:if test="${operacao != 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Servidor:</td> 
-                    <td><input type="text" name="txtCodServidor" value="${proposto.codServidor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Código do Servidor:</td> 
+                    <td><input type="text" name="txtCodServidor" value="${proposto.codServidor}" <c:if test="${operacao != 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Secretaria:</td> 
-                    <td><input type="text" name="txtCodSecretaria" value="${proposto.codSecretaria}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Código da Secretaria:</td> 
+                    <td><input type="text" name="txtCodSecretaria" value="${proposto.codSecretaria}" <c:if test="${operacao != 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td>Nome:</td> 

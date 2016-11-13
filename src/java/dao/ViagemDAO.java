@@ -97,8 +97,9 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
+            String sql = "insert into viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement comando;
+            comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
             comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica());
             comando.setInt(3, viagem.getCodRelatorioViagem());

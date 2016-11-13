@@ -16,23 +16,23 @@ public class RelatorioViagemDAO {
     public static List<RelatorioViagem> obterRelatorioViagem() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<RelatorioViagem> escreverRelatorios = new ArrayList<RelatorioViagem>();
+        List<RelatorioViagem> relatorioViagens = new ArrayList<RelatorioViagem>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from relatorioViagem");
+            ResultSet rs = comando.executeQuery("select * from relatorioviagem");
             while (rs.next()) {
-                RelatorioViagem escreverRelatorio = new RelatorioViagem(
+                RelatorioViagem relatorioViagem = new RelatorioViagem(
                         rs.getInt("codRelatorioViagem"), rs.getString("relatorio") 
                 );
-                escreverRelatorios.add(escreverRelatorio);
+                relatorioViagens.add(relatorioViagem);
             }
         } catch (SQLException e) {
             throw e;
         } finally {
             fecharConexao(conexao, comando);
         }
-        return escreverRelatorios;
+        return relatorioViagens;
     }
     
     //Obter normal
@@ -43,7 +43,7 @@ public class RelatorioViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from relatorioViagem where codRelatorioViagem ="+codRelatorioViagem);
+            ResultSet rs = comando.executeQuery("select * from relatorioviagem where codRelatorioViagem ="+codRelatorioViagem);
             rs.first();
             
             relatorioViagem = new RelatorioViagem(
