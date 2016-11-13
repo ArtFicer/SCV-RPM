@@ -20,7 +20,7 @@ public class SecretariaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select = from secretaria");
+            ResultSet rs = comando.executeQuery("select * from secretaria");
             while (rs.next()) {
                 Secretaria secretaria = new Secretaria(
                         rs.getInt("codSecretaria"),
@@ -106,7 +106,7 @@ public class SecretariaDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update ssecretaria set nome = ?,cpf = ?,email = ?,senha = ? where codSecretaria = ?";
+            String sql = "update secretaria set nome = ?,cpf = ?,email = ?,senha = ? where codSecretaria = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setString(1, secretaria.getNome());
             comando.setInt(2, secretaria.getCpf());
