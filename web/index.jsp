@@ -13,7 +13,7 @@
                 location.ref = "manterServidor.jsp";
             }
         </script>
-        	<style type="text/css">
+        <style type="text/css">
 	<!--
 		body {
 			padding:0px;
@@ -72,7 +72,7 @@
                     <li><a href="">Contato</a></li>
 		</ul>
 	</div>
-
+    <center>
         <table> 
             <tr>
                 <td><center><h2>NEaD - SCV - Início</h2></center></td>
@@ -85,7 +85,7 @@
                 <td>Email: <input type="email" name="email" size="30"> </td>
             </tr>
             <tr>
-                <td>Senha: <input type='password' name='senha' size='30'></td>
+                <td>Senha: <input type="password" name="senha" size="30"></td>
             </tr>
             <tr>
                 <td>
@@ -96,6 +96,7 @@
             </tr>
 
         </table>
+        </center>
         <!--<table>
 
             <tr>
