@@ -67,7 +67,7 @@
                     <li><a href="PesquisaSolicitacaoController" target="_parent">Solicitação</a></li>
                     <li><a href="PesquisaTransporteController" target="_parent">Transporte</a></li>
                    <li> <a href="PesquisaTrimestreController" target="_parent">Trimestre</a></li>
-                    <li><li><a href="PesquisaViagemController" target="_parent">Viagem</a></li>
+                    <li><a href="PesquisaViagemController" target="_parent">Viagem</a></li>
                     <li><a href="sobre.jsp" target="_parent">Sobre</a></li>
                     <li><a href="" target="_parent">Contato</a></li>
 		</ul>

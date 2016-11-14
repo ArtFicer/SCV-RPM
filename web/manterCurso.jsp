@@ -18,6 +18,7 @@
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
+    <center>
         <h1>Manter Curso - ${operacao}</h1>
 
         <form action="ManterCursoController?acao=confirmar${operacao}" method="post" name="frmManterCurso" onsubmit="return validarFormulario(this)">
@@ -35,6 +36,7 @@
                 </tr>
             </table>
         </form>
+    </center>
         <SCRIPT language="JavaScript">
             <!--
             
