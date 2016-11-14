@@ -14,6 +14,10 @@
         <title>Manter Servidor</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Servidor - ${operacao}</h1>
 
         <form action="ManterServidorController?acao=confirmar${operacao}" method="post" name="frmManterServidor" onsubmit="return validarFormulario(this)">

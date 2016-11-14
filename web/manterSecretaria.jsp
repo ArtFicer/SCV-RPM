@@ -14,6 +14,10 @@
         <title>Manter Secretaria</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Secretaria - ${operacao}</h1>
 
         <form action="ManterSecretariaController?acao=confirmar${operacao}" method="post" name="frmManterSecretaria" onsubmit="return validarFormulario(this)">

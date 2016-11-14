@@ -14,6 +14,10 @@
          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+<!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Viagem - ${operacao}</h1>
 
         <form action="ManterViagemController?acao=confirmar${operacao}" method="post" name="frmManterViagem" onsubmit="return validarFormulario(this)">

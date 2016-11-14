@@ -14,6 +14,10 @@
         <title>Manter Oferta</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Oferta - ${operacao}</h1>
 
         <form action="ManterOfertaController?acao=confirmar${operacao}" method="post" name="frmManterOferta" onsubmit="return validarFormulario(this)">

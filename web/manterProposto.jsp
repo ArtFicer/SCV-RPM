@@ -14,6 +14,10 @@
         <title>Manter Proposto</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Proposto - ${operacao}</h1>
 
         <form action="ManterPropostoController?acao=confirmar${operacao}" method="post" name="frmManterProposto" onsubmit="return validarFormulario(this)">

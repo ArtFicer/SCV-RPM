@@ -12,9 +12,10 @@
         <title>NEAD - SCV - Histórico Pessoal</title>
     </head>
     <body>
-        <center>
-        <iframe src="Frame_Menu.jsp" frameborder="0" width="600"></iframe>
-    </center>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Necessida de implementação por meio de código java</h1>
         <h3>Viagens Aguardando Confirmação</h3>
         <h3>Viagens Concluidas</h3>

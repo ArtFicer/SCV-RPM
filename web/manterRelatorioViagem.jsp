@@ -14,6 +14,10 @@
         <title>Manter Relatorio Viagem</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Relatorio Viagem - ${operacao}</h1>
 
         <form action="ManterRelatorioViagemController?acao=confirmar${operacao}" method="post" name="frmManterRelatorioViagem" onsubmit="return validarFormulario(this)">

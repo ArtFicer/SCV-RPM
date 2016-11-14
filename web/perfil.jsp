@@ -11,9 +11,10 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <center>
-        <iframe src="Frame_Menu.jsp" frameborder="0" width="600"></iframe>
-        </center>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
     <center>
         <form>
             <table width="700px">

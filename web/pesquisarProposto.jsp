@@ -14,6 +14,10 @@
         <title>Pesquisa de Proposto</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Pesquisa de Proposto</h1>
         <table border=1>
             <tr>

@@ -14,6 +14,10 @@
         <title>Pesquisa de Polos</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Pesquisa de Polos</h1>
         <table border=1>
             <tr>

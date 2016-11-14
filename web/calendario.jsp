@@ -11,8 +11,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <center>
-        <iframe src="Frame_Menu.jsp" frameborder="0" width="600"></iframe>
     </center>
     <h1>Necessita js para implementar calendário</h1>
     </body>

@@ -14,6 +14,10 @@
         <title>Manter Solicitações</title>
     </head>
     <body>
+        <!--Menu-->
+        <nav>
+          <object width="100%" height="65px" data="menu.jsp"></object>
+     </nav>
         <h1>Manter Solicitações - ${operacao}</h1>
 
         <form action="ManterSolicitacaoController?acao=confirmar${operacao}" method="post" name="frmManterSolicitacao" onsubmit="return validarFormulario(this)">
