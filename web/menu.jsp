@@ -52,24 +52,24 @@
     <body>
 	<div id="menu">
 		<ul>
-                   <li><a href="index.jsp">Inicio</a></li>
-                   <li> <a href="PesquisaConvidadoController">Convidado</a></li>
-                   <li> <a href="PesquisaCursoController">Curso</a></li>
-                   <li> <a href="#">Declaracao Nota Tecnica</a></li>
-                   <li> <a href="PesquisaDisciplinaController">Disciplina</a></li>
-                   <li> <a href="historico.jsp">Histórico</a></li>
-                   <li> <a href="PesquisaOfertaController">Oferta</a></li>
-                   <li> <a href="PesquisaPoloController">Polo</a></li>
-                   <li> <a href="PesquisaPropostoController">Proposto</a></li>
-                    <li><a href="PesquisaRelatorioViagemController">RelatorioViagem</a></li>
-                    <li><a href="PesquisaSecretariaController">Secretaria</a></li>
-                    <li><a href="PesquisaServidorController">Servidor</a></li>
-                    <li><a href="PesquisaSolicitacaoController">Solicitação</a></li>
-                    <li><a href="PesquisaTransporteController">Transporte</a></li>
-                   <li> <a href="PesquisaTrimestreController">Trimestre</a></li>
-                    <li><li><a href="PesquisaViagemController">Viagem</a></li>
-                    <li><a href="sobre.jsp">Sobre</a></li>
-                    <li><a href="">Contato</a></li>
+                   <li><a href="index.jsp" target="_parent">Inicio</a></li>
+                   <li> <a href="PesquisaConvidadoController" target="_parent">Convidado</a></li>
+                   <li> <a href="PesquisaCursoController" target="_parent">Curso</a></li>
+                   <li> <a href="#" target="_parent">Declaracao Nota Tecnica</a></li>
+                   <li> <a href="PesquisaDisciplinaController" target="_parent">Disciplina</a></li>
+                   <li> <a href="historico.jsp" target="_parent">Histórico</a></li>
+                   <li> <a href="PesquisaOfertaController" target="_parent">Oferta</a></li>
+                   <li> <a href="PesquisaPoloController" target="_parent">Polo</a></li>
+                   <li> <a href="PesquisaPropostoController" target="_parent">Proposto</a></li>
+                    <li><a href="PesquisaRelatorioViagemController" target="_parent">RelatorioViagem</a></li>
+                    <li><a href="PesquisaSecretariaController" target="_parent">Secretaria</a></li>
+                    <li><a href="PesquisaServidorController" target="_parent">Servidor</a></li>
+                    <li><a href="PesquisaSolicitacaoController" target="_parent">Solicitação</a></li>
+                    <li><a href="PesquisaTransporteController" target="_parent">Transporte</a></li>
+                   <li> <a href="PesquisaTrimestreController" target="_parent">Trimestre</a></li>
+                    <li><li><a href="PesquisaViagemController" target="_parent">Viagem</a></li>
+                    <li><a href="sobre.jsp" target="_parent">Sobre</a></li>
+                    <li><a href="" target="_parent">Contato</a></li>
 		</ul>
 	</div>
    

@@ -16,7 +16,7 @@
         
     </head>
     <body>
-	<nav>
+    <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
     <center>

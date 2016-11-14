@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
 	<!--Menu-->
         <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
+          <object width="100%" height="60px" data="menu.jsp"></object>
      </nav>
     <center>
         <form>
@@ -22,10 +22,10 @@ and open the template in the editor.
                     <td><center><h2>NEaD - SCV - Sobre</h2></center></td>
                 </tr>
                 <tr>
-                    <td>O sistema SCV - Sistema de Controle de Viagens, trata-se de um istema utilizado pelo NÃºcleo de ensino a distÃ¢ncia
-                        do Instituto Federal Sudeste de Minas, Campus Juiz de Fora, para marcar, cancelar, gerÃªnciar e facilitar Ã s viagens
+                    <td>O sistema SCV - Sistema de Controle de Viagens, trata-se de um sistema utilizado pelo Núcleo de ensino a distância
+                        do Instituto Federal Sudeste de Minas, Campus Juiz de Fora, para marcar, cancelar, gerênciar e facilitar às viagens
                         feitas por nossos servidores.
-                        <p>Caso possua dÃºvidas ou problemas com nosso sitema, favor entrar em contato pelo e-mail <a href=mailto:suporte.eadjf@ifsudestemg.edu.br>suporte.eadjf@ifsudestemg.edu.br</a></p>
+                        <p>Caso possua dúvidas ou problemas com nosso sitema, favor entrar em contato pelo e-mail <a href=mailto:suporte.eadjf@ifsudestemg.edu.br>suporte.eadjf@ifsudestemg.edu.br</a></p>
                     </td>
                 </tr>
 
