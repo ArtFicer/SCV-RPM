@@ -25,7 +25,6 @@
                 <th>Codigo Calendario:</th>
                 <th>Codigo Servidor:</th>
                 <th>Codigo Secretaria:</th>
-                <th>Calendario:</th>
                 <th>Nome:</th>
                 <th>Setor:</th>
                 <th>CPF::</th>
