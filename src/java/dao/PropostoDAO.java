@@ -124,9 +124,8 @@ public class PropostoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into proposto (codProposto, codCalendario,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement comando;
-            comando = conexao.prepareStatement(sql);
+            String sql = "insert into proposto (codProposto, codCalendarioProposto,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.setInt(2, proposto.getCodCalendario());
             comando.setInt(3, proposto.getCodServidor());

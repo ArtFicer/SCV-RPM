@@ -81,7 +81,7 @@ public class ManterServidorController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSiape")));
+        int matriculaSIAPE = Integer.parseInt((request.getParameter("txtMatriculaSIAPE")));
         String lotadoOrgao = request.getParameter("txtLotadoOrgao");
 
         try {
