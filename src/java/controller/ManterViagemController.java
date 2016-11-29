@@ -81,7 +81,7 @@ public class ManterViagemController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
+        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
         int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
