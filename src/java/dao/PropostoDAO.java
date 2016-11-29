@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Proposto;
+import modelo.Secretaria;
+import modelo.Servidor;
 
 public class PropostoDAO {
 
@@ -17,6 +19,8 @@ public class PropostoDAO {
         Connection conexao = null;
         Statement comando = null;
         List<Proposto> propostos = new ArrayList<Proposto>();
+        Servidor servidor = null;
+        Secretaria secretaria = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -25,8 +29,8 @@ public class PropostoDAO {
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
                         rs.getInt("codCalendarioProposto"),
-                        rs.getInt("codServidor"),
-                        rs.getInt("codSecretaria"),
+                        servidor,
+                        secretaria,
                         rs.getString("nome"),
                         rs.getString("setor"),
                         rs.getInt("cpf"),
@@ -63,6 +67,8 @@ public class PropostoDAO {
         Connection conexao = null;
         Statement comando = null;
         Proposto proposto = null;
+        Servidor servidor = null;
+        Secretaria secretaria = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -72,8 +78,8 @@ public class PropostoDAO {
             proposto = new Proposto(
                     rs.getInt("codProposto"),
                         rs.getInt("codCalendarioProposto"),
-                        rs.getInt("codServidor"),
-                        rs.getInt("codSecretaria"),
+                        servidor,
+                        secretaria,
                         rs.getString("nome"),
                         rs.getString("setor"),
                         rs.getInt("cpf"),
@@ -128,8 +134,8 @@ public class PropostoDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
             comando.setInt(2, proposto.getCodCalendario());
-            comando.setInt(3, proposto.getCodServidor());
-            comando.setInt(4, proposto.getCodSecretaria());
+            comando.setInt(3, proposto.getCodServidor().getCodServidor());
+            comando.setInt(4, proposto.getCodSecretaria().getCodSecretaria());
             comando.setString(5, proposto.getNome());
             comando.setString(6, proposto.getSetor());
             comando.setInt(7, proposto.getCpf());
@@ -167,8 +173,8 @@ public class PropostoDAO {
             String sql = "update proposto  set codCalendarioProposto = ?,codServidor = ?,codSecretaria = ?,nome = ?,setor = ?,cpf = ?,data_nascimento = ?,email = ?,telefone = ?,celular = ?,logradouro = ?,numero = ?,complemento = ?,bairro = ?,cidade = ?,uf = ?,cep = ?,titulacao_maxima = ?,banco = ?,agencia = ?,conta = ?,cargo = ?,senha = ?,tipo_proposto = ? where codProposto = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodCalendario());
-            comando.setInt(2, proposto.getCodServidor());
-            comando.setInt(3, proposto.getCodSecretaria());
+            comando.setInt(2, proposto.getCodServidor().getCodServidor());
+            comando.setInt(3, proposto.getCodSecretaria().getCodSecretaria());
             comando.setString(4, proposto.getNome());
             comando.setString(5, proposto.getSetor());
             comando.setInt(6, proposto.getCpf());

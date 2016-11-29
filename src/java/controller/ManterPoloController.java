@@ -6,9 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,12 +16,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Polo;
+import modelo.Transporte;
 
 /**
  *
  * @author pe-ri
  */
-
 @WebServlet(name = "ManterPoloController", urlPatterns = {"/ManterPoloController"})
 public class ManterPoloController extends HttpServlet {
 
@@ -37,9 +34,6 @@ public class ManterPoloController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
-    
     //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -69,12 +63,12 @@ public class ManterPoloController extends HttpServlet {
         }
     }
 
-    
     // Inclusão
     // Prepara a Inclusão no banco de dados
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
+            request.setAttribute("transportes", Transporte.obterTransporte());
             request.setAttribute("polos", Polo.obterPolo());
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
@@ -82,11 +76,11 @@ public class ManterPoloController extends HttpServlet {
             throw ex;
         }
     }
-    
+
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        Transporte transporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")), null, null);
         String cidade = request.getParameter("txtCidade");
         String logradouro = request.getParameter("txtLogradouro");
         String bairro = request.getParameter("txtBairro");
@@ -94,7 +88,7 @@ public class ManterPoloController extends HttpServlet {
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         String email = request.getParameter("txtEmail");
         try {
-            Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
+            Polo polo = new Polo(codPolo, transporte, cidade, logradouro, bairro, numero, telefone, email);
             polo.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
@@ -103,8 +97,6 @@ public class ManterPoloController extends HttpServlet {
         }
     }
 
-    
-    
     //Edição
     //Preparar a edição
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
@@ -119,12 +111,11 @@ public class ManterPoloController extends HttpServlet {
             throw ex;
         }
     }
-    
-    
+
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        Transporte transporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")), null, null);
         String cidade = request.getParameter("txtCidade");
         String logradouro = request.getParameter("txtLogradouro");
         String bairro = request.getParameter("txtBairro");
@@ -133,7 +124,7 @@ public class ManterPoloController extends HttpServlet {
         String email = request.getParameter("txtEmail");
         try {
             //Proposto proposto = null;
-            Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
+            Polo polo = new Polo(codPolo, transporte, cidade, logradouro, bairro, numero, telefone, email);
             polo.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
@@ -142,7 +133,6 @@ public class ManterPoloController extends HttpServlet {
         }
     }
 
-    
     //Exclusão
     //Preparar Exclução
     private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
@@ -162,7 +152,7 @@ public class ManterPoloController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        Transporte transporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")), null, null);
         String cidade = request.getParameter("txtCidade");
         String logradouro = request.getParameter("txtLogradouro");
         String bairro = request.getParameter("txtBairro");
@@ -170,7 +160,7 @@ public class ManterPoloController extends HttpServlet {
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         String email = request.getParameter("txtEmail");
         try {
-            Polo polo = new Polo(codPolo,codTransporte,cidade,logradouro,bairro,numero,telefone,email);
+            Polo polo = new Polo(codPolo, transporte, cidade, logradouro, bairro, numero, telefone, email);
             polo.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
@@ -178,8 +168,7 @@ public class ManterPoloController extends HttpServlet {
             throw ex;
         }
     }
-    
-    
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -38,10 +38,6 @@
                         </select>
                     </td>
                 </tr>
-                <!--<tr>
-                    <td>Código do Transporte:</td> 
-                    <td><input type="text" name="txtCodTransporte" value="${polo.codTransporte}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>-->
                 <tr>
                     <td>Cidade:</td> 
                     <td><input type="text" name="txtCidade" value="${polo.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>

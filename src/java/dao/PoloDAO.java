@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Polo;
+import modelo.Transporte;
+
 
 public class PoloDAO {
 
@@ -17,14 +19,17 @@ public class PoloDAO {
         Connection conexao = null;
         Statement comando = null;
         List<Polo> polos = new ArrayList<Polo>();
+        Transporte transporte = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from polo");
+            ResultSet rs = comando.executeQuery("select * from polo join transporte on polo.codTransporte = transporte.codTransporte");
             while (rs.next()) {
+                
+                transporte = new Transporte(rs.getInt("codTransporte"), rs.getString("empresa"), rs.getString("veiculo"));
                 Polo polo = new Polo(
                         rs.getInt("codPolo"),
-                        rs.getInt("codTransporte"),
+                        transporte,
                         rs.getString("cidade"),
                         rs.getString("logradouro"),
                         rs.getString("bairro"),
@@ -46,15 +51,16 @@ public class PoloDAO {
         Connection conexao = null;
         Statement comando = null;
         Polo polo = null;
+        Transporte transporte = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from polo where codPolo ="+codPolo);
+            ResultSet rs = comando.executeQuery("select * from polo join transporte on polo.codTransporte = transporte.codTransporte where codPolo = "+codPolo);
             rs.first();
-            
+            transporte = new Transporte(rs.getInt("codTransporte"), rs.getString("empresa"), rs.getString("veiculo"));
             polo = new Polo(
                     rs.getInt("codPolo"),
-                    rs.getInt("codTransporte"),
+                    transporte,
                     rs.getString("cidade"),
                     rs.getString("logradouro"),
                     rs.getString("bairro"),
@@ -62,7 +68,6 @@ public class PoloDAO {
                     rs.getInt("telefone"),
                     rs.getString("email")
             );
-            polo.setCodPolo(rs.getInt("codPolo"));
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -93,7 +98,7 @@ public class PoloDAO {
             String sql = "insert into polo (codPolo,codTransporte, cidade,logradouro,bairro,numero,telefone,email) values (?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, polo.getCodPolo());
-            comando.setInt(2, polo.getCodTransporte());
+            comando.setInt(2, polo.getCodTransporte().getCodTransporte());
             comando.setString(3, polo.getCidade());
             comando.setString(4, polo.getLogradouro());
             comando.setString(5, polo.getBairro());
@@ -115,7 +120,7 @@ public class PoloDAO {
             conexao = BD.getConexao();
             String sql = "update polo set codTransporte = ?, cidade = ?,logradouro = ?,bairro = ?,numero = ?,telefone = ?,email = ? where codPolo = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, polo.getCodTransporte());
+            comando.setInt(1, polo.getCodTransporte().getCodTransporte());
             comando.setString(2, polo.getCidade());
             comando.setString(3, polo.getLogradouro());
             comando.setString(4, polo.getBairro());

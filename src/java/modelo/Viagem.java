@@ -7,18 +7,18 @@ import java.util.List;
 public class Viagem {
 
     private int codViagem;
-    private int codDeclaracaoNotaTecnica;
-    private int codRelatorioViagem;
-    private int codProposto;
-    private int codPolo;
+    private DeclaracaoNotaTecnica codDeclaracaoNotaTecnica;
+    private RelatorioViagem codRelatorioViagem;
+    private Proposto codProposto;
+    private Polo codPolo;
     private String destino;
     private String dataViagem;
     private int horarioSaida;
     private String statusConfirmacao;
     private String statusConclusao;
-    private int codTransporte;
+    private Transporte codTransporte;
 
-    public Viagem(int codViagem, int codDeclaracaoNotaTecnica, int codRelatorioViagem, int codProposto, int codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao, int codTransporte) {
+    public Viagem(int codViagem, DeclaracaoNotaTecnica codDeclaracaoNotaTecnica, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao, Transporte codTransporte) {
         this.codViagem = codViagem;
         this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
         this.codRelatorioViagem = codRelatorioViagem;
@@ -68,35 +68,35 @@ public class Viagem {
         this.codViagem = codViagem;
     }
 
-    public int getCodDeclaracaoNotaTecnica() {
+    public DeclaracaoNotaTecnica getCodDeclaracaoNotaTecnica() {
         return codDeclaracaoNotaTecnica;
     }
 
-    public void setCodDeclaracaoNotaTecnica(int codDeclaracaoNotaTecnica) {
+    public void setCodDeclaracaoNotaTecnica(DeclaracaoNotaTecnica codDeclaracaoNotaTecnica) {
         this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
     }
 
-    public int getCodRelatorioViagem() {
+    public RelatorioViagem getCodRelatorioViagem() {
         return codRelatorioViagem;
     }
 
-    public void setCodRelatorioViagem(int codRelatorioViagem) {
+    public void setCodRelatorioViagem(RelatorioViagem codRelatorioViagem) {
         this.codRelatorioViagem = codRelatorioViagem;
     }
 
-    public int getCodProposto() {
+    public Proposto getCodProposto() {
         return codProposto;
     }
 
-    public void setCodProposto(int codProposto) {
+    public void setCodProposto(Proposto codProposto) {
         this.codProposto = codProposto;
     }
 
-    public int getCodPolo() {
+    public Polo getCodPolo() {
         return codPolo;
     }
 
-    public void setCodPolo(int codPolo) {
+    public void setCodPolo(Polo codPolo) {
         this.codPolo = codPolo;
     }
 
@@ -140,11 +140,11 @@ public class Viagem {
         this.statusConclusao = statusConclusao;
     }
 
-    public int getCodTransporte() {
+    public Transporte getCodTransporte() {
         return codTransporte;
     }
 
-    public void setCodTransporte(int codTransporte) {
+    public void setCodTransporte(Transporte codTransporte) {
         this.codTransporte = codTransporte;
     }
     

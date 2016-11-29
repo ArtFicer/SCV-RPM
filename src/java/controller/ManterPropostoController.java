@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Proposto;
+import modelo.Secretaria;
+import modelo.Servidor;
 
 /**
  *
@@ -76,6 +78,8 @@ public class ManterPropostoController extends HttpServlet {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("propostos", Proposto.obterProposto());
+            request.setAttribute("servidores", Servidor.obterServidor());
+            request.setAttribute("secretarias", Secretaria.obterSecretaria());
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
@@ -87,7 +91,7 @@ public class ManterPropostoController extends HttpServlet {
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
-        int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
+        Servidor codServidor = Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),null,null);
         int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");

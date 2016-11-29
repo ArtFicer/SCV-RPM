@@ -8,8 +8,8 @@ public class Proposto {
 
     private int codProposto;
     private int codCalendario;
-    private int codServidor;
-    private int codSecretaria;
+    private Servidor codServidor;
+    private Secretaria codSecretaria;
     private String nome;
     private String setor;
     private int cpf;
@@ -35,7 +35,7 @@ public class Proposto {
     private int matriculaServidorProposto;
     private int matriculaSecretariaProposto;
     // Construtores
-    public Proposto(int codProposto, int codCalendario, int codServidor, int codSecretaria, String nome, String setor, int cpf, int dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaoMaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
+    public Proposto(int codProposto, int codCalendario, Servidor codServidor, Secretaria codSecretaria, String nome, String setor, int cpf, int dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaoMaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
         this.codProposto = codProposto;
         this.codCalendario = codCalendario;
         this.codServidor = codServidor;
@@ -111,19 +111,19 @@ public class Proposto {
         this.codCalendario = codCalendario;
     }
 
-    public int getCodServidor() {
+    public Servidor getCodServidor() {
         return codServidor;
     }
 
-    public void setCodServidor(int codServidor) {
+    public void setCodServidor(Servidor codServidor) {
         this.codServidor = codServidor;
     }
 
-    public int getCodSecretaria() {
+    public Secretaria getCodSecretaria() {
         return codSecretaria;
     }
 
-    public void setCodSecretaria(int codSecretaria) {
+    public void setCodSecretaria(Secretaria codSecretaria) {
         this.codSecretaria = codSecretaria;
     }
 

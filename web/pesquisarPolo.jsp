@@ -34,7 +34,7 @@
             <c:forEach items="${polos}" var="polo">
                 <tr>
                     <td><c:out value="${polo.codPolo}" /></td>
-                    <td><c:out value="${polo.codTransporte}" /></td>
+                    <td><c:out value="${polo.codTransporte.codTransporte}" /></td>
                     <td><c:out value="${polo.cidade}" /></td>
                     <td><c:out value="${polo.logradouro}" /></td>
                     <td><c:out value="${polo.bairro}" /></td>
