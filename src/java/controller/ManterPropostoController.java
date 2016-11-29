@@ -92,7 +92,7 @@ public class ManterPropostoController extends HttpServlet {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
         Servidor codServidor = Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),null);
-        int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
+        Secretaria codSecretaria = Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
