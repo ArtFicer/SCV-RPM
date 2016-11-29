@@ -146,7 +146,7 @@ public class ManterPropostoController extends HttpServlet {
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
-        int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
+        Servidor codServidor = Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),null);
         int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
