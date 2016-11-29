@@ -31,12 +31,28 @@
                     <td><input type="text" name="txtCodCalendario" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Código do Servidor:</td> 
-                    <td><input type="text" name="txtCodServidor" value="${proposto.codServidor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Codigo Servidor:</td> 
+                    <td><select name="txtCodServidor" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <option value="0" <c:if test="${servidor.codServidor != null}"> selected</c:if>></option>
+                        <c:forEach items="${servidores}" var="servidor">
+                            <option value="${servidor.codServidor}" <c:if test="${servidor.codServidor == proposto.codServidor}"> selected</c:if>>
+                               ${servidor.codServidor}
+                            </option>  
+                        </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Código da Secretaria:</td> 
-                    <td><input type="text" name="txtCodSecretaria" value="${proposto.codSecretaria}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Codigo Secretaria:</td> 
+                    <td><select name="txtCodSecretaria" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <option value="0" <c:if test="${secretaria.codSecretaria != null}"> selected</c:if>></option>
+                        <c:forEach items="${secretarias}" var="secretaria">
+                            <option value="${secretaria.codSecretaria}" <c:if test="${secretaria.codSecretaria == proposto.codSecretaria.codSecretaria}"> selected</c:if>>
+                               ${secretaria.codSecretaria}
+                            </option>  
+                        </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Nome:</td> 

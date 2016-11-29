@@ -53,11 +53,8 @@
 	<div id="menu">
 		<ul>
                    <li><a href="index.jsp" target="_parent">Inicio</a></li>
-                   <!--<li> <a href="PesquisaConvidadoController" target="_parent">Convidado</a></li>-->
                    <li> <a href="PesquisaCursoController" target="_parent">Curso</a></li>
-                   <!--<li> <a href="#" target="_parent">Declaracao Nota Tecnica</a></li>-->
                    <li> <a href="PesquisaDisciplinaController" target="_parent">Disciplina</a></li>
-                   <!--<li> <a href="historico.jsp" target="_parent">Histórico</a></li>-->
                    <li> <a href="PesquisaOfertaController" target="_parent">Oferta</a></li>
                    <li> <a href="PesquisaPoloController" target="_parent">Polo</a></li>
                    <li> <a href="PesquisaPropostoController" target="_parent">Proposto</a></li>
