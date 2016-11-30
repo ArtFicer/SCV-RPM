@@ -6,9 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,8 +88,8 @@ public class ManterPropostoController extends HttpServlet {
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
-        Servidor codServidor = Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),null);
-        Secretaria codSecretaria = Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null);
+        Servidor codServidor = new Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),0,null);
+        Secretaria codSecretaria = new Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null,0,null,null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
@@ -146,8 +143,8 @@ public class ManterPropostoController extends HttpServlet {
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
-        Servidor codServidor = Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),null);
-        Secretaria codSecretaria = Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null);
+        Servidor codServidor = new Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),0,null);
+        Secretaria codSecretaria = new Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null,0,null,null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
@@ -200,8 +197,8 @@ public class ManterPropostoController extends HttpServlet {
 
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
         int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
-        int codServidor = Integer.parseInt(request.getParameter("txtCodServidor"));
-        int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
+        Servidor codServidor = new Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),0,null);
+        Secretaria codSecretaria = new Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null,0,null,null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
