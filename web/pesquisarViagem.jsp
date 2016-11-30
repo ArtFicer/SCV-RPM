@@ -37,16 +37,16 @@
             <c:forEach items="${viagens}" var="viagem">
                 <tr>
                     <td><c:out value="${viagem.codViagem}" /></td>
-                    <td><c:out value="${viagem.codDeclaracaoNotaTecnica}" /></td>
-                    <td><c:out value="${viagem.codRelatorioViagem}" /></td>
-                    <td><c:out value="${viagem.codProposto}" /></td>
-                    <td><c:out value="${viagem.codPolo}" /></td>
+                    <td><c:out value="${viagem.codDeclaracaoNotaTecnica.codDeclaracaoNotaTecnica}" /></td>
+                    <td><c:out value="${viagem.codRelatorioViagem.codRelatorioViagem}" /></td>
+                    <td><c:out value="${viagem.codProposto.codProposto}" /></td>
+                    <td><c:out value="${viagem.codPolo.codPolo}" /></td>
                     <td><c:out value="${viagem.destino}"/></td>
                     <td><c:out value="${viagem.dataViagem}" /></td>
                     <td><c:out value="${viagem.horarioSaida}"/></td>
                     <td><c:out value="${viagem.statusConfirmacao}"/></td>
                     <td><c:out value="${viagem.statusConclusao}"/></td>
-                    <td><c:out value="${viagem.codTransporte}"/></td>
+                    <td><c:out value="${viagem.codTransporte.codTransporte}"/></td>
                     
                     <td><a href="ManterViagemController?acao=prepararEditar&txtCodViagem=<c:out value="${viagem.codViagem}"/>">Editar</a> </td>
                     <td><a href="ManterViagemController?acao=prepararExcluir&txtCodViagem=<c:out value="${viagem.codViagem}"/>">Excluir</a> </td>

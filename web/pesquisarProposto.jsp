@@ -52,8 +52,8 @@
                 <tr>
                     <td><c:out value="${proposto.codProposto}" /></td>
                     <td><c:out value="${proposto.codCalendario}" /></td>
-                    <td><c:out value="${proposto.codServidor}" /></td>
-                    <td><c:out value="${proposto.codSecretaria}" /></td>
+                    <td><c:out value="${proposto.codServidor.codServidor}" /></td>
+                    <td><c:out value="${proposto.codSecretaria.codSecretaria}" /></td>
                     <td><c:out value="${proposto.nome}"/></td>
                     <td><c:out value="${proposto.setor}"/></td>
                     <td><c:out value="${proposto.cpf}"/></td>
