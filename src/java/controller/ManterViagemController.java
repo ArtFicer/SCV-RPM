@@ -18,6 +18,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.DeclaracaoNotaTecnica;
+import modelo.Polo;
+import modelo.Proposto;
+import modelo.RelatorioViagem;
+import modelo.Transporte;
 import modelo.Viagem;
 
 /**
@@ -81,16 +86,16 @@ public class ManterViagemController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
-        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-        int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
+        RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
+        Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")),null);
+        Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
         String destino = request.getParameter("txtDestino");
         String dataViagem = request.getParameter("txtDataViagem");
         int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
         String statusConfirmacao = request.getParameter("txtStatusConfirmacao");
         String statusConclusao = request.getParameter("txtStatusConclusao");
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        Transporte codTransporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")),null,null);
 
         try {
             Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
@@ -120,16 +125,16 @@ public class ManterViagemController extends HttpServlet {
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
-        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-        int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
+        RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
+        Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")),null);
+        Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
         String destino = request.getParameter("txtDestino");
         String dataViagem = request.getParameter("txtDataViagem");
         int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
         String statusConfirmacao = request.getParameter("txtStatusConfirmacao");
         String statusConclusao = request.getParameter("txtStatusConclusao");
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        Transporte codTransporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")),null,null);
 
         try {
             Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
@@ -159,16 +164,16 @@ public class ManterViagemController extends HttpServlet {
     //Confirma a Exclusão
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        int codDeclaracaoNotaTecnica = Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica"));
-        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-        int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
+        RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
+        Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")),null);
+        Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
         String destino = request.getParameter("txtDestino");
         String dataViagem = request.getParameter("txtDataViagem");
         int horarioSaida = Integer.parseInt(request.getParameter("txtHorarioSaida"));
         String statusConfirmacao = request.getParameter("txtStatusConfirmacao");
         String statusConclusao = request.getParameter("txtStatusConclusao");
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+        Transporte codTransporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")),null,null);
 
         try {
             Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
