@@ -11,6 +11,8 @@ import modelo.DeclaracaoNotaTecnica;
 import modelo.Polo;
 import modelo.Proposto;
 import modelo.RelatorioViagem;
+import modelo.Secretaria;
+import modelo.Servidor;
 import modelo.Transporte;
 import modelo.Viagem;
 
@@ -34,7 +36,31 @@ public class ViagemDAO {
             while (rs.next()) {
                 declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),rs.getString("redigir"));
                 relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), rs.getString("relatorio"));
-                proposto = new Proposto(rs.getInt("codProposto"),rs.getString("nome"));
+                proposto = new Proposto(rs.getInt("codProposto"),
+                        0,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        0,
+                        null,
+                        0,
+                        0,
+                        null,
+                        0,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        null,
+                        null,
+                        0,
+                        0,
+                        null,
+                        null,
+                        null);
                 polo = new Polo(rs.getInt("codPolo"),
                         transporte,
                         rs.getString("cidade"),

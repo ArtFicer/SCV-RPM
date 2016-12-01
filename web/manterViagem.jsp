@@ -57,7 +57,7 @@
                     <td>Código do Proposto:</td> 
                         <td><select name="txtCodProposto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="0" <c:if test="${proposto.codProposto != null}"> selected</c:if>></option>
-                            <c:forEach items="${propostos}" var="relatorioViagem">
+                            <c:forEach items="${propostos}" var="proposto">
                                 <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == viagem.codProposto}"> selected</c:if>>
                                     ${proposto.codProposto}
                                 </option>  
