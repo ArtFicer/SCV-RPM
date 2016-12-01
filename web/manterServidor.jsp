@@ -40,8 +40,7 @@
             </table>
         </form>
         <SCRIPT language="JavaScript">
-            <!--
-            
+                        
             function campoNumerico(valor)
             {
                 var caracteresValidos = "0123456789";
@@ -61,30 +60,15 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodServidor.value == ""){
+                if (!campoNumerico(form.txtCodServidor.value)){
                     mensagem = mensagem + "Informe o Código do Servidor\n";
                 }                             
-                if (form.txtMatriculaSiape.value == ""){
+                if (!campoNumerico(form.txtMatriculaSiape.value)){
                     mensagem = mensagem + "Informe a Matricula SIAPE\n";
                 }   
                 if (form.txtLotadoOrgao.value == ""){
                     mensagem = mensagem + "Informe o Orgao\n";
                 } 
-                if (form.txtTotalPeriodos.value == ""){
-                    mensagem = mensagem + "Informe o Total de Períodos\n";
-                }                  
-                if (form.txtCargaHoraria.value == ""){
-                    mensagem = mensagem + "Informe a Carga Horária\n";
-                }                  
-                if (!campoNumerico(form.txtCodCurso.value)){
-                    mensagem = mensagem + "Código do Curso deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtTotalPeriodos.value)){
-                    mensagem = mensagem + "Total de Períodos deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtCargaHoraria.value)){
-                    mensagem = mensagem + "Carga Horária deve ser numérica\n";
-                }                  
                 if (mensagem == ""){
                     return true;
                 }else{

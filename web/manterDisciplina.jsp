@@ -36,8 +36,7 @@
             </table>
         </form>
         <SCRIPT language="JavaScript">
-            <!--
-            
+                       
             function campoNumerico(valor)
             {
                 var caracteresValidos = "0123456789";
@@ -57,27 +56,12 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodDisciplina.value == ""){
+                if (!campoNumerico(form.txtCodDisciplina)){
                     mensagem = mensagem + "Informe o Código do Disciplina\n";
                 }                             
                 if (form.txtNomeDisciplina.value == ""){
                     mensagem = mensagem + "Informe o Nome do Disciplina\n";
                 }             
-                if (form.txtTotalPeriodos.value == ""){
-                    mensagem = mensagem + "Informe o Total de Períodos\n";
-                }                  
-                if (form.txtCargaHoraria.value == ""){
-                    mensagem = mensagem + "Informe a Carga Horária\n";
-                }                  
-                if (!campoNumerico(form.txtCodDisciplina.value)){
-                    mensagem = mensagem + "Código do Disciplina deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtTotalPeriodos.value)){
-                    mensagem = mensagem + "Total de Períodos deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtCargaHoraria.value)){
-                    mensagem = mensagem + "Carga Horária deve ser numérica\n";
-                }                  
                 if (mensagem == ""){
                     return true;
                 }else{
@@ -85,7 +69,6 @@
                     return false;
                 }                
             } 
-            //-->
         </SCRIPT>        
     </body>
 </html>

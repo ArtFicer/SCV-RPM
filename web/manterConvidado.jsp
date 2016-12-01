@@ -42,7 +42,6 @@
         </form>
     </center>
         <SCRIPT language="JavaScript">
-            <!--
             
             function campoNumerico(valor)
             {
@@ -63,29 +62,19 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodConvidado.value == ""){
+                       
+                if (!campoNumerico(form.txtCodConvidado.value)) {
                     mensagem = mensagem + "Informe o Código do Convidado\n";
-                }                             
-                if (form.txtNomeConvidado.value == ""){
-                    mensagem = mensagem + "Informe o Nome do Convidado\n";
+                }
+                if (!campoNumerico(form.txtCodProposto.value)){
+                    mensagem = mensagem + "Informe o Codigo do Proposto\n";
                 }             
-                if (form.txtTotalPeriodos.value == ""){
-                    mensagem = mensagem + "Informe o Total de Períodos\n";
-                }                  
-                if (form.txtCargaHoraria.value == ""){
-                    mensagem = mensagem + "Informe a Carga Horária\n";
-                }                  
-                if (!campoNumerico(form.txtCodConvidado.value)){
-                    mensagem = mensagem + "Código do Convidado deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtTotalPeriodos.value)){
-                    mensagem = mensagem + "Total de Períodos deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtCargaHoraria.value)){
-                    mensagem = mensagem + "Carga Horária deve ser numérica\n";
+                if (!campoNumerico(form.txtMatriculaSIAPE.value)){
+                    mensagem = mensagem + "Informe a Matricula SIAPE \n";
                 }                  
                 if (mensagem == ""){
                     return true;
+                
                 }else{
                     alert(mensagem);
                     return false;
