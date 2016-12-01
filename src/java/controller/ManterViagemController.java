@@ -19,8 +19,6 @@ import modelo.DeclaracaoNotaTecnica;
 import modelo.Polo;
 import modelo.Proposto;
 import modelo.RelatorioViagem;
-import modelo.Secretaria;
-import modelo.Servidor;
 import modelo.Transporte;
 import modelo.Viagem;
 
