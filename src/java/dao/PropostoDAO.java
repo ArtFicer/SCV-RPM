@@ -74,9 +74,10 @@ public class PropostoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from proposto where codProposto ="+codProposto);
+            ResultSet rs = comando.executeQuery("select * from proposto join servidor on servidor.codServidor=proposto.codServidor join secretaria on secretaria.codSecretaria = proposto.codSecretaria where codProposto ="+codProposto);
             rs.first();
-            
+            servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),rs.getString("lotado_Orgao"));
+                secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),rs.getInt("cpf"),rs.getString("email"),rs.getString("senha"));
             proposto = new Proposto(
                     rs.getInt("codProposto"),
                         rs.getInt("codCalendarioProposto"),

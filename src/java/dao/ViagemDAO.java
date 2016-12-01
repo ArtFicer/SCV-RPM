@@ -34,8 +34,8 @@ public class ViagemDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on declaracaonotatecnica.codDeclaracaoNotaTecnica = viagem.codDeclaracaoNotaTecnica join relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte");
             while (rs.next()) {
-                declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),rs.getString("redigir"));
-                relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), rs.getString("relatorio"));
+                declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),null);
+                relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), null);
                 proposto = new Proposto(rs.getInt("codProposto"),
                         0,
                         null,
@@ -62,16 +62,16 @@ public class ViagemDAO {
                         null,
                         null);
                 polo = new Polo(rs.getInt("codPolo"),
-                        transporte,
-                        rs.getString("cidade"),
-                        rs.getString("logradouro"),
-                        rs.getString("bairro"),
-                        rs.getInt("numero"),
-                        rs.getInt("telefone"),
-                        rs.getString("email"));
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        0,
+                        null);
                 transporte = new Transporte(rs.getInt("codTransporte"),
-                        rs.getString("empresa"),
-                        rs.getString("veiculo"));
+                        null,
+                        null);
                 
                 Viagem viagem = new Viagem(
                         rs.getInt("codViagem"),
@@ -109,11 +109,49 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from viagem where codViagem ="+codViagem);
+            ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on declaracaonotatecnica.codDeclaracaoNotaTecnica = viagem.codDeclaracaoNotaTecnica join relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte where codViagem ="+codViagem);
             rs.first();
-            
+            declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),null);
+            relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), null);
+            proposto = new Proposto(rs.getInt("codProposto"),
+                        0,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        0,
+                        null,
+                        0,
+                        0,
+                        null,
+                        0,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        null,
+                        null,
+                        0,
+                        0,
+                        null,
+                        null,
+                        null);
+            polo = new Polo(rs.getInt("codPolo"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        0,
+                        null);
+            transporte = new Transporte(rs.getInt("codTransporte"),
+                        null,
+                        null);
+                
             viagem = new Viagem(
-                    rs.getInt("codViagem"),
+                        rs.getInt("codViagem"),
                         declaracaoNotaTecnica,
                         relatorioViagem,
                         proposto,
@@ -124,7 +162,7 @@ public class ViagemDAO {
                         rs.getString("status_confirmacao"),
                         rs.getString("status_conclusao"),
                         transporte
-            );
+                );
             viagem.setCodViagem(rs.getInt("codViagem"));
         } catch (SQLException e) {
             throw e;
