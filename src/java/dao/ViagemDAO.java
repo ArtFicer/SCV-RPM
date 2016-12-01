@@ -30,10 +30,23 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on viagem.codDeclaracaoNotaTecnica = declaracaonotatecnica.codDeclaracaoNotaTecnica"
-                    + "join relatorioviagem on viagem.codRelatorioViagem = relatorioviagem.codRelatorioViagem"+"join proposto on viagem.codProposto = proposto.codProposto"
-            +"join polo on viagem.codPolo = polo.codPolo"+"join transporte on viagem.codTransporte = transporte.codTransporte");
+            ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on declaracaonotatecnica.codDeclaracaoNotaTecnica = viagem.codDeclaracaoNotaTecnica join relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte");
             while (rs.next()) {
+                declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),rs.getString("redigir"));
+                relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), rs.getString("relatorio"));
+                proposto = new Proposto(rs.getInt("codProposto"),rs.getString("nome"));
+                polo = new Polo(rs.getInt("codPolo"),
+                        transporte,
+                        rs.getString("cidade"),
+                        rs.getString("logradouro"),
+                        rs.getString("bairro"),
+                        rs.getInt("numero"),
+                        rs.getInt("telefone"),
+                        rs.getString("email"));
+                transporte = new Transporte(rs.getInt("codTransporte"),
+                        rs.getString("empresa"),
+                        rs.getString("veiculo"));
+                
                 Viagem viagem = new Viagem(
                         rs.getInt("codViagem"),
                         declaracaoNotaTecnica,

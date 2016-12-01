@@ -19,6 +19,8 @@ import modelo.DeclaracaoNotaTecnica;
 import modelo.Polo;
 import modelo.Proposto;
 import modelo.RelatorioViagem;
+import modelo.Secretaria;
+import modelo.Servidor;
 import modelo.Transporte;
 import modelo.Viagem;
 
@@ -72,6 +74,11 @@ public class ManterViagemController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
+            request.setAttribute("declaracaoNotaTecnicas", DeclaracaoNotaTecnica.obterDeclaracaoNotaTecnica());
+            request.setAttribute("relatorioViagens", RelatorioViagem.obterRelatorioViagem());
+            request.setAttribute("propostos", Proposto.obterProposto());
+            request.setAttribute("polos", Polo.obterPolo());
+            request.setAttribute("transportes", Transporte.obterTransporte());
             request.setAttribute("viagens", Viagem.obterViagem());
             RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
             view.forward(request, response);
