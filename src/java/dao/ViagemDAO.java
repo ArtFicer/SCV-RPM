@@ -30,7 +30,9 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from viagem");
+            ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on viagem.codDeclaracaoNotaTecnica = declaracaonotatecnica.codDeclaracaoNotaTecnica"
+                    + "join relatorioviagem on viagem.codRelatorioViagem = relatorioviagem.codRelatorioViagem"+"join proposto on viagem.codProposto = proposto.codProposto"
+            +"join polo on viagem.codPolo = polo.codPolo"+"join transporte on viagem.codTransporte = transporte.codTransporte");
             while (rs.next()) {
                 Viagem viagem = new Viagem(
                         rs.getInt("codViagem"),
