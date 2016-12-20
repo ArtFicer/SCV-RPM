@@ -46,10 +46,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                for (i = 0; i < valor.length && ehNumero === true; i++) 
                 { 
                     umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    if (caracteresValidos.indexOf(umCaracter) === -1) 
                     {
                         ehNumero = false;
                     }
@@ -60,16 +60,19 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
+                if(form.txtCodServidor.value===""){
+                    mensagem = mensagem + "Informe o código";
+                }
                 if (!campoNumerico(form.txtCodServidor.value)){
                     mensagem = mensagem + "Informe o Código do Servidor\n";
                 }                             
                 if (!campoNumerico(form.txtMatriculaSiape.value)){
                     mensagem = mensagem + "Informe a Matricula SIAPE\n";
                 }   
-                if (form.txtLotadoOrgao.value == ""){
+                if (form.txtLotadoOrgao.value === ""){
                     mensagem = mensagem + "Informe o Orgao\n";
                 } 
-                if (mensagem == ""){
+                if (mensagem === ""){
                     return true;
                 }else{
                     alert(mensagem);
@@ -79,3 +82,4 @@
             //-->
         </SCRIPT>        
     </body>
+</html>

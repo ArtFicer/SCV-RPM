@@ -48,10 +48,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                for (i = 0; i < valor.length && ehNumero === true; i++) 
                 { 
                     umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    if (caracteresValidos.indexOf(umCaracter) === -1) 
                     {
                         ehNumero = false;
                     }
@@ -65,9 +65,6 @@
                        
                 if (!campoNumerico(form.txtCodConvidado.value)) {
                     mensagem = mensagem + "Informe o Código do Convidado\n";
-                }
-                if (!campoNumerico(form.txtCodProposto.value)){
-                    mensagem = mensagem + "Informe o Codigo do Proposto\n";
                 }             
                 if (!campoNumerico(form.txtMatriculaSIAPE.value)){
                     mensagem = mensagem + "Informe a Matricula SIAPE \n";

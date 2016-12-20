@@ -45,10 +45,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                for (i = 0; i < valor.length && ehNumero === true; i++) 
                 { 
                     umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    if (caracteresValidos.indexOf(umCaracter) === -1) 
                     {
                         ehNumero = false;
                     }
@@ -57,16 +57,20 @@
             }
 
             function validarFormulario(form) { 
-                var mensagem;
-                mensagem = "";
+                var mensagem = "";
+                if(form.txtCodCurso.value === ""){
+                    mensagem = mensagem + "Informe o Código\n";
+                }
+                if(form.txtNomeCurso.value === ""){
+                    mensagem = mensagem + "Informe o nome do curso\n";
+                }
                 if (!campoNumerico(form.txtCodCurso.value)){
                     mensagem = mensagem + "Informe o Código do Curso\n";
-                }                             
-                if (form.txtNomeCurso.value == ""){
-                    mensagem = mensagem + "Informe o Nome do Curso\n";
-                }             
-                                  
-                if (mensagem == ""){
+                }
+                if (campoNumerico(form.txtNomeCurso.value)){
+                    mensagem = mensagem + "O nome não pode conter números\n";
+                }
+                if (mensagem === ""){
                     return true;
                 }else{
                     alert(mensagem);
