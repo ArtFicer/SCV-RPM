@@ -56,13 +56,18 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
-                if (!campoNumerico(form.txtCodTrimestre.value)){
-                    mensagem = mensagem + "Informe o Código do Trimestre\n";
-                }                             
-                if (!campoNumerico(form.txtNumeroTrimestre.value)){
-                    mensagem = mensagem + "Informe o Numero do Trimestre\n";
-                }              
-                if (mensagem == ""){
+                
+                //Codigo Trimestre
+                if ((!campoNumerico(form.txtCodTrimestre.value)) || (form.txtCodTrimestre.value === "")){
+                    mensagem = mensagem + "Informe um Código do Trimestre válido\n";
+                }    
+                
+                //Numero Trimestre
+                if ((!campoNumerico(form.txtNumeroTrimestre.value))||(form.txtNumeroTrimestre.value === "")){
+                    mensagem = mensagem + "Informe um Numero do Trimestre válido \n";
+                }
+                
+                if (mensagem === ""){
                     return true;
                 }else{
                     alert(mensagem);

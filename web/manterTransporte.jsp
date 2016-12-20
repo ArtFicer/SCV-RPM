@@ -60,17 +60,26 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (!campoNumerico(form.txtTransporte.value)){
+                
+                //Transporte
+                if (!campoNumerico(form.txtCodTransporte.value)){
                     mensagem = mensagem + "Informe o Código da Transporte\n";
                 }
-                if (form.txtEmpresa.value == "") {
+                if(form.txtCodTransporte.value === ""){
+                    mensagem = mensagem + "Informe o código\n";
+                }
+                
+                //Empresa
+                if (form.txtEmpresa.value === "") {
                     mensagem = mensagem + "Informe a Empresa\n";
                 }
-                if (form.txtVeiculo.value == "") {
+                
+                //Veículo
+                if (form.txtVeiculo.value === "") {
                     mensagem = mensagem + "Informe o Veiculo\n";
                 }
                 
-                if (mensagem == "") {
+                if (mensagem === "") {
                     return true;
                 } else {
                     alert(mensagem);
