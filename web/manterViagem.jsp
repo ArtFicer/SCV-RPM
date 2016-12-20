@@ -136,42 +136,63 @@
         function validarFormulario(form) {
             var mensagem;
             mensagem = "";
-            if (!campoNumerico(form.txtCodViagem.value)) {
+            
+            //Codigo Viagem
+            if ((!campoNumerico(form.txtCodViagem.value))||(form.txtCodViagem.value === "")) {
                 mensagem = mensagem + "Informe o Código da Viagem \n";
             }
-            if (!campoNumerico(form.txtCodDeclaracaoNotaTecnica.value)) {
+            
+            //Codigo Declaracao Nota Tecnica
+            if ((!campoNumerico(form.txtCodDeclaracaoNotaTecnica.value))||(form.txtCodDeclaracaoNotaTecnica.value === "")) {
                 mensagem = mensagem + "Informe codigo da declaracao da nota tecnica\n";
             }
-            if (!campoNumerico(form.txtCodRelatorioViagem.value)) {
+            
+            //Codigo Relatorio Viagem
+            if ((!campoNumerico(form.txtCodRelatorioViagem.value))||(form.txtCodRelatorioViagem.value === "")) {
                 mensagem = mensagem + "Informe codigo do relatorio da viagem \n";
             }
-            if (!campoNumerico(form.txtCodProposto.value)) {
+            
+            //Codigo Proposto
+            if ((!campoNumerico(form.txtCodProposto.value))||(form.txtCodProposto.value === "")) {
                 mensagem = mensagem + "Código do Proposto\n";
             }
-            if (!campoNumerico(form.txtCodPolo.value)) {
+            
+            //Codigo Polo
+            if ((!campoNumerico(form.txtCodPolo.value))||(form.txtCodPolo.value === "")) {
                 mensagem = mensagem + "Insira o cod polo\n";
             }
-            if (form.txtDestino.value == "") {
+            
+            //Destino
+            if (form.txtDestino.value === "") {
                 mensagem = mensagem + "Insira o destino\n";
             }
-            if (form.txtDataViagem.value = "") {
+            
+            //Data Viagem
+            if (form.txtDataViagem.value ==="") {
                 mensagem = mensagem + "Digite a data da viagem \n";
             }
-            if (form.txtHorarioSaida.value = "") {
+            
+            //Horario de Saida
+            if (form.txtHorarioSaida.value === "") {
                 mensagem = mensagem + "Digite Horario Saida \n";
             }
-            if (form.txtStatusConfirmacao.value = "") {
+            
+            // Status Confirmação
+            if (form.txtStatusConfirmacao.value === "") {
                 mensagem = mensagem + "Digite o status da confirmacao \n";
             }
 
-            if (form.txtStatusConclusao.value = "") {
+            //Status Conclusao
+            if (form.txtStatusConclusao.value === "") {
                 mensagem = mensagem + "Digite o status da conclusaoo \n";
             }
-            if (!campoNumerico(form.txtCodTransporte.value)) {
+            
+            //Codigo Transporte
+            if ((!campoNumerico(form.txtCodTransporte.value))||(form.txtCodTransporte.value === "")) {
                 mensagem = mensagem + "Insira o codigo do transporte \n";
             }
 
-            if (mensagem == "") {
+            if (mensagem === "") {
                 return true;
             } else {
                 alert(mensagem);

@@ -60,18 +60,28 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
-                if(form.txtCodServidor.value===""){
-                    mensagem = mensagem + "Informe o código";
+                
+                //Codigo Sevidor
+                if(form.txtCodServidor.value === ""){
+                    mensagem = mensagem + "Informe o código\n";
                 }
                 if (!campoNumerico(form.txtCodServidor.value)){
                     mensagem = mensagem + "Informe o Código do Servidor\n";
-                }                             
-                if (!campoNumerico(form.txtMatriculaSiape.value)){
-                    mensagem = mensagem + "Informe a Matricula SIAPE\n";
-                }   
+                }
+                
+                //Matricula SIAPE
+                if (!campoNumerico(form.txtMatriculaSIAPE.value)){
+                    mensagem = mensagem + "Informe a Matricula SIAPE Valida\n";
+                }
+                if(form.txtMatriculaSIAPE.value === ""){
+                    mensagem = mensagem + "Informe uma Matricula SIAPE\n";
+                }
+                
+                //Lotado orgão
                 if (form.txtLotadoOrgao.value === ""){
                     mensagem = mensagem + "Informe o Orgao\n";
                 } 
+                
                 if (mensagem === ""){
                     return true;
                 }else{

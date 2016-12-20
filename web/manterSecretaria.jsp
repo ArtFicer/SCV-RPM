@@ -68,23 +68,43 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (!campoNumerico(form.txtCodSolicitacoes.value)) {
+                
+                //Codigo Secretaria
+                if (!campoNumerico(form.txtCodSecretaria.value)) {
                     mensagem = mensagem + "Informe o Código da Secretaria\n";
                 }
-                if (form.txtNome.value == "") {
+                if(form.txtCodSecretaria.value === ""){
+                    mensagem = mensagem + "Informe o Código\n";
+                }
+                
+                //Nome
+                if (form.txtNome.value === "") {
                     mensagem = mensagem + "Informe o Nome\n";
                 }
+                
+                //CPF
                 if (!campoNumerico(form.txtCPF.value)) {
                     mensagem = mensagem + "Informe o CPF \n";
                 }
-                if (form.txtEmail.value = "") {
-                    mensagem = mensagem + "Digite o email \n";
-                }
-                 if (!campoNumerico(form.txtSenha.value)) {
-                    mensagem = mensagem + "Insira o cargo \n";
+                if(form.txtCPF.value === ""){
+                    mensagem = mensagem + "Informe o CPF\n";
                 }
                 
-                if (mensagem == "") {
+                //Email
+                if (form.txtEmail.value === ""){
+                    mensagem = mensagem + "Digite um email válido \n";
+                }
+                
+                //Senha
+                if (!campoNumerico(form.txtSenha.value)) {
+                    mensagem = mensagem + "Insira a senha \n";
+                }
+                if(form.txtSenha.value === ""){
+                    mensagem = mensagem + "Informe uma senha\n";
+                }
+                
+                                
+                if (mensagem === "") {
                     return true;
                 } else {
                     alert(mensagem);

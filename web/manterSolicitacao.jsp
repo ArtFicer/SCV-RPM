@@ -60,16 +60,27 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
+                
+                //Codigo Solicitacoes
                 if (!campoNumerico(form.txtCodSolicitacoes.value)){
-                    mensagem = mensagem + "Informe o Código da Solicitaçao\n";
-                }                             
-                if (form.txtAssunto.value == ""){
+                    mensagem = mensagem + "Informe o Código da Solicitaçao válido\n";
+                }
+                if(form.txtCodSolicitacoes.value === ""){
+                    mensagem = mensagem + "Informe o código\n";
+                }
+                
+                //Assunto
+                if (form.txtAssunto.value === ""){
                     mensagem = mensagem + "Informe o Assunto\n";
                 }
-                if (form.txtTexto.value == ""){
+                
+                 //Texto
+                if (form.txtTexto.value === ""){
                     mensagem = mensagem + "Informe o Texto\n";
                 } 
-                if (mensagem == ""){
+                
+                
+                if (mensagem === ""){
                     return true;
                 }else{
                     alert(mensagem);
