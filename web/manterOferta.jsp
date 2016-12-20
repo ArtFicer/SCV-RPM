@@ -42,10 +42,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                for (i = 0; i < valor.length && ehNumero === true; i++) 
                 { 
                     umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    if (caracteresValidos.indexOf(umCaracter) === -1) 
                     {
                         ehNumero = false;
                     }
@@ -56,13 +56,19 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
+                if(form.txtCodOferta.value === ""){
+                    mensagem = mensagem + "Informe o código\n";
+                }
+                if(form.txtAno.value === ""){
+                    mensagem = mensagem + "Informe o ano\n";
+                }
                 if (!campoNumerico(form.txtCodOferta.value)){
-                    mensagem = mensagem + "Informe o Código da Oferta\n";
+                    mensagem = mensagem + "O código deve ser numérico\n";
                 }                             
                 if (!campoNumerico(form.txtAno.value)){
-                    mensagem = mensagem + "Informe o Ano\n";
+                    mensagem = mensagem + "O ano deve ser numérico\n";
                 }                  
-                if (mensagem == ""){
+                if (mensagem === ""){
                     return true;
                 }else{
                     alert(mensagem);

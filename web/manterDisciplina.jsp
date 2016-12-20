@@ -57,14 +57,18 @@
                 var mensagem;
                 mensagem = "";
                 if(form.txtCodDisciplina.value === ""){
-                    
+                    mensagem = mensagem + "Informe o Código da Disciplina\n";
                 }
-                if (!campoNumerico(form.txtCodDisciplina)){
-                    mensagem = mensagem + "Informe o Código do Disciplina\n";
-                }                             
                 if (form.txtNomeDisciplina.value === ""){
                     mensagem = mensagem + "Informe o Nome do Disciplina\n";
-                }             
+                }
+                if (!campoNumerico(form.txtCodDisciplina)){
+                    mensagem = mensagem + "O código deve ser numérico\n";
+                }
+                if (campoNumerico(form.txtNomeDisciplina)){
+                    mensagem = mensagem + "O nome não pode ser numérico\n";
+                }
+                             
                 if (mensagem === ""){
                     return true;
                 }else{

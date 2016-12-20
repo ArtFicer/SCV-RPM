@@ -74,10 +74,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++)
+                for (i = 0; i < valor.length && ehNumero === true; i++)
                 {
                     umCaracter = valor.charAt(i);
-                    if (caracteresValidos.indexOf(umCaracter) == -1)
+                    if (caracteresValidos.indexOf(umCaracter) === -1)
                     {
                         ehNumero = false;
                     }
@@ -88,28 +88,42 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (!campoNumerico(form.txtCodPolo.value)) {
-                    mensagem = mensagem + "Informe o Código do Polo\n";
+                if (form.txtCodPolo.value === "") {
+                    mensagem = mensagem + "Informe o código\n";
                 }
-                if (form.txtCodCidade.value == "") {
-                    mensagem = mensagem + "Informe a Cidade \n";
+                if (form.txtCodCidade.value === "") {
+                    mensagem = mensagem + "Informe o código da cidade\n";
                 }
-                if (form.txtLogradouro.value == "") {
-                    mensagem = mensagem + "Informe o Logradouro\n";
+                if (form.txtLogradouro.value === "") {
+                    mensagem = mensagem + "Inform o logradouro\n";
                 }
-                if (!campoNumerico(form.txtCodBairro.value)) {
+                if (form.txtCodBairro.value === "") {
                     mensagem = mensagem + "Informe o Cod Bairro\n";
                 }
-                if (!campoNumerico(form.txtNumero.value)) {
-                    mensagem = mensagem + "Informe o Numero\n";
+                if (form.txtNumero.value === "") {
+                    mensagem = mensagem + "Informe o número\n";
                 }
-                if (!campoNumerico(form.txtTelefone.value == "")) {
-                    mensagem = mensagem + "Informe o Telefone\n";
+                if (form.txtTelefone.value === "") {
+                    mensagem = mensagem + "Informe o telefone\n";
                 }
-                if (form.txtEmail.value == "") {
+                if (form.txtEmail.value === "") {
                     mensagem = mensagem + "Informe o Email\n";
                 }
-                if (mensagem == "") {
+                
+                
+                if (!campoNumerico(form.txtCodPolo.value)) {
+                    mensagem = mensagem + "O Código deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtCodCidade.value)) {
+                    mensagem = mensagem + "O código da cidae deve ser numérico \n";
+                }
+                if (!campoNumerico(form.txtNumero.value)) {
+                    mensagem = mensagem + "O campo deve ser numerico\n";
+                }
+                if (!campoNumerico(form.txtTelefone.value === "")) {
+                    mensagem = mensagem + "O campo Telefone deve ser numérico\n";
+                }
+                if (mensagem === "") {
                     return true;
                 } else {
                     alert(mensagem);

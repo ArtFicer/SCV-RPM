@@ -165,80 +165,126 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (!campoNumerico(form.txtCodServidor.value)) {
+                if (form.txtCodServidor.value === "") {
                     mensagem = mensagem + "Informe o Código do Servidor\n";
                 }
-                if (!campoNumerico(form.txtMatriculaSiape.value)) {
+                if (form.txtMatriculaSiape.value === "") {
                     mensagem = mensagem + "Informe a Matricula SIAPE\n";
                 }
-                if (form.txtNome.value == "") {
+                if (form.txtNome.value === "") {
                     mensagem = mensagem + "Informe o Nome do Proposto\n";
                 }
-                if (form.txtSetor.value == "") {
+                if (form.txtSetor.value === "") {
                     mensagem = mensagem + "Informe o Setor \n";
                 }
-                if (!campoNumerico(form.txtCPF.value)) {
+                if (form.txtCPF.value === "") {
                     mensagem = mensagem + "Informe o CPF \n";
                 }
+                if (form.txtCodCurso.value === "") {
+                    mensagem = mensagem + "Informe o código do Curso\n";
+                }
+                if (form.txtDataNascimento.value === "") {
+                    mensagem = mensagem + "Informe a data de nascimento \n";
+                }
+                if (form.txtEmail.value === "") {
+                    mensagem = mensagem + "Informe o email \n";
+                }
+                if (form.txtTelefone.value === "") {
+                    mensagem = mensagem + "Informe o número do telefone\n";
+                }
+                if (form.txtCelular.value === "") {
+                    mensagem = mensagem + "Informe o número do celular\n";
+                }
+                if (form.txtLogradouro.value === "") {
+                    mensagem = mensagem + "Informe o logradouro \n";
+                }
+                if (form.txtNumero.value === "") {
+                    mensagem = mensagem + "Informe o número do logradouro\n";
+                }
+                if (form.txtComplemento.value === "") {
+                    mensagem = mensagem + "Informe o complemento \n";
+                }
+                if (form.txtLogradouro.value === "") {
+                    mensagem = mensagem + "Informe o Bairro \n";
+                }
+                if (form.txtCidade.value === "") {
+                    mensagem = mensagem + "Informe a Cidade \n";
+                }
+                if (form.txtUF.value === "") {
+                    mensagem = mensagem + "Informe a UF \n";
+                }
+                if (form.txtCEP.value === "") {
+                    mensagem = mensagem + "Informe o CEP \n";
+                }
+                if (form.txtTitulacaoMaxima.value === "") {
+                    mensagem = mensagem + "Informe a titulacao Maxima\n";
+                }
+                if (form.txtBanco.value === "") {
+                    mensagem = mensagem + "Informe o nome do banco\n";
+                }
+                if (form.txtAgencia.value === "") {
+                    mensagem = mensagem + "Informe a agencia do banco\n";
+                }
+                if (form.txtConta.value === "") {
+                    mensagem = mensagem + "Informe o número da conta\n";
+                }
+                if (form.txtCargo.value === "") {
+                    mensagem = mensagem + "Informe o cargo \n";
+                }
+                if (form.txtSenha.value === "") {
+                    mensagem = mensagem + "Informe o cargo \n";
+                }
+
+
+                if (!campoNumerico(form.txtCodServidor.value)) {
+                    mensagem = mensagem + "O Código do Servidor deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtMatriculaSiape.value)) {
+                    mensagem = mensagem + "A Matricula SIAPE deve ser numérico\n";
+                }
+                if (campoNumerico(form.txtNome.value)) {
+                    mensagem = mensagem + "O Nome do Proposto não deve conter números\n";
+                }
+                if (!campoNumerico(form.txtSetor.value)) {
+                    mensagem = mensagem + "O Setor deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtCPF.value)) {
+                    mensagem = mensagem + "O CPF deve ser numérico\n";
+                }
                 if (!campoNumerico(form.txtCodCurso.value)) {
-                    mensagem = mensagem + "Código do Curso deve ser numérico\n";
+                    mensagem = mensagem + "O código do Curso deve ser numérico\n";
                 }
-                if (form.txtDataNascimento.value == "") {
-                    mensagem = mensagem + "Digite a data de nascimento \n";
-                }
-                if (form.txtEmail.value = "") {
-                    mensagem = mensagem + "Digite o email \n";
+                if (!campoNumerico(form.txtDataNascimento.value)) {
+                    mensagem = mensagem + "A data de nascimento deve ser numérico\n";
                 }
                 if (!campoNumerico(form.txtTelefone.value)) {
-                    mensagem = mensagem + "Insira o número do telefone\n";
+                    mensagem = mensagem + "O número do telefone deve ser numérico\n";
                 }
                 if (!campoNumerico(form.txtCelular.value)) {
-                    mensagem = mensagem + "Insira o número do celular\n";
-                }
-                if (form.txtLogradouro.value = "") {
-                    mensagem = mensagem + "Digite o logradouro \n";
+                    mensagem = mensagem + "O número do celular deve ser numérico\n";
                 }
                 if (!campoNumerico(form.txtNumero.value)) {
-                    mensagem = mensagem + "Insira o número do logradouro\n";
+                    mensagem = mensagem + "O número deve ser numérico\n";
                 }
-                if (form.txtComplemento.value = "") {
-                    mensagem = mensagem + "Digite o complemento \n";
-                }
-                if (form.txtLogradouro.value = "") {
-                    mensagem = mensagem + "Digite o Bairro \n";
-                }
-                if (form.txtCidade.value = "") {
-                    mensagem = mensagem + "Digite a Cidade \n";
-                }
-                if (form.txtUF.value = "") {
-                    mensagem = mensagem + "Digite a UF \n";
+                if (campoNumerico(form.txtUF.value)) {
+                    mensagem = mensagem + "A UF não pode ser numérico\n";
                 }
                 if (!campoNumerico(form.txtCEP.value)) {
-                    mensagem = mensagem + "Insira o CEP \n";
+                    mensagem = mensagem + "O CEP deve ser numérico\n";
                 }
-                if (form.txtTitulacaoMaxima.value == "") {
-                    mensagem = mensagem + "Insira a titulacao Maxima\n";
+                if (campoNumerico(form.txtTitulacaoMaxima.value)) {
+                    mensagem = mensagem + "A titulacao Maxima não deve ser numérico\n";
                 }
-                if (form.txtBanco.value == "") {
-                    mensagem = mensagem + "Insira o nome do banco\n";
+                if (campoNumerico(form.txtBanco.value)) {
+                    mensagem = mensagem + "O nome do banco não deve ser numérico\n";
                 }
                 if (!campoNumerico(form.txtAgencia.value)) {
-                    mensagem = mensagem + "Insira agencia do banco\n";
+                    mensagem = mensagem + "A agencia do banco deve ser numérico\n";
                 }
                 if (!campoNumerico(form.txtConta.value)) {
-                    mensagem = mensagem + "Insira o número da conta\n";
+                    mensagem = mensagem + "O número da conta deve ser numérico\n";
                 }
-                if (form.txtCargo.value = "") {
-                    mensagem = mensagem + "Digite o cargo \n";
-                }
-                if (!campoNumerico(form.txtSenha.value)) {
-                    mensagem = mensagem + "Insira o cargo \n";
-                }
-
-
-
-
-                if (mensagem == "") {
+                if (mensagem === "") {
                     return true;
                 } else {
                     alert(mensagem);

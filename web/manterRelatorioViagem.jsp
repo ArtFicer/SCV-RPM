@@ -43,10 +43,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                for (i = 0; i < valor.length && ehNumero === true; i++) 
                 { 
                     umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    if (caracteresValidos.indexOf(umCaracter) === -1) 
                     {
                         ehNumero = false;
                     }
@@ -57,13 +57,16 @@
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
-                if (!campoNumerico(form.txtCodRelatorioViagem.value)){
-                    mensagem = mensagem + "Informe o Código do Relatorio da Viagem\n";
-                }                             
-                if (form.txtRelatorio.value == ""){
+                if(form.txtCodRelatorioViagem.value === ""){
+                    mensagem = mensagem + "Informe o Código do Relatorio\n";
+                }
+                if(form.txtRelatorio.value === ""){
                     mensagem = mensagem + "Informe o Relatorio\n";
-                }               
-                if (mensagem == ""){
+                }
+                if (!campoNumerico(form.txtCodRelatorioViagem.value)){
+                    mensagem = mensagem + "O Código do Relatorio da Viagem deve ser numérico\n";
+                }                             
+                if (mensagem === ""){
                     return true;
                 }else{
                     alert(mensagem);
