@@ -14,13 +14,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pesquisa de Solicitações</title>
     </head>
-    <body>
+    <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
        <h1>Pesquisa de Solicitações</h1>
-        <table border=1>
+        <table border=1px bordercolor="black" border-collapse: collapse BORDER=0 CELLPADDING=0 cellspacing=0 ALIGN="center">
             <tr>
                 <th>Codigo:</th>
                 <th>Nome:</th>

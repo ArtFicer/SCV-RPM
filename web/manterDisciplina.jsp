@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manter Disciplina</title>
     </head>
-    <body>
+    <body  align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
@@ -21,7 +21,7 @@
         <h1>Manter Disciplina - ${operacao}</h1>
 
         <form action="ManterDisciplinaController?acao=confirmar${operacao}" method="post" name="frmManterDisciplina" onsubmit="return validarFormulario(this)">
-            <table>
+            <table align="center">
                 <tr>
                     <td>Código do disciplina:</td> 
                     <td><input type="text" name="txtCodDisciplina" value="${disciplina.codDisciplina}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>

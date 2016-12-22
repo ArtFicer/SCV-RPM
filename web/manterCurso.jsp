@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manter Curso</title>
     </head>
-    <body>
+    <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
@@ -22,7 +22,7 @@
         <h1>Manter Curso - ${operacao}</h1>
 
         <form action="ManterCursoController?acao=confirmar${operacao}" method="post" name="frmManterCurso" onsubmit="return validarFormulario(this)">
-            <table>
+            <table align="center">
                 <tr>
                     <td>Código do curso:</td> 
                     <td><input type="text" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>

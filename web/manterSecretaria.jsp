@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manter Secretaria</title>
     </head>
-    <body>
+    <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
@@ -21,7 +21,7 @@
         <h1>Manter Secretaria - ${operacao}</h1>
 
         <form action="ManterSecretariaController?acao=confirmar${operacao}" method="post" name="frmManterSecretaria" onsubmit="return validarFormulario(this)">
-            <table>
+            <table align="center">
                 <tr>
                     <td>Código da Secretaria:</td> 
                     <td><input type="text" name="txtCodSecretaria" value="${secretaria.codSecretaria}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>

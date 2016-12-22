@@ -13,16 +13,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manter Convidado</title>
     </head>
-    <body>
+    <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
-    <center>
+    <center align="center">
         <h1>Manter Convidado - ${operacao}</h1>
 
         <form action="ManterConvidadoController?acao=confirmar${operacao}" method="post" name="frmManterConvidado" onsubmit="return validarFormulario(this)">
-            <table>
+            <table border=1px bordercolor="black" border-collapse: collapse BORDER=0 CELLPADDING=0 cellspacing=0 ALIGN="center">
                 <tr>
                     <td>Código do convidado:</td> 
                     <td><input type="text" name="txtCodConvidado" value="${convidado.codConvidado}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>

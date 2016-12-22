@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manter Proposto</title>
     </head>
-    <body>
+    <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
@@ -21,7 +21,7 @@
         <h1>Manter Proposto - ${operacao}</h1>
 
         <form action="ManterPropostoController?acao=confirmar${operacao}" method="post" name="frmManterProposto" onsubmit="return validarFormulario(this)">
-            <table>
+            <table align="center">
                 <tr>
                     <td>Código do Proposto:</td> 
                     <td><input type="text" name="txtCodProposto" value="${proposto.codProposto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>

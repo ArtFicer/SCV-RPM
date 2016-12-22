@@ -13,7 +13,7 @@
         <title>Sobre - SCV</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
-    <body>
+    <body bgcolor="#B0C4DE" align="center">
         <!--Menu-->
     <nav>
         <object width="100%" height="65px" data="menu.jsp"></object>
@@ -21,7 +21,7 @@
     <h1>Manter Viagem - ${operacao}</h1>
 
     <form action="ManterViagemController?acao=confirmar${operacao}" method="post" name="frmManterViagem" onsubmit="return validarFormulario(this)">
-        <table>
+        <table align="center">
             <tr>
                 <td><center><h2>NEaD - SCV - Viagem</h2></center></td>
             </tr>
