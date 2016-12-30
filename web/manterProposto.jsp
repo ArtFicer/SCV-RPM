@@ -31,24 +31,24 @@
                         <td><input type="text" name="txtCodCalendario" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
-                        <td>Codigo Servidor:</td> 
+                        <td>Matricula SIAPE Servidor:</td> 
                         <td><select name="txtCodServidor" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="0" <c:if test="${servidor.codServidor != null}"> selected</c:if>></option>
                             <c:forEach items="${servidores}" var="servidor">
-                                <option value="${servidor.codServidor}" <c:if test="${servidor.codServidor == proposto.codServidor}"> selected</c:if>>
-                                    ${servidor.codServidor}
+                                <option value="${servidor.codServidor}" <c:if test="${servidor.codServidor == proposto.codServidor.codServidor}"> selected</c:if>>
+                                    ${servidor.matriculaSIAPE}
                                 </option>  
                             </c:forEach>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>Codigo Secretaria:</td> 
+                    <td>Nome Secretaria:</td> 
                     <td><select name="txtCodSecretaria" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="0" <c:if test="${secretaria.codSecretaria != null}"> selected</c:if>></option>
                             <c:forEach items="${secretarias}" var="secretaria">
                                 <option value="${secretaria.codSecretaria}" <c:if test="${secretaria.codSecretaria == proposto.codSecretaria.codSecretaria}"> selected</c:if>>
-                                    ${secretaria.codSecretaria}
+                                    ${secretaria.nome}
                                 </option>  
                             </c:forEach>
                         </select>

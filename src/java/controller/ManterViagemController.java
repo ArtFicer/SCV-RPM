@@ -112,11 +112,17 @@ public class ManterViagemController extends HttpServlet {
     //Edição
     //Preparar a edição
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
-        try {
-            request.setAttribute("operacao", "Editar");
+       try {
+            request.setAttribute("operacao", "Editar"); 
             int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
             Viagem viagem = Viagem.obterViagem(codViagem);
             request.setAttribute("viagem", viagem);
+            request.setAttribute("declaracaoNotaTecnicas", DeclaracaoNotaTecnica.obterDeclaracaoNotaTecnica());
+            request.setAttribute("relatorioViagens", RelatorioViagem.obterRelatorioViagem());
+            request.setAttribute("propostos", Proposto.obterProposto());
+            request.setAttribute("polos", Polo.obterPolo());
+            request.setAttribute("transportes", Transporte.obterTransporte());
+            
             RequestDispatcher view = request.getRequestDispatcher("/manterViagem.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {

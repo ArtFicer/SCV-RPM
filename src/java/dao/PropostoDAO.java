@@ -26,8 +26,8 @@ public class PropostoDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from proposto join servidor on servidor.codServidor=proposto.codServidor join secretaria on secretaria.codSecretaria = proposto.codSecretaria");
             while (rs.next()) {
-                servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),rs.getString("lotado_Orgao"));
-                secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),rs.getInt("cpf"),rs.getString("email"),rs.getString("senha"));
+                servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),null);
+                secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),0,null,null);
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
                         rs.getInt("codCalendarioProposto"),
@@ -76,8 +76,8 @@ public class PropostoDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from proposto join servidor on servidor.codServidor=proposto.codServidor join secretaria on secretaria.codSecretaria = proposto.codSecretaria where codProposto ="+codProposto);
             rs.first();
-            servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),rs.getString("lotado_Orgao"));
-                secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),rs.getInt("cpf"),rs.getString("email"),rs.getString("senha"));
+            servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),null);
+            secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),0,null,null);
             proposto = new Proposto(
                     rs.getInt("codProposto"),
                         rs.getInt("codCalendarioProposto"),
@@ -173,7 +173,7 @@ public class PropostoDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update proposto  set codCalendarioProposto = ?,codServidor = ?,codSecretaria = ?,nome = ?,setor = ?,cpf = ?,data_nascimento = ?,email = ?,telefone = ?,celular = ?,logradouro = ?,numero = ?,complemento = ?,bairro = ?,cidade = ?,uf = ?,cep = ?,titulacao_maxima = ?,banco = ?,agencia = ?,conta = ?,cargo = ?,senha = ?,tipo_proposto = ? where codProposto = ?";
+            String sql = "update proposto set codCalendarioProposto = ?,codServidor = ?,codSecretaria = ?,nome = ?,setor = ?,cpf = ?,data_nascimento = ?,email = ?,telefone = ?,celular = ?,logradouro = ?,numero = ?,complemento = ?,bairro = ?,cidade = ?,uf = ?,cep = ?,titulacao_maxima = ?,banco = ?,agencia = ?,conta = ?,cargo = ?,senha = ?,tipo_proposto = ? where codProposto = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodCalendario());
             comando.setInt(2, proposto.getCodServidor().getCodServidor());

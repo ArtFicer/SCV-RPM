@@ -74,9 +74,9 @@ public class ManterPropostoController extends HttpServlet {
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("propostos", Proposto.obterProposto());
             request.setAttribute("servidores", Servidor.obterServidor());
             request.setAttribute("secretarias", Secretaria.obterSecretaria());
+            request.setAttribute("propostos", Proposto.obterProposto());
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {
@@ -131,6 +131,9 @@ public class ManterPropostoController extends HttpServlet {
             int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
             Proposto proposto = Proposto.obterProposto(codProposto);
             request.setAttribute("proposto", proposto);
+            request.setAttribute("servidores", Servidor.obterServidor());
+            request.setAttribute("secretarias", Secretaria.obterSecretaria());
+            
             RequestDispatcher view = request.getRequestDispatcher("/manterProposto.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {

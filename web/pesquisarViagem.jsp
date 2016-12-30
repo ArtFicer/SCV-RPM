@@ -39,8 +39,8 @@
                     <td><c:out value="${viagem.codViagem}" /></td>
                     <td><c:out value="${viagem.codDeclaracaoNotaTecnica.codDeclaracaoNotaTecnica}" /></td>
                     <td><c:out value="${viagem.codRelatorioViagem.codRelatorioViagem}" /></td>
-                    <td><c:out value="${viagem.codProposto.codProposto}" /></td>
-                    <td><c:out value="${viagem.codPolo.codPolo}" /></td>
+                    <td><c:out value="${viagem.codProposto.nome}" /></td>
+                    <td><c:out value="${viagem.codPolo.cidade}" /></td>
                     <td><c:out value="${viagem.destino}"/></td>
                     <td><c:out value="${viagem.dataViagem}" /></td>
                     <td><c:out value="${viagem.horarioSaida}"/></td>
