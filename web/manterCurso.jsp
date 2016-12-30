@@ -67,8 +67,8 @@
                 if (!campoNumerico(form.txtCodCurso.value)){
                     mensagem = mensagem + "Informe o Código do Curso\n";
                 }
-                if (campoNumerico(form.txtNomeCurso.value)){
-                    mensagem = mensagem + "O nome não pode conter números\n";
+                if (form.txtNomeCurso.value===""){
+                    mensagem = mensagem + "Insira um nome válido \n";
                 }
                 if (mensagem === ""){
                     return true;
