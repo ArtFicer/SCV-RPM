@@ -105,6 +105,8 @@ public class ManterPoloController extends HttpServlet {
             int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
             Polo polo = Polo.obterPolo(codPolo);
             request.setAttribute("polo", polo);
+            request.setAttribute("transportes", Transporte.obterTransporte());
+            
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
         } catch (ServletException | IOException | ClassNotFoundException ex) {

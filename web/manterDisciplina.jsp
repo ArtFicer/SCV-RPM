@@ -65,7 +65,7 @@
                 if (!campoNumerico(form.txtCodDisciplina)){
                     mensagem = mensagem + "O código deve ser numérico\n";
                 }
-                if (campoNumerico(form.txtNomeDisciplina)){
+                if (!campoNumerico(form.txtNomeDisciplina)){
                     mensagem = mensagem + "O nome não pode ser numérico\n";
                 }
                              

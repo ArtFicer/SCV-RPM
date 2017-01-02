@@ -30,13 +30,13 @@ public class PropostoDAO {
                 secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),0,null,null);
                 Proposto proposto = new Proposto(
                         rs.getInt("codProposto"),
-                        rs.getInt("codCalendarioProposto"),
+                        rs.getString("codCalendarioProposto"),
                         servidor,
                         secretaria,
                         rs.getString("nome"),
                         rs.getString("setor"),
                         rs.getInt("cpf"),
-                        rs.getInt("data_nascimento"),
+                        rs.getString("data_nascimento"),
                         rs.getString("email"),
                         rs.getInt("telefone"),
                         rs.getInt("celular"),
@@ -80,13 +80,13 @@ public class PropostoDAO {
             secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),0,null,null);
             proposto = new Proposto(
                     rs.getInt("codProposto"),
-                        rs.getInt("codCalendarioProposto"),
+                        rs.getString("codCalendarioProposto"),
                         servidor,
                         secretaria,
                         rs.getString("nome"),
                         rs.getString("setor"),
                         rs.getInt("cpf"),
-                        rs.getInt("data_nascimento"),
+                        rs.getString("data_nascimento"),
                         rs.getString("email"),
                         rs.getInt("telefone"),
                         rs.getInt("celular"),
@@ -136,13 +136,13 @@ public class PropostoDAO {
             String sql = "insert into proposto (codProposto, codCalendarioProposto,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, proposto.getCodProposto());
-            comando.setInt(2, proposto.getCodCalendario());
+            comando.setString(2, proposto.getCalendario());
             comando.setInt(3, proposto.getCodServidor().getCodServidor());
             comando.setInt(4, proposto.getCodSecretaria().getCodSecretaria());
             comando.setString(5, proposto.getNome());
             comando.setString(6, proposto.getSetor());
             comando.setInt(7, proposto.getCpf());
-            comando.setInt(8, proposto.getDataNascimento());
+            comando.setString(8, proposto.getDataNascimento());
             comando.setString(9, proposto.getEmail());
             comando.setInt(10, proposto.getTelefone());
             comando.setInt(11, proposto.getCelular());
@@ -175,13 +175,13 @@ public class PropostoDAO {
             conexao = BD.getConexao();
             String sql = "update proposto set codCalendarioProposto = ?,codServidor = ?,codSecretaria = ?,nome = ?,setor = ?,cpf = ?,data_nascimento = ?,email = ?,telefone = ?,celular = ?,logradouro = ?,numero = ?,complemento = ?,bairro = ?,cidade = ?,uf = ?,cep = ?,titulacao_maxima = ?,banco = ?,agencia = ?,conta = ?,cargo = ?,senha = ?,tipo_proposto = ? where codProposto = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, proposto.getCodCalendario());
+            comando.setString(1, proposto.getCalendario());
             comando.setInt(2, proposto.getCodServidor().getCodServidor());
             comando.setInt(3, proposto.getCodSecretaria().getCodSecretaria());
             comando.setString(4, proposto.getNome());
             comando.setString(5, proposto.getSetor());
             comando.setInt(6, proposto.getCpf());
-            comando.setInt(7, proposto.getDataNascimento());
+            comando.setString(7, proposto.getDataNascimento());
             comando.setString(8, proposto.getEmail());
             comando.setInt(9, proposto.getTelefone());
             comando.setInt(10, proposto.getCelular());

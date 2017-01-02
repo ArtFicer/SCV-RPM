@@ -7,13 +7,13 @@ import java.util.List;
 public class Proposto {
 
     private int codProposto;
-    private int codCalendario;
+    private String calendario;
     private Servidor codServidor;
     private Secretaria codSecretaria;
     private String nome;
     private String setor;
     private int cpf;
-    private int dataNascimento;
+    private String dataNascimento;
     private String email;
     private int telefone;
     private int celular;
@@ -35,9 +35,9 @@ public class Proposto {
     private int matriculaServidorProposto;
     private int matriculaSecretariaProposto;
     // Construtores
-    public Proposto(int codProposto, int codCalendario, Servidor codServidor, Secretaria codSecretaria, String nome, String setor, int cpf, int dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaoMaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
+    public Proposto(int codProposto, String calendario, Servidor codServidor, Secretaria codSecretaria, String nome, String setor, int cpf, String dataNascimento, String email, int telefone, int celular, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, String titulacaoMaxima, String banco, int agencia, int conta, String cargo, String senha, String tipoProposto) {
         this.codProposto = codProposto;
-        this.codCalendario = codCalendario;
+        this.calendario = calendario;
         this.codServidor = codServidor;
         this.codSecretaria = codSecretaria;
         this.nome = nome;
@@ -103,12 +103,12 @@ public class Proposto {
         this.codProposto = codProposto;
     }
 
-    public int getCodCalendario() {
-        return codCalendario;
+    public String getCalendario() {
+        return calendario;
     }
 
-    public void setCodCalendario(int codCalendario) {
-        this.codCalendario = codCalendario;
+    public void setalendario(String calendario) {
+        this.calendario = calendario;
     }
 
     public Servidor getCodServidor() {
@@ -151,11 +151,11 @@ public class Proposto {
         this.cpf = cpf;
     }
 
-    public int getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(int dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

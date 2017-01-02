@@ -12,6 +12,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manter Proposto</title>
+        <link rel="stylesheet" type="text/css" href="tcal.css" />
+	<script type="text/javascript" src="tcal.js"></script> 
+        
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
@@ -27,8 +30,8 @@
                     <td><input type="text" name="txtCodProposto" value="${proposto.codProposto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
-                        <td>Código Calendário:</td> 
-                        <td><input type="text" name="txtCodCalendario" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td>Código Calendário:</td>
+                        <td><input type="text" name="txtCodCalendario" name="date" class="tcal" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td>Matricula SIAPE Servidor:</td> 
@@ -68,7 +71,7 @@
                     </tr>
                     <tr>
                         <td>Data de Nascimento:</td> 
-                        <td><input type="text" name="txtDataNascimento" value="${proposto.dataNascimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td><input type="text" name="txtDataNascimento" name="date" class="tcal" value="${proposto.dataNascimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td>Email:</td> 

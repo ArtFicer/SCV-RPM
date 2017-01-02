@@ -27,12 +27,12 @@
                     <td><input type="text" name="txtCodPolo" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
-                        <td>Código do Transporte:</td>
+                        <td>Empresa do Transporte:</td>
                         <td><select name="txtCodTransporte" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="0" <c:if test="${transporte.codTransporte != null}"> selected</c:if>></option>
                             <c:forEach items="${transportes}" var="transporte">
                                 <option value="${transporte.codTransporte}" <c:if test="${transporte.codTransporte == polo.codTransporte.codTransporte}"> selected</c:if>>
-                                    ${transporte.codTransporte}
+                                    ${transporte.empresa}
                                 </option>  
                             </c:forEach>
                         </select>
@@ -88,41 +88,54 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
+                
+                //Código
                 if (form.txtCodPolo.value === "") {
                     mensagem = mensagem + "Informe o código\n";
                 }
-                if (form.txtCodCidade.value === "") {
-                    mensagem = mensagem + "Informe o código da cidade\n";
-                }
-                if (form.txtLogradouro.value === "") {
-                    mensagem = mensagem + "Inform o logradouro\n";
-                }
-                if (form.txtCodBairro.value === "") {
-                    mensagem = mensagem + "Informe o Cod Bairro\n";
-                }
-                if (form.txtNumero.value === "") {
-                    mensagem = mensagem + "Informe o número\n";
-                }
-                if (form.txtTelefone.value === "") {
-                    mensagem = mensagem + "Informe o telefone\n";
-                }
-                if (form.txtEmail.value === "") {
-                    mensagem = mensagem + "Informe o Email\n";
-                }
-                
-                
                 if (!campoNumerico(form.txtCodPolo.value)) {
                     mensagem = mensagem + "O Código deve ser numérico\n";
                 }
-                if (!campoNumerico(form.txtCodCidade.value)) {
-                    mensagem = mensagem + "O código da cidae deve ser numérico \n";
+                
+                //Cidade
+                if (form.txtCidade.value === "") {
+                    mensagem = mensagem + "Informe a cidade\n";
+                }
+                if (campoNumerico(form.txtCidade.value)) {
+                    mensagem = mensagem + "A cidade não deve ser numérico \n";
+                }
+                
+                //Logradouro
+                if (form.txtLogradouro.value === "") {
+                    mensagem = mensagem + "Informe o logradouro\n";
+                }
+                
+                //Bairro
+                if (form.txtBairro.value === "") {
+                    mensagem = mensagem + "Informe o Bairro\n";
+                }
+                
+                //Número
+                if (form.txtNumero.value === "") {
+                    mensagem = mensagem + "Informe o número\n";
                 }
                 if (!campoNumerico(form.txtNumero.value)) {
-                    mensagem = mensagem + "O campo deve ser numerico\n";
+                    mensagem = mensagem + "O campo Numero deve ser numerico\n";
+                }
+                
+                //Telefone
+                if (form.txtTelefone.value === "") {
+                    mensagem = mensagem + "Informe o telefone\n";
                 }
                 if (!campoNumerico(form.txtTelefone.value === "")) {
                     mensagem = mensagem + "O campo Telefone deve ser numérico\n";
                 }
+                
+                //Email
+                if (form.txtEmail.value === "") {
+                    mensagem = mensagem + "Informe o Email\n";
+                }
+                
                 if (mensagem === "") {
                     return true;
                 } else {

@@ -96,9 +96,6 @@
                 }
                 
                 //Senha
-                if (!campoNumerico(form.txtSenha.value)) {
-                    mensagem = mensagem + "Insira a senha \n";
-                }
                 if(form.txtSenha.value === ""){
                     mensagem = mensagem + "Informe uma senha\n";
                 }

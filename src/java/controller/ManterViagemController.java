@@ -90,7 +90,7 @@ public class ManterViagemController extends HttpServlet {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
         DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
         RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
-        Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")), 0, null, null, null, null, 0, 0, null, 0, 0, null, 0, null, null, null, null, 0, null, null, 0, 0, null, null, null);
+        Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")), null, null, null, null, null, 0, null, null, 0, 0, null, 0, null, null, null, null, 0, null, null, 0, 0, null, null, null);
         Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
         String destino = request.getParameter("txtDestino");
         String dataViagem = request.getParameter("txtDataViagem");

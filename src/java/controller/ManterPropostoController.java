@@ -87,13 +87,13 @@ public class ManterPropostoController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
+        String calendario = request.getParameter("txtCodCalendario");
         Servidor codServidor = new Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),0,null);
         Secretaria codSecretaria = new Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null,0,null,null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        int dataNascimento = Integer.parseInt(request.getParameter("txtDataNascimento"));
+        String dataNascimento = request.getParameter("txtDataNascimento");
         String email = request.getParameter("txtEmail");
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         int celular = Integer.parseInt(request.getParameter("txtCelular"));
@@ -112,7 +112,7 @@ public class ManterPropostoController extends HttpServlet {
         String senha = request.getParameter("txtSenha");
         String tipoProposto = request.getParameter("txtTipoProposto");
         try {
-            Proposto proposto = new Proposto(codProposto, codCalendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
+            Proposto proposto = new Proposto(codProposto, calendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
             proposto.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
@@ -145,13 +145,13 @@ public class ManterPropostoController extends HttpServlet {
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
+        String calendario = request.getParameter("txtCodCalendario");
         Servidor codServidor = new Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),0,null);
         Secretaria codSecretaria = new Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null,0,null,null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        int dataNascimento = Integer.parseInt(request.getParameter("txtDataNascimento"));
+        String dataNascimento = request.getParameter("txtDataNascimento");
         String email = request.getParameter("txtEmail");
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         int celular = Integer.parseInt(request.getParameter("txtCelular"));
@@ -170,7 +170,7 @@ public class ManterPropostoController extends HttpServlet {
         String senha = request.getParameter("txtSenha");
         String tipoProposto = request.getParameter("txtTipoProposto");
         try {
-            Proposto proposto = new Proposto(codProposto, codCalendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
+            Proposto proposto = new Proposto(codProposto, calendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
             proposto.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
@@ -199,13 +199,13 @@ public class ManterPropostoController extends HttpServlet {
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
 
         int codProposto = Integer.parseInt(request.getParameter("txtCodProposto"));
-        int codCalendario = Integer.parseInt(request.getParameter("txtCodCalendario"));
+        String calendario = request.getParameter("txtCodCalendario");
         Servidor codServidor = new Servidor(Integer.parseInt(request.getParameter("txtCodServidor")),0,null);
         Secretaria codSecretaria = new Secretaria(Integer.parseInt(request.getParameter("txtCodSecretaria")),null,0,null,null);
         String nome = request.getParameter("txtNome");
         String setor = request.getParameter("txtSetor");
         int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        int dataNascimento = Integer.parseInt(request.getParameter("txtDataNascimento"));
+        String dataNascimento = request.getParameter("txtDataNascimento");
         String email = request.getParameter("txtEmail");
         int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
         int celular = Integer.parseInt(request.getParameter("txtCelular"));
@@ -224,7 +224,7 @@ public class ManterPropostoController extends HttpServlet {
         String senha = request.getParameter("txtSenha");
         String tipoProposto = request.getParameter("txtTipoProposto");
         try {
-            Proposto proposto = new Proposto(codProposto, codCalendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
+            Proposto proposto = new Proposto(codProposto, calendario, codServidor, codSecretaria, nome,setor,cpf, dataNascimento, email, telefone, celular, logradouro, numero, complemento, bairro, cidade, uf ,cep, titulacaoMaxima, banco, agencia, conta, cargo, senha, tipoProposto);
             proposto.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPropostoController");
             view.forward(request, response);
