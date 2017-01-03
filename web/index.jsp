@@ -5,6 +5,10 @@
         <title>Inicio - SCV</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script>
 
             //Criado para fazer o botÃ£o "Cadastrar" Acessar a tela de cadastro    
@@ -20,106 +24,29 @@
     <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
-    <center>
-        <table> 
-            <tr>
-                <td><center><h2>NEaD - SCV - Início</h2></center></td>
-            </tr>
-            <tr>
-                <td>Bem vindo ao nead agendamentos!</td>
-            </tr>
-            <td>Faça seu login ou cadastre-se</td>
-            <tr>
-                <td>Email: <input type="email" name="email" size="30"> </td>
-            </tr>
-            <tr>
-                <td>Senha: <input type="password" name="senha" size="30"></td>
-            </tr>
-            <tr>
-                <td>
-                    <button>Acessar</button>
-                    <button onClick="nova_Conta()">Criar Conta</button>
-                    <a href="recuperacaoSenha.jsp"> Recuperar Senha</a>
-                </td> 
-            </tr>
+    
 
-        </table>
-        </center>
-        <!--<table>
-
-            <tr>
-            <h1 >Menu Temporário</h1>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="PesquisaConvidadoController">Convidado</a>
-                </td>
-                <td>
-                    <a href="PesquisaCursoController">Curso</a>
-                </td>
-                <td>
-                    <a href="#">(Não Existe)Declaracao Nota Tecnica</a>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="PesquisaDisciplinaController">Disciplina</a>
-                </td>
-                <td>
-                    <a href="historico.jsp">Histórico</a>
-                </td>
-                <td>
-                    <a href="PesquisaOfertaController">Oferta</a>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="PesquisaPoloController">Polo</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaPropostoController">Proposto</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaRelatorioViagemController">RelatorioViagem</a>
-
-                </td>
-            <tr>
-                <td>
-                    <a href="PesquisaSecretariaController">Secretaria</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaServidorController">Servidor</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaSolicitacaoController">Solicitação</a>
-                </td>               
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="PesquisaTransporteController">Transporte</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaTrimestreController">Trimestre</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaViagemController">Viagem</a>
-                </td>               
-            </tr>
-
-
-        </table>-->
+    <div class="container">
+        <h2>NEaD - SCV</h2>
+        <h4>Bem-Vindo ao NEaD Agendamentos</h4>
+        <h6>Faça seu login ou cadastre-se</h6>
+        <form>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-default">Acessar</button>
+            <button type="submit" class="btn btn-default" onClick="nova_Conta()">Criar Conta</button>
+            <a href="recuperacaoSenha.jsp"> Recuperar Senha</a>
+        </form>
+    </div>
 
     </body>
 </html>

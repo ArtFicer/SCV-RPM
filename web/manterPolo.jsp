@@ -11,6 +11,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
         <title>Manter Polo</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
@@ -18,55 +22,53 @@
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        <h1>Manter Polo - ${operacao}</h1>
+        <div class="container">
+            <h1>Manter Polo - ${operacao}</h1>
 
-        <form action="ManterPoloController?acao=confirmar${operacao}" method="post" name="frmManterPolo" onsubmit="return validarFormulario(this)">
-            <table align="center"> 
-                <tr>
-                    <td>Código do Polo</td> 
-                    <td><input type="text" name="txtCodPolo" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Empresa do Transporte:</td>
-                        <td><select name="txtCodTransporte" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                            <option value="0" <c:if test="${transporte.codTransporte != null}"> selected</c:if>></option>
+            <form action="ManterPoloController?acao=confirmar${operacao}" method="post" name="frmManterPolo" onsubmit="return validarFormulario(this)">
+            
+                <div class="form-group">
+                    <label for="usr">Código do Polo</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodPolo" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Empresa do Transporte:</label>
+                    <select class="selectpicker" name="txtCodTransporte" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <option value="0" <c:if test="${transporte.codTransporte != null}"> selected</c:if>></option>
                             <c:forEach items="${transportes}" var="transporte">
                                 <option value="${transporte.codTransporte}" <c:if test="${transporte.codTransporte == polo.codTransporte.codTransporte}"> selected</c:if>>
                                     ${transporte.empresa}
                                 </option>  
                             </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Cidade:</td> 
-                    <td><input type="text" name="txtCidade" value="${polo.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Logradouro:</td> 
-                        <td><input type="text" name="txtLogradouro" value="${polo.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Bairro:</td> 
-                        <td><input type="text" name="txtBairro" value="${polo.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Numero:</td> 
-                        <td><input type="text" name="txtNumero" value="${polo.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Telefone:</td> 
-                        <td><input type="text" name="txtTelefone" value="${polo.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td> 
-                        <td><input type="text" name="txtEmail" value="${polo.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-                </tr>
-            </table>
-        </form>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Cidade:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCidade" value="${polo.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Logradouro:</label>
+                    <input type="text" class="form-control" id="usr" name="txtLogradouro" value="${polo.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Bairro:</label>
+                    <input type="text" class="form-control" id="usr" name="txtBairro" value="${polo.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Numero:</label>
+                    <input type="text" class="form-control" id="usr" name="txtNumero" value="${polo.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Telefone:</label>
+                    <input type="text" class="form-control" id="usr" name="txtTelefone" value="${polo.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Email:</label>
+                    <input type="text" class="form-control" id="usr" name="txtEmail" value="${polo.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
 
             function campoNumerico(valor)

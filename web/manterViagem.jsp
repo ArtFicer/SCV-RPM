@@ -110,10 +110,10 @@
             var caracteresValidos = "0123456789";
             var ehNumero = true;
             var umCaracter;
-            for (i = 0; i < valor.length && ehNumero == true; i++)
+            for (i = 0; i < valor.length && ehNumero === true; i++)
             {
                 umCaracter = valor.charAt(i);
-                if (caracteresValidos.indexOf(umCaracter) == -1)
+                if (caracteresValidos.indexOf(umCaracter) === -1)
                 {
                     ehNumero = false;
                 }
@@ -126,27 +126,27 @@
             mensagem = "";
             
             //Codigo Viagem
-            if ((!campoNumerico(form.txtCodViagem.value))||(form.txtCodViagem.value === "")) {
+            if (form.txtCodViagem.value === "") {
                 mensagem = mensagem + "Informe o Código da Viagem \n";
             }
             
             //Codigo Declaracao Nota Tecnica
-            if ((!campoNumerico(form.txtCodDeclaracaoNotaTecnica.value))||(form.txtCodDeclaracaoNotaTecnica.value === "")) {
+            if (form.txtCodDeclaracaoNotaTecnica.value === "") {
                 mensagem = mensagem + "Informe codigo da declaracao da nota tecnica\n";
             }
             
             //Codigo Relatorio Viagem
-            if ((!campoNumerico(form.txtCodRelatorioViagem.value))||(form.txtCodRelatorioViagem.value === "")) {
+            if (form.txtCodRelatorioViagem.value === "") {
                 mensagem = mensagem + "Informe codigo do relatorio da viagem \n";
             }
             
             //Codigo Proposto
-            if ((!campoNumerico(form.txtCodProposto.value))||(form.txtCodProposto.value === "")) {
+            if (form.txtCodProposto.value === "") {
                 mensagem = mensagem + "Código do Proposto\n";
             }
             
             //Codigo Polo
-            if ((!campoNumerico(form.txtCodPolo.value))||(form.txtCodPolo.value === "")) {
+            if (form.txtCodPolo.value === "") {
                 mensagem = mensagem + "Insira o cod polo\n";
             }
             
@@ -176,7 +176,7 @@
             }
             
             //Codigo Transporte
-            if ((!campoNumerico(form.txtCodTransporte.value))||(form.txtCodTransporte.value === "")) {
+            if (form.txtCodTransporte.value === "") {
                 mensagem = mensagem + "Insira o codigo do transporte \n";
             }
 
