@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <td>Código Calendário:</td>
-                        <td><input type="text" name="txtCodCalendario" name="date" class="tcal" value="${proposto.codCalendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td><input type="text" name="txtCodCalendario" name="date" class="tcal" value="${proposto.calendario}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td>Matricula SIAPE Servidor:</td> 
@@ -297,4 +297,4 @@
 
         </SCRIPT>        
     </body>
-</html>
+    </html>

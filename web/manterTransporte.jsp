@@ -18,7 +18,7 @@
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        <h1>Manter Solicitações - ${operacao}</h1>
+        <h1>Manter Transporte - ${operacao}</h1>
 
         <form action="ManterTransporteController?acao=confirmar${operacao}" method="post" name="frmManterTransporte" onsubmit="return validarFormulario(this)">
             <table align="center">

@@ -7,7 +7,6 @@ import java.util.List;
 public class Viagem {
 
     private int codViagem;
-    private DeclaracaoNotaTecnica codDeclaracaoNotaTecnica;
     private RelatorioViagem codRelatorioViagem;
     private Proposto codProposto;
     private Polo codPolo;
@@ -18,9 +17,8 @@ public class Viagem {
     private String statusConclusao;
     private Transporte codTransporte;
 
-    public Viagem(int codViagem, DeclaracaoNotaTecnica codDeclaracaoNotaTecnica, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao, Transporte codTransporte) {
+    public Viagem(int codViagem, RelatorioViagem codRelatorioViagem, Proposto codProposto, Polo codPolo, String destino, String dataViagem, int horarioSaida, String statusConfirmacao, String statusConclusao, Transporte codTransporte) {
         this.codViagem = codViagem;
-        this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
         this.codRelatorioViagem = codRelatorioViagem;
         this.codProposto = codProposto;
         this.codPolo = codPolo;
@@ -66,14 +64,6 @@ public class Viagem {
 
     public void setCodViagem(int codViagem) {
         this.codViagem = codViagem;
-    }
-
-    public DeclaracaoNotaTecnica getCodDeclaracaoNotaTecnica() {
-        return codDeclaracaoNotaTecnica;
-    }
-
-    public void setCodDeclaracaoNotaTecnica(DeclaracaoNotaTecnica codDeclaracaoNotaTecnica) {
-        this.codDeclaracaoNotaTecnica = codDeclaracaoNotaTecnica;
     }
 
     public RelatorioViagem getCodRelatorioViagem() {

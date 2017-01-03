@@ -19,7 +19,7 @@
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
-       <h1>Pesquisa de Solicitações</h1>
+       <h1>Pesquisa de Transporte</h1>
         <table border=1px bordercolor="black" border-collapse: collapse BORDER=0 CELLPADDING=0 cellspacing=0 ALIGN="center">
             <tr>
                 <th>Codigo:</th>

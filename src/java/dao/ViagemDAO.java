@@ -32,9 +32,8 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on declaracaonotatecnica.codDeclaracaoNotaTecnica = viagem.codDeclaracaoNotaTecnica join relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte");
+            ResultSet rs = comando.executeQuery("select * from viagem join  relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte");
             while (rs.next()) {
-                declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),null);
                 relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), null);
                 proposto = new Proposto(rs.getInt("codProposto"),
                         null,
@@ -75,7 +74,6 @@ public class ViagemDAO {
                 
                 Viagem viagem = new Viagem(
                         rs.getInt("codViagem"),
-                        declaracaoNotaTecnica,
                         relatorioViagem,
                         proposto,
                         polo,
@@ -109,9 +107,8 @@ public class ViagemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from viagem join declaracaonotatecnica on declaracaonotatecnica.codDeclaracaoNotaTecnica = viagem.codDeclaracaoNotaTecnica join relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte where codViagem ="+codViagem);
+            ResultSet rs = comando.executeQuery("select * from viagem join  relatorioviagem on relatorioviagem.codRelatorioViagem = viagem.codRelatorioViagem join proposto on proposto.codProposto = viagem.codProposto join polo on polo.codPolo = viagem.codPolo join transporte on transporte.codTransporte = viagem.codTransporte where codViagem ="+codViagem);
             rs.first();
-            declaracaoNotaTecnica = new DeclaracaoNotaTecnica(rs.getInt("codDeclaracaoNotaTecnica"),null);
             relatorioViagem = new RelatorioViagem(rs.getInt("codRelatorioViagem"), null);
             proposto = new Proposto(rs.getInt("codProposto"),
                         null,
@@ -152,7 +149,6 @@ public class ViagemDAO {
                 
             viagem = new Viagem(
                         rs.getInt("codViagem"),
-                        declaracaoNotaTecnica,
                         relatorioViagem,
                         proposto,
                         polo,
@@ -191,20 +187,19 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "insert into viagem (codViagem, codDeclaracaoNotaTecnica,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into viagem (codViagem,codRelatorioViagem,codProposto,codPolo,destino,data_viagem,horario_saida,status_confirmacao,status_conclusao,codTransporte) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando;
             comando = conexao.prepareStatement(sql);
             comando.setInt(1, viagem.getCodViagem());
-            comando.setInt(2, viagem.getCodDeclaracaoNotaTecnica().getCodDeclaracaoNotaTecnica());
-            comando.setInt(3, viagem.getCodRelatorioViagem().getCodRelatorioViagem());
-            comando.setInt(4, viagem.getCodProposto().getCodProposto());
-            comando.setInt(5, viagem.getCodPolo().getCodPolo());
-            comando.setString(6, viagem.getDestino());
-            comando.setString(7, viagem.getDataViagem());
-            comando.setInt(8, viagem.getHorarioSaida());
-            comando.setString(9, viagem.getStatusConfirmacao());
-            comando.setString(10, viagem.getStatusConclusao());
-            comando.setInt(11, viagem.getCodTransporte().getCodTransporte());
+            comando.setInt(2, viagem.getCodRelatorioViagem().getCodRelatorioViagem());
+            comando.setInt(3, viagem.getCodProposto().getCodProposto());
+            comando.setInt(4, viagem.getCodPolo().getCodPolo());
+            comando.setString(5, viagem.getDestino());
+            comando.setString(6, viagem.getDataViagem());
+            comando.setInt(7, viagem.getHorarioSaida());
+            comando.setString(8, viagem.getStatusConfirmacao());
+            comando.setString(9, viagem.getStatusConclusao());
+            comando.setInt(10, viagem.getCodTransporte().getCodTransporte());
             comando.execute();
             comando.close();
             conexao.close();
@@ -218,19 +213,18 @@ public class ViagemDAO {
         Connection conexao = null;
         try{
             conexao = BD.getConexao();
-            String sql = "update viagem set codDeclaracaoNotaTecnica = ?,codRelatorioViagem = ?,codProposto = ?,codPolo = ?,destino = ?,data_viagem = ?,horario_saida = ?,status_confirmacao = ?,status_conclusao = ?,codTransporte = ? where codViagem = ?";
+            String sql = "update viagem set codRelatorioViagem = ?,codProposto = ?,codPolo = ?,destino = ?,data_viagem = ?,horario_saida = ?,status_confirmacao = ?,status_conclusao = ?,codTransporte = ? where codViagem = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, viagem.getCodDeclaracaoNotaTecnica().getCodDeclaracaoNotaTecnica());
-            comando.setInt(2, viagem.getCodRelatorioViagem().getCodRelatorioViagem());
-            comando.setInt(3, viagem.getCodProposto().getCodProposto());
-            comando.setInt(4, viagem.getCodPolo().getCodPolo());
-            comando.setString(5, viagem.getDestino());
-            comando.setString(6, viagem.getDataViagem());
-            comando.setInt(7, viagem.getHorarioSaida());
-            comando.setString(8, viagem.getStatusConfirmacao());
-            comando.setString(9, viagem.getStatusConclusao());
-            comando.setInt(10, viagem.getCodTransporte().getCodTransporte());
-            comando.setInt(11, viagem.getCodViagem());
+            comando.setInt(1, viagem.getCodRelatorioViagem().getCodRelatorioViagem());
+            comando.setInt(2, viagem.getCodProposto().getCodProposto());
+            comando.setInt(3, viagem.getCodPolo().getCodPolo());
+            comando.setString(4, viagem.getDestino());
+            comando.setString(5, viagem.getDataViagem());
+            comando.setInt(6, viagem.getHorarioSaida());
+            comando.setString(7, viagem.getStatusConfirmacao());
+            comando.setString(8, viagem.getStatusConclusao());
+            comando.setInt(9, viagem.getCodTransporte().getCodTransporte());
+            comando.setInt(10, viagem.getCodViagem());
             comando.execute();
             comando.close();
             conexao.close();

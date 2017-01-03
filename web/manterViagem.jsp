@@ -30,18 +30,6 @@
                 <td><input type="text" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Código da Declaração de Nota Técnica:</td>
-                        <td><select name="txtCodDeclaracaoNotaTecnica" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                            <option value="0" <c:if test="${declaracaoNotaTecnica.codDeclaracaoNotaTecnica != null}"> selected</c:if>></option>
-                            <c:forEach items="${declaracaoNotaTecnicas}" var="declaracaoNotaTecnica">
-                                <option value="${declaracaoNotaTecnica.codDeclaracaoNotaTecnica}" <c:if test="${declaracaoNotaTecnica.codDeclaracaoNotaTecnica == viagem.codDeclaracaoNotaTecnica.codDeclaracaoNotaTecnica}"> selected</c:if>>
-                                    ${declaracaoNotaTecnica.codDeclaracaoNotaTecnica}
-                                </option>  
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <td>Código do Relatório da Viagem:</td> 
                         <td><select name="txtCodRelatorioViagem" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="0" <c:if test="${relatorioViagem.codRelatorioViagem != null}"> selected</c:if>></option>
@@ -54,12 +42,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Código do Proposto:</td> 
+                    <td>Nome do Proposto:</td> 
                         <td><select name="txtCodProposto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="0" <c:if test="${proposto.codProposto != null}"> selected</c:if>></option>
                             <c:forEach items="${propostos}" var="proposto">
                                 <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == viagem.codProposto.codProposto}"> selected</c:if>>
-                                    ${proposto.codProposto}
+                                    ${proposto.nome}
                                 </option>  
                             </c:forEach>
                         </select>
@@ -98,12 +86,12 @@
                     <td><input type="text" name="txtStatusConclusao" value="${viagem.statusConclusao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
-                    <td>Código do Transporte:</td> 
+                    <td>Empresa do Transporte:</td> 
                     <td><select name="txtCodTransporte" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         <option value="0" <c:if test="${transporte.codTransporte != null}"> selected</c:if>></option>
                         <c:forEach items="${transportes}" var="transporte">
-                            <option value="${transporte.codTransporte}" <c:if test="${transporte.codTransporte == viagem.codTransporte}"> selected</c:if>>
-                                ${transporte.codTransporte}
+                            <option value="${transporte.codTransporte}" <c:if test="${transporte.codTransporte == viagem.codTransporte.codTransporte}"> selected</c:if>>
+                                ${transporte.empresa}
                             </option>  
                         </c:forEach>
                     </select>

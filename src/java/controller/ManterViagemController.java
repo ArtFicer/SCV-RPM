@@ -88,7 +88,6 @@ public class ManterViagemController extends HttpServlet {
     // Realiza e confirma a Inclusão no banco de dados
     private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
         RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
         Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")), null, null, null, null, null, 0, null, null, 0, 0, null, 0, null, null, null, null, 0, null, null, 0, 0, null, null, null);
         Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
@@ -100,7 +99,7 @@ public class ManterViagemController extends HttpServlet {
         Transporte codTransporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")),null,null);
 
         try {
-            Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
+            Viagem viagem = new Viagem(codViagem, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
             viagem.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);
@@ -133,7 +132,6 @@ public class ManterViagemController extends HttpServlet {
     //Confrimar a edição
     private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
         RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
         Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")),null);
         Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
@@ -145,7 +143,7 @@ public class ManterViagemController extends HttpServlet {
         Transporte codTransporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")),null,null);
 
         try {
-            Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
+            Viagem viagem = new Viagem(codViagem, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
             viagem.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);
@@ -172,7 +170,6 @@ public class ManterViagemController extends HttpServlet {
     //Confirma a Exclusão
     private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
         int codViagem = Integer.parseInt(request.getParameter("txtCodViagem"));
-        DeclaracaoNotaTecnica codDeclaracaoNotaTecnica = new DeclaracaoNotaTecnica(Integer.parseInt(request.getParameter("txtCodDeclaracaoNotaTecnica")),null);
         RelatorioViagem codRelatorioViagem = new RelatorioViagem(Integer.parseInt(request.getParameter("txtCodRelatorioViagem")),null);
         Proposto codProposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")),null);
         Polo codPolo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")),null,null,null,null,0,0,null);
@@ -184,7 +181,7 @@ public class ManterViagemController extends HttpServlet {
         Transporte codTransporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")),null,null);
 
         try {
-            Viagem viagem = new Viagem(codViagem, codDeclaracaoNotaTecnica, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
+            Viagem viagem = new Viagem(codViagem, codRelatorioViagem, codProposto, codPolo, destino, dataViagem, horarioSaida, statusConfirmacao, statusConclusao, codTransporte);
             viagem.Excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaViagemController");
             view.forward(request, response);

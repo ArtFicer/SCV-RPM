@@ -22,7 +22,6 @@
         <table border=1px bordercolor="black" border-collapse: collapse BORDER=0 CELLPADDING=0 cellspacing=0 ALIGN="center">
             <tr>
                 <th>Codigo Viagem:</th>
-                <th>Codigo Declaração Nota Técnica:</th>
                 <th>Codigo Relatorio Viagem:</th>
                 <th>Codigo Proposto:</th>
                 <th>Codigo Polo:</th>
@@ -37,7 +36,6 @@
             <c:forEach items="${viagens}" var="viagem">
                 <tr>
                     <td><c:out value="${viagem.codViagem}" /></td>
-                    <td><c:out value="${viagem.codDeclaracaoNotaTecnica.codDeclaracaoNotaTecnica}" /></td>
                     <td><c:out value="${viagem.codRelatorioViagem.codRelatorioViagem}" /></td>
                     <td><c:out value="${viagem.codProposto.nome}" /></td>
                     <td><c:out value="${viagem.codPolo.cidade}" /></td>
