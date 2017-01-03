@@ -11,30 +11,32 @@
 <html>
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>Manter Trimestre</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>
-        <h1>Manter Trimestre - ${operacao}</h1>
+        </nav>
+        <div class="container">
+            <h1>Manter Trimestre - ${operacao}</h1>
 
-        <form action="ManterTrimestreController?acao=confirmar${operacao}" method="post" name="frmManterTrimestre" onsubmit="return validarFormulario(this)">
-            <table align="center">
-                <tr>
-                    <td>Código do Trimestre:</td> 
-                    <td><input type="text" name="txtCodTrimestre" value="${trimestre.codTrimestre}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Numero do Trimestre:</td> 
-                    <td><input type="text" name="txtNumeroTrimestre" value="${trimestre.numeroTrimestre}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-                </tr>
-            </table>
-        </form>
+            <form action="ManterTrimestreController?acao=confirmar${operacao}" method="post" name="frmManterTrimestre" onsubmit="return validarFormulario(this)">
+            
+                <div class="form-group">
+                    <label for="usr">Código do Trimestre:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodTrimestre" value="${trimestre.codTrimestre}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Numero do Trimestre:</label>
+                    <input type="text" class="form-control" id="usr" name="txtNumeroTrimestre" value="${trimestre.numeroTrimestre}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
             
             function campoNumerico(valor)
@@ -42,10 +44,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                for (i = 0; i < valor.length && ehNumero === true; i++) 
                 { 
                     umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    if (caracteresValidos.indexOf(umCaracter) === -1) 
                     {
                         ehNumero = false;
                     }

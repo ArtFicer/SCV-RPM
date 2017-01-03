@@ -11,6 +11,10 @@
 <html>
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
         <title>Manter Relatorio Viagem</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
@@ -18,23 +22,22 @@
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
      </nav>
-        <h1>Manter Relatorio Viagem - ${operacao}</h1>
+        <div class="container">
+            <h1>Manter Relatorio Viagem - ${operacao}</h1>
 
-        <form action="ManterRelatorioViagemController?acao=confirmar${operacao}" method="post" name="frmManterRelatorioViagem" onsubmit="return validarFormulario(this)">
-            <table align="center">
-                <tr>
-                    <td>Código do Relatorio da Viagem:</td> 
-                    <td><input type="text" name="txtCodRelatorioViagem" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Relatorio:</td> 
-                    <td><input type="text" name="txtRelatorio" value="${relatorioViagem.relatorio}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-                </tr>
-            </table>
-        </form>
+            <form action="ManterRelatorioViagemController?acao=confirmar${operacao}" method="post" name="frmManterRelatorioViagem" onsubmit="return validarFormulario(this)">
+            
+                <div class="form-group">
+                    <label for="usr">Código do Relatorio da Viagem:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodRelatorioViagem" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Relatorio:</label>
+                    <input type="text" class="form-control" id="usr" name="txtRelatorio" value="${relatorioViagem.relatorio}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
             
             

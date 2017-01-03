@@ -10,84 +10,97 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sobre - SCV</title>
+        <title>Manter Viagem - SCV</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="tcal.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-datetimepicker.min"></script>
     </head>
     <body bgcolor="#B0C4DE" align="center">
         <!--Menu-->
-    <nav>
-        <object width="100%" height="65px" data="menu.jsp"></object>
-    </nav>
-    <h1>Manter Viagem - ${operacao}</h1>
+        <nav>
+            <object width="100%" height="65px" data="menu.jsp"></object>
+        </nav>
+        <div class="container">
+            <h1>Manter Viagem - ${operacao}</h1>
 
-    <form action="ManterViagemController?acao=confirmar${operacao}" method="post" name="frmManterViagem" onsubmit="return validarFormulario(this)">
-        <table align="center">
-            <tr>
-                <td><center><h2>NEaD - SCV - Viagem</h2></center></td>
-            </tr>
-            <tr>
-                <td>Código da Viagem:</td> 
-                <td><input type="text" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Código do Relatório da Viagem:</td> 
-                        <td><select name="txtCodRelatorioViagem" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                            <option value="0" <c:if test="${relatorioViagem.codRelatorioViagem != null}"> selected</c:if>></option>
-                            <c:forEach items="${relatorioViagens}" var="relatorioViagem">
-                                <option value="${relatorioViagem.codRelatorioViagem}" <c:if test="${relatorioViagem.codRelatorioViagem == viagem.codRelatorioViagem.codRelatorioViagem}"> selected</c:if>>
-                                    ${relatorioViagem.codRelatorioViagem}
-                                </option>  
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nome do Proposto:</td> 
-                        <td><select name="txtCodProposto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                            <option value="0" <c:if test="${proposto.codProposto != null}"> selected</c:if>></option>
-                            <c:forEach items="${propostos}" var="proposto">
-                                <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == viagem.codProposto.codProposto}"> selected</c:if>>
-                                    ${proposto.nome}
-                                </option>  
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Código do Polo:</td> 
-                        <td><select name="txtCodPolo" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                            <option value="0" <c:if test="${polo.codPolo != null}"> selected</c:if>></option>
-                            <c:forEach items="${polos}" var="polo">
-                                <option value="${polo.codPolo}" <c:if test="${polo.codPolo == viagem.codPolo.codPolo}"> selected</c:if>>
-                                    ${polo.codPolo}
-                                </option>  
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Destino:</td> 
-                    <td><input type="text" name="txtDestino" value="${viagem.destino}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-            </tr>
-            
-                    <td>Data da Viagem:</td> 
-                    <td><input type="text" name="txtDataViagem" value="${viagem.dataViagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Horário de Saída:</td> 
-                    <td><input type="text" name="txtHorarioSaida" value="${viagem.horarioSaida}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Status Confirmação:</td> 
-                    <td><input type="text" name="txtStatusConfirmacao" value="${viagem.statusConfirmacao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Status Conclusão:</td> 
-                    <td><input type="text" name="txtStatusConclusao" value="${viagem.statusConclusao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Empresa do Transporte:</td> 
-                    <td><select name="txtCodTransporte" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <form action="ManterViagemController?acao=confirmar${operacao}" method="post" name="frmManterViagem" onsubmit="return validarFormulario(this)">
+        
+                <div class="form-group">
+                    <label for="usr">Código da Viagem:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Código do Relatório da Viagem:</label>
+                    <select class="selectpicker" name="txtCodRelatorioViagem" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <option value="0" <c:if test="${relatorioViagem.codRelatorioViagem != null}"> selected</c:if>></option>
+                        <c:forEach items="${relatorioViagens}" var="relatorioViagem">
+                            <option value="${relatorioViagem.codRelatorioViagem}" <c:if test="${relatorioViagem.codRelatorioViagem == viagem.codRelatorioViagem.codRelatorioViagem}"> selected</c:if>>
+                                ${relatorioViagem.codRelatorioViagem}
+                            </option>  
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Nome do Proposto:</label>
+                    <select class="selectpicker" name="txtCodProposto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <option value="0" <c:if test="${proposto.codProposto != null}"> selected</c:if>></option>
+                        <c:forEach items="${propostos}" var="proposto">
+                            <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == viagem.codProposto.codProposto}"> selected</c:if>>
+                                ${proposto.nome}
+                            </option>  
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Código do Polo:</label>
+                    <select class="selectpicker" name="txtCodPolo" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <option value="0" <c:if test="${polo.codPolo != null}"> selected</c:if>></option>
+                        <c:forEach items="${polos}" var="polo">
+                            <option value="${polo.codPolo}" <c:if test="${polo.codPolo == viagem.codPolo.codPolo}"> selected</c:if>>
+                                ${polo.codPolo}
+                            </option>  
+                        </c:forEach>
+                    </select>
+                </div>    
+                <div class="form-group">
+                    <label for="usr">Destino:</label>
+                    <input type="text" class="form-control" id="usr" name="txtDestino" value="${viagem.destino}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Data da Viagem:</label>
+                    <div class="input-append date form_datetime">
+                        <input size="16" type="text" class="form-control" id="usr" name="date" name="txtDataViagem" value="${viagem.dataViagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+     
+                    <script type="text/javascript">
+                        $(".form_datetime").datetimepicker({
+                        format: "dd MM yyyy - hh:ii",
+                        autoclose: true,
+                        todayBtn: true,
+                        pickerPosition: "bottom-left"
+                        });
+                    </script>       
+                </div>
+                <div class="form-group">
+                    <label for="usr">Horário de Saída:</label>
+                    <input type="text" class="form-control" id="usr" name="txtHorarioSaida" value="${viagem.horarioSaida}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Status Confirmação:</label>
+                    <input type="text" class="form-control" id="usr" name="txtStatusConfirmacao" value="${viagem.statusConfirmacao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Status Conclusão:</label>
+                    <input type="text" class="form-control" id="usr" name="txtStatusConclusao" value="${viagem.statusConclusao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Empresa do Transporte:</label>
+                    <select class="selectpicker" name="txtCodTransporte" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         <option value="0" <c:if test="${transporte.codTransporte != null}"> selected</c:if>></option>
                         <c:forEach items="${transportes}" var="transporte">
                             <option value="${transporte.codTransporte}" <c:if test="${transporte.codTransporte == viagem.codTransporte.codTransporte}"> selected</c:if>>
@@ -95,14 +108,10 @@
                             </option>  
                         </c:forEach>
                     </select>
-                </td>
-            </tr>
-            <!-- Comentário <tr><td><p>UF: <select name="uf"><option value="ac">AC</option><option value="al">AL</option><option value="ap">AP</option><option value="am">AM</option><option value="ba">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="mt">MT</option><option value="ms">MS</option><option value="mg">MG</option><option value="pa">PA</option><option value="pr">PR</option><option value="pe">PI</option><option value="rj">RJ</option><option value="rn">RN</option><option value="rs">RS</option><option value="ro">RO</option><option value="rr">RR</option><option value="sc">SC</option><option value="sp">SP</option><option value="se">SE</option><option value="to">TO</option></select></td></tr>-->
-            <tr>
-                <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-            </tr>
-        </table>
-    </form>
+                </div>
+                    
+            </form>
+        </div>
     <SCRIPT language="JavaScript">
 
         function campoNumerico(valor)

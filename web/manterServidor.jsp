@@ -11,34 +11,36 @@
 <html>
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>Manter Servidor</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>
-        <h1>Manter Servidor - ${operacao}</h1>
+        </nav>
+        <div class="container">
+            <h1>Manter Servidor - ${operacao}</h1>
 
-        <form action="ManterServidorController?acao=confirmar${operacao}" method="post" name="frmManterServidor" onsubmit="return validarFormulario(this)">
-            <table align="center">
-                <tr>
-                    <td>Código do servidor:</td> 
-                    <td><input type="text" name="txtCodServidor" value="${servidor.codServidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Matricula SIAPE:</td> 
-                    <td><input type="text" name="txtMatriculaSIAPE" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Orgao Lotado:</td> 
-                    <td><input type="text" name="txtLotadoOrgao" value="${servidor.lotadoOrgao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-                </tr>
-            </table>
-        </form>
+            <form action="ManterServidorController?acao=confirmar${operacao}" method="post" name="frmManterServidor" onsubmit="return validarFormulario(this)">
+            
+                <div class="form-group">
+                    <label for="usr">Código do Servidor:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodServidor" value="${servidor.codServidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Matricula SIAPE:</label>
+                    <input type="text" class="form-control" id="usr" name="txtMatriculaSIAPE" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Lotado Orgao:</label>
+                    <input type="text" class="form-control" id="usr" name="txtLotadoOrgao" value="${servidor.lotadoOrgao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
                         
             function campoNumerico(valor)

@@ -11,6 +11,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
         <title>Manter Solicitações</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
@@ -18,27 +22,26 @@
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        <h1>Manter Transporte - ${operacao}</h1>
+        <div class="container">
+            <h1>Manter Transporte - ${operacao}</h1>
 
-        <form action="ManterTransporteController?acao=confirmar${operacao}" method="post" name="frmManterTransporte" onsubmit="return validarFormulario(this)">
-            <table align="center">
-                <tr>
-                    <td>Código da Transporte:</td> 
-                    <td><input type="text" name="txtCodTransporte" value="${transporte.codTransporte}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Empresa:</td> 
-                        <td><input type="text" name="txtEmpresa" value="${transporte.empresa}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td>Veículo:</td> 
-                        <td><input type="text" name="txtVeiculo" value="${transporte.veiculo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-                </tr>
-            </table>
-        </form>
+            <form action="ManterTransporteController?acao=confirmar${operacao}" method="post" name="frmManterTransporte" onsubmit="return validarFormulario(this)">
+            
+                <div class="form-group">
+                    <label for="usr">Código da Transporte:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodTransporte" value="${transporte.codTransporte}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Empresa:</label>
+                    <input type="text" class="form-control" id="usr" name="txtEmpresa" value="${transporte.empresa}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Veículo:</label>
+                    <input type="text" class="form-control" id="usr" name="txtVeiculo" value="${transporte.veiculo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
 
             function campoNumerico(valor)

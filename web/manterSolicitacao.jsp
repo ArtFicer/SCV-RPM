@@ -11,34 +11,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>Manter Solicitações</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>
-        <h1>Manter Solicitações - ${operacao}</h1>
+        </nav>
+        <div class="container">
+            <h1>Manter Solicitações - ${operacao}</h1>
 
-        <form action="ManterSolicitacaoController?acao=confirmar${operacao}" method="post" name="frmManterSolicitacao" onsubmit="return validarFormulario(this)">
-            <table align="center">
-                <tr>
-                    <td>Código da Solicitaçao:</td> 
-                    <td><input type="text" name="txtCodSolicitacao" value="${solicitacao.codSolicitacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Assunto:</td> 
-                    <td><input type="text" name="txtAssunto" value="${solicitacao.assunto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td>Texto:</td> 
-                    <td><input type="text" name="txtTexto" value="${solicitacao.texto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
-                </tr>
-            </table>
-        </form>
+            <form action="ManterSolicitacaoController?acao=confirmar${operacao}" method="post" name="frmManterSolicitacao" onsubmit="return validarFormulario(this)">
+            
+                <div class="form-group">
+                    <label for="usr">Código da Solicitaçao:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodSolicitacao" value="${solicitacao.codSolicitacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Assunto:</label>
+                    <input type="text" class="form-control" id="usr" name="txtAssunto" value="${solicitacao.assunto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Texto:</label>
+                    <textarea class="form-control" rows="5" id="comment" name="txtTexto" value="${solicitacao.texto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></textarea>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
            
             function campoNumerico(valor)
