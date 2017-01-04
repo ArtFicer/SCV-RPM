@@ -19,38 +19,48 @@
         <link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-Loading-Animation/index.html" />-->
         <title>Manter Curso</title>
     </head>
-    <body align="center" bgcolor="#B0C4DE">
+    <body>
         <!--Menu-->
         <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
+            <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
 
             <h1>Manter Curso - ${operacao}</h1>
+
             <form data-toggle="validator" role="form" action="ManterCursoController?acao=confirmar${operacao}" method="post" name="frmManterCurso" onsubmit="return validarFormulario(this)">
-                <div class="form-group">
-                    <label for="usr">Código do curso:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                <div class="form-group row-fluid"  >
+                    <label for="usr" class="col-sm-2 col-form-label" >Código do curso:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="usr">Nome do curso:</label>
-                    <input type="text" class="form-control" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                <div class="form-group row-fluid">
+                    <label for="usr" class="col-sm-2 col-form-label">Nome do curso:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
         </div>
+
+
+
+
+
         <SCRIPT language="JavaScript">
-           
-            
+
+
             function campoNumerico(valor)
             {
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero === true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) === -1) 
+                for (i = 0; i < valor.length && ehNumero === true; i++)
+                {
+                    umCaracter = valor.charAt(i);
+                    if (caracteresValidos.indexOf(umCaracter) === -1)
                     {
                         ehNumero = false;
                     }
@@ -58,28 +68,28 @@
                 return ehNumero;
             }
 
-            function validarFormulario(form) { 
+            function validarFormulario(form) {
                 var mensagem = "";
-                if(form.txtCodCurso.value === ""){
+                if (form.txtCodCurso.value === "") {
                     mensagem = mensagem + "Informe o Código\n";
                 }
-                if(form.txtNomeCurso.value === ""){
+                if (form.txtNomeCurso.value === "") {
                     mensagem = mensagem + "Informe o nome do curso\n";
                 }
-                if (!campoNumerico(form.txtCodCurso.value)){
+                if (!campoNumerico(form.txtCodCurso.value)) {
                     mensagem = mensagem + "Informe o Código do Curso\n";
                 }
-                if (form.txtNomeCurso.value===""){
+                if (form.txtNomeCurso.value === "") {
                     mensagem = mensagem + "Insira um nome válido \n";
                 }
-                if (mensagem === ""){
+                if (mensagem === "") {
                     return true;
-                }else{
+                } else {
                     alert(mensagem);
                     return false;
-                }                
-            } 
-          
+                }
+            }
+
         </SCRIPT>        
     </body>
 </html>
