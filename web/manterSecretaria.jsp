@@ -36,7 +36,7 @@
                     <input type="text" class="form-control" id="usr" name="txtNome" value="${secretaria.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
-                    <label for="usr">Código do Relatorio da Viagem:</label>
+                    <label for="usr">CPF:</label>
                     <input type="text" class="form-control" id="usr" name="txtCPF" value="${secretaria.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
