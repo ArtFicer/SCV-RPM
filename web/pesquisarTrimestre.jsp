@@ -11,31 +11,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>Pesquisa de Trimestre</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>
-        <h1>Pesquisa de Trimestre</h1>
-        <table border=1px bordercolor="black" border-collapse: collapse BORDER=0 CELLPADDING=0 cellspacing=0 ALIGN="center">
-            <tr>
-                <th>Codigo:</th>
-                <th>Trimestre:</th>
-                <th colspan=2>Ação:</th>
-            </tr>
-            <c:forEach items="${trimestres}" var="trimestre">
-                <tr>
-                    <td><c:out value="${trimestre.codTrimestre}" /></td>
-                    <td><c:out value="${trimestre.numeroTrimestre}"/></td>
-                    <td><a href="ManterTrimestreController?acao=prepararEditar&txtCodTrimestre=<c:out value="${trimestre.codTrimestre}"/>">Editar</a> </td>
-                    <td><a href="ManterTrimestreController?acao=prepararExcluir&txtCodTrimestre=<c:out value="${trimestre.codTrimestre}"/>">Excluir</a> </td>
-                </tr>
-            </c:forEach>
-        </table>
-        <form action="ManterTrimestreController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+        </nav>
+        <div class="container">
+            <h1>Pesquisa de Trimestre</h1>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Codigo:</th>
+                        <th>Trimestre:</th>
+                        <th colspan=2>Ação:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${trimestres}" var="trimestre">
+                        <tr>
+                            <td><c:out value="${trimestre.codTrimestre}" /></td>
+                            <td><c:out value="${trimestre.numeroTrimestre}"/></td>
+                            <td><a href="ManterTrimestreController?acao=prepararEditar&txtCodTrimestre=<c:out value="${trimestre.codTrimestre}"/>"><i class="icon-edit"></i>Editar</a> </td>
+                            <td><a href="ManterTrimestreController?acao=prepararExcluir&txtCodTrimestre=<c:out value="${trimestre.codTrimestre}"/>"><i class="icon-remove"></i>Excluir</a> </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <form action="ManterTrimestreController?acao=prepararIncluir" method="post">
+                <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
+            </form>
+        </div>
     </body>
 </html>

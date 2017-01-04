@@ -27,8 +27,6 @@
                 <thead>
                     <tr>
                         <th>Codigo:</th>
-                        <th>Matricula SIAPE Servidor:</th>
-                        <th>Nome Secretaria:</th>
                         <th>Nome:</th>
                         <th>Setor:</th>
                         <th>CPF:</th>
@@ -36,9 +34,7 @@
                         <th>Email:</th>
                         <th>Telefone:</th>
                         <th>Celular:</th>
-                        <th>Bairro:</th>
                         <th>Cidade:</th>
-                        <th>UF:</th>
                         <th>CEP:</th>
                         <th>Titulação Máxima:</th>
                         <th>Cargo:</th>
@@ -50,8 +46,6 @@
                     <c:forEach items="${propostos}" var="proposto">
                         <tr>
                             <td><c:out value="${proposto.codProposto}" /></td>
-                            <td><c:out value="${proposto.codServidor.matriculaSIAPE}" /></td>
-                            <td><c:out value="${proposto.codSecretaria.nome}" /></td>
                             <td><c:out value="${proposto.nome}"/></td>
                             <td><c:out value="${proposto.setor}"/></td>
                             <td><c:out value="${proposto.cpf}"/></td>
@@ -59,9 +53,7 @@
                             <td><c:out value="${proposto.email}"/></td>
                             <td><c:out value="${proposto.telefone}"/></td>
                             <td><c:out value="${proposto.celular}"/></td>
-                            <td><c:out value="${proposto.bairro}"/></td>
                             <td><c:out value="${proposto.cidade}"/></td>
-                            <td><c:out value="${proposto.uf}"/></td>
                             <td><c:out value="${proposto.cep}"/></td>
                             <td><c:out value="${proposto.titulacaoMaxima}"/></td>
                             <td><c:out value="${proposto.cargo}"/></td>

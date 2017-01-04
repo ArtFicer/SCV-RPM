@@ -15,29 +15,69 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        
+        <link rel="stylesheet" type="text/css" media="screen" href="css/pagina.css" />
+        <script>		
+$(document).ready(function() {
+	$('#progress').removeClass('running');	    
+		$('.trigger').click(function() {
+			$('#progress').removeClass('running').delay(10).queue(function(next){
+				$(this).addClass('running');
+		        next();
+		    });
+		    return false;
+		});
+});
+
+$(document).ready(function() {
+	$('#content').removeClass('fullwidth');	    
+		$('.triggerFull').click(function() {
+			$('#content').removeClass('fullwidth').delay(10).queue(function(next){
+				$(this).addClass('fullwidth');
+		        next();
+		    });
+		    return false;
+		});
+});
+
+$(document).ready(function() {
+	$('#loadbar').removeClass('ins');	    
+		$('.triggerBar').click(function() {
+			$('#loadbar').removeClass('ins').delay(10).queue(function(next){
+				$(this).addClass('ins');
+		        next();
+		    });
+		    return false;
+		});
+});
+</script>
+<link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-Loading-Animation/index.html" />
         <title>Manter Curso</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>
-    <div class="container">
-        <h1>Manter Curso - ${operacao}</h1>
+        </nav>
+        <!--Barra de Carregamento-->
+        <div id="content">
+            <span class="expand"></span>
+        </div>
+        <a class="triggerFull" href="#">Start/Restart Animation</a>
+        <div class="container">
 
-        <form action="ManterCursoController?acao=confirmar${operacao}" method="post" name="frmManterCurso" onsubmit="return validarFormulario(this)">
-            <div class="form-group">
-                <label for="usr">Código do curso:</label>
-                <input type="text" class="form-control" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-            </div>
-            <div class="form-group">
-                <label for="usr">Nome do curso:</label>
-                <input type="text" class="form-control" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-            </div>
-            <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
-        </form>
-    </div>
+            <h1>Manter Curso - ${operacao}</h1>
+            <form data-toggle="validator" role="form" action="ManterCursoController?acao=confirmar${operacao}" method="post" name="frmManterCurso" onsubmit="return validarFormulario(this)">
+                <div class="form-group">
+                    <label for="usr">Código do curso:</label>
+                    <input type="text" class="form-control" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Nome do curso:</label>
+                    <input type="text" class="form-control" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                </div>
+                <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
+            </form>
+        </div>
         <SCRIPT language="JavaScript">
            
             
