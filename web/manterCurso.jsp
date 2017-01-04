@@ -24,7 +24,7 @@
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        <div class="container">
+        <div class="container" style="margin-left: 510px !important; margin-top: 100px !important">
 
             <h1>Manter Curso - ${operacao}</h1>
 
