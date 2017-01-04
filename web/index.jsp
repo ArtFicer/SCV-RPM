@@ -19,7 +19,7 @@
         </script>
         
     </head>
-    <body bgcolor="#B0C4DE">
+    <body>
     <!--Menu-->
     <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>

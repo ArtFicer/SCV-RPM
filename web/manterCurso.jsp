@@ -15,42 +15,8 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="css/pagina.css" />
-        <script>		
-$(document).ready(function() {
-	$('#progress').removeClass('running');	    
-		$('.trigger').click(function() {
-			$('#progress').removeClass('running').delay(10).queue(function(next){
-				$(this).addClass('running');
-		        next();
-		    });
-		    return false;
-		});
-});
-
-$(document).ready(function() {
-	$('#content').removeClass('fullwidth');	    
-		$('.triggerFull').click(function() {
-			$('#content').removeClass('fullwidth').delay(10).queue(function(next){
-				$(this).addClass('fullwidth');
-		        next();
-		    });
-		    return false;
-		});
-});
-
-$(document).ready(function() {
-	$('#loadbar').removeClass('ins');	    
-		$('.triggerBar').click(function() {
-			$('#loadbar').removeClass('ins').delay(10).queue(function(next){
-				$(this).addClass('ins');
-		        next();
-		    });
-		    return false;
-		});
-});
-</script>
-<link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-Loading-Animation/index.html" />
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="css/pagina.css" />
+        <link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-Loading-Animation/index.html" />-->
         <title>Manter Curso</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
@@ -58,11 +24,6 @@ $(document).ready(function() {
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        Barra de Carregamento
-        <div id="content">
-            <span class="expand"></span>
-        </div>
-        <a class="triggerFull" href="#">Start/Restart Animation</a>
         <div class="container">
 
             <h1>Manter Curso - ${operacao}</h1>
@@ -118,7 +79,7 @@ $(document).ready(function() {
                     return false;
                 }                
             } 
-           
+          
         </SCRIPT>        
     </body>
 </html>
