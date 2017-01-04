@@ -58,7 +58,7 @@ $(document).ready(function() {
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        <!--Barra de Carregamento-->
+        Barra de Carregamento
         <div id="content">
             <span class="expand"></span>
         </div>
