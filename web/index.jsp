@@ -21,9 +21,9 @@
     </head>
     <body>
     <!--Menu-->
-    <nav>
+    <!--<nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>
+     </nav>-->
     
 
     <div class="container">
@@ -33,7 +33,7 @@
         <form action="Login" method="post">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>

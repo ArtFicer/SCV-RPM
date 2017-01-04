@@ -13,11 +13,11 @@ public class Login extends HttpServlet {
         
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
-        
         if(Validate.checkUser(email, pass))
         {
-            RequestDispatcher rs = request.getRequestDispatcher("sobre.jsp");
+            RequestDispatcher rs = request.getRequestDispatcher("principal.jsp");
             rs.forward(request, response);
+            out.println("Bem-Vindo "+email);
         }
         else
         {
