@@ -2,30 +2,56 @@
 
 <html>
     <head>
-        <title>Inicio - SCV</title>
+        <title>Index - SCV</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script>
-
-            //Criado para fazer o botão "Cadastrar" Acessar a tela de cadastro    
-            function nova_Conta()
-            {
-                location.ref = "manterServidor.jsp";
+        <style type="text/css">
+            body {
+                background-image: url('img/inicio2.jpg');
+                background-repeat: no-repeat;
+                background-size:100%;
+                bottom: 0;
+                color: black;
+                left: 0;
+                overflow: auto;
+                padding: 3em;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                top: 0;
+                background-size: cover;
             }
-        </script>
-        
+        </style>
     </head>
     <body>
-    <!--Menu-->
-    <!--<nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
-     </nav>-->
+        <div class="login-page">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1>NEaD - <small> SCV</small></h1>
+                    <form role="form" ng-submit="submit()" action="Login" method="post">
+                        <div class="form-content">
+                            <div class="form-group"> <input type="email" name="email" class="form-control input-underline input-lg" placeholder="Email"> </div>
+                            <div class="form-group"> <input type="password" name="pass" class="form-control input-underline input-lg" placeholder="Password"> </div>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded" value="login">Login</button> 
+                    </form>
+                </div>
+            </div>
+        </div>
     
-
+    <!--<div class="login-page">
     <div class="container">
         <h2>NEaD - SCV</h2>
         <h4>Bem-Vindo ao NEaD Agendamentos</h4>
@@ -47,6 +73,6 @@
             <a href="recuperacaoSenha.jsp"> Recuperar Senha</a>
         </form>
     </div>
-
+    </div>-->
     </body>
 </html>
