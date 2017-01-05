@@ -28,7 +28,7 @@
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
-            <h1>Manter Proposto - ${operacao}</h1>
+            <h1>Cadastro de um novo Proposto - ${operacao}</h1>
 
             <form action="ManterPropostoController?acao=confirmar${operacao}" method="post" name="frmManterProposto" onsubmit="return validarFormulario(this)">
             
