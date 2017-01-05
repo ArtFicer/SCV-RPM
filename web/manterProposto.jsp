@@ -34,7 +34,7 @@
             
                 <div class="form-group">
                     <label for="usr">Código do Proposto:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodProposto" value="${proposto.codProposto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCodProposto" placeholder="Ex: 23" value="${proposto.codProposto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Calendário:</label>
@@ -77,79 +77,79 @@
                 </div>
                 <div class="form-group">
                     <label for="usr">Nome:</label>
-                    <input type="text" class="form-control" id="usr" name="txtNome" value="${proposto.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtNome" placeholder="Ex: Valeria Campos"value="${proposto.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Setor:</label>
-                    <input type="text" class="form-control" id="usr" name="txtSetor" value="${proposto.setor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtSetor" placeholder="Ex: Professoriado" value="${proposto.setor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">CPF:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCPF" value="${proposto.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCPF" placeholder="Ex: 12345678910"value="${proposto.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Data de Nascimento:</label>
-                    <input type="text" class="form-control" id="usr" name="txtDataNascimento" name="date" class="tcal" value="${proposto.dataNascimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtDataNascimento" placeholder="Ex: 23/10/1990"name="date" class="tcal" value="${proposto.dataNascimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Email:</label>
-                    <input type="text" class="form-control" id="usr" name="txtEmail" value="${proposto.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtEmail" placeholder="Ex: email@email.com" value="${proposto.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Telefone:</label>
-                    <input type="text" class="form-control" id="usr" name="txtTelefone" value="${proposto.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtTelefone" placeholder="Ex: 323232323232" value="${proposto.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Celular:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCelular" value="${proposto.celular}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCelular" placeholder="Ex: 32 999999999" value="${proposto.celular}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Logradouro:</label>
-                    <input type="text" class="form-control" id="usr" name="txtLogradouro" value="${proposto.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtLogradouro"  placeholder="Ex: Rua Não sei"value="${proposto.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Numero:</label>
-                    <input type="text" class="form-control" id="usr" name="txtNumero" value="${proposto.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtNumero" placeholder="Ex: 23" value="${proposto.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Complemento:</label>
-                    <input type="text" class="form-control" id="usr" name="txtComplemento" value="${proposto.complemento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtComplemento" placeholder="Ex: Ap 201" value="${proposto.complemento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Bairro:</label>
-                    <input type="text" class="form-control" id="usr" name="txtBairro" value="${proposto.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtBairro" placeholder="Ex: Morro do Alemão"value="${proposto.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Cidade:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCidade" value="${proposto.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCidade" placeholder="Ex: Juiz de Fora"value="${proposto.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">UF:</label>
-                    <input type="text" class="form-control" id="usr" name="txtUF" value="${proposto.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtUF" placeholder="Ex: MG" value="${proposto.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">CEP:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCEP" value="${proposto.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCEP" placeholder="Ex: 36036036" value="${proposto.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Titulação Máxima:</label>
-                    <input type="text" class="form-control" id="usr" name="txtTitulacaoMaxima" value="${proposto.titulacaoMaxima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtTitulacaoMaxima" placeholder="Ex: Mestre" value="${proposto.titulacaoMaxima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Bairro:</label>
-                    <input type="text" class="form-control" id="usr" name="txtBanco" value="${proposto.banco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtBanco" placeholder="Ex: Banco do Brasil"value="${proposto.banco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Agencia:</label>
-                    <input type="text" class="form-control" id="usr" name="txtAgencia" value="${proposto.agencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtAgencia" placeholder="Ex: 8823" value="${proposto.agencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Conta:</label>
-                    <input type="text" class="form-control" id="usr" name="txtConta" value="${proposto.conta}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtConta" placeholder="Ex: 123456" value="${proposto.conta}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Cargo:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCargo" value="${proposto.cargo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCargo" placeholder="Ex: Professor" value="${proposto.cargo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Senha:</label>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="form-group">
                     <label for="usr">Tipo do Proposto:</label>
-                    <input type="text" class="form-control" id="usr" name="txtTipoProposto" value="${proposto.tipoProposto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtTipoProposto" placeholder="Ex: Convidado" value="${proposto.tipoProposto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
