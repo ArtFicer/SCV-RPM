@@ -13,13 +13,13 @@
         <title>Manter Viagem - SCV</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="tcal.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min" media="screen">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-datetimepicker.min"></script>
     </head>
-    <body bgcolor="#B0C4DE" align="center">
+    <body>
         <!--Menu-->
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
@@ -31,11 +31,11 @@
         
                 <div class="form-group">
                     <label for="usr">Código da Viagem:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" placeholder="Ex: 23" id="usr" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Código do Relatório da Viagem:</label>
-                    <select class="selectpicker" name="txtCodRelatorioViagem" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <select class="selectpicker" name="txtCodRelatorioViagem"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         <option value="0" <c:if test="${relatorioViagem.codRelatorioViagem != null}"> selected</c:if>></option>
                         <c:forEach items="${relatorioViagens}" var="relatorioViagem">
                             <option value="${relatorioViagem.codRelatorioViagem}" <c:if test="${relatorioViagem.codRelatorioViagem == viagem.codRelatorioViagem.codRelatorioViagem}"> selected</c:if>>
@@ -68,12 +68,12 @@
                 </div>    
                 <div class="form-group">
                     <label for="usr">Destino:</label>
-                    <input type="text" class="form-control" id="usr" name="txtDestino" value="${viagem.destino}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtDestino" placeholder="Ex: Muriaé" value="${viagem.destino}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Data da Viagem:</label>
                     <div class="input-append date form_datetime">
-                        <input size="16" type="text" class="form-control" id="usr" name="date" name="txtDataViagem" value="${viagem.dataViagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <input size="16" type="text" class="form-control" id="usr" name="date" name="txtDataViagem"  value="${viagem.dataViagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
      
@@ -88,15 +88,15 @@
                 </div>
                 <div class="form-group">
                     <label for="usr">Horário de Saída:</label>
-                    <input type="text" class="form-control" id="usr" name="txtHorarioSaida" value="${viagem.horarioSaida}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtHorarioSaida" placeholder="Ex: 19" value="${viagem.horarioSaida}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Status Confirmação:</label>
-                    <input type="text" class="form-control" id="usr" name="txtStatusConfirmacao" value="${viagem.statusConfirmacao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtStatusConfirmacao" placeholder="Ex: Confimado" value="${viagem.statusConfirmacao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Status Conclusão:</label>
-                    <input type="text" class="form-control" id="usr" name="txtStatusConclusao" value="${viagem.statusConclusao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtStatusConclusao"  placeholder="Ex: Em andamento"value="${viagem.statusConclusao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Empresa do Transporte:</label>

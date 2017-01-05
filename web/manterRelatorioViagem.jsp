@@ -12,12 +12,14 @@
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         
         <title>Manter Relatorio Viagem</title>
     </head>
-    <body align="center" bgcolor="#B0C4DE">
+    <body>
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
@@ -29,11 +31,11 @@
             
                 <div class="form-group">
                     <label for="usr">Código do Relatorio da Viagem:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodRelatorioViagem" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCodRelatorioViagem" placeholder="Ex: 23" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Relatorio:</label>
-                    <input type="text" class="form-control" id="usr" name="txtRelatorio" value="${relatorioViagem.relatorio}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtRelatorio" placeholder="Ex: Atividades aplicadas em sala de aula normalmente" value="${relatorioViagem.relatorio}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>

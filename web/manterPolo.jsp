@@ -11,13 +11,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         
         <title>Manter Polo</title>
     </head>
-    <body align="center" bgcolor="#B0C4DE">
+    <body>
         <!--Menu-->
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
@@ -29,7 +30,7 @@
             
                 <div class="form-group">
                     <label for="usr">Código do Polo</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodPolo" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCodPolo" placeholder="Ex: 23" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Empresa do Transporte:</label>
@@ -44,27 +45,27 @@
                 </div>
                 <div class="form-group">
                     <label for="usr">Cidade:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCidade" value="${polo.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCidade" placeholder="Ex: Muriaé" value="${polo.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Logradouro:</label>
-                    <input type="text" class="form-control" id="usr" name="txtLogradouro" value="${polo.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtLogradouro" placeholder="Ex: Rua Juarez Don Mercedes" value="${polo.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Bairro:</label>
-                    <input type="text" class="form-control" id="usr" name="txtBairro" value="${polo.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtBairro" placeholder="Ex: Bairro Barroso" value="${polo.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Numero:</label>
-                    <input type="text" class="form-control" id="usr" name="txtNumero" value="${polo.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtNumero" placeholder="Ex: 23"value="${polo.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Telefone:</label>
-                    <input type="text" class="form-control" id="usr" name="txtTelefone" value="${polo.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtTelefone" placeholder="Ex: 2332923218" value="${polo.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Email:</label>
-                    <input type="text" class="form-control" id="usr" name="txtEmail" value="${polo.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtEmail" placeholder="Ex: email@email.com "value="${polo.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>

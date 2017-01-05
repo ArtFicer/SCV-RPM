@@ -14,15 +14,15 @@
         <title>Manter Proposto</title>
         <link rel="stylesheet" type="text/css" href="tcal.css" />
 	<script type="text/javascript" src="tcal.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min" media="screen">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-datetimepicker.min"></script>
         
         
     </head>
-    <body align="center" bgcolor="#B0C4DE">
+    <body>
         <!--Menu-->
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>

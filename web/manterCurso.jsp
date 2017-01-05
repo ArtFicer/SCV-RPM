@@ -19,12 +19,12 @@
         <link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-Loading-Animation/index.html" />-->
         <title>Manter Curso</title>
     </head>
-    <body>
+    <body style= "background-color:  #e6ffe6"    >
         <!--Menu-->
         <nav>
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
-        <div class="container" style="margin-left: 510px !important; margin-top: 100px !important">
+        <div class="container" >
 
             <h1>Manter Curso - ${operacao}</h1>
 
@@ -32,17 +32,19 @@
                 <div class="form-group row-fluid"  >
                     <label for="usr" class="col-sm-2 col-form-label" >Código do curso:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input type="text" class="form-control" placeholder="Ex: 23" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                 </div>
-                <div class="form-group row-fluid">
-                    <label for="usr" class="col-sm-2 col-form-label">Nome do curso:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                <div class="form-group row-fluid" >
+                    <label for="usr" class="col-sm-2 col-form-label " >Nome do curso:</label>
+                    <div class="col-sm-10" >
+                        <input type="text" class="form-control" placeholder="Ex: Sistemas de Informação" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
+                    
+                    
         </div>
 
 

@@ -11,12 +11,13 @@
 <html>
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <title>Manter Servidor</title>
     </head>
-    <body align="center" bgcolor="#B0C4DE">
+    <body>
         <!--Menu-->
         <nav>
           <object width="100%" height="65px" data="menu.jsp"></object>
@@ -28,15 +29,15 @@
             
                 <div class="form-group">
                     <label for="usr">Código do Servidor:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodServidor" value="${servidor.codServidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCodServidor" placeholder="Ex: 23" value="${servidor.codServidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Matricula SIAPE:</label>
-                    <input type="text" class="form-control" id="usr" name="txtMatriculaSIAPE" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtMatriculaSIAPE"placeholder="Ex: 32213" value="${servidor.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <div class="form-group">
                     <label for="usr">Lotado Orgao:</label>
-                    <input type="text" class="form-control" id="usr" name="txtLotadoOrgao" value="${servidor.lotadoOrgao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtLotadoOrgao" placeholder="Ex: 32523" value="${servidor.lotadoOrgao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
