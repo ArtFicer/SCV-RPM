@@ -13,7 +13,7 @@
         <script src="js/bootstrap.min.js"></script>
         <style type="text/css">
             body {
-                background: url(img/edu.jpg) no-repeat 0 0;
+                background: url(img/edu.png) no-repeat 0 0;
                 background-position: center;
                 height: 830px;
             }

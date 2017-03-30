@@ -20,7 +20,8 @@
     </head>
     <body>
         <!--Menu-->
-        <nav>
+        
+        <nav <c:if test="${operacao != 'Cadastrar'}"> disable</c:if>>
             <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
@@ -30,7 +31,7 @@
             
                 <div class="form-group">
                     <label for="usr">Código da Secretaria:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodSecretaria"  placeholder="Ex: 23"value="${secretaria.codSecretaria}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" class="form-control" id="usr" name="txtCodSecretaria"  placeholder="Ex: 23"value="${secretaria.codSecretaria}" >
                 </div>
                 <div class="form-group">
                     <label for="usr">Nome:</label>

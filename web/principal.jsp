@@ -11,7 +11,7 @@
         <script src="js/bootstrap.min.js"></script>
         <style type="text/css">
             body {
-                background: url(img/ead1.jpg) no-repeat 0 0;
+                background: url(img/Login.png) no-repeat 0 0;
                 background-position: center;
                 height: 677px;
             }

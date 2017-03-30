@@ -12,6 +12,7 @@
         <style type="text/css">
             body {
                 background-image: url('img/inicio2.jpg');
+                
                 background-repeat: no-repeat;
                 background-size:100%;
                 bottom: 0;
@@ -39,14 +40,18 @@
                     <br/>
                     <br/>
                     <br/>
-                    <h1>NEaD - <small> SCV</small></h1>
+                    <h1>NEaD - <small style="color:green !important"> SCV</small></h1>
                     <form role="form" ng-submit="submit()" action="Login" method="post">
                         <div class="form-content">
                             <div class="form-group"> <input type="email" name="email" class="form-control input-underline input-lg" placeholder="Email"> </div>
                             <div class="form-group"> <input type="password" name="pass" class="form-control input-underline input-lg" placeholder="Password"> </div>
                         </div>
-                        <button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded" value="login">Login</button> 
+                        <button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded" value="login">Login</button>
+                        
                     </form>
+                    <form action="ManterSecretariaController?acao=prepararIncluir" method="post">
+                <button type="submit" class="btn btn-default" name="btnIncluir" value="Cadastrar">Incluir</button>
+            </form>
                 </div>
             </div>
         </div>
