@@ -12,6 +12,10 @@
         <servlet-name>Welcome</servlet-name>
         <servlet-class>com.login.Welcome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioConvidadoController</servlet-name>
+        <servlet-class>controller.RelatorioConvidadoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaCursoController</servlet-name>
         <url-pattern>/PesquisaCursoController</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Welcome</servlet-name>
         <url-pattern>/Welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioConvidadoController</servlet-name>
+        <url-pattern>/RelatorioConvidadoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-11T08:03:10 -->
+<!-- 2017-04-11T08:36:38 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ireportViagem" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b7dcb3ba-8642-476b-9049-3a33abe7bcc6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCV"/>
+	<parameter name="P_Destino" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT scv.viagem.`codViagem`,
 	scv.viagem.`codRelatorioViagem`,
@@ -16,7 +17,7 @@
 	scv.viagem.status_conclusao,
 	scv.viagem.`codTransporte`
 FROM scv.viagem
-order by scv.viagem.destino]]>
+Where  $P{P_Destino} =scv.viagem.destino]]>
 	</queryString>
 	<field name="codViagem" class="java.lang.Integer"/>
 	<field name="codRelatorioViagem" class="java.lang.Integer"/>

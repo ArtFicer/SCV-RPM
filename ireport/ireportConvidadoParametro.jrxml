@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-11T08:01:35 -->
+<!-- 2017-04-11T08:31:37 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ireportConvidado" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="76b2f367-4cb6-4850-95f9-b47f2fccc82e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCV"/>
+	<parameter name="P_MatriculaSIAPE" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT scv.convidado.`codConvidado`,
 	scv.convidado.`Proposto_codProposto`,
@@ -12,7 +13,7 @@
 FROM scv.convidado Join
 	scv.proposto
 on scv.convidado.`Proposto_codProposto` = scv.proposto.`codProposto`
-order by scv.proposto.nome]]>
+Where  $P{P_MatriculaSIAPE} =scv.convidado.`matricula_SIAPE`]]>
 	</queryString>
 	<field name="codConvidado" class="java.lang.Integer"/>
 	<field name="Proposto_codProposto" class="java.lang.Integer"/>
