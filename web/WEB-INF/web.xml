@@ -16,6 +16,62 @@
         <servlet-name>RelatorioConvidadoController</servlet-name>
         <servlet-class>controller.RelatorioConvidadoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioSolicitacoesPropostoController</servlet-name>
+        <servlet-class>controller.RelatorioSolicitacoesPropostoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioCursoOfertaController</servlet-name>
+        <servlet-class>controller.RelatorioCursoOfertaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioDisciplinaTrimestreController</servlet-name>
+        <servlet-class>controller.RelatorioDisciplinaTrimestreController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioOfertaPoloController</servlet-name>
+        <servlet-class>controller.RelatorioOfertaPoloController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioTrimestreCursoController</servlet-name>
+        <servlet-class>controller.RelatorioTrimestreCursoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioViagemConcessaoDiariaController</servlet-name>
+        <servlet-class>controller.RelatorioViagemConcessaoDiariaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioViagemRelatorioViagemController</servlet-name>
+        <servlet-class>controller.RelatorioViagemRelatorioViagemController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioCursoOfertaParametroController</servlet-name>
+        <servlet-class>controller.RelatorioCursoOfertaParametroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioDisciplinaTrimestreParametroController</servlet-name>
+        <servlet-class>controller.RelatorioDisciplinaTrimestreParametroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioOfertaPoloParametroController</servlet-name>
+        <servlet-class>controller.RelatorioOfertaPoloParametroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioSolicitacoesPropostoParametroController</servlet-name>
+        <servlet-class>controller.RelatorioSolicitacoesPropostoParametroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioTrimestreCursoParametroController</servlet-name>
+        <servlet-class>controller.RelatorioTrimestreCursoParametroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioViagemConcessaoDiariaParametroController</servlet-name>
+        <servlet-class>controller.RelatorioViagemConcessaoDiariaParametroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioViagemRelatorioViagemParametroController</servlet-name>
+        <servlet-class>controller.RelatorioViagemRelatorioViagemParametroController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaCursoController</servlet-name>
         <url-pattern>/PesquisaCursoController</url-pattern>
@@ -39,6 +95,62 @@
     <servlet-mapping>
         <servlet-name>RelatorioConvidadoController</servlet-name>
         <url-pattern>/RelatorioConvidadoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioSolicitacoesPropostoController</servlet-name>
+        <url-pattern>/RelatorioSolicitacoesPropostoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioCursoOfertaController</servlet-name>
+        <url-pattern>/RelatorioCursoOfertaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioDisciplinaTrimestreController</servlet-name>
+        <url-pattern>/RelatorioDisciplinaTrimestreController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioOfertaPoloController</servlet-name>
+        <url-pattern>/RelatorioOfertaPoloController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioTrimestreCursoController</servlet-name>
+        <url-pattern>/RelatorioTrimestreCursoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioViagemConcessaoDiariaController</servlet-name>
+        <url-pattern>/RelatorioViagemConcessaoDiariaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioViagemRelatorioViagemController</servlet-name>
+        <url-pattern>/RelatorioViagemRelatorioViagemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioCursoOfertaParametroController</servlet-name>
+        <url-pattern>/RelatorioCursoOfertaParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioDisciplinaTrimestreParametroController</servlet-name>
+        <url-pattern>/RelatorioDisciplinaTrimestreParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioOfertaPoloParametroController</servlet-name>
+        <url-pattern>/RelatorioOfertaPoloParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioSolicitacoesPropostoParametroController</servlet-name>
+        <url-pattern>/RelatorioSolicitacoesPropostoParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioTrimestreCursoParametroController</servlet-name>
+        <url-pattern>/RelatorioTrimestreCursoParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioViagemConcessaoDiariaParametroController</servlet-name>
+        <url-pattern>/RelatorioViagemConcessaoDiariaParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioViagemRelatorioViagemParametroController</servlet-name>
+        <url-pattern>/RelatorioViagemRelatorioViagemParametroController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-12T18:09:04 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oferta_Polo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="904f7fd5-b0af-4758-bcfd-4a407f27c420">
+<!-- 2017-04-09T12:20:04 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oferta_Polo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4669afff-edae-472d-b8e0-a74b6611ed09">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCVTrue.xml"/>
+	<parameter name="P_Polo" class="java.lang.Integer"/>
+	<parameter name="P_Oferta" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT scv.oferta.ano,
 	scv.polo.cidade
@@ -11,9 +13,14 @@ FROM scv.oferta,
 	scv.oferta_polo,
 	scv.polo
 WHERE
-	 scv.oferta_polo.`Oferta_codOferta` = scv.oferta.`codOferta` 
+	 $P{P_Polo} =  scv.oferta_polo.`Polo_codPolo` 
 AND
-	 scv.oferta_polo.`Polo_codPolo` =   scv.polo.`codPolo` ]]>
+	  scv.polo.`codPolo` = scv.oferta_polo.`Polo_codPolo` 
+AND
+	 $P{P_Oferta} = scv.oferta_polo.`Oferta_codOferta` 
+AND
+	  scv.oferta.`codOferta` = scv.oferta_polo.`Oferta_codOferta` 
+GROUP BY  scv.oferta.`codOferta` ]]>
 	</queryString>
 	<field name="ano" class="java.lang.Integer"/>
 	<field name="cidade" class="java.lang.String"/>
@@ -23,16 +30,16 @@ AND
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="6a098634-7516-4567-8e70-8c96aa10855d"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="98028ca7-0262-4723-9894-1638731e1fec"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="7b5a27fd-cdf5-4aa7-bd66-912e0e25981c"/>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="d5ef7b91-55a0-4269-ace9-5636235b7862"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Oferta e Polo]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="b5a83e34-779b-4526-9e0c-24f0c4f8b1d7"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="33c0d070-9ef1-41ea-9bc9-e0897a1e0bc5"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -47,17 +54,17 @@ AND
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="067fc8b7-040b-4458-a3f3-1777ce919382"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="d3f480d3-3254-4a59-b8fb-f44f44343954"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cba3cc53-1710-45bc-996a-3bb29fdcd71c"/>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="380b12a1-4ade-413f-b45a-8b5e1d976fc0"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ano]]></text>
+				<text><![CDATA[Ano de Oferta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="88c713f9-fe17-44a1-973d-b18ed2875499"/>
+				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9872b0c5-4edc-466e-91c8-cd22c1a1db7d"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -68,17 +75,17 @@ AND
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="5cab12bb-9de1-4851-8835-32ec8ddd0168"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="19e8ecaf-982b-4208-ae38-9b74a07e6ed0"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="277" height="20" uuid="3636f231-58e3-4b39-afb7-c3055f92d381"/>
+				<reportElement x="0" y="0" width="277" height="20" uuid="f2081e47-9d56-4899-9c88-7ac8b05d7dde"/>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="277" y="0" width="277" height="20" uuid="f4387878-528f-4af7-99fc-1fb0c8b430fc"/>
+				<reportElement x="277" y="0" width="277" height="20" uuid="f442aa5c-92c4-45d3-9b52-a737ca3927b5"/>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
@@ -92,16 +99,16 @@ AND
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0cacd7e6-5b4c-4a26-b29f-fa3be221e581"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="5cb2ec81-518c-4080-8a2e-8c92255a52d6"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="8912d5cf-6da7-4101-9f0c-9ba4da0f5735"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="4ac2c8f8-51d7-4fd7-9518-91f1e584578f"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="5129ac74-c609-452e-af6c-96cf669cfb2a"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="6924f011-b2b8-4217-8e45-77e3f12ea084"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

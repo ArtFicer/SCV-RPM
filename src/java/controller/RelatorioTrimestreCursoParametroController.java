@@ -14,18 +14,19 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
-public class RelatorioConvidadoController extends HttpServlet {
+public class RelatorioTrimestreCursoParametroController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            parametros.put("PAR_codCurso", Integer.parseInt(request.getParameter("txtCodCurso")));
-            String relatorio = getServletContext().getRealPath("/WEB-INF/classes/relatorio") + "/report8.jasper";
+            parametros.put("P_Trimestre", Integer.parseInt(request.getParameter("")));
+            parametros.put("P_Curso", Integer.parseInt(request.getParameter("")));
+            String relatorio = getServletContext().getRealPath("/reports") + "/Trimestre_CursoParametro.jasper";
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
-            response.setHeader("Content-Disposition", "attachment;filename=relatorio.pdf");
+            response.setHeader("Content-Disposition", "attachment;filename=Trimestre_CursoParametro.pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
         } catch (SQLException | ClassNotFoundException | JRException | IOException ex) {

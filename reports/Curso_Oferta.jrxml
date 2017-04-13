@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-09T12:19:19 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Curso_Oferta" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6943cbde-14df-427b-975a-8af7c8523997">
+<!-- 2017-04-12T17:55:16 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Curso_Oferta" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="338abba0-5049-4d54-967f-5fb31038699a">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCVTrue.xml"/>
-	<parameter name="P_Curso" class="java.lang.Integer"/>
-	<parameter name="P_Oferta" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT scv.oferta.ano,
-	scv.curso.nome
-FROM scv.curso_oferta,
-	scv.curso,
+		<![CDATA[SELECT scv.curso.nome,
+	scv.oferta.ano
+FROM scv.curso,
+	scv.curso_oferta,
 	scv.oferta
-WHERE  
-	$P{P_Curso} = scv.curso_oferta.`Curso_codCurso` 
-AND
+WHERE
 	 scv.curso_oferta.`Curso_codCurso` = scv.curso.`codCurso` 
 AND
- 	$P{P_Oferta} = scv.curso_oferta.`Oferta_codOferta` 
-AND
-	 scv.curso_oferta.`Oferta_codOferta` = scv.oferta.`codOferta`
-GROUP BY  scv.curso.`codCurso` ]]>
+	 scv.curso_oferta.`Oferta_codOferta` = scv.oferta.`codOferta` 
+]]>
 	</queryString>
-	<field name="ano" class="java.lang.Integer"/>
 	<field name="nome" class="java.lang.String"/>
+	<field name="ano" class="java.lang.Integer"/>
 	<background>
 		<band/>
 	</background>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="86e92de3-94d4-473f-be02-40d267fdefcc"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="1e36af2d-5c5b-400d-8ea2-38a04720f748"/>
 				<staticText>
-					<reportElement x="20" y="20" width="320" height="43" forecolor="#FFFFFF" uuid="cec72510-935e-4985-a26d-8658592d4a6a"/>
+					<reportElement x="20" y="20" width="270" height="43" forecolor="#FFFFFF" uuid="61678cc9-a853-4b79-9682-7d5324518bc4"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Curso e Oferta]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="733d14f7-e9c2-4f76-bc83-c45d3f9383cd"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="99db9757-42ea-4973-b558-ec629232be66"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -54,42 +48,42 @@ GROUP BY  scv.curso.`codCurso` ]]>
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c34e331a-c86c-41ec-9375-4986c4f1be4b"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="7ecac7c8-aeee-4976-ab64-fe10255ea207"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="17f65f5c-2ff2-4ef0-8b48-b7e13260a31f"/>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f1b63e28-0804-4a89-bd84-f526b9dca967"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ano de Oferta]]></text>
+				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ed31c0f2-3e80-42a1-be99-dd1445f57761"/>
+				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="64355e9a-69ef-464e-803e-c433604506d6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Título]]></text>
+				<text><![CDATA[Ano]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="06f50b86-add2-415b-a489-0ea00f42f54e"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="173f8c90-c598-4777-90fe-fab92246ceb5"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="277" height="20" uuid="93bfbb25-fb47-4dea-bd2a-02b0337a5c18"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="277" y="0" width="277" height="20" uuid="605ecece-44de-4446-9f32-29b1d1d9d9fa"/>
+				<reportElement x="0" y="0" width="277" height="20" uuid="f9b51ae7-5afe-46f7-87c5-f5f9e8c9a66c"/>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="277" y="0" width="277" height="20" uuid="d6c66650-dce0-495d-934e-0d2ee90b85cb"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -99,16 +93,16 @@ GROUP BY  scv.curso.`codCurso` ]]>
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="149d56f7-143d-4323-bc4a-a600f9d53331"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="ed23bdfe-9dea-40d0-8a58-8de492eb7cd7"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c69eb853-696d-4b43-b27c-b54060addbf0"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="ffe22b55-0c34-42ca-abd4-27a8dc426e84"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="67b5603d-8d24-49ca-926b-637fe4745fde"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="65593bc7-7b6a-4aef-9150-489e2cd5cbd9"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
