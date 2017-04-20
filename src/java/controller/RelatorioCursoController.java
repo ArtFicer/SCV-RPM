@@ -14,17 +14,17 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
-public class RelatorioConvidadoController extends HttpServlet {
+public class RelatorioCursoController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            String relatorio = getServletContext().getRealPath("/reports") + "/ireportConvidado.jasper";
-            JasperPrint jp = JasperFillManager.fillReport(relatorio, null, conexao);
+            String relatorio = getServletContext().getRealPath("/reports") + "/ireportCurso.jasper";
+            JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
-            response.setHeader("Content-Disposition", "attachment;filename=ireportConvidado.pdf");
+            response.setHeader("Content-Disposition", "attachment;filename=ireportCurso.pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
         } catch (SQLException | ClassNotFoundException | JRException | IOException ex) {
