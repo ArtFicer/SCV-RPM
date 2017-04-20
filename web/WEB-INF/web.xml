@@ -72,6 +72,14 @@
         <servlet-name>RelatorioViagemRelatorioViagemParametroController</servlet-name>
         <servlet-class>controller.RelatorioViagemRelatorioViagemParametroController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioPropostoController</servlet-name>
+        <servlet-class>controller.RelatorioPropostoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RelatorioPropostoParametroController</servlet-name>
+        <servlet-class>controller.RelatorioPropostoParametroController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaCursoController</servlet-name>
         <url-pattern>/PesquisaCursoController</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>RelatorioViagemRelatorioViagemParametroController</servlet-name>
         <url-pattern>/RelatorioViagemRelatorioViagemParametroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioPropostoController</servlet-name>
+        <url-pattern>/RelatorioPropostoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioPropostoParametroController</servlet-name>
+        <url-pattern>/RelatorioPropostoParametroController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
