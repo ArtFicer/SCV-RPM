@@ -47,7 +47,7 @@
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
             </form>
             <form action="RelatorioCursoController" method="post">
-                <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Incluir</button>
+                <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Relatorio</button>
             </form>
         </div>
     </body>

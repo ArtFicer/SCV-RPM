@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +23,17 @@ public class RelatorioCursoController extends HttpServlet {
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            String relatorio = getServletContext().getRealPath("/reports") + "/ireportCurso.jasper";
+            String relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/ireportCurso.jasper";
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setHeader("Content-Disposition", "attachment;filename=ireportCurso.pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
-        } catch (SQLException | ClassNotFoundException | JRException | IOException ex) {
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (JRException ex) {
             ex.printStackTrace();
         } finally {
             try {

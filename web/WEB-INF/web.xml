@@ -25,6 +25,10 @@
         <servlet-class>controller.RelatorioCursoOfertaController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RelatorioCursoController</servlet-name>
+        <servlet-class>controller.RelatorioCursoController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RelatorioDisciplinaTrimestreController</servlet-name>
         <servlet-class>controller.RelatorioDisciplinaTrimestreController</servlet-class>
     </servlet>
@@ -113,6 +117,10 @@
         <url-pattern>/RelatorioCursoOfertaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>RelatorioCursoController</servlet-name>
+        <url-pattern>/RelatorioCursoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RelatorioDisciplinaTrimestreController</servlet-name>
         <url-pattern>/RelatorioDisciplinaTrimestreController</url-pattern>
     </servlet-mapping>
@@ -173,20 +181,5 @@
             30
         </session-timeout>
     </session-config>
-    <error-page>
-        <error-code>
-            404
-        </error-code>
-        <location>
-            /TratamentoExcecao
-        </location>
-    </error-page>
-    <error-page>
-        <exception-type>
-            java.lang.Exception
-        </exception-type>
-        <location>
-            /TratamentoExcecao
-        </location>
-    </error-page>
+    
 </web-app>
