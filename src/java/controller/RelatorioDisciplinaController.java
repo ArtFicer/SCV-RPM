@@ -9,10 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.*;
+//import net.sf.jasperreports.engine.JRException;
+//import net.sf.jasperreports.engine.JasperExportManager;
+//import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
 
 public class RelatorioDisciplinaController extends HttpServlet {
 
@@ -21,8 +22,8 @@ public class RelatorioDisciplinaController extends HttpServlet {
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            String relatorio = getServletContext().getRealPath("/reports") + "/ireportDisciplina.jasper";
-            JasperPrint jp = JasperFillManager.fillReport(relatorio, null, conexao);
+            String relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "\\" +"ireportDisciplina.jasper";
+            JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setHeader("Content-Disposition", "attachment;filename=ireportDisciplina.pdf");
             response.setContentType("application/pdf");
@@ -39,7 +40,7 @@ public class RelatorioDisciplinaController extends HttpServlet {
             }
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

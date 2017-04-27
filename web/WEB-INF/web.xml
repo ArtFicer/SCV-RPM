@@ -84,6 +84,10 @@
         <servlet-name>RelatorioPropostoParametroController</servlet-name>
         <servlet-class>controller.RelatorioPropostoParametroController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioDisciplinaController</servlet-name>
+        <servlet-class>controller.RelatorioDisciplinaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaCursoController</servlet-name>
         <url-pattern>/PesquisaCursoController</url-pattern>
@@ -176,10 +180,13 @@
         <servlet-name>RelatorioPropostoParametroController</servlet-name>
         <url-pattern>/RelatorioPropostoParametroController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioDisciplinaController</servlet-name>
+        <url-pattern>/RelatorioDisciplinaController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>
