@@ -9,11 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.sf.jasperreports.engine.*;
-//import net.sf.jasperreports.engine.JRException;
-//import net.sf.jasperreports.engine.JasperExportManager;
-//import net.sf.jasperreports.engine.JasperFillManager;
-//import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public class RelatorioCursoController extends HttpServlet {
 
@@ -22,17 +21,13 @@ public class RelatorioCursoController extends HttpServlet {
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            String relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "\\ireportCurso.jasper";
+            String relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/" + "ireportCurso.jasper";
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setHeader("Content-Disposition", "attachment;filename=ireportCurso.pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (JRException ex) {
+        } catch (ClassNotFoundException | SQLException | JRException ex) {
             ex.printStackTrace();
         } finally {
             try {
