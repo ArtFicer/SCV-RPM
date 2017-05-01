@@ -48,6 +48,7 @@
             </table>
             <form action="ManterTransporteController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
+                <button class="btn btn-default" name="" value=""><a href="RelatorioTransporte.jsp" target="_parent">Relatórios</a></button>
             </form>
         </div>
     </body>

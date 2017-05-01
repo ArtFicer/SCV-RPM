@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <title>Pesquisa de Solicitações</title>
+        <title>Pesquisa de Secretarias</title>
     </head>
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
@@ -25,7 +25,7 @@
           <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
-            <h1>Pesquisa de Solicitações</h1>
+            <h1>Pesquisa de Secretarias</h1>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -53,6 +53,7 @@
             </table>
             <form action="ManterSecretariaController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
+                <button class="btn btn-default" name="" value=""><a href="RelatorioSecretaria.jsp" target="_parent">Relatórios</a></button>
             </form>
         </div>
     </body>

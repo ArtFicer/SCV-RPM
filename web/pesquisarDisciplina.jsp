@@ -45,9 +45,7 @@
             </table>
             <form action="ManterDisciplinaController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
-            </form>
-            <form action="RelatorioDisciplinaController" method="post">
-                <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Relatorio</button>
+                <button class="btn btn-default" name="" value=""><a href="RelatorioDisciplina.jsp" target="_parent">Relatórios</a></button>
             </form>
         </div>
     </body>

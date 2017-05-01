@@ -49,6 +49,7 @@
             </table>
             <form action="ManterSolicitacaoController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
+                <button class="btn btn-default" name="" value=""><a href="RelatorioSolicitacao.jsp" target="_parent">Relatórios</a></button>
             </form>    
         </div>
     </body>

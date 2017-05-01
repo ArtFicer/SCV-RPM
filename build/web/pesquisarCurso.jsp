@@ -45,10 +45,11 @@
             </table>
             <form action="ManterCursoController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
+                <button class="btn btn-default" name="" value=""><a href="RelatorioCurso.jsp" target="_parent">Relatórios</a></button>
             </form>
-            <form action="RelatorioCursoController" method="post">
+            <%--<form action="RelatorioCursoController" method="post">
                 <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Relatorio</button>
-            </form>
+            </form>--%>
         </div>
     </body>
 </html>

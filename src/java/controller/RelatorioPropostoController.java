@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,27 +18,34 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public class RelatorioPropostoController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
+            String nomeRelatorio = request.getParameter("nomeRelatorio");
+            String parametroBusca = request.getParameter("parametroBusca");
             HashMap parametros = new HashMap();
-            String relatorio = getServletContext().getRealPath("/reports") + "/ireportProposto.jasper";
-            JasperPrint jp = JasperFillManager.fillReport(relatorio, null, conexao);
+            String relatorio = null;
+            if (!nomeRelatorio.equals("Proposto")) {
+                nomeRelatorio = "Proposto";
+            }
+            if (!parametroBusca.equals("")) {
+                parametros.put("P_CPF", parametroBusca);
+                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else {
+                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + ".jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio +".pdf");
+            }
+            JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
-            response.setHeader("Content-Disposition", "attachment;filename=ireportProposto.pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
-        } catch (SQLException | ClassNotFoundException | JRException | IOException ex) {
+        } catch (ClassNotFoundException | SQLException | JRException ex) {
             ex.printStackTrace();
         } finally {
-            try {
-                if (!conexao.isClosed()) {
-                    conexao.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            BD.fecharConexao(conexao);
         }
     }
 
@@ -52,7 +61,11 @@ public class RelatorioPropostoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(RelatorioCursoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -66,7 +79,11 @@ public class RelatorioPropostoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(RelatorioCursoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

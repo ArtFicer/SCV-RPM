@@ -22,11 +22,24 @@ public class RelatorioCursoController extends HttpServlet {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
+            String nomeRelatorio = request.getParameter("nomeRelatorio");
+            String parametroBusca = request.getParameter("parametroBusca");
             HashMap parametros = new HashMap();
-            String relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/" + "RelatorioCurso.jasper";
+            String relatorio = null;
+            if (!nomeRelatorio.equals("Curso")) {
+                nomeRelatorio = "Curso";
+            }
+            if (!parametroBusca.equals("")) {
+                parametros.put("P_Nome", parametroBusca);
+                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else {
+                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + ".jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio +".pdf");
+            }
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
-            response.setHeader("Content-Disposition", "attachment;filename=RelatorioCurso.pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
         } catch (ClassNotFoundException | SQLException | JRException ex) {
