@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-12T18:02:20 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Disciplina_Trimestre" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4288b810-c449-413a-8214-92024b7deeb2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="c2N2LnRyaW1lc3RyZSAsMTUsMTUsYzY3YTRiOGMtMjUwMC00OWFkLWFkMGYtMjI4MTQ2ODYxM2Fl&#xA;O3Njdi5kaXNjaXBsaW5hX3RyaW1lc3RyZSAsMTc1LDE1LDVlYWY5MTkxLTFlYmItNGIyOC1hYjRh&#xA;LWI0ZGQ2MmZlMWY3ZTtzY3YuZGlzY2lwbGluYSAsMzg3LDE1LDI5YTQ0YjRmLTU0ZTgtNGI3YS05&#xA;NGVmLWJiMmY5MjY2ZmE2NDs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCVTrue.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT scv.disciplina.nome,
+	scv.trimestre.numero_trimestre
+FROM scv.disciplina_trimestre,
+	scv.disciplina,
+	scv.trimestre
+WHERE
+	 scv.disciplina_trimestre.`Disciplina_codDisciplina` = scv.disciplina.`codDisciplina` 
+AND
+	 scv.disciplina_trimestre.`Trimestre_codTrimestre` = scv.trimestre.`codTrimestre` ]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="numero_trimestre" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="f663a8b4-0233-4956-8075-7c6a433454c3"/>
+				<staticText>
+					<reportElement x="20" y="20" width="375" height="43" forecolor="#FFFFFF" uuid="ce58974d-5744-4763-911f-d686a8680d8d"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Disciplina e Trimestre]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="82052ec6-0674-4d94-a9a3-180fe59100e4"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="83453aa1-d709-49ea-8585-096f44246b84"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9e0b0168-82a9-4de9-b3ee-3de208920021"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4c4a1591-b3a4-482a-9ad6-179973dee37d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trimestre]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="eb983369-45f3-4708-8eb4-a8cb137f8aa2"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="277" height="20" uuid="659abcf6-1b3e-4fc2-83ef-6686ca705763"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="277" y="0" width="277" height="20" uuid="d7196e4a-c5e9-4129-a37a-d41c38e43e17"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_trimestre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="06a0f4bd-f06c-4522-9539-95c1b05d70ab"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="4bec1a9c-e7b7-43b4-965a-c3d3aee4cc17"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="f7d83033-2470-476a-b5ae-c510441bc983"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

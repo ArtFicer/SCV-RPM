@@ -13,4 +13,14 @@ public class BD {
         conexao = DriverManager.getConnection("jdbc:mysql://localhost/scv", "root", "");
         return conexao;
     }
+
+    public static void fecharConexao(Connection conexao) throws SQLException {
+        try {
+            if (!conexao.isClosed()) {
+                conexao.close();
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }
+    }
 }

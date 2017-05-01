@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-11T08:23:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ireportProposto" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4543c47-f049-4401-ba2a-9b3107dc0bba">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCV"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="P_CPF" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT scv.proposto.`codProposto`,
+	scv.proposto.nome,
+	scv.proposto.setor,
+	scv.proposto.data_nascimento,
+	scv.proposto.email,
+	scv.proposto.telefone,
+	scv.proposto.celular,
+	scv.proposto.cargo,
+	scv.proposto.cidade,
+	scv.proposto.cpf
+FROM scv.proposto
+Where  $P{P_CPF} =scv.proposto.cpf]]>
+	</queryString>
+	<field name="codProposto" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="setor" class="java.lang.String"/>
+	<field name="data_nascimento" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.Integer"/>
+	<field name="celular" class="java.lang.Integer"/>
+	<field name="cargo" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="842" height="92" backcolor="#006699" uuid="d3744d7f-d734-421b-bc7e-65fec744c911"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="280b0a4f-9ef3-4f71-bafa-278fa125189a"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Proposto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="03c9ad1a-a3de-485f-a0af-5393ad1cecbe"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27">
+			<line>
+				<reportElement x="-15" y="21" width="595" height="1" forecolor="#666666" uuid="7cb342d4-c938-40eb-8e50-619be33ae1cd"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="3" y="1" width="77" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1c1fe0a0-e176-4939-ba4d-478a885ede85"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="81" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c150bbb4-e56b-4d4a-af20-b87c278ad560"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[setor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="170" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b6742344-633c-4367-9ef9-b0332d7de4c8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[data_nascimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="225" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f99b3465-9899-4b27-a4ad-00825491c624"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f07e480d-a227-4ff5-89c1-6b95a0e28b9b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="335" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="36567298-ccb8-4cea-9a12-254b7609b15b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="390" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d1843ed8-df16-45d0-b860-c6eeeeb0f03c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="445" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="053acdca-f9eb-4cfa-8911-92871286250f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="500" y="1" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1a6b8fc8-e6db-423a-8abf-044cf977026c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[cpf]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="5" y="20" width="555" height="1" uuid="adf02916-3d59-4477-a8e3-4409f2dbcd7f"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="1" width="77" height="20" uuid="93938df9-8fa0-431f-820e-19f966d63d46"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="81" y="1" width="55" height="20" uuid="9c78dcd6-5dec-480e-812a-a45cb30ff47c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{setor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="170" y="1" width="55" height="20" uuid="3e77349b-78b3-4a3c-a4c0-714f76160a3f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_nascimento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="225" y="1" width="55" height="20" uuid="83a97115-08bf-4f99-9d36-229eb8d39487"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="280" y="1" width="55" height="20" uuid="a2e85cc0-0aeb-4387-9a11-b000b037d548"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="335" y="1" width="55" height="20" uuid="664e61e5-eb40-4c96-90c9-942b222d2f72"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="390" y="1" width="55" height="20" uuid="234f6cd5-fb3a-4a09-927e-adf016782f83"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="445" y="1" width="55" height="20" uuid="2e6d7864-b582-4e2f-b5d9-3fd94ac2349e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="500" y="1" width="55" height="20" uuid="d2f2d5c8-dcd1-4321-bc1d-4f7be306fda1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23">
+			<textField>
+				<reportElement mode="Opaque" x="5" y="5" width="515" height="13" backcolor="#E6E6E6" uuid="ca50d025-dd1f-494c-a018-2f8229f9d8b4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="d7136bed-709f-483b-8e83-6e992d61bb0a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="5" y="5" width="100" height="13" uuid="f4dfc4f6-4b24-461f-8e6c-e8e29dcb2240"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
