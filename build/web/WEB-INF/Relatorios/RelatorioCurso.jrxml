@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-30T12:11:46 -->
+<!-- 2017-05-02T08:27:11 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ireportCurso" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4e740af-7a79-4b26-b907-c5a467b0f382">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SCV"/>
@@ -24,7 +24,7 @@ order by scv.curso.nome]]>
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font size="34" isBold="true"/>
+						<font fontName="Arial" size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Relatório de Cursos]]></text>
 				</staticText>
@@ -42,14 +42,14 @@ order by scv.curso.nome]]>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9c77d40e-9d14-4fd8-93a6-f8e82706cd0b"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Código do Curso]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0ee874ac-7adf-4509-98f6-56586a112692"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome do Curso]]></text>
 			</staticText>
@@ -63,14 +63,14 @@ order by scv.curso.nome]]>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="0" y="0" width="277" height="20" uuid="7ee58719-65a6-464f-b8d3-0ca4b0910873"/>
 				<textElement textAlignment="Center">
-					<font size="14"/>
+					<font fontName="Arial" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codCurso}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="277" y="0" width="277" height="20" uuid="d1ed7ca3-b2d5-48de-9772-391c6116f91b"/>
 				<textElement textAlignment="Center">
-					<font size="14"/>
+					<font fontName="Arial" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
