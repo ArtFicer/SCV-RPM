@@ -18,7 +18,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public class RelatorioDisciplinaController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+/*    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
@@ -47,7 +47,7 @@ public class RelatorioDisciplinaController extends HttpServlet {
         } finally {
             BD.fecharConexao(conexao);
         }
-    }
+    }*/
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

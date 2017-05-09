@@ -21,37 +21,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 public class RelatorioCursoController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
-        //<editor-fold defaultstate="collapsed" desc="Codigo">
-/*        Connection conexao = null;
-try {
-conexao = BD.getConexao();
-String nomeRelatorio = request.getParameter("nomeRelatorio");
-String parametroBusca = request.getParameter("parametroBusca");
-HashMap parametros = new HashMap();
-String relatorio = null;
-if (!nomeRelatorio.equals("Polo")) {
-nomeRelatorio = "Polo";
-}
-if (!parametroBusca.equals("")) {
-parametros.put("P_Cidade", parametroBusca);
-relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + "Parametro.jasper";
-response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
-
-} else {
-relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + ".jasper";
-response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio +".pdf");
-}
-JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
-byte[] relat = JasperExportManager.exportReportToPdf(jp);
-response.setContentType("application/pdf");
-response.getOutputStream().write(relat);
-} catch (ClassNotFoundException | SQLException | JRException ex) {
-ex.printStackTrace();
-} finally {
-BD.fecharConexao(conexao);
-}*/
-//</editor-fold>
-
         String acao = request.getParameter("acao");
         if (acao.equals("prepararRelatorio")) {
             prepararRelatorio(request, response);
