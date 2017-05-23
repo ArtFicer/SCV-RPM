@@ -1,8 +1,3 @@
-<%-- 
-    Document   : manterPolo
-    Created on : 13/09/2016, 10:11:29
-    Author     : 041801-Nead
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,7 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        
+
         <link rel="stylesheet" href="css/bootstrap.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -21,7 +16,7 @@
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
+            <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
             <h1>Pesquisa de Polos</h1>
@@ -29,7 +24,6 @@
                 <thead>
                     <tr>
                         <th>Codigo:</th>
-                        <th>Transporte:</th>
                         <th>Cidade:</th>
                         <th>Logradouro:</th>
                         <th>Bairo:</th>
@@ -43,7 +37,6 @@
                     <c:forEach items="${polos}" var="polo">
                         <tr>
                             <td><c:out value="${polo.codPolo}" /></td>
-                            <td><c:out value="${polo.codTransporte.empresa}" /></td>
                             <td><c:out value="${polo.cidade}" /></td>
                             <td><c:out value="${polo.logradouro}" /></td>
                             <td><c:out value="${polo.bairro}" /></td>
@@ -57,8 +50,10 @@
                 </tbody>
             </table>
             <form action="ManterPoloController?acao=prepararIncluir" method="post">
-                <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
-                <button class="btn btn-default" name="" value=""><a href="RelatorioPolo.jsp" target="_parent">Relatórios</a></button>
+                <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>    
+            </form>
+            <form action="RelatorioPoloController?acao=prepararRelatorio" method="post">
+                <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Relatórios</button>
             </form>
         </div>
     </body>

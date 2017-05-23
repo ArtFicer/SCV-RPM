@@ -46,6 +46,7 @@
               <li class="active"><a href="principal.jsp" target="_parent">Inicio</a></li>
               <li> <a href="PesquisaCursoController" target="_parent">Curso</a></li>
               <li> <a href="PesquisaDisciplinaController" target="_parent">Disciplina</a></li>
+              <li> <a href="PesquisaConvidadoController" target="_parent">Convidado</a></li>
               <li> <a href="PesquisaOfertaController" target="_parent">Oferta</a></li>
               <li> <a href="PesquisaPoloController" target="_parent">Polo</a></li>
               <li> <a href="PesquisaPropostoController" target="_parent">Proposto</a></li>

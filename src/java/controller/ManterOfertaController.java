@@ -1,163 +1,138 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
+import dao.OfertaDAO;
+import dao.PoloDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Oferta;
+import model.Oferta;
+import model.Polo;
 
-/**
- *
- * @author pe-ri
- */
-
-@WebServlet(name = "ManterOfertaController", urlPatterns = {"/ManterOfertaController"})
 public class ManterOfertaController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
-    
-    
-    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        } else {
-            if (acao.equals("confirmarIncluir")) {
-                confirmarIncluir(request, response);
-            } else {
-                if (acao.equals("prepararEditar")) {
-                    prepararEditar(request, response);
-                } else {
-                    if (acao.equals("confirmarEditar")) {
-                        confirmarEditar(request, response);
-                    } else {
-                        if (acao.equals("prepararExcluir")) {
-                            prepararExcluir(request, response);
-                        } else {
-                            if (acao.equals("confirmarExcluir")) {
-                                confirmarExcluir(request, response);
-                            }
-                        }
-                    }
-                }
-            }
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
     }
 
-    
-    // Inclusão
-    // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("ofertas", Oferta.obterOferta());
+            request.setAttribute("polos", PoloDAO.obterInstancia().obterPolos());
+
             RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
-            throw ex;
-        }
-    }
-    
-    // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int ano = Integer.parseInt(request.getParameter("txtAno"));
-        try {
-            Oferta oferta = new Oferta(codOferta, ano);
-            oferta.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    
-    
-    //Edição
-    //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        try {
+            int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
+            int ano = Integer.parseInt(request.getParameter("txtAno"));
+            Polo polo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")));
+            Oferta oferta = new Oferta(codOferta, ano);
+            oferta.setPolocodPolo(polo);
+            OfertaDAO.obterInstancia().gravar(oferta);
+
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
+            view.forward(request, response);
+        } catch (IOException | ServletException ex) {
+            throw ex;
+        }
+    }
+
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         try {
             request.setAttribute("operacao", "Editar");
+
             int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-            Oferta oferta = Oferta.obterOferta(codOferta);
+            Oferta oferta = OfertaDAO.obterInstancia().obterOferta(codOferta);
+            request.setAttribute("polos", PoloDAO.obterInstancia().obterPolos());
             request.setAttribute("oferta", oferta);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
-            throw ex;
-        }
-    }
-    
-    
-    //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int ano = Integer.parseInt(request.getParameter("txtAno"));
-        try {
-            Oferta oferta = new Oferta(codOferta, ano);
-            oferta.alterar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    
-    //Exclusão
-    //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        try {
+            int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
+            int ano = Integer.parseInt(request.getParameter("txtAno"));
+            Oferta oferta = new Oferta(codOferta, ano);
+            Polo polo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")));
+            oferta.setPolocodPolo(polo);
+
+            OfertaDAO.obterInstancia().alterar(oferta);
+
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
+            view.forward(request, response);
+        } catch (IOException | ServletException ex) {
+            throw ex;
+        }
+    }
+
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         try {
             request.setAttribute("operacao", "Excluir");
+
             int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-            Oferta oferta = Oferta.obterOferta(codOferta);
+            Oferta oferta = OfertaDAO.obterInstancia().obterOferta(codOferta);
+            request.setAttribute("polos", PoloDAO.obterInstancia().obterPolos());
             request.setAttribute("oferta", oferta);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterOferta.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
-        int ano = Integer.parseInt(request.getParameter("txtAno"));
         try {
+            int codOferta = Integer.parseInt(request.getParameter("txtCodOferta"));
+            int ano = Integer.parseInt(request.getParameter("txtAno"));
             Oferta oferta = new Oferta(codOferta, ano);
-            oferta.Excluir();
+            Polo polo = new Polo(Integer.parseInt(request.getParameter("txtCodPolo")));
+            oferta.setPolocodPolo(polo);
+
+            OfertaDAO.obterInstancia().excluir(oferta);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOfertaController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (IOException | ServletException ex) {
             throw ex;
         }
     }
-    
-    
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

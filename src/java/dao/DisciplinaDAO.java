@@ -1,132 +1,114 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.Disciplina;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Disciplina;
 
 public class DisciplinaDAO {
 
-    //obter
-    //obter listas
-    public static List<Disciplina> obterDisciplina() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from Disciplina");
-            while (rs.next()) {
-                Disciplina disciplina = new Disciplina(
-                        rs.getInt("codDisciplina"),
-                        rs.getString("nome")
-                );
-                disciplinas.add(disciplina);
-            }
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return disciplinas;
-    }
-    
-     // obtem codigo da disciplina para o .dao
-    public static Disciplina obterDisciplina(int codDisciplina)  throws  ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        Disciplina disciplina = null;
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from disciplina where codDisciplina ="+codDisciplina);
-            rs.first();
-            
-            disciplina = new Disciplina(
-                    rs.getInt("codDisciplina"),
-                    rs.getString("nome")
-            );
-            disciplina.setCodDisciplina(rs.getInt("codDisciplina"));
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return disciplina;   
+    private static DisciplinaDAO instancia = new DisciplinaDAO();
+
+    public static DisciplinaDAO obterInstancia() {
+        return instancia;
     }
 
-    //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+    private DisciplinaDAO() {
+    }
+
+    public List<Disciplina> obterDisciplinas() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Disciplina> cursos = null;
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            TypedQuery<Disciplina> query = em.createQuery("select d from Disciplina d", Disciplina.class);
+            cursos = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return cursos;
+    }
+
+    public Disciplina obterDisciplina(int codDisciplina) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Disciplina disciplina = new Disciplina();
+        try {
+            tx.begin();
+            disciplina = em.find(Disciplina.class, codDisciplina);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return disciplina;
+    }
+
+    public void gravar(Disciplina disciplina) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.persist(disciplina);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //gravar
-        public static void gravar(Disciplina disciplina) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into disciplina (codDisciplina, nome) values (?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, disciplina.getCodDisciplina());
-            comando.setString(2, disciplina.getNome());
-//            if(Disciplina.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,Disciplina.getProposto().getCodProposto());
-//            }
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
-        
-    //alterar
-    public static void alterar(Disciplina disciplina) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update disciplina set nome=? where codDisciplina = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, disciplina.getNome());
-            comando.setInt(2, disciplina.getCodDisciplina());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+    public void alterar(Disciplina disciplina) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(disciplina);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-    
-    //Excluir
-     public static void excluir(Disciplina disciplina) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from disciplina where codDisciplina = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, disciplina.getCodDisciplina());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+
+    public void excluir(Disciplina disciplina) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Disciplina.class, disciplina.getCodDisciplina()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
-}
+    }
 }

@@ -1,172 +1,144 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
+import dao.PoloDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Polo;
-import modelo.Transporte;
+import model.Polo;
 
-/**
- *
- * @author pe-ri
- */
-@WebServlet(name = "ManterPoloController", urlPatterns = {"/ManterPoloController"})
 public class ManterPoloController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        } else {
-            if (acao.equals("confirmarIncluir")) {
-                confirmarIncluir(request, response);
-            } else {
-                if (acao.equals("prepararEditar")) {
-                    prepararEditar(request, response);
-                } else {
-                    if (acao.equals("confirmarEditar")) {
-                        confirmarEditar(request, response);
-                    } else {
-                        if (acao.equals("prepararExcluir")) {
-                            prepararExcluir(request, response);
-                        } else {
-                            if (acao.equals("confirmarExcluir")) {
-                                confirmarExcluir(request, response);
-                            }
-                        }
-                    }
-                }
-            }
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
     }
 
-    // Inclusão
-    // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("transportes", Transporte.obterTransporte());
-            request.setAttribute("polos", Polo.obterPolo());
+
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        Transporte transporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")), null, null);
-        String cidade = request.getParameter("txtCidade");
-        String logradouro = request.getParameter("txtLogradouro");
-        String bairro = request.getParameter("txtBairro");
-        int numero = Integer.parseInt(request.getParameter("txtNumero"));
-        int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
-        String email = request.getParameter("txtEmail");
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            Polo polo = new Polo(codPolo, transporte, cidade, logradouro, bairro, numero, telefone, email);
-            polo.gravar();
+            int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+            String cidade = request.getParameter("txtCidade");
+            String logradouro = request.getParameter("txtLogradouro");
+            String bairro = request.getParameter("txtBairro");
+            int numero = Integer.parseInt(request.getParameter("txtNumero"));
+            int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
+            String email = request.getParameter("txtEmail");
+
+            Polo polo = new Polo(codPolo, cidade, logradouro, bairro, numero, telefone, email);
+
+            PoloDAO.obterInstancia().gravar(polo);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Edição
-    //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Editar");
+
             int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-            Polo polo = Polo.obterPolo(codPolo);
+            Polo polo = PoloDAO.obterInstancia().obterPolo(codPolo);
+
             request.setAttribute("polo", polo);
-            request.setAttribute("transportes", Transporte.obterTransporte());
-            
+
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        Transporte transporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")), null, null);
-        String cidade = request.getParameter("txtCidade");
-        String logradouro = request.getParameter("txtLogradouro");
-        String bairro = request.getParameter("txtBairro");
-        int numero = Integer.parseInt(request.getParameter("txtNumero"));
-        int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
-        String email = request.getParameter("txtEmail");
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            //Proposto proposto = null;
-            Polo polo = new Polo(codPolo, transporte, cidade, logradouro, bairro, numero, telefone, email);
-            polo.alterar();
+            int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+            String cidade = request.getParameter("txtCidade");
+            String logradouro = request.getParameter("txtLogradouro");
+            String bairro = request.getParameter("txtBairro");
+            int numero = Integer.parseInt(request.getParameter("txtNumero"));
+            int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
+            String email = request.getParameter("txtEmail");
+
+            Polo polo = new Polo(codPolo, cidade, logradouro, bairro, numero, telefone, email);
+
+            PoloDAO.obterInstancia().alterar(polo);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Exclusão
-    //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Excluir");
+
             int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-            Polo polo = Polo.obterPolo(codPolo);
+            Polo polo = PoloDAO.obterInstancia().obterPolo(codPolo);
+
             request.setAttribute("polo", polo);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterPolo.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
-        Transporte transporte = new Transporte(Integer.parseInt(request.getParameter("txtCodTransporte")), null, null);
-        String cidade = request.getParameter("txtCidade");
-        String logradouro = request.getParameter("txtLogradouro");
-        String bairro = request.getParameter("txtBairro");
-        int numero = Integer.parseInt(request.getParameter("txtNumero"));
-        int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
-        String email = request.getParameter("txtEmail");
         try {
-            Polo polo = new Polo(codPolo, transporte, cidade, logradouro, bairro, numero, telefone, email);
-            polo.Excluir();
+            int codPolo = Integer.parseInt(request.getParameter("txtCodPolo"));
+            String cidade = request.getParameter("txtCidade");
+            String logradouro = request.getParameter("txtLogradouro");
+            String bairro = request.getParameter("txtBairro");
+            int numero = Integer.parseInt(request.getParameter("txtNumero"));
+            int telefone = Integer.parseInt(request.getParameter("txtTelefone"));
+            String email = request.getParameter("txtEmail");
+
+            Polo polo = new Polo(codPolo, cidade, logradouro, bairro, numero, telefone, email);
+
+            PoloDAO.obterInstancia().excluir(polo);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPoloController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }

@@ -1,134 +1,112 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.Solicitacao;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Solicitacao;
 
 public class SolicitacaoDAO {
 
-    //obter
-    //obter listas
-    public static List<Solicitacao> obterSolicitacao() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+    private static SolicitacaoDAO instancia = new SolicitacaoDAO();
+
+    public static SolicitacaoDAO obterInstancia() {
+        return instancia;
+    }
+
+    private SolicitacaoDAO() {
+    }
+
+    public List<Solicitacao> obterSolicitacoes() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Solicitacao> solicitacoes = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from solicitacao");
-            while (rs.next()) {
-                Solicitacao solicitacao = new Solicitacao(
-                        rs.getInt("codSolicitacao"),
-                        rs.getString("assunto"),
-                        rs.getString("texto")
-                        
-                );
-                solicitacoes.add(solicitacao);
+            tx.begin();
+            TypedQuery<Solicitacao> query = em.createQuery("select s from Solicitacao s", Solicitacao.class);
+            solicitacoes = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return solicitacoes;
+
     }
-    
-    //Obter normal
-    public static Solicitacao obterSolicitacao(int codSolicitacao) throws  ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        Solicitacao solicitacao = null;
+
+    public Solicitacao obterSolicitacao(int codSolicitacao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Solicitacao solicitacao = new Solicitacao();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from solicitacao where codSolicitacao ="+codSolicitacao);
-            rs.first();
-            
-            solicitacao = new Solicitacao(
-                    rs.getInt("codSolicitacao"),
-                        rs.getString("assunto"),
-                        rs.getString("texto")
-            );
-            solicitacao.setCodSolicitacao(rs.getInt("codSolicitacao"));
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            solicitacao = em.find(Solicitacao.class, codSolicitacao);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return solicitacao;
     }
 
-    //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+    public void gravar(Solicitacao solicitacao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            em.persist(solicitacao);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
-            }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //gravar    
-    public static void gravar(Solicitacao solicitacao) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into solicitacao (codSolicitacao, assunto,texto) values (?,?,?)";
-            PreparedStatement comando;
-            comando = conexao.prepareStatement(sql);
-            comando.setInt(1, solicitacao.getCodSolicitacao());
-            comando.setString(2, solicitacao.getAssunto());
-            comando.setString(3, solicitacao.getTexto());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
-    
-    //alterar
-    public static void alterar(Solicitacao solicitacao) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update solicitacao set assunto = ?,texto = ? where codSolicitacao = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, solicitacao.getAssunto());
-            comando.setString(2, solicitacao.getTexto());
-            comando.setInt(3, solicitacao.getCodSolicitacao());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+    public void alterar(Solicitacao solicitacao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(solicitacao);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-    
-    //excluir
 
-    public static void excluir(Solicitacao solicitacao) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from solicitacao where codSolicitacao = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, solicitacao.getCodSolicitacao());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+    public void excluir(Solicitacao solicitacao) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Solicitacao.class, solicitacao.getCodSolicitacao()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
-}
-    
+    }
 }

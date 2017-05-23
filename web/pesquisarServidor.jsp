@@ -1,8 +1,3 @@
-<%-- 
-    Document   : pesquisaServidor
-    Created on : 13/09/2016, 09:55:59
-    Author     : 041801-Nead
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,7 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        
+
         <link rel="stylesheet" href="css/bootstrap.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -21,7 +16,7 @@
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
+            <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
             <h1>Pesquisa de Servidores</h1>
@@ -30,7 +25,8 @@
                     <tr>
                         <th>Codigo:</th>
                         <th>Matricula SIAPE:</th>
-                        <th>Lotado no Orgão:</th>
+                        <th>Lotado no Orgão:</th>       
+                        <th>Proposto:</th>
                         <th colspan=2>Ação:</th>
                     </tr>
                 </thead>
@@ -40,6 +36,7 @@
                             <td><c:out value="${servidor.codServidor}" /></td>
                             <td><c:out value="${servidor.matriculaSIAPE}"/></td>
                             <td><c:out value="${servidor.lotadoOrgao}"/></td>
+                            <td><c:out value="${servidor.propostocodProposto.nome}"/></td>
                             <td><a href="ManterServidorController?acao=prepararEditar&txtCodServidor=<c:out value="${servidor.codServidor}"/>"><i class="icon-edit"></i>Editar</a> </td>
                             <td><a href="ManterServidorController?acao=prepararExcluir&txtCodServidor=<c:out value="${servidor.codServidor}"/>"><i class="icon-remove"></i>Excluir</a> </td>
                         </tr>
@@ -48,7 +45,9 @@
             </table>
             <form action="ManterServidorController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
-                <button class="btn btn-default" name="" value=""><a href="RelatorioServidor.jsp" target="_parent">Relatórios</a></button>
+            </form>
+            <form action="RelatorioServidorController?acao=prepararRelatorio" method="post">
+                <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Relatórios</button>
             </form>
         </div>
     </body>

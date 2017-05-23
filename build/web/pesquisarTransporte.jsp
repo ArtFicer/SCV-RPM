@@ -1,9 +1,3 @@
-<%-- 
-    Document   : manterTransporte
-    Created on : 13/09/2016, 10:11:47
-    Author     : 041801-Nead
---%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -21,7 +15,7 @@
     <body align="center" bgcolor="#B0C4DE">
         <!--Menu-->
         <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
+            <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
             <h1>Pesquisa de Transporte</h1>
@@ -48,7 +42,9 @@
             </table>
             <form action="ManterTransporteController?acao=prepararIncluir" method="post">
                 <button type="submit" class="btn btn-default" name="btnIncluir" value="Incluir">Incluir</button>
-                <button class="btn btn-default" name="" value=""><a href="RelatorioTransporte.jsp" target="_parent">Relatórios</a></button>
+            </form>
+            <form action="RelatorioTransporteController?acao=prepararRelatorio" method="post">
+                <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Relatórios</button>
             </form>
         </div>
     </body>

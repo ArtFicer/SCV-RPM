@@ -1,143 +1,115 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.Convidado;
-
-
-
-/*
-ahsuhaushaushaushuahsuahsuahs
-*/
-
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Convidado;
 
 public class ConvidadoDAO {
 
-    //Obter
-    //Obter Lista
-    public static List<Convidado> obterConvidado() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Convidado> convidados = new ArrayList<Convidado>();
+    private static ConvidadoDAO instancia = new ConvidadoDAO();
+
+    public static ConvidadoDAO obterInstancia() {
+        return instancia;
+    }
+
+    private ConvidadoDAO() {
+    }
+
+    public List<Convidado> obterConvidados() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Convidado> convidados = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from convidado");
-            while (rs.next()) {
-                Convidado convidado = new Convidado(
-                        rs.getInt("codConvidado"),
-                        rs.getInt("codProposto"),
-                        rs.getInt("matricula_SIAPE")
-                );
-                convidados.add(convidado);
+            tx.begin();
+            TypedQuery<Convidado> query = em.createQuery("select c from Convidado c", Convidado.class);
+            convidados = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return convidados;
+
     }
-    //Obter Normal
-    public static Convidado obterConvidado(int codConvidado)throws  ClassNotFoundException, SQLException {
 
-        Connection conexao = null;
-        Statement comando = null;
-        Convidado convidado = null;
+    public Convidado obterConvidado(int codConvidado) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Convidado convidado = new Convidado();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from convidado where codConvidado =" + codConvidado);
-            rs.first();
-
-            convidado = new Convidado(
-                    rs.getInt("codConvidado"),
-                    rs.getInt("codProposto"),
-                    rs.getInt("matricula_SIAPE")
-            );
-            convidado.setCodConvidado(rs.getInt("codConvidado"));
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            convidado = em.find(Convidado.class, codConvidado);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return convidado;
     }
 
-    //Fechar Conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+    public void gravar(Convidado convidado) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            em.persist(convidado);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
-            }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //Gravar
-    public static void gravar(Convidado convidado) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
+    public void alterar(Convidado convidado) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            String sql = "insert into convidado (codConvidado, codProposto, matricula_SIAPE) values (?,?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, convidado.getCodConvidado());
-            comando.setInt(2, convidado.getCodProposto());
-            comando.setInt(3, convidado.getMatricula_SIAPE());
-//            if(convidado.getProposto()==null)
-//            {
-//                comando.setNull(3,Types.NULL);
-//            }else{
-//                comando.setInt(3,convidado.getProposto().getCodProposto());
-//            }
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            em.merge(convidado);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //Alterar
-    public static void alterar(Convidado convidado) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
+    public void excluir(Convidado convidado) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            String sql = "update convidado set matricula_SIAPE = ? where codConvidado = ? ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, convidado.getMatricula_SIAPE());
-            comando.setInt(2, convidado.getCodConvidado());
-            comando.setInt(3, convidado.getCodProposto());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw ex;
+            tx.begin();
+            em.remove(em.getReference(Convidado.class, convidado.getCodConvidado()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-    //Excluir
-     public static void excluir(Convidado convidado) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from convidado where codConvidado = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, convidado.getCodConvidado());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
-        }
-}
 }

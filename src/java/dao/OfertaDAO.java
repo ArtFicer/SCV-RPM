@@ -1,127 +1,114 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.Oferta;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Oferta;
 
 public class OfertaDAO {
 
-    //obter
-    //obter listas
-    public static List<Oferta> obterOferta() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Oferta> ofertas = new ArrayList<Oferta>();
+    private static OfertaDAO instancia = new OfertaDAO();
+
+    public static OfertaDAO obterInstancia() {
+        return instancia;
+    }
+
+    private OfertaDAO() {
+    }
+
+    public List<Oferta> obterOfertas() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Oferta> ofertas = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from oferta");
-            while (rs.next()) {
-                Oferta oferta = new Oferta(
-                        rs.getInt("codOferta"),
-                        rs.getInt("ano")
-                );
-                ofertas.add(oferta);
+            tx.begin();
+            TypedQuery<Oferta> query = em.createQuery("select o from Oferta o", Oferta.class);
+            ofertas = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return ofertas;
     }
-    
-    //Obter normal
-    public static Oferta obterOferta(int codOferta) throws  ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        Oferta oferta = null;
+
+    public Oferta obterOferta(int codOferta) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Oferta oferta = new Oferta();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from oferta where codOferta ="+codOferta);
-            rs.first();
-            
-            oferta = new Oferta(
-                    rs.getInt("codOferta"),
-                    rs.getInt("ano")
-            );
-            oferta.setCodOferta(rs.getInt("codOferta"));
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            oferta = em.find(Oferta.class, codOferta);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return oferta;
     }
-    
-    //Fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+
+    public void gravar(Oferta oferta) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            em.persist(oferta);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
-            }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //gravar
-    public static void gravar(Oferta oferta) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into oferta (codOferta, ano) values (?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, oferta.getCodOferta());
-            comando.setInt(2, oferta.getAno());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
+    public void alterar(Oferta oferta) {
 
-
-    //Alterar
-    public static void alterar(Oferta oferta) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update oferta set ano = ? where codOferta = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, oferta.getAno());
-            comando.setInt(2, oferta.getCodOferta());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(oferta);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-    
-    //Excluir
-     public static void excluir(Oferta oferta) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from oferta where codOferta = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, oferta.getCodOferta());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+
+    public void excluir(Oferta oferta) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Oferta.class, oferta.getCodOferta()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
-}
+    }
 }

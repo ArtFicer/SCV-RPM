@@ -1,8 +1,3 @@
-<%-- 
-    Document   : SCV
-    Created on : 2/2016
-    Author     : RPM
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

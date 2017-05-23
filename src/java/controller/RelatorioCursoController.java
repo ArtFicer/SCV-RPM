@@ -1,6 +1,9 @@
 package controller;
 
 import dao.BD;
+import dao.CursoDAO;
+import dao.OfertaDAO;
+import dao.PoloDAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,7 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Curso;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,56 +31,59 @@ public class RelatorioCursoController extends HttpServlet {
         }
     }
 
-    public void prepararRelatorio(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararRelatorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("cursos", Curso.obterCurso());
+            
+            request.setAttribute("cursos", CursoDAO.obterInstancia().obterCursos());
+            request.setAttribute("polos", PoloDAO.obterInstancia().obterPolos());
+            request.setAttribute("ofertas", OfertaDAO.obterInstancia().obterOfertas());
+            
             RequestDispatcher view = request.getRequestDispatcher("/RelatorioCurso.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    private void exibirRelatorio(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        //<editor-fold defaultstate="collapsed" desc="comment">
-/*        int codCurso = Integer.parseInt(request.getParameter("txtCodCurso"));
-String nome = request.getParameter("txtNomeCurso");
-try {
-//Proposto proposto = null;
-Curso curso = new Curso(codCurso, nome);
-curso.gravar();
-RequestDispatcher view = request.getRequestDispatcher("PesquisaCursoController");
-view.forward(request, response);
-} catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
-throw ex;
-}*/
-//</editor-fold>
+    private void exibirRelatorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            //String nomeRelatorio = request.getParameter("nomeRelatorio");
             String nomeRelatorio = "Curso";
-            String parametroBusca = request.getParameter("parametroBusca");
+            String pNome = request.getParameter("pNome");
+            String pPolo = request.getParameter("pPolo");
+            String pAno = request.getParameter("pAno");
             HashMap parametros = new HashMap();
             String relatorio = null;
-            /*if (!nomeRelatorio.equals("Curso")) {
-                nomeRelatorio = "Curso";
-            }*/
-            if (!parametroBusca.equals("")) {
-                parametros.put("P_Nome", parametroBusca);
-                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + "Parametro.jasper";
+
+            if (pNome != null && !pNome.equals("")) {
+                parametros.put("P_Nome", pNome);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else if (pPolo != null && !pPolo.equals("")) {
+                parametros.put("P_Polo", pPolo);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else if (pAno != null && !pAno.equals("")) {
+                parametros.put("P_Ano", Integer.parseInt(pAno));
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
                 response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
 
             } else {
-                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + ".jasper";
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + ".jasper";
                 response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + ".pdf");
             }
+
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
-        } catch (ClassNotFoundException | SQLException | JRException ex) {
+
+        } catch (IOException | ClassNotFoundException | SQLException | JRException ex) {
             ex.printStackTrace();
         } finally {
             BD.fecharConexao(conexao);

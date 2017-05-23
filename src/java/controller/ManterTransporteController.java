@@ -1,152 +1,132 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
+import dao.TransporteDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Transporte;
+import model.Transporte;
 
-/**
- *
- * @author pe-ri
- */
-@WebServlet(name = "ManterTransporteController", urlPatterns = {"/ManterTransporteController"})
 public class ManterTransporteController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        } else {
-            if (acao.equals("confirmarIncluir")) {
-                confirmarIncluir(request, response);
-            } else {
-                if (acao.equals("prepararEditar")) {
-                    prepararEditar(request, response);
-                } else {
-                    if (acao.equals("confirmarEditar")) {
-                        confirmarEditar(request, response);
-                    } else {
-                        if (acao.equals("prepararExcluir")) {
-                            prepararExcluir(request, response);
-                        } else {
-                            if (acao.equals("confirmarExcluir")) {
-                                confirmarExcluir(request, response);
-                            }
-                        }
-                    }
-                }
-            }
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
     }
 
-    // Inclusão
-    // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException, ClassNotFoundException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("transportes", Transporte.obterTransporte());
+
             RequestDispatcher view = request.getRequestDispatcher("/manterTransporte.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException, SQLException, SQLException, ClassNotFoundException, ServletException {
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
-        String empresa = request.getParameter("txtEmpresa");
-        String veiculo = request.getParameter("txtVeiculo");
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            Transporte transporte = new Transporte(codTransporte, empresa, veiculo);
-            transporte.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaTransporteController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
-            throw ex;
-        }
-    }
-
-    //Edição
-    //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
-        try {
-            request.setAttribute("operacao", "Editar");
-            int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
-            Transporte transporte = Transporte.obterTransporte(codTransporte);
-            request.setAttribute("transporte", transporte);
-            RequestDispatcher view = request.getRequestDispatcher("/manterTransporte.jsp");
-            view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
-            throw ex;
-        }
-    }
-
-    //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
             int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
             String empresa = request.getParameter("txtEmpresa");
             String veiculo = request.getParameter("txtVeiculo");
-        try {
+
             Transporte transporte = new Transporte(codTransporte, empresa, veiculo);
-            transporte.alterar();
+
+            TransporteDAO.obterInstancia().gravar(transporte);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTransporteController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Exclusão
-    //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            request.setAttribute("operacao", "Excluir");
+            request.setAttribute("operacao", "Editar");
+
             int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
-            Transporte transporte = Transporte.obterTransporte(codTransporte);
+            Transporte transporte = TransporteDAO.obterInstancia().obterTransporte(codTransporte);
+
             request.setAttribute("transporte", transporte);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterTransporte.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
-        String empresa = request.getParameter("txtEmpresa");
-        String veiculo = request.getParameter("txtVeiculo");
         try {
+            int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+            String empresa = request.getParameter("txtEmpresa");
+            String veiculo = request.getParameter("txtVeiculo");
+
             Transporte transporte = new Transporte(codTransporte, empresa, veiculo);
-            transporte.Excluir();
+
+            TransporteDAO.obterInstancia().alterar(transporte);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTransporteController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
+            throw ex;
+        }
+    }
+
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            request.setAttribute("operacao", "Excluir");
+
+            int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+            Transporte transporte = TransporteDAO.obterInstancia().obterTransporte(codTransporte);
+
+            request.setAttribute("transporte", transporte);
+
+            RequestDispatcher view = request.getRequestDispatcher("/manterTransporte.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            throw ex;
+        }
+    }
+
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            int codTransporte = Integer.parseInt(request.getParameter("txtCodTransporte"));
+            String empresa = request.getParameter("txtEmpresa");
+            String veiculo = request.getParameter("txtVeiculo");
+
+            Transporte transporte = new Transporte(codTransporte, empresa, veiculo);
+
+            TransporteDAO.obterInstancia().excluir(transporte);
+
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTransporteController");
+            view.forward(request, response);
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }

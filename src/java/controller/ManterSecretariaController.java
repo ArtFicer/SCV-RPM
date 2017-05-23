@@ -1,157 +1,147 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
+import dao.PropostoDAO;
+import dao.SecretariaDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Secretaria;
+import model.Proposto;
+import model.Secretaria;
 
-/**
- *
- * @author pe-ri
- */
-@WebServlet(name = "ManterSecretariaController", urlPatterns = {"/ManterSecretariaController"})
 public class ManterSecretariaController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        } else {
-            if (acao.equals("confirmarIncluir")) {
-                confirmarIncluir(request, response);
-            } else {
-                if (acao.equals("prepararEditar")) {
-                    prepararEditar(request, response);
-                } else {
-                    if (acao.equals("confirmarEditar")) {
-                        confirmarEditar(request, response);
-                    } else {
-                        if (acao.equals("prepararExcluir")) {
-                            prepararExcluir(request, response);
-                        } else {
-                            if (acao.equals("confirmarExcluir")) {
-                                confirmarExcluir(request, response);
-                            }
-                        }
-                    }
-                }
-            }
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
     }
 
-    // Inclusão
-    // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("secretarias", Secretaria.obterSecretaria());
+
+            request.setAttribute("propostos", PropostoDAO.obterInstancia().obterPropostos());
+
             RequestDispatcher view = request.getRequestDispatcher("/manterSecretaria.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
-        String nome = request.getParameter("txtNome");
-        int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        String email = request.getParameter("txtEmail");
-        String senha = request.getParameter("txtSenha");
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            Secretaria secretaria = new Secretaria(codSecretaria, nome, cpf, email, senha);
-            secretaria.gravar();
+            int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
+            String nome = request.getParameter("txtNome");
+            String email = request.getParameter("txtEmail");
+            String senha = request.getParameter("txtSenha");
+
+            Proposto proposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")));
+            Secretaria secretaria = new Secretaria(codSecretaria, nome, email, senha);
+            secretaria.setPropostocodProposto(proposto);
+
+            SecretariaDAO.obterInstancia().gravar(secretaria);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSecretariaController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Edição
-    //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Editar");
+
             int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
-            Secretaria secretaria = Secretaria.obterSecretaria(codSecretaria);
+            Secretaria secretaria = SecretariaDAO.obterInstancia().obterSecretaria(codSecretaria);
+            
+            request.setAttribute("propostos", PropostoDAO.obterInstancia().obterPropostos());
             request.setAttribute("secretaria", secretaria);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterSecretaria.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
-        String nome = request.getParameter("txtNome");
-        int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        String email = request.getParameter("txtEmail");
-        String senha = request.getParameter("txtSenha");
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            Secretaria secretaria = new Secretaria(codSecretaria, nome, cpf, email, senha);
-            secretaria.alterar();
+            int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
+            String nome = request.getParameter("txtNome");
+            String email = request.getParameter("txtEmail");
+            String senha = request.getParameter("txtSenha");
+
+            Proposto proposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")));
+            Secretaria secretaria = new Secretaria(codSecretaria, nome, email, senha);
+            secretaria.setPropostocodProposto(proposto);
+
+            SecretariaDAO.obterInstancia().alterar(secretaria);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSecretariaController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Exclusão
-    //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Excluir");
+
             int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
-            Secretaria secretaria = Secretaria.obterSecretaria(codSecretaria);
+            Secretaria secretaria = SecretariaDAO.obterInstancia().obterSecretaria(codSecretaria);
+
             request.setAttribute("secretaria", secretaria);
+            request.setAttribute("propostos", PropostoDAO.obterInstancia().obterPropostos());
+
             RequestDispatcher view = request.getRequestDispatcher("/manterSecretaria.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
-        String nome = request.getParameter("txtNome");
-        int cpf = Integer.parseInt(request.getParameter("txtCPF"));
-        String email = request.getParameter("txtEmail");
-        String senha = request.getParameter("txtSenha");
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            Secretaria secretaria = new Secretaria(codSecretaria, nome, cpf, email, senha);
-            secretaria.Excluir();
+            int codSecretaria = Integer.parseInt(request.getParameter("txtCodSecretaria"));
+            String nome = request.getParameter("txtNome");
+            String email = request.getParameter("txtEmail");
+            String senha = request.getParameter("txtSenha");
+
+            Proposto proposto = new Proposto(Integer.parseInt(request.getParameter("txtCodProposto")));
+            Secretaria secretaria = new Secretaria(codSecretaria, nome, email, senha);
+            secretaria.setPropostocodProposto(proposto);
+
+            SecretariaDAO.obterInstancia().excluir(secretaria);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaSecretariaController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }

@@ -1,163 +1,134 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
+import dao.RelatorioViagemDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.RelatorioViagem;
+import model.RelatorioViagem;
 
-/**
- *
- * @author pe-ri
- */
-
-@WebServlet(name = "ManterRelatorioViagemController", urlPatterns = {"/ManterRelatorioViagemController"})
 public class ManterRelatorioViagemController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
-    
-    
-    //Processamento de requisição
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        } else {
-            if (acao.equals("confirmarIncluir")) {
-                confirmarIncluir(request, response);
-            } else {
-                if (acao.equals("prepararEditar")) {
-                    prepararEditar(request, response);
-                } else {
-                    if (acao.equals("confirmarEditar")) {
-                        confirmarEditar(request, response);
-                    } else {
-                        if (acao.equals("prepararExcluir")) {
-                            prepararExcluir(request, response);
-                        } else {
-                            if (acao.equals("confirmarExcluir")) {
-                                confirmarExcluir(request, response);
-                            }
-                        }
-                    }
-                }
-            }
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
     }
 
-    
-    // Inclusão
-    // Prepara a Inclusão no banco de dados
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("relatorioViagens", RelatorioViagem.obterRelatorioViagem());
+
             RequestDispatcher view = request.getRequestDispatcher("/manterRelatorioViagem.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
-            throw ex;
-        }
-    }
-    
-    // Realiza e confirma a Inclusão no banco de dados
-    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-        String relatorio = request.getParameter("txtRelatorio");
-        try {
-            RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, relatorio);
-            relatorioViagem.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    
-    
-    //Edição
-    //Preparar a edição
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    private void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
+            String relatorio = request.getParameter("txtRelatorio");
+
+            RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, relatorio);
+
+            RelatorioViagemDAO.obterInstancia().gravar(relatorioViagem);
+
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
+            view.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            throw ex;
+        }
+    }
+
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Editar");
+
             int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-            RelatorioViagem relatorioViagem = RelatorioViagem.obterRelatorioViagem(codRelatorioViagem);
+            RelatorioViagem relatorioViagem = RelatorioViagemDAO.obterInstancia().obterRelatorioViagem(codRelatorioViagem);
+
             request.setAttribute("relatorioViagem", relatorioViagem);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterRelatorioViagem.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
-            throw ex;
-        }
-    }
-    
-    
-    //Confrimar a edição
-    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
-        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-        String relatorio = request.getParameter("txtRelatorio");
-        try {
-            RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, relatorio);
-            relatorioViagem.alterar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
-            view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    
-    //Exclusão
-    //Preparar Exclução
-    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    private void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
+            String relatorio = request.getParameter("txtRelatorio");
+
+            RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, relatorio);
+
+            RelatorioViagemDAO.obterInstancia().alterar(relatorioViagem);
+
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
+            view.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            throw ex;
+        }
+    }
+
+    private void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("operacao", "Excluir");
+
             int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-            RelatorioViagem relatorioViagem = RelatorioViagem.obterRelatorioViagem(codRelatorioViagem);
+            RelatorioViagem relatorioViagem = RelatorioViagemDAO.obterInstancia().obterRelatorioViagem(codRelatorioViagem);
+
             request.setAttribute("relatorioViagem", relatorioViagem);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterRelatorioViagem.jsp");
             view.forward(request, response);
-        } catch (ServletException | IOException | ClassNotFoundException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
 
-    //Confirma a Exclusão
-    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException, ServletException {
+    private void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
-        String nome = request.getParameter("txtNomeRelatorioViagem");
         try {
-            RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, nome);
-            relatorioViagem.Excluir();
+            int codRelatorioViagem = Integer.parseInt(request.getParameter("txtCodRelatorioViagem"));
+            String relatorio = request.getParameter("txtRelatorio");
+
+            RelatorioViagem relatorioViagem = new RelatorioViagem(codRelatorioViagem, relatorio);
+
+            RelatorioViagemDAO.obterInstancia().excluir(relatorioViagem);
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaRelatorioViagemController");
             view.forward(request, response);
-        } catch (IOException | SQLException | ClassNotFoundException | ServletException ex) {
+        } catch (ServletException | IOException ex) {
             throw ex;
         }
     }
-    
-    
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

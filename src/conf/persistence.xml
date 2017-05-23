@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="SCV-MPRPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>model.Calendarioproposto</class>
+    <class>model.Polo</class>
+    <class>model.Servidor</class>
+    <class>model.Concessaodiaria</class>
+    <class>model.Oferta</class>
+    <class>model.Transporte</class>
+    <class>model.Secretaria</class>
+    <class>model.Curso</class>
+    <class>model.Solicitacao</class>
+    <class>model.Trimestre</class>
+    <class>model.Convidado</class>
+    <class>model.Viagem</class>
+    <class>model.OfertaPolo</class>
+    <class>model.Disciplina</class>
+    <class>model.RelatorioViagem</class>
+    <class>com.login.Convidado</class>
+    <class>com.login.Disciplina</class>
+    <class>com.login.Viagem</class>
+    <class>com.login.Relatorioviagem</class>
+    <class>com.login.Concessaodiaria</class>
+    <class>com.login.Oferta</class>
+    <class>com.login.Polo</class>
+    <class>com.login.Secretaria</class>
+    <class>com.login.Transporte</class>
+    <class>com.login.Curso</class>
+    <class>com.login.Servidor</class>
+    <class>com.login.Proposto</class>
+    <class>com.login.Trimestre</class>
+    <class>com.login.Solicitacao</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/scv?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>

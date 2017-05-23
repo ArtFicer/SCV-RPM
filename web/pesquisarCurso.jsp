@@ -1,8 +1,3 @@
-<%--
-    Document   : pesquisaNomeCPF
-    Created on : 20/09/2016, 09:16:11
-    Author     : 041801-Nead
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -27,8 +22,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Codigo:</th>
+                        <th>Código:</th>
                         <th>Nome:</th>
+                        <th>Ano de Oferta:</th>
+                        <th>Trimestre:</th>
                         <th colspan=2>Ação:</th>
                     </tr>
                 </thead>
@@ -37,6 +34,8 @@
                         <tr>
                             <td><c:out value="${curso.codCurso}" /></td>
                             <td><c:out value="${curso.nome}"/></td>
+                            <td><c:out value="${curso.ofertacodOferta.ano}"/></td>
+                            <td><c:out value="${curso.trimestrecodTrimestre.numeroTrimestre}"/></td>
                             <td><a href="ManterCursoController?acao=prepararEditar&txtCodCurso=<c:out value="${curso.codCurso}"/>"><i class="icon-edit"></i>Editar</a> </td>
                             <td><a href="ManterCursoController?acao=prepararExcluir&txtCodCurso=<c:out value="${curso.codCurso}"/>"><i class="icon-remove"></i>Excluir</a> </td>
                         </tr>

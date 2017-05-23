@@ -1,12 +1,17 @@
 package controller;
 
 import dao.BD;
+import dao.PoloDAO;
+import dao.PropostoDAO;
+import dao.TransporteDAO;
+import dao.ViagemDAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,30 +24,80 @@ import net.sf.jasperreports.engine.JasperPrint;
 public class RelatorioViagemController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String acao = request.getParameter("acao");
+        if (acao.equals("prepararRelatorio")) {
+            prepararRelatorio(request, response);
+        } else if (acao.equals("exibirRelatorio")) {
+            exibirRelatorio(request, response);
+        }
+    }
+
+    public void prepararRelatorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            request.setAttribute("operacao", "Incluir");
+
+            request.setAttribute("viagens", ViagemDAO.obterInstancia().obterViagens());
+            request.setAttribute("propostos", PropostoDAO.obterInstancia().obterPropostos());
+            request.setAttribute("polos", PoloDAO.obterInstancia().obterPolos());
+            request.setAttribute("transportes", TransporteDAO.obterInstancia().obterTransportes());
+
+            RequestDispatcher view = request.getRequestDispatcher("/RelatorioViagem.jsp");
+            view.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            throw ex;
+        }
+    }
+
+    private void exibirRelatorio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String nomeRelatorio = request.getParameter("nomeRelatorio");
-            String parametroBusca = request.getParameter("parametroBusca");
+            String nomeRelatorio = "Viagem";
+            String pDestino = request.getParameter("pDestino");
+            String pData = request.getParameter("pData");
+            String pProposto = request.getParameter("pProposto");
+            String pPolo = request.getParameter("pPolo");
+            String pEmpresa = request.getParameter("pEmpresa");
             HashMap parametros = new HashMap();
             String relatorio = null;
-            if (!nomeRelatorio.equals("Viagem")) {
-                nomeRelatorio = "Viagem";
-            }
-            if (!parametroBusca.equals("")) {
-                parametros.put("P_Destino", parametroBusca);
-                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + "Parametro.jasper";
+
+            if (pDestino != null && !pDestino.equals("")) {
+                parametros.put("P_Viagem", pDestino);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else if (pData != null && !pData.equals("")) {
+                parametros.put("P_Viagem", pData);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else if (pProposto != null && !pProposto.equals("")) {
+                parametros.put("P_Viagem", pProposto);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else if (pPolo != null && !pPolo.equals("")) {
+                parametros.put("P_Viagem", pPolo);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
+
+            } else if (pEmpresa != null && !pEmpresa.equals("")) {
+                parametros.put("P_Viagem", pEmpresa);
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + "Parametro.jasper";
                 response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + "Parametro.pdf");
 
             } else {
-                relatorio = getServletContext().getRealPath("/WEB-INF/Relatorios") + "/Relatorio" + nomeRelatorio + ".jasper";
-                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio +".pdf");
+                relatorio = getServletContext().getRealPath("/WEB-INF/reports") + "/relatorio" + nomeRelatorio + ".jasper";
+                response.setHeader("Content-Disposition", "attachment;filename=Relatorio" + nomeRelatorio + ".pdf");
             }
+
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
-        } catch (ClassNotFoundException | SQLException | JRException ex) {
+
+        } catch (IOException | ClassNotFoundException | SQLException | JRException ex) {
             ex.printStackTrace();
         } finally {
             BD.fecharConexao(conexao);

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : manterRelatorioViagem
-    Created on : 13/09/2016, 10:11:15
-    Author     : 041801-Nead
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

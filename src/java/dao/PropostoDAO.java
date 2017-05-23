@@ -1,228 +1,114 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.Proposto;
-import modelo.Secretaria;
-import modelo.Servidor;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Proposto;
 
 public class PropostoDAO {
 
-    //obter
-    //obter listas
-    public static List<Proposto> obterProposto() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Proposto> propostos = new ArrayList<Proposto>();
-        Servidor servidor = null;
-        Secretaria secretaria = null;
+    private static PropostoDAO instancia = new PropostoDAO();
+
+    public static PropostoDAO obterInstancia() {
+        return instancia;
+    }
+
+    private PropostoDAO() {
+    }
+
+    public List<Proposto> obterPropostos() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Proposto> propostos = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from proposto join servidor on servidor.codServidor=proposto.codServidor join secretaria on secretaria.codSecretaria = proposto.codSecretaria");
-            while (rs.next()) {
-                servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),null);
-                secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),0,null,null);
-                Proposto proposto = new Proposto(
-                        rs.getInt("codProposto"),
-                        rs.getString("codCalendarioProposto"),
-                        servidor,
-                        secretaria,
-                        rs.getString("nome"),
-                        rs.getString("setor"),
-                        rs.getInt("cpf"),
-                        rs.getString("data_nascimento"),
-                        rs.getString("email"),
-                        rs.getInt("telefone"),
-                        rs.getInt("celular"),
-                        rs.getString("logradouro"),
-                        rs.getInt("numero"),
-                        rs.getString("complemento"),
-                        rs.getString("bairro"),
-                        rs.getString("cidade"),
-                        rs.getString("uf"),
-                        rs.getInt("cep"),
-                        rs.getString("titulacao_maxima"),
-                        rs.getString("banco"),
-                        rs.getInt("agencia"),
-                        rs.getInt("conta"),
-                        rs.getString("cargo"),
-                        rs.getString("senha"),
-                        rs.getString("tipo_proposto")
-                );
-                propostos.add(proposto);
+            tx.begin();
+            TypedQuery<Proposto> query = em.createQuery("select p from Proposto p", Proposto.class);
+            propostos = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return propostos;
     }
-    //Obter normal
-    public static Proposto obterProposto(int codProposto) throws  ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        Proposto proposto = null;
-        Servidor servidor = null;
-        Secretaria secretaria = null;
+
+    public Proposto obterProposto(int codProposto) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Proposto proposto = new Proposto();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from proposto join servidor on servidor.codServidor=proposto.codServidor join secretaria on secretaria.codSecretaria = proposto.codSecretaria where codProposto ="+codProposto);
-            rs.first();
-            servidor = new Servidor(rs.getInt("codServidor"),rs.getInt("matricula_SIAPE"),null);
-            secretaria = new Secretaria(rs.getInt("codSecretaria"),rs.getString("nome"),0,null,null);
-            proposto = new Proposto(
-                    rs.getInt("codProposto"),
-                        rs.getString("codCalendarioProposto"),
-                        servidor,
-                        secretaria,
-                        rs.getString("nome"),
-                        rs.getString("setor"),
-                        rs.getInt("cpf"),
-                        rs.getString("data_nascimento"),
-                        rs.getString("email"),
-                        rs.getInt("telefone"),
-                        rs.getInt("celular"),
-                        rs.getString("logradouro"),
-                        rs.getInt("numero"),
-                        rs.getString("complemento"),
-                        rs.getString("bairro"),
-                        rs.getString("cidade"),
-                        rs.getString("uf"),
-                        rs.getInt("cep"),
-                        rs.getString("titulacao_maxima"),
-                        rs.getString("banco"),
-                        rs.getInt("agencia"),
-                        rs.getInt("conta"),
-                        rs.getString("cargo"),
-                        rs.getString("senha"),
-                        rs.getString("tipo_proposto")
-            );
-            proposto.setCodProposto(rs.getInt("codProposto"));
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            proposto = em.find(Proposto.class, codProposto);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return proposto;
     }
 
-    //Fechar Conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+    public void gravar(Proposto proposto) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            em.persist(proposto);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
-            }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //Gravar    
-    public static void gravar(Proposto proposto) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into proposto (codProposto, codCalendarioProposto,codServidor,codSecretaria,nome,setor,cpf,data_nascimento,email,telefone,celular,logradouro,numero,complemento,bairro,cidade,uf,cep,titulacao_maxima,banco,agencia,conta,cargo,senha,tipo_proposto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, proposto.getCodProposto());
-            comando.setString(2, proposto.getCalendario());
-            comando.setInt(3, proposto.getCodServidor().getCodServidor());
-            comando.setInt(4, proposto.getCodSecretaria().getCodSecretaria());
-            comando.setString(5, proposto.getNome());
-            comando.setString(6, proposto.getSetor());
-            comando.setInt(7, proposto.getCpf());
-            comando.setString(8, proposto.getDataNascimento());
-            comando.setString(9, proposto.getEmail());
-            comando.setInt(10, proposto.getTelefone());
-            comando.setInt(11, proposto.getCelular());
-            comando.setString(12, proposto.getLogradouro());
-            comando.setInt(13, proposto.getNumero());
-            comando.setString(14, proposto.getComplemento());
-            comando.setString(15, proposto.getBairro());
-            comando.setString(16, proposto.getCidade());
-            comando.setString(17, proposto.getUf());
-            comando.setInt(18, proposto.getCep());
-            comando.setString(19, proposto.getTitulacaoMaxima());
-            comando.setString(20, proposto.getBanco());
-            comando.setInt(21, proposto.getAgencia());
-            comando.setInt(22, proposto.getConta());
-            comando.setString(23, proposto.getCargo());
-            comando.setString(24, proposto.getSenha());
-            comando.setString(25, proposto.getTipoProposto());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
+    public void alterar(Proposto proposto) {
 
-    //Alterar
-    public static void alterar(Proposto proposto) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update proposto set codCalendarioProposto = ?,codServidor = ?,codSecretaria = ?,nome = ?,setor = ?,cpf = ?,data_nascimento = ?,email = ?,telefone = ?,celular = ?,logradouro = ?,numero = ?,complemento = ?,bairro = ?,cidade = ?,uf = ?,cep = ?,titulacao_maxima = ?,banco = ?,agencia = ?,conta = ?,cargo = ?,senha = ?,tipo_proposto = ? where codProposto = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, proposto.getCalendario());
-            comando.setInt(2, proposto.getCodServidor().getCodServidor());
-            comando.setInt(3, proposto.getCodSecretaria().getCodSecretaria());
-            comando.setString(4, proposto.getNome());
-            comando.setString(5, proposto.getSetor());
-            comando.setInt(6, proposto.getCpf());
-            comando.setString(7, proposto.getDataNascimento());
-            comando.setString(8, proposto.getEmail());
-            comando.setInt(9, proposto.getTelefone());
-            comando.setInt(10, proposto.getCelular());
-            comando.setString(11, proposto.getLogradouro());
-            comando.setInt(12, proposto.getNumero());
-            comando.setString(13, proposto.getComplemento());
-            comando.setString(14, proposto.getBairro());
-            comando.setString(15, proposto.getCidade());
-            comando.setString(16, proposto.getUf());
-            comando.setInt(17, proposto.getCep());
-            comando.setString(18, proposto.getTitulacaoMaxima());
-            comando.setString(19, proposto.getBanco());
-            comando.setInt(20, proposto.getAgencia());
-            comando.setInt(21, proposto.getConta());
-            comando.setString(22, proposto.getCargo());
-            comando.setString(23, proposto.getSenha());
-            comando.setString(24, proposto.getTipoProposto());
-            comando.setInt(25, proposto.getCodProposto());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(proposto);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-    
-    //Excluir
-        public static void excluir(Proposto proposto) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from proposto where codProposto = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, proposto.getCodProposto());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
-        }
-}
-    
-}
 
+    public void excluir(Proposto proposto) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Proposto.class, proposto.getCodProposto()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+    }
+}

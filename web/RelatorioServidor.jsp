@@ -1,4 +1,7 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,18 +20,17 @@
         </nav>
         <div class="container" >
             <h1>Relatório de Servidor</h1>
-            <form data-toggle="validator" role="form" action="RelatorioServidorController" method="post" name="frmRelatorioProposto" >
-                <div class="form-group row-fluid"  >
-                    <label for="usr" class="col-sm-2 col-form-label" >Nome do Relatório:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Ex: Servidor" id="usr" name="nomeRelatorio">
-                    </div>
-                </div>
-                <div class="form-group row-fluid" >
-                    <label for="usr" class="col-sm-2 col-form-label " >Parâmetro de Busca:</label>
-                    <div class="col-sm-10" >
-                        <input type="text" class="form-control" placeholder="Ex: SIAPE" id="usr" name="parametroBusca">
-                    </div>
+            <form data-toggle="validator" role="form" action="RelatorioServidorController?acao=exibirRelatorio" method="post" name="frmRelatorioProposto" >
+                <div class="form-group">
+                    <label for="usr">SIAPE (O preenchimento é opcional):</label>
+                    <select class="selectpicker" id="pMatricula" name="pMatricula">
+                        <option value="" <c:if test="${servidor.matriculaSIAPE != null}">selected</c:if>></option>
+                        <c:forEach items="${servidores}" var="servidor">
+                            <option value="${servidor.matriculaSIAPE}">
+                                ${servidor.matriculaSIAPE}
+                            </option>  
+                        </c:forEach>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Exibir Relatório</button> 
                 <button class="btn btn-default" ><a href="PesquisaServidorController" target="_parent">Voltar</a></button>   

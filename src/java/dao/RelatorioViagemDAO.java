@@ -1,126 +1,116 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.RelatorioViagem;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.RelatorioViagem;
 
 public class RelatorioViagemDAO {
 
-    //obter
-    //obter listas
-    public static List<RelatorioViagem> obterRelatorioViagem() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<RelatorioViagem> relatorioViagens = new ArrayList<RelatorioViagem>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from relatorioviagem");
-            while (rs.next()) {
-                RelatorioViagem relatorioViagem = new RelatorioViagem(
-                        rs.getInt("codRelatorioViagem"), rs.getString("relatorio") 
-                );
-                relatorioViagens.add(relatorioViagem);
-            }
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return relatorioViagens;
+    private static RelatorioViagemDAO instancia = new RelatorioViagemDAO();
+
+    public static RelatorioViagemDAO obterInstancia() {
+        return instancia;
     }
-    
-    //Obter normal
-    public static RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) throws  ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        RelatorioViagem relatorioViagem = null;
+
+    private RelatorioViagemDAO() {
+    }
+
+    public List<RelatorioViagem> obterRelatorioViagens() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<RelatorioViagem> relatorioViagem = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from relatorioviagem where codRelatorioViagem ="+codRelatorioViagem);
-            rs.first();
-            
-            relatorioViagem = new RelatorioViagem(
-                 rs.getInt("codRelatorioViagem"), rs.getString("relatorio")
-            );
-            relatorioViagem.setCodRelatorioViagem(rs.getInt("codRelatorioViagem"));
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            TypedQuery<RelatorioViagem> query = em.createQuery("select r from RelatorioViagem r", RelatorioViagem.class);
+            relatorioViagem = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return relatorioViagem;
     }
 
-    //Fechar Conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+    public RelatorioViagem obterRelatorioViagem(int codRelatorioViagem) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        RelatorioViagem curso = new RelatorioViagem();
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            curso
+                    = em.find(RelatorioViagem.class, codRelatorioViagem);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return curso;
+    }
+
+    public void gravar(RelatorioViagem relatorioViagem) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.persist(relatorioViagem);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //Gravar    
-    public static void gravar(RelatorioViagem relatorioViagem) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into relatorioviagem (codRelatorioViagem, relatorio) values (?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
-            comando.setString(2, relatorioViagem.getRelatorio());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
+    public void alterar(RelatorioViagem relatorioViagem) {
 
-    //Alterar
-    public static void alterar(RelatorioViagem relatorioViagem) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update relatorioviagem set relatorio = ? where codRelatorioViagem = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setString(1, relatorioViagem.getRelatorio());
-            comando.setInt(2, relatorioViagem.getCodRelatorioViagem());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(relatorioViagem);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-    
-    //Excluir
-        public static void excluir(RelatorioViagem relatorioViagem) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from relatorioviagem where codRelatorioViagem = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, relatorioViagem.getCodRelatorioViagem());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
-        }
-}
-    
-}
 
+    public void excluir(RelatorioViagem relatorioViagem) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em
+                    .remove(em.getReference(RelatorioViagem.class, relatorioViagem.getCodRelatorioViagem()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+    }
+}

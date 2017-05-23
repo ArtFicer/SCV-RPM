@@ -1,4 +1,7 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,18 +20,17 @@
         </nav>
         <div class="container" >
             <h1>Relatório de Proposto</h1>
-            <form data-toggle="validator" role="form" action="RelatorioPropostoController" method="post" name="frmRelatorioProposto" >
-                <div class="form-group row-fluid"  >
-                    <label for="usr" class="col-sm-2 col-form-label" >Nome do Relatório:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Ex: Proposto" id="usr" name="nomeRelatorio">
-                    </div>
-                </div>
-                <div class="form-group row-fluid" >
-                    <label for="usr" class="col-sm-2 col-form-label " >Parâmetro de Busca:</label>
-                    <div class="col-sm-10" >
-                        <input type="text" class="form-control" placeholder="Ex: 123456789" id="usr" name="parametroBusca">
-                    </div>
+            <form data-toggle="validator" role="form" action="RelatorioPropostoController?acao=exibirRelatorio" method="post" name="frmRelatorioProposto" >
+                <div class="form-group">
+                    <label for="usr">Parâmetro de Busca (O preenchimento é opcional):</label>
+                    <select class="selectpicker" id="pNome" name="pNome">
+                        <option value="" <c:if test="${proposto.nome != null}">selected</c:if>></option>
+                        <c:forEach items="${propostos}" var="proposto">
+                            <option value="${proposto.nome}">
+                                ${proposto.nome}
+                            </option>  
+                        </c:forEach>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Exibir Relatório</button> 
                 <button class="btn btn-default" ><a href="PesquisaPropostoController" target="_parent">Voltar</a></button>   

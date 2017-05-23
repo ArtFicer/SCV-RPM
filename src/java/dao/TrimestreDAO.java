@@ -1,130 +1,111 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import modelo.Trimestre;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Trimestre;
 
 public class TrimestreDAO {
 
-    //obter
-    //obter listas
-    public static List<Trimestre> obterTrimestre() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Trimestre> trimestres = new ArrayList<Trimestre>();
+    private static TrimestreDAO instancia = new TrimestreDAO();
+
+    public static TrimestreDAO obterInstancia() {
+        return instancia;
+    }
+
+    private TrimestreDAO() {
+    }
+
+    public List<Trimestre> obterTrimestres() {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Trimestre> trimestres = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from trimestre");
-            while (rs.next()) {
-                Trimestre trimestre = new Trimestre(
-                        rs.getInt("codTrimestre"),
-                        rs.getInt("numero_trimestre")
-                        
-                );
-                trimestres.add(trimestre);
+            tx.begin();
+            TypedQuery<Trimestre> query = em.createQuery("select t from Trimestre t", Trimestre.class);
+            trimestres = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return trimestres;
     }
-    
-    //Obter normal
-    public static Trimestre obterTrimestre(int codTrimestre) throws  ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        Trimestre trimestre = null;
+
+    public Trimestre obterTrimestre(int codTrimestre) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Trimestre trimestre = new Trimestre();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from trimestre where codTrimestre ="+codTrimestre);
-            rs.first();
-            
-            trimestre = new Trimestre(
-                    rs.getInt("codTrimestre"),
-                        rs.getInt("numero_trimestre")
-                        
-            );
-            trimestre.setCodTrimestre(rs.getInt("codTrimestre"));
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            trimestre = em.find(Trimestre.class, codTrimestre);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return trimestre;
     }
 
-    //fechar conexão
-    public static void fecharConexao(Connection conexao, Statement comando) throws SQLException {
+    public void gravar(Trimestre trimestre) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            if (comando != null) {
-                comando.close();
+            tx.begin();
+            em.persist(trimestre);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            if (conexao != null) {
-                conexao.close();
-            }
-        } catch (SQLException e) {
-            throw e;
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    //Gravar    
-    public static void gravar(Trimestre trimestre) throws SQLException,ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "insert into trimestre (codTrimestre, numero_trimestre) values (?,?)";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, trimestre.getCodTrimestre());
-            comando.setInt(2, trimestre.getNumeroTrimestre());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        }catch (SQLException e){
-            throw e;
-        }
-       }
-
-
-    //Alterar        
-    public static void alterar(Trimestre trimestre) throws SQLException, ClassNotFoundException{
-        Connection conexao = null;
-        try{
-            conexao = BD.getConexao();
-            String sql = "update trimestre set numero_trimestre = ? where codTrimestre = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, trimestre.getNumeroTrimestre());
-            comando.setInt(2, trimestre.getCodTrimestre());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+    public void alterar(Trimestre trimestre) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(trimestre);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
-        
-    //Excluir
-    public static void excluir(Trimestre trimestre) throws SQLException, ClassNotFoundException {
-       Connection conexao = null ;
-        try{
-            conexao = BD.getConexao();
-            String sql = "delete from trimestre where codTrimestre = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, trimestre.getCodTrimestre());
-            comando.execute();
-            comando.close();
-            conexao.close();
-            }catch (SQLException | ClassNotFoundException ex) {
-                throw ex;
+
+    public void excluir(Trimestre trimestre) {
+
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Trimestre.class, trimestre.getCodTrimestre()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
-}
-    
+    }
 }

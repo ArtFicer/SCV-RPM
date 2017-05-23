@@ -1,4 +1,7 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,22 +20,56 @@
         </nav>
         <div class="container" >
             <h1>Relatório de Oferta</h1>
-            <form data-toggle="validator" role="form" action="RelatorioOfertaController" method="post" name="frmRelatorioOferta" >
-                <div class="form-group row-fluid"  >
-                    <label for="usr" class="col-sm-2 col-form-label" >Nome do Relatório:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Ex: Oferta" id="usr" name="nomeRelatorio">
-                    </div>
+            <form data-toggle="validator" role="form" action="RelatorioOfertaController?acao=exibirRelatorio" method="post" name="frmRelatorioOferta" >
+                <div class="form-group">
+                    <label for="usr">Polo (O preenchimento é opcional):</label>
+                    <select class="selectpicker" id="pPolo" name="pPolo" onchange="bloqueiaSelect(this)">
+                        <option value ="" <c:if test="${polo.cidade != null}">selected</c:if>></option>
+                        <c:forEach items="${polos}" var="polo">
+                            <option value="${polo.cidade}">
+                                ${polo.cidade}
+                            </option>  
+                        </c:forEach>
+                    </select>
                 </div>
-                <div class="form-group row-fluid" >
-                    <label for="usr" class="col-sm-2 col-form-label " >Parâmetro de Busca:</label>
-                    <div class="col-sm-10" >
-                        <input type="text" class="form-control" placeholder="Ex: 2016" id="usr" name="parametroBusca">
-                    </div>
+                <div class="form-group">
+                    <label for="usr">Ano de Oferta (O preenchimento é opcional):</label>
+                    <select class="selectpicker" id="pAno" name="pAno" onchange="bloqueiaSelect(this)" >
+                        <option value ="" <c:if test="${oferta.ano != null}">selected</c:if>></option>
+                        <c:forEach items="${ofertas}" var="oferta">
+                            <option value="${oferta.ano}">
+                                ${oferta.ano}
+                            </option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnRelatorio" value="Exibir">Exibir Relatório</button> 
                 <button class="btn btn-default" ><a href="PesquisaOfertaController" target="_parent">Voltar</a></button>   
             </form>
-        </div>        
+        </div>     
+        <SCRIPT language="JavaScript">
+
+            function bloqueiaSelect(campo) {
+
+                if (campo.name === "pPolo" && campo.value !== "") {
+
+                    $('#pAno').prop('disabled', true);
+                    document.getElementById("pAno").value = "";
+
+                } else if (campo.name === "pPolo" && document.getElementById("pPolo").value === "") {
+
+                    $('#pAno').prop('disabled', false);
+
+                } else if (campo.name === "pAno" && campo.value !== "") {
+
+                    $('#pPolo').prop('disabled', true);
+                    document.getElementById("pPolo").value = "";
+
+                } else if (campo.name === "pAno" && document.getElementById("pAno").value === "") {
+
+                    $('#pPolo').prop('disabled', false);
+                }
+            }
+        </SCRIPT>      
     </body>
 </html>
