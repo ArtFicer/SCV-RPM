@@ -33,7 +33,7 @@
                     <div class="form-group row-fluid" >
                         <label for="usr" class="col-sm-2 col-form-label " >Matricula SIAPE:</label>
                         <div class="col-sm-10" >
-                            <input type="text" class="form-control" placeholder="" id="usr" name="txtMatriculaSIAPE" value="${convidado.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <input type="text" class="form-control" placeholder="" name="txtMatriculaSIAPE" value="${convidado.matriculaSIAPE}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         </div>
 
                         <div class="form-group">
@@ -91,8 +91,12 @@
                     alert(mensagem);
                     return false;
                 }
+                if (form.txtMatriculaSIAPE.value.size > 10) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
-
         </SCRIPT>        
     </body>
 </html>
