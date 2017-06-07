@@ -35,7 +35,7 @@
                         <div class="col-sm-10" >
                             <input type="text" class="form-control" placeholder="Ex: Sistemas de Informação" id="usr" name="txtNomeCurso" value="${curso.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="usr">Ano de Oferta:</label>
                             <select class="selectpicker" name="txtCodOferta" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
@@ -43,7 +43,7 @@
                             <c:forEach items="${ofertas}" var="oferta">
                                 <option value="${oferta.codOferta}" <c:if test="${oferta.codOferta == curso.ofertacodOferta.codOferta}"> selected</c:if>>
                                     ${oferta.ano}
-                                </option>  
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
@@ -55,7 +55,7 @@
                             <c:forEach items="${trimestres}" var="trimestre">
                                 <option value="${trimestre.codTrimestre}" <c:if test="${trimestre.codTrimestre == curso.trimestrecodTrimestre.codTrimestre}"> selected</c:if>>
                                     ${trimestre.numeroTrimestre}
-                                </option>  
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
@@ -63,7 +63,7 @@
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
         </div>
-                            
+
         <SCRIPT language="JavaScript">
 
 
@@ -88,6 +88,9 @@
                 if (form.txtCodCurso.value === "") {
                     mensagem = mensagem + "Informe o Código\n";
                 }
+                if (form.txtCodCurso.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 if (form.txtNomeCurso.value === "") {
                     mensagem = mensagem + "Informe o nome do curso\n";
                 }
@@ -105,6 +108,6 @@
                 }
             }
 
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

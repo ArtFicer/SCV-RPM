@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -15,35 +15,35 @@
     <body>
         <!--Menu-->
         <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
+            <object width="100%" height="65px" data="menu.jsp"></object>
         </nav>
         <div class="container">
             <h1>Manter Trimestre - ${operacao}</h1>
 
             <form action="ManterTrimestreController?acao=confirmar${operacao}" method="post" name="frmManterTrimestre" onsubmit="return validarFormulario(this)">
-            
+
                 <div class="form-group">
                     <label for="usr">Código do Trimestre:</label>
                     <input type="text" class="form-control" id="usr" name="txtCodTrimestre"  placeholder="Ex: 23"value="${trimestre.codTrimestre}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                </div>
-                <div class="form-group">
-                    <label for="usr">Numero do Trimestre:</label>
-                    <input type="text" class="form-control" id="usr" name="txtNumeroTrimestre" placeholder="Ex: 3"value="${trimestre.numeroTrimestre}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Numero do Trimestre:</label>
+                        <input type="text" class="form-control" id="usr" name="txtNumeroTrimestre" placeholder="Ex: 3"value="${trimestre.numeroTrimestre}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
         </div>
         <SCRIPT language="JavaScript">
-            
+
             function campoNumerico(valor)
             {
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero === true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) === -1) 
+                for (i = 0; i < valor.length && ehNumero === true; i++)
+                {
+                    umCaracter = valor.charAt(i);
+                    if (caracteresValidos.indexOf(umCaracter) === -1)
                     {
                         ehNumero = false;
                     }
@@ -51,27 +51,29 @@
                 return ehNumero;
             }
 
-            function validarFormulario(form) { 
+            function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                
+                if (form.txtCodTrimestre.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 //Codigo Trimestre
-                if ((!campoNumerico(form.txtCodTrimestre.value)) || (form.txtCodTrimestre.value === "")){
+                if ((!campoNumerico(form.txtCodTrimestre.value)) || (form.txtCodTrimestre.value === "")) {
                     mensagem = mensagem + "Informe um Código do Trimestre válido\n";
-                }    
-                
+                }
+
                 //Numero Trimestre
-                if ((!campoNumerico(form.txtNumeroTrimestre.value))||(form.txtNumeroTrimestre.value === "")){
+                if ((!campoNumerico(form.txtNumeroTrimestre.value)) || (form.txtNumeroTrimestre.value === "")) {
                     mensagem = mensagem + "Informe um Numero do Trimestre válido \n";
                 }
-                
-                if (mensagem === ""){
+
+                if (mensagem === "") {
                     return true;
-                }else{
+                } else {
                     alert(mensagem);
                     return false;
-                }                
-            } 
-        </SCRIPT>        
+                }
+            }
+        </SCRIPT>
     </body>
 </html>

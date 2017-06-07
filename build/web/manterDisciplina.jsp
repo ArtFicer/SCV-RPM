@@ -36,10 +36,10 @@
                         <c:forEach items="${trimestres}" var="trimestre">
                             <option value="${trimestre.codTrimestre}" <c:if test="${trimestre.codTrimestre == disciplina.trimestrecodTrimestre.codTrimestre}"> selected</c:if>>
                                 ${trimestre.numeroTrimestre}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
-                </div>                
+                </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
         </div>
@@ -67,6 +67,9 @@
                 if (form.txtCodDisciplina.value === "") {
                     mensagem = mensagem + "Informe o Código da Disciplina\n";
                 }
+                if (form.txtCodDisciplina.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 if (form.txtNomeDisciplina.value === "") {
                     mensagem = mensagem + "Informe o Nome do Disciplina\n";
                 }
@@ -84,6 +87,6 @@
                     return false;
                 }
             }
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : SCV
     Created on : 2/2016
     Author     : RPM
@@ -46,7 +46,7 @@
                         <c:forEach items="${propostos}" var="proposto">
                             <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == servidor.propostocodProposto.codProposto}"> selected</c:if>>
                                 ${proposto.nome}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -74,7 +74,9 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-
+                if (form.txtCodServidor.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 //Codigo Sevidor
                 if (form.txtCodServidor.value === "") {
                     mensagem = mensagem + "Informe o código\n";
@@ -104,6 +106,6 @@
                 }
             }
             //-->
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

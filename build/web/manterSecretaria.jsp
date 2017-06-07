@@ -27,10 +27,10 @@
                 <div class="form-group">
                     <label for="usr">Código da Secretaria:</label>
                     <input type="text" class="form-control" id="usr" name="txtCodSecretaria"  placeholder="Ex: 23"value="${secretaria.codSecretaria}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                </div>
-                <div class="form-group">
-                    <label for="usr">Nome de Usuário:</label>
-                    <input type="text" class="form-control" id="usr" name="txtNome" placeholder="Ex: José Café Pelé"value="${secretaria.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Nome de Usuário:</label>
+                        <input type="text" class="form-control" id="usr" name="txtNome" placeholder="Ex: José Café Pelé"value="${secretaria.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Email:</label>
@@ -47,7 +47,7 @@
                         <c:forEach items="${propostos}" var="proposto">
                             <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == secretaria.propostocodProposto.codProposto}"> selected</c:if>>
                                 ${proposto.nome}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -76,6 +76,9 @@
                 var mensagem;
                 mensagem = "";
 
+                if (form.txtCodSecretaria.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 //Codigo Secretaria
                 if (!campoNumerico(form.txtCodSecretaria.value)) {
                     mensagem = mensagem + "Informe o Código da Secretaria\n";
@@ -116,6 +119,6 @@
                 }
             }
             //-->
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

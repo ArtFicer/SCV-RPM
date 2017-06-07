@@ -80,6 +80,9 @@
                 if (form.txtCodPolo.value === "") {
                     mensagem = mensagem + "Informe o código\n";
                 }
+                if (form.txtPolo.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 if (!campoNumerico(form.txtCodPolo.value)) {
                     mensagem = mensagem + "O Código deve ser numérico\n";
                 }
@@ -131,6 +134,6 @@
                 }
             }
 
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

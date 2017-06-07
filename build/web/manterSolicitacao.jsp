@@ -41,7 +41,7 @@
                         <c:forEach items="${propostos}" var="proposto">
                             <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == solicitacao.propostocodProposto.codProposto}"> selected</c:if>>
                                 ${proposto.nome}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -69,7 +69,9 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-
+                if (form.txtCodSolicitacao.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 //Codigo Solicitacoes
                 if (!campoNumerico(form.txtCodSolicitacoes.value)) {
                     mensagem = mensagem + "Informe o Código da Solicitaçao válido\n";
@@ -97,6 +99,6 @@
                 }
             }
             //-->
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

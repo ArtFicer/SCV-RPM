@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        
+
         <title>Manter Solicitações</title>
     </head>
     <body>
@@ -22,18 +22,18 @@
             <h1>Manter Transporte - ${operacao}</h1>
 
             <form action="ManterTransporteController?acao=confirmar${operacao}" method="post" name="frmManterTransporte" onsubmit="return validarFormulario(this)">
-            
+
                 <div class="form-group">
                     <label for="usr">Código da Transporte:</label>
                     <input type="text" class="form-control" id="usr" name="txtCodTransporte" placeholder="Ex: 23" value="${transporte.codTransporte}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                </div>
-                <div class="form-group">
-                    <label for="usr">Empresa:</label>
-                    <input type="text" class="form-control" id="usr" name="txtEmpresa" placeholder="Ex: Zezin Bão de Chão" value="${transporte.empresa}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                </div>
-                <div class="form-group">
-                    <label for="usr">Veículo:</label>
-                    <input type="text" class="form-control" id="usr" name="txtVeiculo" placeholder="Ex: Fusca" value="${transporte.veiculo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Empresa:</label>
+                        <input type="text" class="form-control" id="usr" name="txtEmpresa" placeholder="Ex: Zezin Bão de Chão" value="${transporte.empresa}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Veículo:</label>
+                        <input type="text" class="form-control" id="usr" name="txtVeiculo" placeholder="Ex: Fusca" value="${transporte.veiculo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 </div>
                 <button type="submit" class="btn btn-default" name="btnConfirmar" value="Confirmar">Confirmar</button>
             </form>
@@ -59,25 +59,27 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                
+                if (form.txtCodTransporte.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 //Transporte
-                if (!campoNumerico(form.txtCodTransporte.value)){
+                if (!campoNumerico(form.txtCodTransporte.value)) {
                     mensagem = mensagem + "Informe o Código da Transporte\n";
                 }
-                if(form.txtCodTransporte.value === ""){
+                if (form.txtCodTransporte.value === "") {
                     mensagem = mensagem + "Informe o código\n";
                 }
-                
+
                 //Empresa
                 if (form.txtEmpresa.value === "") {
                     mensagem = mensagem + "Informe a Empresa\n";
                 }
-                
+
                 //Veículo
                 if (form.txtVeiculo.value === "") {
                     mensagem = mensagem + "Informe o Veiculo\n";
                 }
-                
+
                 if (mensagem === "") {
                     return true;
                 } else {
@@ -85,6 +87,6 @@
                     return false;
                 }
             }
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

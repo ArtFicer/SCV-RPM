@@ -43,7 +43,7 @@
                             <c:forEach items="${propostos}" var="proposto">
                                 <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == convidado.propostocodProposto.codProposto}"> selected</c:if>>
                                     ${proposto.nome}
-                                </option>  
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
@@ -76,6 +76,9 @@
                 if (form.txtCodCurso.value === "") {
                     mensagem = mensagem + "Informe o Código\n";
                 }
+                if (form.txtCodCurso.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 if (form.txtNomeCurso.value === "") {
                     mensagem = mensagem + "Informe o nome do curso\n";
                 }
@@ -97,6 +100,6 @@
                     return true;
                 }
             }
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

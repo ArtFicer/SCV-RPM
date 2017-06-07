@@ -18,17 +18,17 @@
         </style>
     </head>
     <body>
-    <!--Menu-->
-    <nav>
-          <object width="100%" height="65px" data="menu.jsp"></object>
-    </nav>
-    
+        <!--Menu-->
+        <nav>
+            <object width="100%" height="65px" data="menu.jsp"></object>
+        </nav>
 
-    <div class="container">
-        <h2>NEaD - SCV</h2>
-        <h4>Bem-Vindo ao NEaD Agendamentos</h4>
-        
-    </div>
+
+        <div class="container">
+            <h2>NEaD - SCV</h2>
+            <h4>Bem-Vindo ao NEaD Agendamentos</h4>
+
+        </div>
 
     </body>
 </html>

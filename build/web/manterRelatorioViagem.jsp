@@ -60,6 +60,9 @@
                 if (form.txtCodRelatorioViagem.value === "") {
                     mensagem = mensagem + "Informe o Código do Relatorio\n";
                 }
+                if (form.txtCodRelatorioViagem.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 if (form.txtRelatorio.value === "") {
                     mensagem = mensagem + "Informe o Relatorio\n";
                 }
@@ -73,6 +76,6 @@
                     return false;
                 }
             }
-        </SCRIPT>        
+        </SCRIPT>
     </body>
 </html>

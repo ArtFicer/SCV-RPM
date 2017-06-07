@@ -35,7 +35,7 @@
                         <c:forEach items="${relatorioViagens}" var="relatorioViagem">
                             <option value="${relatorioViagem.codRelatorioViagem}" <c:if test="${relatorioViagem.codRelatorioViagem == viagem.relatorioviagemcodRelatorioViagem.codRelatorioViagem}"> selected</c:if>>
                                 ${relatorioViagem.codRelatorioViagem}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -46,7 +46,7 @@
                         <c:forEach items="${propostos}" var="proposto">
                             <option value="${proposto.codProposto}" <c:if test="${proposto.codProposto == viagem.propostocodProposto.codProposto}"> selected</c:if>>
                                 ${proposto.nome}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -57,10 +57,10 @@
                         <c:forEach items="${polos}" var="polo">
                             <option value="${polo.codPolo}" <c:if test="${polo.codPolo == viagem.polocodPolo.codPolo}"> selected</c:if>>
                                 ${polo.codPolo}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
-                </div>    
+                </div>
                 <div class="form-group">
                     <label for="usr">Destino:</label>
                     <input type="text" class="form-control" id="usr" name="txtDestino" placeholder="Ex: Muriaé" value="${viagem.destino}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
@@ -79,7 +79,7 @@
                                 todayBtn: true,
                                 pickerPosition: "bottom-left"
                             });
-                        </script>       
+                        </script>
                     </div>
                     <div class="form-group">
                         <label for="usr">Horário de Saída:</label>
@@ -100,7 +100,7 @@
                         <c:forEach items="${transportes}" var="transporte">
                             <option value="${transporte.codTransporte}" <c:if test="${transporte.codTransporte == viagem.transportecodTransporte.codTransporte}"> selected</c:if>>
                                 ${transporte.empresa}
-                            </option>  
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -128,7 +128,9 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-
+                if (form.txtCodViagem.size > 8) {
+                    mensagem = mensagem + "O numero esta muito grande\n";
+                }
                 //Codigo Viagem
                 if (form.txtCodViagem.value === "") {
                     mensagem = mensagem + "Informe o Código da Viagem \n";
@@ -192,7 +194,7 @@
                 }
             }
 
-        </SCRIPT>  
+        </SCRIPT>
 
     </body>
 </html>
