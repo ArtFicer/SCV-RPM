@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código do Relatorio da Viagem:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodRelatorioViagem" placeholder="Ex: 23" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodRelatorioViagem" placeholder="Ex: 23" value="${relatorioViagem.codRelatorioViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Relatorio:</label>
@@ -59,9 +59,6 @@
                 mensagem = "";
                 if (form.txtCodRelatorioViagem.value === "") {
                     mensagem = mensagem + "Informe o Código do Relatorio\n";
-                }
-                if (form.txtCodRelatorioViagem.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
                 }
                 if (form.txtRelatorio.value === "") {
                     mensagem = mensagem + "Informe o Relatorio\n";

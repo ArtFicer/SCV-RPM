@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código da Viagem:</label>
-                    <input type="text" class="form-control" placeholder="Ex: 23" id="usr" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" placeholder="Ex: 23" id="usr" name="txtCodViagem" value="${viagem.codViagem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Código do Relatório da Viagem:</label>
@@ -128,9 +128,6 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodViagem.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
-                }
                 //Codigo Viagem
                 if (form.txtCodViagem.value === "") {
                     mensagem = mensagem + "Informe o Código da Viagem \n";

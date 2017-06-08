@@ -27,7 +27,7 @@
                 <div class="form-group row-fluid"  >
                     <label for="usr" class="col-sm-2 col-form-label" >Código do curso:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Ex: 23" id="usr" name="txtCodCurso" value="${curso.codCurso}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input type="text" class="form-control" placeholder="Ex: 23" id="usr" name="txtCodCurso" value="${curso.codCurso}" maxlength=6 <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                         </div>
                     </div>
                     <div class="form-group row-fluid" >
@@ -87,9 +87,6 @@
                 var mensagem = "";
                 if (form.txtCodCurso.value === "") {
                     mensagem = mensagem + "Informe o Código\n";
-                }
-                if (form.txtCodCurso.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
                 }
                 if (form.txtNomeCurso.value === "") {
                     mensagem = mensagem + "Informe o nome do curso\n";

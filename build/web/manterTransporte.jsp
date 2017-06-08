@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código da Transporte:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodTransporte" placeholder="Ex: 23" value="${transporte.codTransporte}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodTransporte" placeholder="Ex: 23" value="${transporte.codTransporte}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Empresa:</label>
@@ -59,9 +59,6 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodTransporte.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
-                }
                 //Transporte
                 if (!campoNumerico(form.txtCodTransporte.value)) {
                     mensagem = mensagem + "Informe o Código da Transporte\n";

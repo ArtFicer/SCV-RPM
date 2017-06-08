@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código da Secretaria:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodSecretaria"  placeholder="Ex: 23"value="${secretaria.codSecretaria}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodSecretaria"  placeholder="Ex: 23"value="${secretaria.codSecretaria}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Nome de Usuário:</label>
@@ -76,9 +76,6 @@
                 var mensagem;
                 mensagem = "";
 
-                if (form.txtCodSecretaria.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
-                }
                 //Codigo Secretaria
                 if (!campoNumerico(form.txtCodSecretaria.value)) {
                     mensagem = mensagem + "Informe o Código da Secretaria\n";

@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código do Servidor:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodServidor" placeholder="Ex: 23" value="${servidor.codServidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodServidor" placeholder="Ex: 23" value="${servidor.codServidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Matricula SIAPE:</label>
@@ -74,9 +74,6 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodServidor.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
-                }
                 //Codigo Sevidor
                 if (form.txtCodServidor.value === "") {
                     mensagem = mensagem + "Informe o código\n";

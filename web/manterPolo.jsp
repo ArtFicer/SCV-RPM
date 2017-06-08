@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código do Polo</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodPolo" placeholder="Ex: 23" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodPolo" placeholder="Ex: 23" value="${polo.codPolo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Cidade:</label>
@@ -79,9 +79,6 @@
                 //Código
                 if (form.txtCodPolo.value === "") {
                     mensagem = mensagem + "Informe o código\n";
-                }
-                if (form.txtPolo.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
                 }
                 if (!campoNumerico(form.txtCodPolo.value)) {
                     mensagem = mensagem + "O Código deve ser numérico\n";

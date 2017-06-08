@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label for="usr">Código do Trimestre:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodTrimestre"  placeholder="Ex: 23"value="${trimestre.codTrimestre}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodTrimestre"  placeholder="Ex: 23"value="${trimestre.codTrimestre}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Numero do Trimestre:</label>
@@ -54,9 +54,6 @@
             function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodTrimestre.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
-                }
                 //Codigo Trimestre
                 if ((!campoNumerico(form.txtCodTrimestre.value)) || (form.txtCodTrimestre.value === "")) {
                     mensagem = mensagem + "Informe um Código do Trimestre válido\n";

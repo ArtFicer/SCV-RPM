@@ -23,7 +23,7 @@
             <form action="ManterDisciplinaController?acao=confirmar${operacao}" method="post" name="frmManterDisciplina" onsubmit="return validarFormulario(this)">
                 <div class="form-group">
                     <label for="usr">Código do Disciplina:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodDisciplina" placeholder="Ex: 23" value="${disciplina.codDisciplina}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodDisciplina" placeholder="Ex: 23" value="${disciplina.codDisciplina}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Nome da Disciplina:</label>
@@ -66,9 +66,6 @@
                 mensagem = "";
                 if (form.txtCodDisciplina.value === "") {
                     mensagem = mensagem + "Informe o Código da Disciplina\n";
-                }
-                if (form.txtCodDisciplina.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
                 }
                 if (form.txtNomeDisciplina.value === "") {
                     mensagem = mensagem + "Informe o Nome do Disciplina\n";

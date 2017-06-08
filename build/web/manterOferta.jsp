@@ -24,7 +24,7 @@
             <form action="ManterOfertaController?acao=confirmar${operacao}" method="post" name="frmManterOferta" onsubmit="return validarFormulario(this)">
                 <div class="form-group">
                     <label for="usr">Código da Oferta:</label>
-                    <input type="text" class="form-control" id="usr" name="txtCodOferta" placeholder="Ex: 23" value="${oferta.codOferta}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                    <input type="text" maxlength=6 class="form-control" id="usr" name="txtCodOferta" placeholder="Ex: 23" value="${oferta.codOferta}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </div>
                     <div class="form-group">
                         <label for="usr">Ano:</label>
@@ -67,9 +67,6 @@
                 mensagem = "";
                 if (form.txtCodOferta.value === "") {
                     mensagem = mensagem + "Informe o código\n";
-                }
-                if (form.txtCodOferta.size > 8) {
-                    mensagem = mensagem + "O numero esta muito grande\n";
                 }
                 if (form.txtAno.value === "") {
                     mensagem = mensagem + "Informe o ano\n";
